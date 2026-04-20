@@ -425,6 +425,16 @@ class ExcelExporter:
         logger.info(f"  Rows: {row_count}")
         logger.info(f"  Columns: {len(COLUMNS)}")
 
+        # Always publish a fixed-name copy for GitHub / customer access.
+        # Skipped for test exports so test runs don't overwrite the public file.
+        if not test_mode:
+            try:
+                latest_path = self.base_dir / "TED_Defence_Trailers_LATEST.xlsx"
+                shutil.copy2(output_path, latest_path)
+                logger.info(f"Latest copy: {latest_path}")
+            except Exception as e:
+                logger.warning(f"Could not write LATEST copy: {e}")
+
         return str(output_path)
 
     def _dedup_for_export(self, notices: list) -> list:

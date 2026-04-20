@@ -6,7 +6,7 @@ __pycache__/
 dist/
 build/
 
-# Data (zu groß / sensibel) — keep folder stubs via .gitkeep
+# Raw data (too large for Git — rebuilt on each run)
 data/raw/details/*
 !data/raw/details/.gitkeep
 data/raw/fulltext/*
@@ -15,22 +15,26 @@ data/raw/notice_index.json
 data/raw/api_sample.json
 data/raw/api_discovery_report.json
 data/raw/probe_*.json
+
+# Filtered data (rebuilt on each run)
 data/filtered/*
 !data/filtered/.gitkeep
-data/export/*
-!data/export/.gitkeep
-!data/export/archive/
-!data/export/test/
+
+# Export archives and test outputs (only LATEST stays)
 data/export/archive/*
 !data/export/archive/.gitkeep
 data/export/test/*
 !data/export/test/.gitkeep
+
+# Cache files (persisted via GitHub Actions cache, not in repo)
 data/.checkpoint.json
 data/.enrichment_log.json
 data/.enrichment_log_v1_backup.json
 data/.enrichment_fulltext_log.json
 data/.award_match_log.json
 data/.last_run.json
+
+# Logs
 data/pipeline_*.log
 data/root_cause_analysis.md
 
@@ -52,7 +56,7 @@ Thumbs.db
 # Excel temp/lock files
 ~$*.xlsx
 
-# Legacy / nicht mehr genutzt
+# Legacy
 browser_scraper.py
 discover_api.py
 Vorlage.xlsx.bak

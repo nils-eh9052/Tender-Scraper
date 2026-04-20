@@ -1,5 +1,13 @@
 # TED Defence Trailer Scraper
 
+## Download Latest Data
+
+**[-> Download current Excel](data/export/TED_Defence_Trailers_LATEST.xlsx)** (updated weekly, every Sunday)
+
+The scraper runs automatically via GitHub Actions. Check the [Actions tab](../../actions) for run status.
+
+---
+
 Automated pipeline for discovering and analyzing EU defence procurement notices related to military trailers and trailer-based systems.
 
 Built for defence market intelligence — identifies trailer procurements across 21+ European countries, classifies them by type and category using AI, and exports structured Excel reports.

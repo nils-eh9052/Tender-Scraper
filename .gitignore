@@ -1,0 +1,64 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+dist/
+build/
+
+# Data (zu groß / sensibel) — keep folder stubs via .gitkeep
+data/raw/details/*
+!data/raw/details/.gitkeep
+data/raw/fulltext/*
+!data/raw/fulltext/.gitkeep
+data/raw/notice_index.json
+data/raw/api_sample.json
+data/raw/api_discovery_report.json
+data/raw/probe_*.json
+data/filtered/*
+!data/filtered/.gitkeep
+data/export/*
+!data/export/.gitkeep
+!data/export/archive/
+!data/export/test/
+data/export/archive/*
+!data/export/archive/.gitkeep
+data/export/test/*
+!data/export/test/.gitkeep
+data/.checkpoint.json
+data/.enrichment_log.json
+data/.enrichment_log_v1_backup.json
+data/.enrichment_fulltext_log.json
+data/.award_match_log.json
+data/.last_run.json
+data/pipeline_*.log
+data/root_cause_analysis.md
+
+# Environment
+.env
+*.env
+.env.local
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Excel temp/lock files
+~$*.xlsx
+
+# Legacy / nicht mehr genutzt
+browser_scraper.py
+discover_api.py
+Vorlage.xlsx.bak
+templates/
+SYSTEM_STATUS_REPORT.md
+SYSTEM_STATUS_V2.md
+
+# Claude Code local settings
+.claude/

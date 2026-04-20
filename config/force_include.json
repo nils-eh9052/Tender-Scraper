@@ -1,0 +1,14 @@
+{
+    "_comment": "TED Notice IDs that must always be fetched and classified (from manual research). Add new IDs here when found.",
+    "force_include_ids": [
+        "751810-2024",
+        "772125-2025",
+        "385446-2024",
+        "477617-2024",
+        "694394-2023",
+        "560361-2021",
+        "173135-2024",
+        "231675-2021",
+        "41901-2019"
+    ]
+}

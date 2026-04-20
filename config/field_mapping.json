@@ -1,0 +1,24 @@
+{
+  "_generated_at": "2026-04-13T22:02:34.285954",
+  "_note": "Auto-generated from API discovery. Review and adjust.",
+  "working_endpoints": [
+    {
+      "name": "ted_open_data_csv",
+      "url": "https://data.europa.eu/api/hub/search/datasets/ted-csv",
+      "method": "GET",
+      "total_results": null
+    }
+  ],
+  "search_endpoint": null,
+  "detail_endpoint": null,
+  "field_mapping": {
+    "notice_id": [],
+    "title": [],
+    "description": [],
+    "authority_name": [],
+    "country": [],
+    "cpv_codes": [],
+    "value": [],
+    "publication_date": []
+  }
+}

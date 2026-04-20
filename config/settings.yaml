@@ -1,0 +1,172 @@
+# =============================================================================
+# TED Defence Trailer Scraper – Configuration
+# =============================================================================
+
+# --- TED API Settings ---
+api:
+  base_url: "https://api.ted.europa.eu/v3"
+  # Alternative: Public search endpoint (no key required)
+  search_url: "https://api.ted.europa.eu/v3/notices/search"
+  detail_url: "https://api.ted.europa.eu/v3/notices"
+  
+  # Rate limiting
+  requests_per_second: 1  # conservative to avoid 429 rate limits
+  max_retries: 3
+  retry_backoff_factor: 2  # exponential: 2s, 4s, 8s
+  timeout_seconds: 30
+  
+  # Pagination
+  page_size: 250  # API max is 250
+  max_results_per_query: 15000  # API limit for PAGE_NUMBER mode
+
+# --- Search Scope ---
+search:
+  # Date range (ISO format)
+  date_from: "2015-01-01"
+  date_to: "2026-04-13"
+  
+  # Search scope: ALL = alle Bekanntmachungen
+  scope: "ALL"
+  
+  # Only latest versions of each notice
+  latest_only: true
+
+# --- CPV Codes (Stufe 1 – API-Filter) ---
+# Grouped by relevance tier
+cpv_codes:
+  # Tier 1: Directly trailer/anhänger related
+  tier1_trailer_direct:
+    - "34223000"  # Anhänger und Sattelanhänger
+    - "34223100"  # Sattelanhänger
+    - "34223200"  # Tank semi-trailers
+    - "34223300"  # Anhänger
+    - "34223310"  # Universalanhänger
+    - "34223370"  # Kippanhänger
+  
+  # Tier 2: Military vehicles & defence
+  tier2_defence_vehicles:
+    - "35600000"  # Militärfahrzeuge und zugehörige Teile
+    - "35610000"  # Militärfahrzeuge
+    # Note: 35612000 is not a valid CPV in TED API
+    - "35000000"  # Sicherheits-/Verteidigungsausrüstung (breit)
+  
+  # Tier 3: Transport & heavy vehicles (broad catch)
+  tier3_transport_broad:
+    - "34100000"  # Kraftfahrzeuge
+    - "34130000"  # Kraftfahrzeuge für den Gütertransport
+    - "34140000"  # Schwerlastfahrzeuge
+    - "34144000"  # Kraftfahrzeuge für besondere Zwecke
+    - "34950000"  # Beladesysteme (Loading Systems)
+
+# --- Legal Basis Filter (Defence-Richtlinie) ---
+legal_basis:
+  # Strong defence signal – prioritize these
+  defence_directive: "32009L0081"  # Richtlinie 2009/81/EG (Verteidigung)
+  
+  # Also include general procurement (trailers may be procured under this)
+  general_directives:
+    - "32014L0024"  # Richtlinie 2014/24/EU (Öffentliche Aufträge)
+    - "32014L0025"  # Richtlinie 2014/25/EU (Versorgungssektoren)
+
+# --- Keywords (Stufe 2 – Lokales Filtering) ---
+keywords:
+  # Per trailer category – multilingual
+  low_bed:
+    en: ["low-bed", "low bed", "low-loader", "lowboy", "heavy equipment trailer", "low bed trailer"]
+    de: ["tieflader", "tiefbett", "schwerlastanhänger", "tieflade"]
+    fr: ["surbaissé", "surbaissée", "porte-engins", "porte-char"]
+    it: ["ribassato", "carrellone"]
+    es: ["cama baja", "góndola"]
+    pl: ["niskopodwoziowa", "niskopodłogowa"]
+  
+  semitrailer:
+    en: ["semi-trailer", "semitrailer", "semi trailer", "articulated trailer", "tractor trailer"]
+    de: ["sattelanhänger", "sattelauflieger", "auflieger"]
+    fr: ["semi-remorque"]
+    it: ["semirimorchio"]
+    es: ["semirremolque"]
+    pl: ["naczepa"]
+  
+  dolly:
+    en: ["dolly", "dolly trailer", "converter dolly", "dolly axle"]
+    de: ["dolly", "nachläufer", "dolly-achse"]
+    fr: ["dolly", "avant-train"]
+  
+  tank_trailer:
+    en: ["tank trailer", "tanker trailer", "fuel trailer", "bowser", "fuel bowser", "water bowser"]
+    de: ["tankanhänger", "tanksattelauflieger", "kraftstoffanhänger", "tankwagen"]
+    fr: ["citerne", "remorque-citerne"]
+    it: ["cisterna"]
+    es: ["cisterna"]
+    pl: ["cysterna"]
+  
+  mission_module:
+    en: ["mission module", "containerized module", "shelter", "mobile command", "C2 shelter", "swap body", "ISO container", "tactical shelter"]
+    de: ["missionsmodul", "wechselaufbau", "shelter", "funktionscontainer", "abrollbehälter", "führungscontainer"]
+    fr: ["module de mission", "abri", "shelter", "conteneur"]
+    it: ["modulo missione", "shelter"]
+  
+  loading_system:
+    en: ["loading system", "load handling system", "hookloader", "hook-lift", "hook lift", "palletized load system", "PLS", "demountable rack", "DROPS", "MULTILIFT", "HIAB"]
+    de: ["beladesystem", "wechsellader", "hakenladegerät", "abrollkipper", "ladekran", "wechselaufbau-system", "hakenlift"]
+    fr: ["système de chargement", "bras de manutention", "ampliroll"]
+    it: ["sistema di carico"]
+  
+  special_purpose:
+    en: ["special purpose trailer", "recovery trailer", "bridging trailer", "engineer trailer", "flatbed trailer", "platform trailer", "special trailer"]
+    de: ["spezialanhänger", "bergeanhänger", "brückenanhänger", "pionieranhänger", "plattformanhänger", "mehrzweckanhänger"]
+    fr: ["remorque spéciale", "remorque de dépannage", "remorque plateforme"]
+  
+  # Generic trailer terms (boost score if combined with defence context)
+  generic_trailer:
+    en: ["trailer", "trailers", "towed vehicle", "towed equipment"]
+    de: ["anhänger", "nachläufer", "gezogenes fahrzeug"]
+    fr: ["remorque", "remorques", "véhicule tracté"]
+    it: ["rimorchio", "rimorchi"]
+    es: ["remolque", "remolques"]
+    pl: ["przyczepa", "przyczepy"]
+  
+  # Defence context words (used for relevance scoring, not standalone filtering)
+  defence_context:
+    en: ["military", "defence", "defense", "armed forces", "NATO", "army", "navy", "air force", "MoD", "ministry of defence"]
+    de: ["militär", "verteidigung", "bundeswehr", "streitkräfte", "heer", "marine", "luftwaffe", "bwfuhrpark", "rüstung"]
+    fr: ["militaire", "défense", "armée", "forces armées", "DGA"]
+    it: ["militare", "difesa", "forze armate", "esercito"]
+    es: ["militar", "defensa", "fuerzas armadas", "ejército"]
+    pl: ["wojskowy", "obronny", "siły zbrojne"]
+
+# --- Relevance Scoring ---
+scoring:
+  # Points per match type
+  weights:
+    cpv_tier1_match: 30       # Direct trailer CPV
+    cpv_tier2_match: 20       # Defence vehicle CPV
+    cpv_tier3_match: 5        # Broad transport CPV
+    defence_directive: 25     # Procured under 2009/81/EG
+    keyword_category_match: 15  # Specific trailer category keyword
+    keyword_generic_trailer: 5  # Generic "trailer" mention
+    defence_context_word: 10   # Military/defence keyword
+    title_match_bonus: 10     # Keyword found in title (not just description)
+  
+  # Minimum score to be considered relevant
+  threshold_relevant: 25
+  threshold_high_confidence: 50
+
+# --- Output ---
+output:
+  raw_dir: "data/raw"
+  filtered_dir: "data/filtered"
+  export_dir: "data/export"
+  checkpoint_file: "data/.checkpoint.json"
+  
+  # Excel export settings
+  excel_filename: "ted_defence_trailers_{date}.xlsx"
+  excel_sheets:
+    - name: "All Results"
+      description: "Alle relevanten Ausschreibungen"
+    - name: "High Confidence"
+      description: "Score >= 50"
+    - name: "By Category"
+      description: "Gruppiert nach Trailer-Typ"
+    - name: "By Country"
+      description: "Gruppiert nach Land"

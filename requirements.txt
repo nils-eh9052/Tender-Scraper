@@ -1,0 +1,6 @@
+# TED Defence Trailer Scraper – Requirements
+requests>=2.31.0
+pandas>=2.0.0
+openpyxl>=3.1.0
+pyyaml>=6.0
+tqdm>=4.65.0

@@ -57,18 +57,24 @@ jobs:
         run: |
           python main.py --all --two-stage 2>&1 | tee data/pipeline_run.log
 
-      - name: Copy latest Excel with fixed name
+      - name: Ensure LATEST Excel is present
         run: |
-          # Find the newest Excel in data/export/
-          LATEST=$(ls -t data/export/*.xlsx 2>/dev/null | head -1)
-          if [ -n "$LATEST" ]; then
-            cp "$LATEST" data/export/TED_Defence_Trailers_LATEST.xlsx
-            echo "Latest Excel: $LATEST"
-            echo "Copied to: data/export/TED_Defence_Trailers_LATEST.xlsx"
+          TARGET="data/export/TED_Defence_Trailers_LATEST.xlsx"
+          # Pick newest versioned export, excluding the LATEST file itself
+          SRC=$(ls -t data/export/*.xlsx 2>/dev/null | grep -v "TED_Defence_Trailers_LATEST.xlsx" | head -1 || true)
+
+          if [ -n "$SRC" ]; then
+            cp "$SRC" "$TARGET"
+            echo "Copied $SRC -> $TARGET"
+          elif [ -f "$TARGET" ]; then
+            echo "Exporter already wrote $TARGET (no versioned source to copy)"
           else
             echo "ERROR: No Excel file found in data/export/"
+            ls -la data/export/ || true
             exit 1
           fi
+
+          ls -la "$TARGET"
 
       - name: Commit and push updated Excel
         run: |

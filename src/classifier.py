@@ -513,11 +513,15 @@ class TwoStageClassifier:
         """Stage 1: Haiku pre-filter. Stage 2: Sonnet full classification."""
         if not self._haiku_prefilter(notice):
             return {"relevant": False, "reason": "Haiku pre-filter: not a defence trailer"}
-        return self._base.classify_notice(notice)
+        # Call the ORIGINAL (unpatched) AiClassifier method via the class, not the
+        # instance, to avoid the infinite recursion caused by the monkey-patch below.
+        return AiClassifier.classify_notice(self._base, notice)
 
     def classify_batch(self, notices: list, test_mode: bool = False) -> list:
         """Classify batch using two-stage approach."""
-        # Reuse AiClassifier's batch logic but override classify_notice
+        # Reuse AiClassifier's batch logic but override classify_notice.
+        # NOTE: classify_notice() above uses AiClassifier.classify_notice(self._base, ...)
+        # directly so it is immune to this patch — no infinite recursion.
         original_classify = self._base.classify_notice
         self._base.classify_notice = self.classify_notice
         result = self._base.classify_batch(notices, test_mode=test_mode)
@@ -723,3 +727,90 @@ class BatchClassifier:
             else:
                 results[cid] = {"relevant": False, "reason": f"Batch error: {item['result']['type']}"}
         return results
+
+
+# ── OpenRouter Classifier (INACTIVE — add --llm openrouter to activate) ──────
+
+class OpenRouterClassifier:
+    """Alternative classifier via OpenRouter API (e.g. Kimi K2.6, DeepSeek, etc.).
+
+    NOT ACTIVE by default. Activate by passing --llm openrouter to main.py
+    (once validated that output quality matches claude-sonnet-4).
+
+    Requires LLM_OPENROUTER_API_KEY and LLM_MODEL_NAME in .env.
+
+    Usage:
+        from src.classifier import OpenRouterClassifier
+        clf = OpenRouterClassifier()
+        result = clf.classify_notice(notice)
+
+    The result dict has the same schema as AiClassifier.classify_notice():
+        {"relevant": bool, "trailer_type_1": ..., "trailer_category_1": ..., ...}
+    """
+
+    API_URL = "https://openrouter.ai/api/v1/chat/completions"
+    DEFAULT_MODEL = "moonshotai/kimi-k2"
+
+    def __init__(self):
+        self.api_key = (
+            os.environ.get("LLM_OPENROUTER_API_KEY")
+            or os.environ.get("OPENROUTER_API_KEY")
+            or ""
+        )
+        self.model = (
+            os.environ.get("LLM_MODEL_NAME")
+            or self.DEFAULT_MODEL
+        )
+        if not self.api_key:
+            logger.warning("LLM_OPENROUTER_API_KEY not set — OpenRouterClassifier unavailable.")
+        self.session = requests.Session()
+        self.session.verify = _SSL_VERIFY
+        self.session.headers.update({
+            "Authorization": f"Bearer {self.api_key}",
+            "Content-Type": "application/json",
+            "HTTP-Referer": "https://github.com/ted-defence-trailer-scraper",
+            "X-Title": "TED Defence Trailer Scraper",
+        })
+        # Reuse AiClassifier prompt builder
+        self._base = AiClassifier()
+
+    @property
+    def is_available(self) -> bool:
+        return bool(self.api_key)
+
+    def classify_notice(self, notice: dict) -> Optional[dict]:
+        """Classify a single notice. Returns same schema as AiClassifier."""
+        if not self.is_available:
+            return None
+        prompt = self._base._build_prompt(notice)
+        try:
+            resp = self.session.post(self.API_URL, json={
+                "model": self.model,
+                "messages": [{"role": "user", "content": prompt}],
+                "max_tokens": 1000,
+                "temperature": 0,
+            }, timeout=60)
+            if resp.status_code != 200:
+                logger.warning(f"OpenRouter HTTP {resp.status_code}: {resp.text[:200]}")
+                return None
+            text = resp.json()["choices"][0]["message"]["content"]
+            clean = text.replace("```json", "").replace("```", "").strip()
+            clean = re.sub(r',\s*}', '}', clean)
+            clean = re.sub(r',\s*]', ']', clean)
+            return json.loads(clean)
+        except Exception as e:
+            logger.error(f"OpenRouter classify error: {e}")
+            return None
+
+    def classify_batch(self, notices: list, test_mode: bool = False) -> list:
+        """Drop-in replacement for AiClassifier.classify_batch().
+
+        Reuses the same enrichment log / caching logic from AiClassifier
+        by monkey-patching classify_notice (same pattern as TwoStageClassifier,
+        but uses AiClassifier.classify_notice via class-ref to avoid recursion).
+        """
+        original = self._base.classify_notice
+        self._base.classify_notice = self.classify_notice
+        result = self._base.classify_batch(notices, test_mode=test_mode)
+        self._base.classify_notice = original
+        return result

@@ -11,12 +11,19 @@ Rate-limit: respect config's requests_per_second.
 """
 
 import logging
+import os
 import re
 import time
 from pathlib import Path
 from typing import Optional
 
 import requests
+import urllib3
+
+# Corporate VPN / self-signed proxy: set SSL_VERIFY_DISABLE=1 in .env to bypass
+_SSL_VERIFY = os.environ.get("SSL_VERIFY_DISABLE", "").strip().lower() not in ("1", "true", "yes")
+if not _SSL_VERIFY:
+    urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 logger = logging.getLogger(__name__)
 
@@ -72,6 +79,7 @@ class FulltextFetcher:
         self.min_interval = 1.0 / api_cfg.get("requests_per_second", 1)
         self._last_request = 0.0
         self.session = requests.Session()
+        self.session.verify = _SSL_VERIFY
         self.session.headers.update({
             "Accept": "text/html,application/xhtml+xml",
             "Accept-Language": "en-US,en;q=0.9,de;q=0.8",
@@ -102,10 +110,35 @@ class FulltextFetcher:
         path = self._get_cache_path(notice_id)
         path.write_text(text, encoding="utf-8")
 
-    def fetch(self, notice_id: str) -> Optional[str]:
+    @staticmethod
+    def _pick_url(link_value) -> Optional[str]:
+        """Extract a usable URL from a TED link field.
+
+        TED v3 stores links as language-keyed dicts:
+            {"ENG": "https://...", "DEU": "https://...", ...}
+        Prefer ENG, then DEU/FRA, else take first available.
         """
-        Fetch fulltext for a notice. Returns cached version if available.
-        Prefers English, falls back to German/French.
+        if isinstance(link_value, str) and link_value.startswith("http"):
+            return link_value
+        if isinstance(link_value, dict):
+            for lang in LANG_PRIORITY:
+                if link_value.get(lang, "").startswith("http"):
+                    return link_value[lang]
+            # Fallback: first value
+            for v in link_value.values():
+                if isinstance(v, str) and v.startswith("http"):
+                    return v
+        return None
+
+    def fetch(self, notice_id: str, links: Optional[dict] = None) -> Optional[str]:
+        """Fetch fulltext for a notice. Returns cached version if available.
+
+        Strategy (in order):
+          1. Return cached text if already on disk.
+          2. Use `links["htmlDirect"]` from the notice detail (if provided) — ENG preferred.
+          3. Fall back to constructed URL: TED_NOTICE_URL.format(notice_id=notice_id).
+
+        HTTP 202 from /texts endpoint = async rendering (old endpoint), skip.
         """
         cached = self.load_cached(notice_id)
         if cached is not None:
@@ -113,22 +146,33 @@ class FulltextFetcher:
 
         self._rate_limit()
 
-        # Try the TED notice texts page
-        url = self.TED_NOTICE_URL.format(notice_id=notice_id)
-        try:
-            resp = self.session.get(url, timeout=30)
-            if resp.status_code == 200:
-                text = _extract_clean_text(resp.text)
-                if len(text) > 100:
-                    self._save_cache(notice_id, text)
-                    logger.debug(f"Fetched fulltext for {notice_id}: {len(text)} chars")
-                    return text
-                else:
+        # Build URL candidate list
+        url_candidates: list[str] = []
+        if links:
+            for link_key in ("htmlDirect", "html"):
+                url = self._pick_url(links.get(link_key))
+                if url:
+                    url_candidates.append(url)
+        # Always add constructed fallback
+        url_candidates.append(self.TED_NOTICE_URL.format(notice_id=notice_id))
+
+        for url in url_candidates:
+            try:
+                resp = self.session.get(url, timeout=30)
+                if resp.status_code == 200:
+                    text = _extract_clean_text(resp.text)
+                    if len(text) > 100:
+                        self._save_cache(notice_id, text)
+                        logger.debug(f"Fetched fulltext for {notice_id}: {len(text)} chars via {url}")
+                        return text
                     logger.warning(f"Fulltext for {notice_id} too short ({len(text)} chars)")
-            else:
-                logger.warning(f"Fulltext fetch failed for {notice_id}: HTTP {resp.status_code}")
-        except requests.RequestException as e:
-            logger.error(f"Fulltext fetch error for {notice_id}: {e}")
+                elif resp.status_code == 202:
+                    # Async rendering — skip this URL, try next
+                    logger.debug(f"Fulltext {notice_id}: HTTP 202 (async), trying next URL")
+                else:
+                    logger.warning(f"Fulltext fetch failed for {notice_id}: HTTP {resp.status_code}")
+            except requests.RequestException as e:
+                logger.error(f"Fulltext fetch error for {notice_id}: {e}")
 
         return None
 

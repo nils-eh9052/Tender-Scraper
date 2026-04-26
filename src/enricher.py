@@ -208,8 +208,9 @@ class FulltextEnricher:
                 return self._apply_enrichment(notice, cached)
             return notice
 
-        # Fetch fulltext
-        fulltext = self.fetcher.fetch(tid)
+        # Fetch fulltext — pass links so htmlDirect.ENG is used (not the async /texts endpoint)
+        links = notice.get("links") or (notice.get("_raw") or {}).get("links") or {}
+        fulltext = self.fetcher.fetch(tid, links=links)
         if not fulltext:
             logger.warning(f"  No fulltext for {tid}, skipping enrichment")
             return notice

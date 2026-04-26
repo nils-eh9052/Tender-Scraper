@@ -100,67 +100,96 @@ def clean_winner(winner_str) -> str:
 
 
 def determine_status(notice: dict, flat: dict) -> str:
-    """Determine tender status: Open / Awarded / Closed / Unknown."""
+    """Determine tender status: Open / Awarded / Closed / Unknown.
+
+    Priority order:
+      1. Winner present           → Awarded
+      2. Award-notice title hints → Awarded
+      3. Deadline field (exact)   → Open / Closed
+      4. Pub-date heuristic       → Open (<6 months) / Closed (≥6 months)
+      5. Fallback                 → Unknown (should be rare after step 4)
+    """
     # 1. Cleaned winner present → Awarded
     winner = flat.get("_winner_name")
-    if winner and str(winner).strip() and str(winner).strip().lower() != "nan":
+    if winner and str(winner).strip() and str(winner).strip().lower() not in ("nan", "none", ""):
         return "Awarded"
 
-    # 2. Title hints at award notice
+    # 2. Title / notice-type hints at award notice
     title = str(flat.get("_title_final", "") or "").lower()
     raw_title = str(notice.get("title", "") or "").lower()
     combined = f"{title} {raw_title}"
     if any(x in combined for x in ["award notice", "contract award", "vergabebekanntmachung",
-                                    "zuschlag", "résultat", "bekanntmachung vergebener"]):
+                                    "zuschlag", "résultat", "bekanntmachung vergebener",
+                                    "- result", "attribution", "vergabe"]):
+        return "Awarded"
+    # Also check notice_type in raw data
+    raw = notice.get("_raw") or {}
+    notice_type = raw.get("notice-type", "")
+    if isinstance(notice_type, dict):
+        vals = list(notice_type.values())
+        notice_type = str(vals[0]) if vals else ""
+    if any(x in str(notice_type).lower() for x in ["award", "result", "vergabe", "résultat"]):
         return "Awarded"
 
-    # 3. Deadline vs. today
-    deadline_raw = notice.get("submission_deadline")
+    # 3. Deadline vs. today — check both normalised field and raw OCDS/TED payload
+    deadline_raw = (
+        notice.get("submission_deadline")
+        or raw.get("deadline-receipt-tender-date-lot")
+    )
     if deadline_raw:
-        deadline_date = parse_date(str(deadline_raw))
-        if deadline_date:
-            if deadline_date >= date.today():
-                return "Open"
-            return "Closed"
+        # Unwrap dict/list wrappers (TED v3 often nests values)
+        if isinstance(deadline_raw, dict):
+            vals = list(deadline_raw.values())
+            deadline_raw = vals[0] if vals else None
+        if isinstance(deadline_raw, list):
+            deadline_raw = deadline_raw[0] if deadline_raw else None
+        if deadline_raw:
+            deadline_date = parse_date(str(deadline_raw)[:10])
+            if deadline_date:
+                return "Open" if deadline_date >= date.today() else "Closed"
 
-    # 4. Recent publication without winner → likely Open
-    pub_date = flat.get("_pub_date")
+    # 4. Publication-date heuristic (eliminates most "Unknown")
+    #    - < 6 months old, no winner → probably still open or just closed
+    #    - ≥ 6 months old, no winner → closed (award notice likely published separately)
+    pub_date = flat.get("_pub_date")  # already a date object from _flatten_notice
     if isinstance(pub_date, date):
         days_old = (date.today() - pub_date).days
-        if 0 <= days_old < 90:
-            return "Open"
+        return "Open" if 0 <= days_old < 180 else "Closed"
 
     return "Unknown"
 
 
 # Column definitions: (header, field_key, width, data_type)
 # data_type: "str", "date", "num", "int", "url"
-# 21 columns B–V (Status added at G)
+# 23 columns B–X (Source + Source URL National added at W/X)
 COLUMNS = [
-    ("Tender ID",           "tender_id",               16, "str"),      # B
-    ("Title",               "_title_final",             55, "str"),      # C
-    ("Country",             "_country_normalized",      14, "str"),      # D
-    ("Authority",           "_authority_name",          35, "str"),      # E
-    ("Publication Date",    "_pub_date",                16, "date"),     # F
-    ("Status",              "_status",                  12, "str"),      # G  ← NEU
-    ("Est. Value",          "_value_num",               18, "num"),      # H
-    ("Currency",            "_value_currency",          10, "str"),      # I
-    ("Est. Value (EUR)",    "_value_eur_num",           18, "num"),      # J
+    ("Tender ID",             "tender_id",               16, "str"),    # B
+    ("Title",                 "_title_final",             55, "str"),    # C
+    ("Country",               "_country_normalized",      14, "str"),    # D
+    ("Authority",             "_authority_name",          35, "str"),    # E
+    ("Publication Date",      "_pub_date",                16, "date"),   # F
+    ("Status",                "_status",                  12, "str"),    # G
+    ("Est. Value",            "_value_num",               18, "num"),    # H
+    ("Currency",              "_value_currency",          10, "str"),    # I
+    ("Est. Value (EUR)",      "_value_eur_num",           18, "num"),    # J
     # Slot 1 (K-M)
-    ("Trailer Type (1)",    "_trailer_type_1_final",    35, "str"),      # K
-    ("Category (1)",        "_trailer_cat_1_final",     18, "str"),      # L
-    ("Quantity (1)",        "_trailer_qty_1_int",       14, "int"),      # M
+    ("Trailer Type (1)",      "_trailer_type_1_final",    35, "str"),    # K
+    ("Category (1)",          "_trailer_cat_1_final",     18, "str"),    # L
+    ("Quantity (1)",          "_trailer_qty_1_int",       14, "int"),    # M
     # Slot 2 (N-P)
-    ("Trailer Type (2)",    "_trailer_type_2_final",    35, "str"),      # N
-    ("Category (2)",        "_trailer_cat_2_final",     18, "str"),      # O
-    ("Quantity (2)",        "_trailer_qty_2_int",       14, "int"),      # P
+    ("Trailer Type (2)",      "_trailer_type_2_final",    35, "str"),    # N
+    ("Category (2)",          "_trailer_cat_2_final",     18, "str"),    # O
+    ("Quantity (2)",          "_trailer_qty_2_int",       14, "int"),    # P
     # Supplemental
-    ("Additional Equip.",   "_additional_equip_final",  35, "str"),      # Q
-    ("Additional Qty",      "_additional_qty_int",      14, "int"),      # R
-    ("Contract Duration",   "_contract_duration_final", 16, "str"),      # S
-    ("Winner",              "_winner_name",             30, "str"),      # T
-    ("TED URL",             "ted_url",                  45, "url"),      # U
-    ("Description",         "_description_final",       65, "str"),      # V
+    ("Additional Equip.",     "_additional_equip_final",  35, "str"),    # Q
+    ("Additional Qty",        "_additional_qty_int",      14, "int"),    # R
+    ("Contract Duration",     "_contract_duration_final", 16, "str"),    # S
+    ("Winner",                "_winner_name",             30, "str"),    # T
+    # Source / URL columns
+    ("Source URL (TED)",      "ted_url",                  45, "url"),    # U (renamed from "TED URL")
+    ("Description",           "_description_final",       65, "str"),    # V
+    ("Source",                "_source",                  14, "str"),    # W  ← NEW
+    ("Source URL (National)", "_source_url_national",     45, "url"),    # X  ← NEW
 ]
 
 # Header fill colors by column index (0-based within COLUMNS list)
@@ -168,6 +197,8 @@ _COL_FILLS = {
     12: "2E75B6",  # N – Slot 2 (medium blue)
     13: "2E75B6",
     14: "2E75B6",
+    21: "548235",  # W – Source (green, visually distinct)
+    22: "548235",  # X – Source URL (National)
 }
 
 
@@ -263,6 +294,12 @@ class ExcelExporter:
         # Tender status (Open / Awarded / Closed / Unknown)
         flat["_status"] = determine_status(notice, flat)
 
+        # Source tagging (TED / UK-CF / TED+DE-SB / ...)
+        # Default to "TED" for notices that don't carry an explicit source,
+        # since the pre-UK dataset was pure TED.
+        flat["_source"] = notice.get("source") or "TED"
+        flat["_source_url_national"] = notice.get("source_url_national") or ""
+
         return flat
 
     def _generate_filename(self, test_mode: bool = False) -> Path:
@@ -354,11 +391,28 @@ class ExcelExporter:
             ws.column_dimensions[get_column_letter(col)].width = width
         ws.row_dimensions[self.HEADER_ROW].height = 35
 
+        # Load UK blacklist (notices excluded from export — training, sports, university)
+        uk_blacklist: set = set()
+        uk_blacklist_path = Path(__file__).parent.parent / "config" / "uk_blacklist.json"
+        if uk_blacklist_path.exists():
+            try:
+                with open(uk_blacklist_path, encoding="utf-8") as _f:
+                    _bl = json.load(_f)
+                uk_blacklist = set(_bl.get("blacklisted_ids", []))
+                if uk_blacklist:
+                    logger.info(f"UK blacklist loaded: {len(uk_blacklist)} IDs")
+            except Exception as _e:
+                logger.warning(f"Could not load UK blacklist: {_e}")
+
         # Data rows
         thin_border = Border(bottom=Side(style="thin", color="E0E0E0"))
         row_count = 0
 
         for notice in relevant:
+            # Skip blacklisted tender IDs (UK training/sports/university notices)
+            if notice.get("tender_id") in uk_blacklist:
+                continue
+
             flat = self._flatten_notice(notice)
 
             # Skip if no trailer type in slot 1

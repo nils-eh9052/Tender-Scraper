@@ -41,6 +41,10 @@ if _env_path.exists():
                 if _val and not os.environ.get(_key):  # Set if missing or empty
                     os.environ[_key] = _val
 
+# Alias: LLM_ANTHROPIC_API_KEY → ANTHROPIC_API_KEY (used by classifier, enricher, quality_review)
+if not os.environ.get("ANTHROPIC_API_KEY") and os.environ.get("LLM_ANTHROPIC_API_KEY"):
+    os.environ["ANTHROPIC_API_KEY"] = os.environ["LLM_ANTHROPIC_API_KEY"]
+
 # Fix Windows terminal encoding so print() works with all characters
 if sys.platform == "win32":
     import io
@@ -56,7 +60,8 @@ from src.index_builder import IndexBuilder
 from src.detail_fetcher import DetailFetcher
 from src.filter_engine import FilterEngine
 from src.exporter import ExcelExporter
-from src.classifier import AiClassifier, TwoStageClassifier, ParallelClassifier, BatchClassifier
+from src.classifier import AiClassifier, TwoStageClassifier, ParallelClassifier, BatchClassifier, OpenRouterClassifier
+from src.uk_scraper import UKContractsFinderScraper
 
 LAST_RUN_PATH = PROJECT_ROOT / "data" / ".last_run.json"
 
@@ -173,6 +178,11 @@ def run_phase_filter(config: dict):
 
 def _build_classifier(args):
     """Build the appropriate classifier based on CLI flags."""
+    # OpenRouter backend (--llm openrouter) — inactive by default, quality not yet validated
+    if getattr(args, "llm", "anthropic") == "openrouter":
+        print("  Using OpenRouterClassifier (LLM_MODEL_NAME from .env — EXPERIMENTAL)")
+        return OpenRouterClassifier()
+
     if args.batch:
         print("  Using BatchClassifier (50% discount via Batches API)")
         return BatchClassifier()
@@ -288,6 +298,139 @@ def run_phase_award_match(config: dict, test_mode: bool = False):
 
     print(f"\n  [OK] Award matching complete: {len(updated_notices)} notices")
     return updated_notices
+
+
+def _dedup_key(notice: dict) -> str:
+    """Stable-ish cross-source dedup key: authority(25) | title(35) | year."""
+    auth = (notice.get("contracting_authority") or {}).get("name", "")
+    if not auth:
+        auth = (notice.get("contracting_authority") or {}).get("name_short", "")
+    title = notice.get("title") or ""
+    if isinstance(title, dict):
+        title = title.get("eng") or title.get("deu") or next(iter(title.values()), "")
+    year = str(notice.get("publication_date") or "")[:4]
+    return f"{str(auth).lower()[:25].strip()}|{str(title).lower()[:35].strip()}|{year}"
+
+
+def _enrich_from_national(ted_notice: dict, nat: dict):
+    """Fill empty TED fields with national portal data (non-destructive)."""
+    tv = ted_notice.get("estimated_value") or {}
+    nv = nat.get("estimated_value") or {}
+    if not tv.get("amount") and nv.get("amount"):
+        ted_notice["estimated_value"] = nv
+
+    ta = ted_notice.get("award") or {}
+    na = nat.get("award") or {}
+    if not ta.get("winner_name") and na.get("winner_name"):
+        ted_notice["award"] = na
+
+    td = str(ted_notice.get("description") or "")
+    nd = str(nat.get("description") or "")
+    if len(nd) > len(td) + 50:
+        ted_notice["description"] = nd
+
+    # Source tracking: "TED" -> "TED+UK-CF"
+    existing = ted_notice.get("source") or "TED"
+    ted_notice["source"] = f"{existing}+{nat.get('source', '')}"
+    if not ted_notice.get("source_url_national"):
+        ted_notice["source_url_national"] = nat.get("source_url_national", "")
+
+
+def merge_national_with_ted(ted_notices: list, national_notices: list) -> list:
+    """Merge national portal notices into the TED dataset."""
+    merged = list(ted_notices)
+    ted_index = {_dedup_key(n): n for n in merged}
+
+    added = 0
+    enriched = 0
+    for nat in national_notices:
+        key = _dedup_key(nat)
+        if key in ted_index and key.strip("|").strip():
+            _enrich_from_national(ted_index[key], nat)
+            enriched += 1
+        else:
+            merged.append(nat)
+            added += 1
+
+    print(f"  Merge: {added} added, {enriched} enriched, {len(merged)} total")
+    return merged
+
+
+def run_phase_uk(config: dict, test_mode: bool = False, date_from: str | None = None) -> list:
+    """Phase 5: UK Contracts Finder scraping."""
+    print("\n" + "=" * 60)
+    print("  PHASE 5: UK Contracts Finder")
+    print("=" * 60)
+
+    pub_from = (
+        date_from
+        or config.get("search", {}).get("date_from")
+        or "2015-01-01"
+    )
+    scraper = UKContractsFinderScraper(config, cache_dir=str(PROJECT_ROOT / "data" / "raw" / "uk"))
+    notices = scraper.fetch_and_filter(published_from=pub_from, test_mode=test_mode)
+    print(f"  [OK] UK normalized notices: {len(notices)}")
+    return notices
+
+
+def _merge_uk_into_relevant(uk_notices: list) -> int:
+    """Append UK notices to data/filtered/relevant.json with cross-source dedup."""
+    filtered_path = PROJECT_ROOT / "data" / "filtered" / "relevant.json"
+    existing: list = []
+    if filtered_path.exists():
+        with open(filtered_path, "r", encoding="utf-8") as f:
+            existing = json.load(f)
+
+    merged = merge_national_with_ted(existing, uk_notices)
+
+    filtered_path.parent.mkdir(parents=True, exist_ok=True)
+    with open(filtered_path, "w", encoding="utf-8") as f:
+        json.dump(merged, f, ensure_ascii=False, indent=2)
+
+    return len(merged)
+
+
+def run_review(config: dict):
+    """Optional: Opus-based post-run quality review of the latest Excel."""
+    print("\n" + "="*60)
+    print("  PHASE 5 (optional): Quality Review (Claude Opus)")
+    print("="*60)
+
+    try:
+        from src.quality_review import QualityReviewer
+    except ImportError as e:
+        print(f"  [!] quality_review module unavailable: {e}")
+        return
+
+    export_dir = PROJECT_ROOT / "data" / "export"
+    latest = export_dir / "TED_Defence_Trailers_LATEST.xlsx"
+    if not latest.exists():
+        # Fall back to newest versioned export
+        candidates = sorted(
+            [p for p in export_dir.glob("*.xlsx") if "LATEST" not in p.name],
+            key=lambda p: p.stat().st_mtime,
+            reverse=True,
+        )
+        if not candidates:
+            print("  [!] No Excel export found; skipping review.")
+            return
+        latest = candidates[0]
+
+    reviewer = QualityReviewer()
+    if not reviewer.is_available:
+        print("  [!] ANTHROPIC_API_KEY not set; skipping review.")
+        return
+
+    print(f"  Reviewing: {latest.name}")
+    result = reviewer.review(latest)
+    if not result:
+        print("  [!] Quality review returned no result.")
+        return
+
+    summary = result.get("summary", {})
+    print(f"  [OK] Reviewed {summary.get('total_rows', '?')} rows, "
+          f"{summary.get('issues_found', '?')} issues flagged")
+    print(f"  Saved: data/quality_review.json")
 
 
 def run_phase_export(config: dict, test_mode: bool = False):
@@ -411,6 +554,21 @@ def main():
         "--award-match", action="store_true",
         help="Run award notice matching step (Phase 3d)"
     )
+    # Additional sources
+    parser.add_argument(
+        "--uk", action="store_true",
+        help="Include UK Contracts Finder data (runs alongside TED in --all, or UK-only when standalone)"
+    )
+    parser.add_argument(
+        "--review", action="store_true",
+        help="Run Opus quality review on latest Excel export"
+    )
+    parser.add_argument(
+        "--llm", choices=["anthropic", "openrouter"], default="anthropic",
+        help="LLM backend for classification: 'anthropic' (default, Claude) or "
+             "'openrouter' (uses LLM_OPENROUTER_API_KEY + LLM_MODEL_NAME from .env). "
+             "NOT ACTIVE yet — validate quality before switching."
+    )
 
     args = parser.parse_args()
 
@@ -462,6 +620,18 @@ def main():
         run_phase_export(config, test_mode=args.test)
         return
 
+    # ── UK-only standalone mode (--uk without --all, --phase, --enrich-only) ──
+    if args.uk and not args.all and not args.phase:
+        print("\n  Mode: UK-ONLY (UK fetch -> merge -> classify -> export)")
+        uk_notices = run_phase_uk(config, test_mode=args.test, date_from=date_from)
+        total = _merge_uk_into_relevant(uk_notices)
+        print(f"  relevant.json after merge: {total} notices")
+        run_phase_classify(config, test_mode=args.test, args=args)
+        run_phase_export(config, test_mode=args.test)
+        if args.review:
+            run_review(config)
+        return
+
     # ── Single phase ──
     if args.phase == "test-api":
         run_api_test(config)
@@ -481,12 +651,18 @@ def main():
         run_phase_index(config, test_mode=args.test, date_from=date_from)
         run_phase_details(config, test_mode=args.test)
         run_phase_filter(config)
+        if args.uk:
+            uk_notices = run_phase_uk(config, test_mode=args.test, date_from=date_from)
+            total = _merge_uk_into_relevant(uk_notices)
+            print(f"  relevant.json after UK merge: {total} notices")
         run_phase_classify(config, test_mode=args.test, args=args)
         if args.enrich:
             run_phase_enrich(config, test_mode=args.test)
         if args.award_match or args.enrich:
             run_phase_award_match(config, test_mode=args.test)
         run_phase_export(config, test_mode=args.test)
+        if args.review:
+            run_review(config)
 
         # Save last run
         filtered_path = PROJECT_ROOT / "data" / "filtered" / "relevant.json"

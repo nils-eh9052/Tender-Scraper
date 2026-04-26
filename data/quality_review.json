@@ -1,0 +1,161 @@
+{
+  "duplicates": [
+    {
+      "tender_ids": [
+        "572650-2024",
+        "326948-2025"
+      ],
+      "reason": "Both from Netherlands Ministry of Defence for military medical trailers with nearly identical specifications and value (€1.4M)"
+    },
+    {
+      "tender_ids": [
+        "255376-2025",
+        "83387-2024"
+      ],
+      "reason": "Both from Belgium Ministry of Defence for same procurement (99 tractors + 94 territorial semi-trailers, 18 protected tractors + 18 semi-trailers)"
+    },
+    {
+      "tender_ids": [
+        "465260-2025",
+        "798124-2025"
+      ],
+      "reason": "Both from Czech Republic VOP CZ for heavy equipment transport trailers (lowbed/lowboy are synonyms)"
+    },
+    {
+      "tender_ids": [
+        "3730-2025",
+        "775798-2024"
+      ],
+      "reason": "Both from Czech Republic Ministry of Defence for field kitchen trailers, same winner (4 Army s.r.o.)"
+    },
+    {
+      "tender_ids": [
+        "254420-2025",
+        "493986-2024"
+      ],
+      "reason": "Both from Italy Direzione Armamenti Terrestri for same equipment (30 engineering units + 62 lighting towers on trailers)"
+    },
+    {
+      "tender_ids": [
+        "30130-2025",
+        "678662-2024"
+      ],
+      "reason": "Both from Swiss Bundesamt für Rüstung armasuisse for helium bottle rack trailers (16 units)"
+    },
+    {
+      "tender_ids": [
+        "751810-2024",
+        "132540-2025"
+      ],
+      "reason": "Both from Czech Republic Ministry of Defence for water tank trailers 2000L, same winner (AGADOS)"
+    },
+    {
+      "tender_ids": [
+        "751287-2024",
+        "129915-2025"
+      ],
+      "reason": "Both from Czech Republic Ministry of Defence for field kitchen cooling-freezing trailers, same winner (AGADOS)"
+    }
+  ],
+  "false_positives": [
+    {
+      "tender_id": "726774-2024",
+      "reason": "Agricultural machinery procurement - tractors, garden machinery, robotic mowers. Trailers appear secondary/incidental"
+    },
+    {
+      "tender_id": "227432-2024",
+      "reason": "Agricultural machinery procurement - tractors and garden equipment primary focus, trailers are agricultural accessories"
+    },
+    {
+      "tender_id": "77247-2026",
+      "reason": "Motorcycle procurement is primary - trailers are just transport accessories for the motorcycles"
+    },
+    {
+      "tender_id": "602000-2024",
+      "reason": "All-Terrain Vehicle procurement is primary - trailers are just cargo accessories for the ATVs"
+    },
+    {
+      "tender_id": "673480-2024",
+      "reason": "Recovery vehicle/truck procurement is primary - semi-trailer is part of recovery combination, not standalone"
+    }
+  ],
+  "category_errors": [
+    {
+      "tender_id": "726774-2024",
+      "current": "Other",
+      "should_be": "Cargo Trailer",
+      "reason": "Block wagon 24t and hook lift wagon 16t are cargo transport trailers, not 'Other'"
+    },
+    {
+      "tender_id": "227432-2024",
+      "current": "Other",
+      "should_be": "Cargo Trailer",
+      "reason": "Block trailer 24t, hook-lift trailer 16t, contractor trailer are cargo trailers"
+    },
+    {
+      "tender_id": "530666-2024",
+      "current": "Cargo Trailer",
+      "should_be": "Cargo Trailer",
+      "reason": "Category is correct but trailer_type_2 'Military off-road trailer under 3.5t' should also be category_2: 'Cargo Trailer'"
+    },
+    {
+      "tender_id": "182178-2026",
+      "current": "Special Purpose",
+      "should_be": "Special Purpose",
+      "reason": "Correct - aircraft maintenance trailers are specialized equipment"
+    },
+    {
+      "tender_id": "795274-2023",
+      "current": "Cargo Trailer",
+      "should_be": "Cargo Trailer",
+      "reason": "Box trailers are correctly categorized as cargo trailers"
+    }
+  ],
+  "blacklist_buzzwords": [
+    {
+      "tender_id": "245184-2024",
+      "field": "trailer_type_1",
+      "value": "Mixed military trailer types (750kg-16T capacity)",
+      "reason": "Too generic - should specify individual trailer types"
+    },
+    {
+      "tender_id": "488694-2022",
+      "field": "trailer_type_1",
+      "value": "Military trailers and semi-trailers (type not specified in notice)",
+      "reason": "Generic placeholder with no actual type information"
+    },
+    {
+      "tender_id": "283775-2022",
+      "field": "trailer_type_1",
+      "value": "Military trailer (type not specified in notice)",
+      "reason": "Generic placeholder providing no value"
+    }
+  ],
+  "extraction_opportunities": [
+    {
+      "tender_id": "245184-2024",
+      "reason": "Contains 6 distinct trailer types that should be extracted to separate type slots: 750kg trailers, 5T cargo, 5T dump, 5T with ramp, ISO 20ft container trailers, 16T heavy equipment trailers"
+    },
+    {
+      "tender_id": "726774-2024",
+      "reason": "Multiple trailer types listed: should separate 24t block wagon, 16t hook lift trailer, contractor trailer, 1t wagon, 2t wagon into individual slots"
+    },
+    {
+      "tender_id": "227432-2024",
+      "reason": "Multiple trailer types: 24t block trailer, 16t hook-lift trailer, contractor trailer, 1t trailer, 2t trailer should use multiple type slots"
+    },
+    {
+      "tender_id": "813306-2025",
+      "reason": "Additional equipment includes 'roll-off containers' which could be trailer_type_2 as these are transported on the trailers"
+    },
+    {
+      "tender_id": "255376-2025",
+      "reason": "Should separate territorial semi-trailers (94 units) and protected operational semi-trailers (18 units) into type_1 and type_2"
+    }
+  ],
+  "summary": {
+    "total_rows": 148,
+    "issues_found": 26,
+    "notes": "Found 8 duplicate pairs, 5 false positives (non-trailer procurements), multiple generic/placeholder type descriptions, and several multi-type tenders that should use additional type slots. Most categorization appears accurate."
+  }
+}

@@ -1,0 +1,10 @@
+{
+    "_comment": "UK Contracts Finder IDs that are technically MoD+Trailer but NOT relevant for the defence trailer market analysis (training, sports equipment, university units, contract hire for driving schools). These are excluded from the Excel export.",
+    "blacklisted_ids": [
+        "UK-tender_344671/1186016",
+        "UK-tender_336462/1140912",
+        "UK-BIP83050068",
+        "UK-BIP82987676",
+        "UK-BIP77766607"
+    ]
+}

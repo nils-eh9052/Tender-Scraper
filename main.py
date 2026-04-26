@@ -494,6 +494,175 @@ def run_api_test(config: dict):
     return result
 
 
+def run_phase_de(config: dict, test_mode: bool = False) -> list:
+    """Germany service.bund.de scraping phase."""
+    print("\n" + "=" * 60)
+    print("  PHASE DE: Germany service.bund.de")
+    print("=" * 60)
+    from src.de_scraper import DEServiceBundScraper
+    scraper = DEServiceBundScraper(config, cache_dir=str(PROJECT_ROOT / "data" / "raw" / "de"))
+
+    # Load existing notices for dedup
+    filtered_path = PROJECT_ROOT / "data" / "filtered" / "relevant.json"
+    existing: list = []
+    if filtered_path.exists():
+        with open(filtered_path, "r", encoding="utf-8") as f:
+            existing = json.load(f)
+
+    de_notices = scraper.fetch_and_filter(existing_notices=existing, test_mode=test_mode)
+    print(f"  [OK] DE raw candidates: {len(de_notices)}")
+
+    if de_notices:
+        merged, added = scraper.merge_with_existing(de_notices, existing)
+        filtered_path.parent.mkdir(parents=True, exist_ok=True)
+        with open(filtered_path, "w", encoding="utf-8") as f:
+            json.dump(merged, f, ensure_ascii=False, indent=2)
+        print(f"  [OK] DE: {added} new notices added, "
+              f"{len(de_notices) - added} matched existing TED entries")
+        print(f"  [OK] relevant.json now: {len(merged)} notices")
+    else:
+        print("  [!] No DE notices found (check logs)")
+
+    return de_notices
+
+
+def run_phase_pl(config: dict, test_mode: bool = False) -> list:
+    """Poland BZP scraping phase."""
+    print("\n" + "=" * 60)
+    print("  PHASE PL: Poland searchbzp.uzp.gov.pl")
+    print("=" * 60)
+    from src.pl_scraper import PLBZPScraper
+    scraper = PLBZPScraper(config, cache_dir=str(PROJECT_ROOT / "data" / "raw" / "pl"))
+
+    # Load existing for dedup
+    filtered_path = PROJECT_ROOT / "data" / "filtered" / "relevant.json"
+    existing: list = []
+    if filtered_path.exists():
+        with open(filtered_path, "r", encoding="utf-8") as f:
+            existing = json.load(f)
+
+    pl_notices = scraper.fetch_and_filter(existing_notices=existing, test_mode=test_mode)
+    print(f"  [OK] PL raw candidates: {len(pl_notices)}")
+
+    if pl_notices:
+        # Simple dedup merge
+        existing_keys = {scraper.dedup_key(n) for n in existing}
+        new_ones = [n for n in pl_notices if scraper.dedup_key(n) not in existing_keys]
+        merged = existing + new_ones
+        filtered_path.parent.mkdir(parents=True, exist_ok=True)
+        with open(filtered_path, "w", encoding="utf-8") as f:
+            json.dump(merged, f, ensure_ascii=False, indent=2)
+        print(f"  [OK] PL: {len(new_ones)} new notices added "
+              f"({len(pl_notices) - len(new_ones)} duplicates skipped)")
+        print(f"  [OK] relevant.json now: {len(merged)} notices")
+    else:
+        print("  [!] No PL notices found (check logs — platform may require JS rendering)")
+
+    return pl_notices
+
+
+def run_national_scraping(countries: list, config: dict,
+                          test_mode: bool = False,
+                          headless: bool = True) -> list:
+    """
+    Run national portal scraping for the specified countries.
+    DE uses Playwright (service.bund.de).
+    PL uses the eZamowienia REST API (ezamowienia.gov.pl) — no browser needed.
+
+    Supported country codes: "de" (service.bund.de), "pl" (ezamowienia.gov.pl)
+
+    Returns a list of notices in the standard pipeline format.
+    Integrates screenshots + page-text dumps into data/raw/screenshots/.
+    """
+    try:
+        from src.national_scraper.core import BrowserCore
+    except ImportError as e:
+        print(f"  [!] Playwright not installed: {e}")
+        print("  Run: pip install playwright && playwright install chromium")
+        return []
+
+    adapter_registry = {}
+    try:
+        from src.national_scraper.adapters.de_adapter import DEAdapter, create_de_config
+        adapter_registry["de"] = (DEAdapter, create_de_config)
+    except ImportError:
+        pass
+    try:
+        from src.national_scraper.adapters.pl_adapter import PLAdapter, create_pl_config
+        adapter_registry["pl"] = (PLAdapter, create_pl_config)
+    except ImportError:
+        pass
+
+    all_notices = []
+    screenshot_dir = str(PROJECT_ROOT / "data" / "raw" / "screenshots")
+
+    print(f"\n  Browser: {'visible' if not headless else 'headless'}")
+    print(f"  Countries: {', '.join(countries).upper()}")
+    print(f"  Mode: {'TEST (2 keywords, 3 details max)' if test_mode else 'FULL'}")
+
+    with BrowserCore(headless=headless, slow_mo=100,
+                     screenshot_dir=screenshot_dir) as browser:
+        for country in countries:
+            country = country.lower()
+            if country not in adapter_registry:
+                print(f"  [!] No adapter for '{country}' — supported: {list(adapter_registry.keys())}")
+                continue
+
+            AdapterClass, config_factory = adapter_registry[country]
+            adapter_config = config_factory()
+            adapter = AdapterClass(browser, adapter_config)
+
+            print(f"\n  ── {adapter_config.country_name} ({adapter_config.source_code}) ──")
+
+            # Search all keywords
+            results = adapter.search_all_keywords(
+                max_results_per_keyword=30,
+                test_mode=test_mode,
+            )
+            print(f"  Raw search results:  {len(results)}")
+
+            # Filter to defence-relevant
+            defence = adapter.filter_defence(results)
+            print(f"  Defence-relevant:    {len(defence)}")
+
+            if not defence:
+                # Still worth reporting — page text dumps are in screenshots/
+                print(f"  [!] 0 defence results — check data/raw/screenshots/ for page dumps")
+                continue
+
+            # Fetch details
+            notices = []
+            detail_limit = 3 if test_mode else len(defence)
+            for i, result in enumerate(defence[:detail_limit]):
+                print(f"    [{i+1}/{min(detail_limit, len(defence))}] {result.title[:60]}")
+                detail = adapter.get_detail(result)
+                if detail:
+                    notice = adapter.to_standard_format(detail)
+                    notices.append(notice)
+
+            print(f"  Detailed notices:    {len(notices)}")
+            all_notices.extend(notices)
+
+    return all_notices
+
+
+def _merge_national_into_relevant(national_notices: list) -> int:
+    """Append national Playwright-scraped notices to relevant.json with dedup."""
+    filtered_path = PROJECT_ROOT / "data" / "filtered" / "relevant.json"
+    existing: list = []
+    if filtered_path.exists():
+        with open(filtered_path, "r", encoding="utf-8") as f:
+            existing = json.load(f)
+
+    merged = merge_national_with_ted(existing, national_notices)
+
+    filtered_path.parent.mkdir(parents=True, exist_ok=True)
+    with open(filtered_path, "w", encoding="utf-8") as f:
+        json.dump(merged, f, ensure_ascii=False, indent=2)
+
+    return len(merged)
+
+
 def main():
     parser = argparse.ArgumentParser(
         description="TED Defence Trailer Scraper Pipeline"
@@ -560,8 +729,25 @@ def main():
         help="Include UK Contracts Finder data (runs alongside TED in --all, or UK-only when standalone)"
     )
     parser.add_argument(
+        "--de", action="store_true",
+        help="Include Germany service.bund.de data (RSS feed + detail pages, no login required)"
+    )
+    parser.add_argument(
+        "--pl", action="store_true",
+        help="Include Poland BZP data (searchbzp.uzp.gov.pl, 2017-2024 historic notices)"
+    )
+    parser.add_argument(
         "--review", action="store_true",
         help="Run Opus quality review on latest Excel export"
+    )
+    # Playwright-based national portal scraping
+    parser.add_argument(
+        "--national", nargs="*", metavar="COUNTRY",
+        help="Scrape national portals via Playwright (e.g. --national de pl)"
+    )
+    parser.add_argument(
+        "--visible", action="store_true",
+        help="Show browser window when using --national (default: headless)"
     )
     parser.add_argument(
         "--llm", choices=["anthropic", "openrouter"], default="anthropic",
@@ -620,8 +806,26 @@ def main():
         run_phase_export(config, test_mode=args.test)
         return
 
+    # ── --national standalone mode (Playwright-based) ──
+    if args.national is not None and not args.all and not args.phase:
+        countries = args.national if args.national else ["de", "pl"]  # default: all
+        headless = not args.visible
+        print(f"\n  Mode: NATIONAL PORTAL (Playwright) — {', '.join(c.upper() for c in countries)}")
+        nat_notices = run_national_scraping(
+            countries=countries,
+            config=config,
+            test_mode=args.test,
+            headless=headless,
+        )
+        print(f"\n  National notices found: {len(nat_notices)}")
+        if nat_notices:
+            total = _merge_national_into_relevant(nat_notices)
+            print(f"  relevant.json after merge: {total} notices")
+            run_phase_export(config, test_mode=args.test)
+        return
+
     # ── UK-only standalone mode (--uk without --all, --phase, --enrich-only) ──
-    if args.uk and not args.all and not args.phase:
+    if args.uk and not args.all and not args.phase and not args.de and not args.pl:
         print("\n  Mode: UK-ONLY (UK fetch -> merge -> classify -> export)")
         uk_notices = run_phase_uk(config, test_mode=args.test, date_from=date_from)
         total = _merge_uk_into_relevant(uk_notices)
@@ -630,6 +834,30 @@ def main():
         run_phase_export(config, test_mode=args.test)
         if args.review:
             run_review(config)
+        return
+
+    # ── DE standalone mode ──
+    if args.de and not args.all and not args.phase:
+        print("\n  Mode: DE-ONLY (service.bund.de -> merge -> export)")
+        run_phase_de(config, test_mode=args.test)
+        run_phase_export(config, test_mode=args.test)
+        return
+
+    # ── PL standalone mode ──
+    if args.pl and not args.all and not args.phase and not args.de:
+        print("\n  Mode: PL-ONLY (BZP -> merge -> export)")
+        run_phase_pl(config, test_mode=args.test)
+        run_phase_export(config, test_mode=args.test)
+        return
+
+    # ── DE + PL combined standalone ──
+    if (args.de or args.pl) and not args.all and not args.phase:
+        print("\n  Mode: DE+PL (service.bund.de + BZP -> merge -> export)")
+        if args.de:
+            run_phase_de(config, test_mode=args.test)
+        if args.pl:
+            run_phase_pl(config, test_mode=args.test)
+        run_phase_export(config, test_mode=args.test)
         return
 
     # ── Single phase ──
@@ -655,6 +883,19 @@ def main():
             uk_notices = run_phase_uk(config, test_mode=args.test, date_from=date_from)
             total = _merge_uk_into_relevant(uk_notices)
             print(f"  relevant.json after UK merge: {total} notices")
+        if args.de:
+            run_phase_de(config, test_mode=args.test)
+        if args.pl:
+            run_phase_pl(config, test_mode=args.test)
+        if args.national is not None:
+            countries = args.national if args.national else ["de", "pl"]
+            headless = not args.visible
+            nat_notices = run_national_scraping(
+                countries=countries, config=config,
+                test_mode=args.test, headless=headless)
+            if nat_notices:
+                total = _merge_national_into_relevant(nat_notices)
+                print(f"  relevant.json after national merge: {total} notices")
         run_phase_classify(config, test_mode=args.test, args=args)
         if args.enrich:
             run_phase_enrich(config, test_mode=args.test)

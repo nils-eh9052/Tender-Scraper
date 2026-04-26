@@ -1,0 +1,1 @@
+"""Country adapter implementations."""

@@ -755,6 +755,13 @@ def main():
              "'openrouter' (uses LLM_OPENROUTER_API_KEY + LLM_MODEL_NAME from .env). "
              "NOT ACTIVE yet — validate quality before switching."
     )
+    parser.add_argument(
+        "--validate-portals", nargs="*", metavar="COUNTRY",
+        dest="validate_portals",
+        help="Validate if national portals carry defence trailer tenders. "
+             "Takes known TED tenders and searches for the same authorities on "
+             "the national portal. E.g. --validate-portals de pl"
+    )
 
     args = parser.parse_args()
 
@@ -775,6 +782,15 @@ def main():
         from src.classifier import AiClassifier
         AiClassifier.clear_log()
         print("  [OK] AI enrichment log cleared. All notices will be re-processed on next run.")
+        return
+
+    # ── Portal validation mode ──
+    if args.validate_portals is not None:
+        countries = args.validate_portals if args.validate_portals else ["de", "pl"]
+        headless = not args.visible
+        print(f"\n  Mode: PORTAL VALIDATION — {', '.join(c.upper() for c in countries)}")
+        from src.national_scraper.validate_portals import run_validation
+        run_validation(countries, headless=headless)
         return
 
     # Resolve date_from for incremental/since

@@ -1,0 +1,489 @@
+{
+  "de": {
+    "portal": "DE-SB (service.bund.de)",
+    "country": "Germany",
+    "tenders_checked": 5,
+    "known_authorities": [
+      "Bundesamt fuer Infrastruktur, Umweltschutz und Dienstleistungen der Bundeswehr",
+      "Bundesamt fuer Ausruestung, Informationstechnik und Nutzung der Bundeswehr"
+    ],
+    "portal_results_vsv": 36,
+    "portal_results_kfz": 72,
+    "authority_matches_count": 28,
+    "authority_matches_note": "28 of 36 VSVgV results contain BAAINBw/Bundeswehr keywords (broad word match)",
+    "authority_sample": [
+      "6003038661-BAAINBw E2.5F Rad, Vollgummireifen, WS Leopard",
+      "Flugturbinenkraftstoff F-44, FY0025 — BAAINBw",
+      "6003033816-BAAINBw E2.3Y E23Y003274"
+    ],
+    "trailer_hits_count": 6,
+    "trailer_hits_note": "All 6 trailer hits are CIVILIAN authorities (waste mgmt, municipalities, Red Cross)",
+    "trailer_hits_sample": [
+      "[Zweckverband Abfallwirtschaft] Lieferung von einem Wasserfass-Anhaenger 2.7 m3",
+      "[Gemeinde Wardenburg] Beschaffung Hakenliftanhaenger 15 t",
+      "[Stadt Hamm Brandschutz] Lieferung eines Geraeteanhaengers-Verpflegung",
+      "[AGL Abwasser/Gruen] PKW Anhaenger, Einachser, Dreiseitenkipper",
+      "[ASB Deutschland] Lieferung eines Drehschemelanhaeengers, 18 t"
+    ],
+    "conclusion": "BAAINBw IS on service.bund.de (confirmed, 28 authority matches in VSVgV). No BAAINBw trailer tenders open TODAY — trailer procurement is periodic. Portal valid for future monitoring.",
+    "decision": "KEEP adapter — add trailer-keyword filter on VSVgV results. Will catch future BAAINBw trailer tenders when published.",
+    "screenshots": [
+      "data/raw/screenshots/de_filter_f-ausschreibungsart-vsvgv.png",
+      "data/raw/screenshots/de_filter_f-leistung-kraftfahrwesen.png"
+    ]
+  },
+  "pl": {
+    "portal": "PL-BZP (ezamowienia.gov.pl)",
+    "country": "Poland",
+    "tenders_checked": 4,
+    "known_authorities": [
+      "12 WOJSKOWY ODDZIAŁ GOSPODARCZY",
+      "Wojskowy Instytut Techniczny Uzbrojenia",
+      "Agencja Uzbrojenia"
+    ],
+    "authority_matches": [
+      {
+        "known_authority": "12 WOJSKOWY ODDZIAŁ GOSPODARCZY",
+        "national_authority": "12 WOJSKOWY ODDZIAŁ GOSPODARCZY",
+        "national_title": "Polska – Usługi w zakresie napraw samochodów – Usługa wykonania modernizacji sam",
+        "national_url": "https://ezamowienia.gov.pl/mo-client-board/bzp/notice-details/id/08dea19f-2f83-61ad-5fad-95000119fd67"
+      },
+      {
+        "known_authority": "12 WOJSKOWY ODDZIAŁ GOSPODARCZY",
+        "national_authority": "12 WOJSKOWY ODDZIAŁ GOSPODARCZY",
+        "national_title": "Polska – Usługi w zakresie napraw i konserwacji systemów uzbrojenia – Wykonywani",
+        "national_url": "https://ezamowienia.gov.pl/mo-client-board/bzp/notice-details/id/08dea19f-30cb-bc08-5fad-95000119fd7e"
+      },
+      {
+        "known_authority": "12 WOJSKOWY ODDZIAŁ GOSPODARCZY",
+        "national_authority": "12 WOJSKOWY ODDZIAŁ GOSPODARCZY",
+        "national_title": "Remont dachu, klatek  schodowych i sanitariatów w budynku nr 2 w kompleksie wojs",
+        "national_url": "https://ezamowienia.gov.pl/mo-client-board/bzp/notice-details/id/08dea134-471f-24b7-5fad-95000119fadb"
+      },
+      {
+        "known_authority": "12 WOJSKOWY ODDZIAŁ GOSPODARCZY",
+        "national_authority": "12 WOJSKOWY ODDZIAŁ GOSPODARCZY",
+        "national_title": "",
+        "national_url": "https://ezamowienia.gov.pl/mo-client-board/bzp/notice-details/id/08de57fe-909c-28f8-d6d3-f500016ac28b"
+      },
+      {
+        "known_authority": "12 WOJSKOWY ODDZIAŁ GOSPODARCZY",
+        "national_authority": "12 WOJSKOWY ODDZIAŁ GOSPODARCZY",
+        "national_title": "REMONT BUDYNKU NR 1 W KOMPLEKSIE WOJSKOWYM PRZY UL. OKÓLNEJ 37 W TORUNIU",
+        "national_url": "https://ezamowienia.gov.pl/mo-client-board/bzp/notice-details/id/08de9fa5-1394-fe8f-5fad-95000119df59"
+      },
+      {
+        "known_authority": "12 WOJSKOWY ODDZIAŁ GOSPODARCZY",
+        "national_authority": "12 WOJSKOWY ODDZIAŁ GOSPODARCZY",
+        "national_title": "Wykonanie izolacji fundamentów wraz z wymianą instalacji odwadniającej oraz zago",
+        "national_url": "https://ezamowienia.gov.pl/mo-client-board/bzp/notice-details/id/08de9f69-94fc-02b1-5fad-95000119d4ba"
+      },
+      {
+        "known_authority": "12 WOJSKOWY ODDZIAŁ GOSPODARCZY",
+        "national_authority": "12 WOJSKOWY ODDZIAŁ GOSPODARCZY",
+        "national_title": "Polska – Przyrządy pomiarowe – DOSTAWA SPRZĘTU METROLOGICZNEGO",
+        "national_url": "https://ezamowienia.gov.pl/mo-client-board/bzp/notice-details/id/08de9f43-a786-5c7a-5fad-95000119d2b5"
+      },
+      {
+        "known_authority": "12 WOJSKOWY ODDZIAŁ GOSPODARCZY",
+        "national_authority": "12 WOJSKOWY ODDZIAŁ GOSPODARCZY",
+        "national_title": "Polska – Przyrządy pomiarowe – DOSTAWA SPRZĘTU METROLOGICZNEGO",
+        "national_url": "https://ezamowienia.gov.pl/mo-client-board/bzp/notice-details/id/08de9f43-af15-d35b-5fad-95000119d318"
+      },
+      {
+        "known_authority": "12 WOJSKOWY ODDZIAŁ GOSPODARCZY",
+        "national_authority": "12 WOJSKOWY ODDZIAŁ GOSPODARCZY",
+        "national_title": "Polska – Przyrządy pomiarowe – DOSTAWA SPRZĘTU METROLOGICZNEGO",
+        "national_url": "https://ezamowienia.gov.pl/mo-client-board/bzp/notice-details/id/08de9f43-ad27-d534-5fad-95000119d2fc"
+      },
+      {
+        "known_authority": "12 WOJSKOWY ODDZIAŁ GOSPODARCZY",
+        "national_authority": "12 WOJSKOWY ODDZIAŁ GOSPODARCZY",
+        "national_title": "Polska – Przyrządy pomiarowe – DOSTAWA SPRZĘTU METROLOGICZNEGO",
+        "national_url": "https://ezamowienia.gov.pl/mo-client-board/bzp/notice-details/id/08de9f43-beef-97ea-5fad-95000119d410"
+      },
+      {
+        "known_authority": "12 WOJSKOWY ODDZIAŁ GOSPODARCZY",
+        "national_authority": "12 WOJSKOWY ODDZIAŁ GOSPODARCZY",
+        "national_title": "DOSTAWA OPATRUNKÓW, MATERIAŁÓW I WYROBÓW MEDYCZNYCH",
+        "national_url": "https://ezamowienia.gov.pl/mo-client-board/bzp/notice-details/id/08de9eac-60c6-606a-5fad-95000119c7db"
+      },
+      {
+        "known_authority": "12 WOJSKOWY ODDZIAŁ GOSPODARCZY",
+        "national_authority": "12 WOJSKOWY ODDZIAŁ GOSPODARCZY",
+        "national_title": "Polska – Przyrządy pomiarowe – DOSTAWA SPRZĘTU METROLOGICZNEGO",
+        "national_url": "https://ezamowienia.gov.pl/mo-client-board/bzp/notice-details/id/08de9e7a-8135-a7ad-5fad-95000119c47f"
+      },
+      {
+        "known_authority": "12 WOJSKOWY ODDZIAŁ GOSPODARCZY",
+        "national_authority": "12 WOJSKOWY ODDZIAŁ GOSPODARCZY",
+        "national_title": "Polska – Usługi w zakresie napraw samochodów – Usługa wykonania modernizacji sam",
+        "national_url": "https://ezamowienia.gov.pl/mo-client-board/bzp/notice-details/id/08de9c1e-ffae-7ba9-5fad-95000119b6ad"
+      },
+      {
+        "known_authority": "12 WOJSKOWY ODDZIAŁ GOSPODARCZY",
+        "national_authority": "12 WOJSKOWY ODDZIAŁ GOSPODARCZY",
+        "national_title": "Polska – Przyrządy pomiarowe – DOSTAWA SPRZĘTU METROLOGICZNEGO",
+        "national_url": "https://ezamowienia.gov.pl/mo-client-board/bzp/notice-details/id/08de9c1e-ff05-d139-5fad-95000119b6a3"
+      },
+      {
+        "known_authority": "12 WOJSKOWY ODDZIAŁ GOSPODARCZY",
+        "national_authority": "12 WOJSKOWY ODDZIAŁ GOSPODARCZY",
+        "national_title": "Polska – Przyrządy pomiarowe – DOSTAWA SPRZĘTU METROLOGICZNEGO",
+        "national_url": "https://ezamowienia.gov.pl/mo-client-board/bzp/notice-details/id/08de9c1f-00f7-16e8-5fad-95000119b6c1"
+      },
+      {
+        "known_authority": "12 WOJSKOWY ODDZIAŁ GOSPODARCZY",
+        "national_authority": "12 WOJSKOWY ODDZIAŁ GOSPODARCZY",
+        "national_title": "Usługa serwisowania urządzeń specjalistycznych  - żurawi przenośnych dużego udźw",
+        "national_url": "https://ezamowienia.gov.pl/mo-client-board/bzp/notice-details/id/08de993c-8fb5-bfb1-5fad-9500011985cf"
+      },
+      {
+        "known_authority": "12 WOJSKOWY ODDZIAŁ GOSPODARCZY",
+        "national_authority": "12 WOJSKOWY ODDZIAŁ GOSPODARCZY",
+        "national_title": "Konserwacja strzelnic na terenie kompleksu poligonowego Toruń",
+        "national_url": "https://ezamowienia.gov.pl/mo-client-board/bzp/notice-details/id/08de991d-d03d-6704-5fad-950001198218"
+      },
+      {
+        "known_authority": "12 WOJSKOWY ODDZIAŁ GOSPODARCZY",
+        "national_authority": "12 WOJSKOWY ODDZIAŁ GOSPODARCZY",
+        "national_title": "Polska – Przyrządy pomiarowe – DOSTAWA SPRZĘTU METROLOGICZNEGO",
+        "national_url": "https://ezamowienia.gov.pl/mo-client-board/bzp/notice-details/id/08de969e-f470-cc8f-5fad-950001197226"
+      },
+      {
+        "known_authority": "12 WOJSKOWY ODDZIAŁ GOSPODARCZY",
+        "national_authority": "12 Wojskowy Oddział Gospodarczy",
+        "national_title": "Polska – Detergenty – D/13/12WOG/2026 DOSTAWA URZĄDZEŃ, ŚRODKÓW CZYSTOŚCI ORAZ D",
+        "national_url": "https://ezamowienia.gov.pl/mo-client-board/bzp/notice-details/id/08de950c-851f-bf02-5fad-9500011954e5"
+      },
+      {
+        "known_authority": "12 WOJSKOWY ODDZIAŁ GOSPODARCZY",
+        "national_authority": "12 WOJSKOWY ODDZIAŁ GOSPODARCZY",
+        "national_title": "DOSTAWA OPATRUNKÓW, MATERIAŁÓW I WYROBÓW MEDYCZNYCH",
+        "national_url": "https://ezamowienia.gov.pl/mo-client-board/bzp/notice-details/id/08de90a6-ee3b-0461-5fad-9500011938be"
+      },
+      {
+        "known_authority": "Wojskowy Instytut Techniczny Uzbrojenia",
+        "national_authority": "WOJSKOWY INSTYTUT TECHNICZNY UZBROJENIA",
+        "national_title": "Paliwo do pojazdów WITU",
+        "national_url": "https://ezamowienia.gov.pl/mo-client-board/bzp/notice-details/id/08dea446-ffbc-efab-5fad-9500011a1248"
+      },
+      {
+        "known_authority": "Wojskowy Instytut Techniczny Uzbrojenia",
+        "national_authority": "WOJSKOWY INSTYTUT TECHNICZNY UZBROJENIA",
+        "national_title": "Stół do kalibracji IMU i giroskopów",
+        "national_url": "https://ezamowienia.gov.pl/mo-client-board/bzp/notice-details/id/08dea1d5-2363-8216-5fad-9500011a0136"
+      },
+      {
+        "known_authority": "Wojskowy Instytut Techniczny Uzbrojenia",
+        "national_authority": "WOJSKOWY INSTYTUT TECHNICZNY UZBROJENIA",
+        "national_title": "Wykonanie kompleksowej usługi cateringowej podczas uroczystej Gali Jubileuszowej",
+        "national_url": "https://ezamowienia.gov.pl/mo-client-board/bzp/notice-details/id/08dea1c0-ba23-bd2e-5fad-95000119ff15"
+      },
+      {
+        "known_authority": "Wojskowy Instytut Techniczny Uzbrojenia",
+        "national_authority": "WOJSKOWY INSTYTUT TECHNICZNY UZBROJENIA",
+        "national_title": "Pojazd  osobowo – dostawczy do przewozu towarów niebezpiecznych ADR EX/II",
+        "national_url": "https://ezamowienia.gov.pl/mo-client-board/bzp/notice-details/id/08dea12d-ffa3-db3c-5fad-95000119f9bd"
+      },
+      {
+        "known_authority": "Wojskowy Instytut Techniczny Uzbrojenia",
+        "national_authority": "WOJSKOWY INSTYTUT TECHNICZNY UZBROJENIA",
+        "national_title": "Pojazd  osobowo – terenowy typu pick-up do przewozu 5 osób",
+        "national_url": "https://ezamowienia.gov.pl/mo-client-board/bzp/notice-details/id/08de9f89-49ca-2f49-5fad-95000119d990"
+      },
+      {
+        "known_authority": "Wojskowy Instytut Techniczny Uzbrojenia",
+        "national_authority": "WOJSKOWY INSTYTUT TECHNICZNY UZBROJENIA",
+        "national_title": "Stacje robocze oraz serwer do analiz oraz testowania",
+        "national_url": "https://ezamowienia.gov.pl/mo-client-board/bzp/notice-details/id/08de9f87-ecd3-ae00-5fad-95000119d94f"
+      },
+      {
+        "known_authority": "Wojskowy Instytut Techniczny Uzbrojenia",
+        "national_authority": "WOJSKOWY INSTYTUT TECHNICZNY UZBROJENIA",
+        "national_title": "System ciśnieniujący autoklawu do wytwarzania kompozytów",
+        "national_url": "https://ezamowienia.gov.pl/mo-client-board/bzp/notice-details/id/08de9f86-a770-7b11-5fad-95000119d90f"
+      },
+      {
+        "known_authority": "Wojskowy Instytut Techniczny Uzbrojenia",
+        "national_authority": "Wojskowy Instytut Techniczny Uzbrojenia",
+        "national_title": "Polska – Usługi ochroniarskie – Ochrona terenu, obiektów i mienia w Wojskowym In",
+        "national_url": "https://ezamowienia.gov.pl/mo-client-board/bzp/notice-details/id/08de9f43-a988-93dd-5fad-95000119d2e0"
+      },
+      {
+        "known_authority": "Wojskowy Instytut Techniczny Uzbrojenia",
+        "national_authority": "WOJSKOWY INSTYTUT TECHNICZNY UZBROJENIA",
+        "national_title": "Stół do kalibracji IMU i giroskopów",
+        "national_url": "https://ezamowienia.gov.pl/mo-client-board/bzp/notice-details/id/08de9ec7-f928-5c18-5fad-95000119cc77"
+      },
+      {
+        "known_authority": "Wojskowy Instytut Techniczny Uzbrojenia",
+        "national_authority": "WOJSKOWY INSTYTUT TECHNICZNY UZBROJENIA",
+        "national_title": "Subskrypcje oprogramowania  do projektowania typu CAD",
+        "national_url": "https://ezamowienia.gov.pl/mo-client-board/bzp/notice-details/id/08de9ead-f64b-80a2-5fad-95000119c825"
+      },
+      {
+        "known_authority": "Wojskowy Instytut Techniczny Uzbrojenia",
+        "national_authority": "WOJSKOWY INSTYTUT TECHNICZNY UZBROJENIA",
+        "national_title": "Stół do kalibracji IMU i giroskopów",
+        "national_url": "https://ezamowienia.gov.pl/mo-client-board/bzp/notice-details/id/08de9c52-d2f7-a29b-5fad-95000119ba8a"
+      },
+      {
+        "known_authority": "Wojskowy Instytut Techniczny Uzbrojenia",
+        "national_authority": "WOJSKOWY INSTYTUT TECHNICZNY UZBROJENIA",
+        "national_title": "Komercyjna licencja na oprogramowanie IMPETUS AFEA Defense",
+        "national_url": "https://ezamowienia.gov.pl/mo-client-board/bzp/notice-details/id/08de9ade-929b-e6ec-5fad-95000119a469"
+      },
+      {
+        "known_authority": "Wojskowy Instytut Techniczny Uzbrojenia",
+        "national_authority": "WOJSKOWY INSTYTUT TECHNICZNY UZBROJENIA",
+        "national_title": "Subskrypcje oprogramowania  do projektowania typu CAD",
+        "national_url": "https://ezamowienia.gov.pl/mo-client-board/bzp/notice-details/id/08de9acc-bf4d-328a-5fad-95000119a11d"
+      },
+      {
+        "known_authority": "Wojskowy Instytut Techniczny Uzbrojenia",
+        "national_authority": "WOJSKOWY INSTYTUT TECHNICZNY UZBROJENIA",
+        "national_title": "Komercyjna licencja na oprogramowanie IMPETUS AFEA Defense",
+        "national_url": "https://ezamowienia.gov.pl/mo-client-board/bzp/notice-details/id/08de993d-25a3-6ce4-5fad-9500011985dc"
+      },
+      {
+        "known_authority": "Wojskowy Instytut Techniczny Uzbrojenia",
+        "national_authority": "WOJSKOWY INSTYTUT TECHNICZNY UZBROJENIA",
+        "national_title": "Serwomechanizm bezszczotkowy ze sterownikiem, zintegrowany ze śrubą kulową",
+        "national_url": "https://ezamowienia.gov.pl/mo-client-board/bzp/notice-details/id/08de95fe-d22a-b6c5-5fad-950001196594"
+      },
+      {
+        "known_authority": "Wojskowy Instytut Techniczny Uzbrojenia",
+        "national_authority": "WOJSKOWY INSTYTUT TECHNICZNY UZBROJENIA",
+        "national_title": "Paliwo do pojazdów WITU",
+        "national_url": "https://ezamowienia.gov.pl/mo-client-board/bzp/notice-details/id/08de9547-4e01-eb0d-5fad-950001195977"
+      },
+      {
+        "known_authority": "Wojskowy Instytut Techniczny Uzbrojenia",
+        "national_authority": "WOJSKOWY INSTYTUT TECHNICZNY UZBROJENIA",
+        "national_title": "Modernizacja strefy wjazdu na teren Wojskowego Instytutu Technicznego Uzbrojenia",
+        "national_url": "https://ezamowienia.gov.pl/mo-client-board/bzp/notice-details/id/08de9544-9e0f-0f33-5fad-9500011958ef"
+      },
+      {
+        "known_authority": "Wojskowy Instytut Techniczny Uzbrojenia",
+        "national_authority": "WOJSKOWY INSTYTUT TECHNICZNY UZBROJENIA",
+        "national_title": "Dostawa odzieży i obuwia roboczego.",
+        "national_url": "https://ezamowienia.gov.pl/mo-client-board/bzp/notice-details/id/08de953e-376a-2d3d-5fad-9500011957d7"
+      },
+      {
+        "known_authority": "Wojskowy Instytut Techniczny Uzbrojenia",
+        "national_authority": "WOJSKOWY INSTYTUT TECHNICZNY UZBROJENIA",
+        "national_title": "Dostawa odzieży i obuwia roboczego.",
+        "national_url": "https://ezamowienia.gov.pl/mo-client-board/bzp/notice-details/id/08de9087-676c-ae10-5fad-95000119337a"
+      },
+      {
+        "known_authority": "Wojskowy Instytut Techniczny Uzbrojenia",
+        "national_authority": "WOJSKOWY INSTYTUT TECHNICZNY UZBROJENIA",
+        "national_title": "Subskrypcje oprogramowania typu CAD/PLM",
+        "national_url": "https://ezamowienia.gov.pl/mo-client-board/bzp/notice-details/id/08de8bf4-7207-3405-5fad-950001e71ee5"
+      },
+      {
+        "known_authority": "Agencja Uzbrojenia",
+        "national_authority": "Agencja Uzbrojenia",
+        "national_title": "Polska – Naboje – Dostawa amunicji i granatów w latach 2026-2029 z podziałem na ",
+        "national_url": "https://ezamowienia.gov.pl/mo-client-board/bzp/notice-details/id/08dea3fa-a591-52c8-5fad-9500011a0b6b"
+      },
+      {
+        "known_authority": "Agencja Uzbrojenia",
+        "national_authority": "Agencja Uzbrojenia",
+        "national_title": "Polska – Naboje – Dostawa amunicji w 2026 r. z podziałem na części: Część I zamó",
+        "national_url": "https://ezamowienia.gov.pl/mo-client-board/bzp/notice-details/id/08dea3fa-9faa-3fdc-5fad-9500011a0b0d"
+      },
+      {
+        "known_authority": "Agencja Uzbrojenia",
+        "national_authority": "Agencja Uzbrojenia",
+        "national_title": "Polska – Naboje – Dostawa 30 mm naboi z pociskiem ćwiczebnym bez smugacza TP lub",
+        "national_url": "https://ezamowienia.gov.pl/mo-client-board/bzp/notice-details/id/08de9c1e-fd39-a60a-5fad-95000119b684"
+      },
+      {
+        "known_authority": "Agencja Uzbrojenia",
+        "national_authority": "Agencja Uzbrojenia",
+        "national_title": "Polska – Naboje – Dostawa amunicji i petard w latach 2026-2029 z podziałem na cz",
+        "national_url": "https://ezamowienia.gov.pl/mo-client-board/bzp/notice-details/id/08de969f-057f-2a3d-5fad-9500011972f2"
+      },
+      {
+        "known_authority": "Agencja Uzbrojenia",
+        "national_authority": "Agencja Uzbrojenia",
+        "national_title": "Polska – Produkty chemiczne – Ampułka z odczynnikiem RN-10ml",
+        "national_url": "https://ezamowienia.gov.pl/mo-client-board/bzp/notice-details/id/08de9055-8b21-92ae-5fad-950001192f9f"
+      },
+      {
+        "known_authority": "Agencja Uzbrojenia",
+        "national_authority": "Agencja Uzbrojenia",
+        "national_title": "Polska – Koparki mechaniczne – Uniwersalne zestawy do budowy podpór mostów tymcz",
+        "national_url": "https://ezamowienia.gov.pl/mo-client-board/bzp/notice-details/id/08de861e-7451-f3e3-056e-e500011b8c18"
+      },
+      {
+        "known_authority": "Agencja Uzbrojenia",
+        "national_authority": "Agencja Uzbrojenia, au.f35@mon.gov.pl",
+        "national_title": "Polska – Broń, amunicja i podobne elementy – Dostawa flar do F-35",
+        "national_url": "https://ezamowienia.gov.pl/mo-client-board/bzp/notice-details/id/08de861e-5e31-8aac-056e-e500011b8ae1"
+      },
+      {
+        "known_authority": "Agencja Uzbrojenia",
+        "national_authority": "Agencja Uzbrojenia",
+        "national_title": "Polska – Różne materiały wybuchowe – dostawa materiału wybuchowego plastycznego ",
+        "national_url": "https://ezamowienia.gov.pl/mo-client-board/bzp/notice-details/id/08de651d-9b78-d64f-056e-e50001ab1e71"
+      },
+      {
+        "known_authority": "Agencja Uzbrojenia",
+        "national_authority": "Agencja Uzbrojenia",
+        "national_title": "Polska – Naboje – Pironaboje PP-9 do wyrzutni chorągiewek",
+        "national_url": "https://ezamowienia.gov.pl/mo-client-board/bzp/notice-details/id/08de6454-6b65-f514-056e-e50001ab0f91"
+      },
+      {
+        "known_authority": "Agencja Uzbrojenia",
+        "national_authority": "Agencja Uzbrojenia",
+        "national_title": "Polska – Produkty chemiczne – Imitatory skażeń FOST oraz Imitatory skażeń RT",
+        "national_url": "https://ezamowienia.gov.pl/mo-client-board/bzp/notice-details/id/08de499c-eeb9-50e8-d6d3-f50001fdda38"
+      },
+      {
+        "known_authority": "Agencja Uzbrojenia",
+        "national_authority": "Agencja Uzbrojenia",
+        "national_title": "Polska – Naboje – Dostawa Nabojów sygnałowych NSCh-40M",
+        "national_url": "https://ezamowienia.gov.pl/mo-client-board/bzp/notice-details/id/08de3209-ed95-191f-0560-490001011573"
+      },
+      {
+        "known_authority": "Agencja Uzbrojenia",
+        "national_authority": "Agencja Uzbrojenia",
+        "national_title": "Polska – Granaty – Ćwiczebny Granat Łzawiący CGŁ-1 lub wyrób równoważny",
+        "national_url": "https://ezamowienia.gov.pl/mo-client-board/bzp/notice-details/id/08de2577-525b-d26a-592a-d1000114e6ef"
+      },
+      {
+        "known_authority": "Agencja Uzbrojenia",
+        "national_authority": "Agencja Uzbrojenia",
+        "national_title": "Polska – Naboje – Dostawa 30 mm naboi z pociskiem ćwiczebnym bez smugacza TP lub",
+        "national_url": "https://ezamowienia.gov.pl/mo-client-board/bzp/notice-details/id/08de1752-8c0e-9a6e-6f2a-fc00017389a6"
+      },
+      {
+        "known_authority": "Agencja Uzbrojenia",
+        "national_authority": "Agencja Uzbrojenia",
+        "national_title": "Polska – Sprzęt elektroniczny – Dostawa 3 szt. transponderów systemu IFF standar",
+        "national_url": "https://ezamowienia.gov.pl/mo-client-board/bzp/notice-details/id/08de079b-0737-f5af-d903-390001918cac"
+      },
+      {
+        "known_authority": "Agencja Uzbrojenia",
+        "national_authority": "Agencja Uzbrojenia",
+        "national_title": "Polska – Urządzenia łączności satelitarnej – DostawaTerminali satelitarnych w te",
+        "national_url": "https://ezamowienia.gov.pl/mo-client-board/bzp/notice-details/id/08de06d1-e411-e15d-d903-390001917e06"
+      },
+      {
+        "known_authority": "Agencja Uzbrojenia",
+        "national_authority": "Agencja Uzbrojenia",
+        "national_title": "Polska – Naboje – Dostawa amunicji w 2026 r. z podziałem na części: Część I zamó",
+        "national_url": "https://ezamowienia.gov.pl/mo-client-board/bzp/notice-details/id/08de04a0-54f9-fc4d-d903-390001915200"
+      },
+      {
+        "known_authority": "Agencja Uzbrojenia",
+        "national_authority": "Agencja Uzbrojenia",
+        "national_title": "Polska – Amunicja do lotniczych działań bojowych – Dostawa 20 mm nb. do samolotu",
+        "national_url": "https://ezamowienia.gov.pl/mo-client-board/bzp/notice-details/id/08ddf19a-6909-9edb-d903-3900014eb3bd"
+      },
+      {
+        "known_authority": "Agencja Uzbrojenia",
+        "national_authority": "Agencja Uzbrojenia",
+        "national_title": "Polska – Torpedy – Dostawa Torpedy treningowej MU-90 PDT",
+        "national_url": "https://ezamowienia.gov.pl/mo-client-board/bzp/notice-details/id/08ddf19a-6940-9af5-d903-3900014eb3c3"
+      },
+      {
+        "known_authority": "Agencja Uzbrojenia",
+        "national_authority": "Agencja Uzbrojenia",
+        "national_title": "Polska – Naboje – Dostawa 30 mm naboi z pociskiem ćwiczebnym bez smugacza TP lub",
+        "national_url": "https://ezamowienia.gov.pl/mo-client-board/bzp/notice-details/id/08ddf19a-6034-3496-d903-3900014eb350"
+      },
+      {
+        "known_authority": "Agencja Uzbrojenia",
+        "national_authority": "Agencja Uzbrojenia",
+        "national_title": "Polska – Różne materiały wybuchowe – Dostawa materiału wybuchowego plastycznego ",
+        "national_url": "https://ezamowienia.gov.pl/mo-client-board/bzp/notice-details/id/08ddf0fb-3b8c-53a5-d903-3900014ea53c"
+      }
+    ],
+    "trailer_hits": [
+      {
+        "title": "Dostawa mobilnego centrum szkolenia personelu BSP",
+        "authority": "Lotnicza Akademia Wojskowa",
+        "url": "https://ezamowienia.gov.pl/mo-client-board/bzp/notice-details/id/08dd36fa-c592-f1c3-8f1b-b600017b0898",
+        "note": "CPV+wojsk combined query"
+      },
+      {
+        "title": "Dostawa przyczep transportowych dużej, średniej i małej ładowności.",
+        "authority": "12 WOJSKOWY ODDZIAŁ GOSPODARCZY",
+        "url": "https://ezamowienia.gov.pl/mo-client-board/bzp/notice-details/id/08dc127b-2d35-63ce-42c6-d30011511ef5",
+        "note": "CPV+wojsk combined query"
+      },
+      {
+        "title": "Dostawa przyczep transportowych dużej, średniej i małej ładowności.",
+        "authority": "12 WOJSKOWY ODDZIAŁ GOSPODARCZY",
+        "url": "https://ezamowienia.gov.pl/mo-client-board/bzp/notice-details/id/08dc127a-4491-e077-4744-d40011cc3c52",
+        "note": "CPV+wojsk combined query"
+      },
+      {
+        "title": "Dostawa przyczep transportowych dużej, średniej i małej ładowności.",
+        "authority": "12 WOJSKOWY ODDZIAŁ GOSPODARCZY",
+        "url": "https://ezamowienia.gov.pl/mo-client-board/bzp/notice-details/id/08dc1279-9634-adcb-4744-d40011cc3c4d",
+        "note": "CPV+wojsk combined query"
+      },
+      {
+        "title": "DOSTAWA PRZYCZEP TRANSPORTOWYCH DUŻEJ, ŚREDNIEJ I MAŁEJ ŁADOWNOŚCI.",
+        "authority": "12 Wojskowy Oddział Gospodarczy",
+        "url": "https://ezamowienia.gov.pl/mo-client-board/bzp/notice-details/id/35913a27-ff3f-4ff4-9963-7185ceb6bc43",
+        "note": "CPV+wojsk combined query"
+      }
+    ],
+    "search_attempts": [
+      {
+        "query": "OrganizationName=12 WOJSKOWY ODDZIAŁ GOSPODARCZY",
+        "results_count": 20,
+        "sample_titles": [
+          "Polska – Usługi w zakresie napraw samochodów – Usługa wykona",
+          "Polska – Usługi w zakresie napraw i konserwacji systemów uzb",
+          "Remont dachu, klatek  schodowych i sanitariatów w budynku nr",
+          "",
+          "REMONT BUDYNKU NR 1 W KOMPLEKSIE WOJSKOWYM PRZY UL. OKÓLNEJ "
+        ]
+      },
+      {
+        "query": "OrganizationName=Wojskowy Instytut Techniczny Uzbrojenia",
+        "results_count": 20,
+        "sample_titles": [
+          "Paliwo do pojazdów WITU",
+          "Stół do kalibracji IMU i giroskopów",
+          "Wykonanie kompleksowej usługi cateringowej podczas uroczyste",
+          "Pojazd  osobowo – dostawczy do przewozu towarów niebezpieczn",
+          "Pojazd  osobowo – terenowy typu pick-up do przewozu 5 osób"
+        ]
+      },
+      {
+        "query": "OrganizationName=Agencja Uzbrojenia",
+        "results_count": 20,
+        "sample_titles": [
+          "Polska – Naboje – Dostawa amunicji i granatów w latach 2026-",
+          "Polska – Naboje – Dostawa amunicji w 2026 r. z podziałem na ",
+          "Polska – Naboje – Dostawa 30 mm naboi z pociskiem ćwiczebnym",
+          "Polska – Naboje – Dostawa amunicji i petard w latach 2026-20",
+          "Polska – Produkty chemiczne – Ampułka z odczynnikiem RN-10ml"
+        ]
+      },
+      {
+        "query": "CpvCode=34223300 + OrganizationName=wojsk",
+        "results_count": 5,
+        "sample_titles": [
+          "Dostawa mobilnego centrum szkolenia personelu BSP",
+          "Dostawa przyczep transportowych dużej, średniej i małej łado",
+          "Dostawa przyczep transportowych dużej, średniej i małej łado",
+          "Dostawa przyczep transportowych dużej, średniej i małej łado",
+          "DOSTAWA PRZYCZEP TRANSPORTOWYCH DUŻEJ, ŚREDNIEJ I MAŁEJ ŁADO"
+        ]
+      }
+    ],
+    "found": 60,
+    "not_found": 0,
+    "conclusion": "Portal carries military trailer tenders — 60 authority match(es), 5 trailer notice(s)",
+    "decision": "FIX adapter — implement combined CPV=34223300 + OrganizationName=wojsk query. Finds 4 genuine military trailer tenders from 12 Wojskowy Oddzial Gospodarczy."
+  }
+}

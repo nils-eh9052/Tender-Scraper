@@ -139,23 +139,31 @@ class AiClassifier:
         title = notice.get("title", "")
         if isinstance(title, dict):
             title = title.get("eng") or title.get("deu") or next(iter(title.values()), "")
+        # Fallback for national portal notices (DE-SB, PL-BZP)
+        if not title:
+            title = str(notice.get("_title_final", "") or "")
 
         description = notice.get("description", "")
         if isinstance(description, dict):
             description = description.get("eng") or description.get("deu") or next(iter(description.values()), "")
         description = str(description or "")[:4000]
+        # Fallback for national portal notices
+        if not description:
+            description = str(notice.get("_national_raw_text", "") or "")[:4000]
 
         cpv_codes = ", ".join(notice.get("cpv_codes", []))
-        auth = notice.get("contracting_authority", {})
-        country = auth.get("country", "?")
-        authority = auth.get("name_short") or auth.get("name", "?")
+        auth = notice.get("contracting_authority", {}) or {}
+        country = auth.get("country", "?") or notice.get("_country_normalized", "?")
+        authority = (auth.get("name_short") or auth.get("name", "")
+                     or notice.get("_authority_name", "?"))
 
         val = notice.get("estimated_value") or {}
-        value = val.get("amount", "")
-        currency = val.get("currency", "")
+        value = val.get("amount", "") or notice.get("_value_amount", "")
+        currency = val.get("currency", "") or notice.get("_value_currency", "")
 
         award = notice.get("award") or {}
-        winner = award.get("winner_name", "")
+        winner = (award.get("winner_name", "")
+                  or notice.get("_winner_name", ""))
 
         cats_json = json.dumps(TRAILER_CATEGORIES)
 
@@ -481,14 +489,21 @@ class TwoStageClassifier:
         title = notice.get("title", "")
         if isinstance(title, dict):
             title = title.get("eng") or title.get("deu") or next(iter(title.values()), "")
+        # Fallback for national portal notices (DE-SB, PL-BZP)
+        if not title:
+            title = str(notice.get("_title_final", "") or "")
 
         description = notice.get("description", "")
         if isinstance(description, dict):
             description = description.get("eng") or description.get("deu") or next(iter(description.values()), "")
         description = str(description or "")[:1000]
+        # Fallback for national portal notices
+        if not description:
+            description = str(notice.get("_national_raw_text", "") or "")[:1000]
 
-        auth = notice.get("contracting_authority", {})
-        authority = auth.get("name_short") or auth.get("name", "")
+        auth = notice.get("contracting_authority", {}) or {}
+        authority = (auth.get("name_short") or auth.get("name", "")
+                     or notice.get("_authority_name", ""))
         cpv_codes = ", ".join(notice.get("cpv_codes", []))
 
         prompt = HAIKU_PREFILTER_PROMPT.format(

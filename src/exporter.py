@@ -228,33 +228,43 @@ class ExcelExporter:
         self.vorlage_path = Path(__file__).parent.parent / "Vorlage.xlsx"
 
     def _flatten_notice(self, notice: dict) -> dict:
-        """Flatten notice into row dict with proper data types."""
+        """Flatten notice into row dict with proper data types.
+
+        Handles both TED-format notices (title/description/contracting_authority)
+        and national portal notices (DE-SB, PL-BZP) that use _title_final /
+        _national_raw_text / _authority_name etc. as their primary fields.
+        """
         flat = dict(notice)
 
-        # Authority
+        # Authority — national notices store name in _authority_name
         auth = notice.get("contracting_authority", {}) or {}
-        flat["_authority_name"] = auth.get("name_short") or auth.get("name", "")
+        flat["_authority_name"] = (auth.get("name_short") or auth.get("name", "")
+                                   or notice.get("_authority_name", ""))
 
-        # Country
-        flat["_country_normalized"] = normalize_country(auth.get("country", ""))
+        # Country — national notices store in _country_normalized
+        flat["_country_normalized"] = normalize_country(
+            auth.get("country", "") or notice.get("_country_normalized", ""))
 
-        # Title (AI English > raw)
+        # Title: AI English > _title_final (national) > raw TED title
         if notice.get("_title_english"):
             flat["_title_final"] = notice["_title_english"]
+        elif notice.get("_title_final"):
+            flat["_title_final"] = str(notice["_title_final"])
         else:
             title = notice.get("title", "")
             if isinstance(title, dict):
                 title = title.get("eng") or title.get("deu") or next(iter(title.values()), "")
             flat["_title_final"] = str(title)
 
-        # Publication date → datetime.date object
-        pub_raw = str(notice.get("publication_date", "") or "")
+        # Publication date — national notices use _pub_date_clean
+        pub_raw = str(notice.get("publication_date", "")
+                      or notice.get("_pub_date_clean", "") or "")
         flat["_pub_date"] = parse_date(pub_raw)
 
-        # Value → float (FIX 1 + FIX 5)
+        # Value — national notices store in _value_amount / _value_currency
         val = notice.get("estimated_value") or {}
-        amount = clean_value(val.get("amount"))
-        currency = val.get("currency", "")
+        amount = clean_value(val.get("amount")) or clean_value(notice.get("_value_amount"))
+        currency = val.get("currency", "") or notice.get("_value_currency", "")
         flat["_value_num"] = amount
         flat["_value_currency"] = currency
 
@@ -268,9 +278,10 @@ class ExcelExporter:
         else:
             flat["_value_eur_num"] = None
 
-        # Winner (deduplicate repeated lines from old lot-split merge)
+        # Winner — national notices store in _winner_name directly
         award = notice.get("award") or {}
-        flat["_winner_name"] = clean_winner(award.get("winner_name", ""))
+        flat["_winner_name"] = clean_winner(
+            award.get("winner_name", "") or notice.get("_winner_name", ""))
 
         # AI-classified slot fields (slots 1 and 2 only)
         for slot in (1, 2):
@@ -282,9 +293,11 @@ class ExcelExporter:
         flat["_additional_equip_final"] = notice.get("_additional_equipment_ai", "")
         flat["_additional_qty_int"] = clean_int(notice.get("_additional_qty_ai"))
 
-        # Description (AI English > raw)
+        # Description: AI English > _description_final (national) > raw TED desc
         if notice.get("_description_english"):
             flat["_description_final"] = notice["_description_english"][:500]
+        elif notice.get("_description_final"):
+            flat["_description_final"] = str(notice["_description_final"])[:500]
         else:
             desc = notice.get("description", "")
             if isinstance(desc, dict):

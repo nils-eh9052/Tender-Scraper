@@ -663,6 +663,46 @@ def _merge_national_into_relevant(national_notices: list) -> int:
     return len(merged)
 
 
+def _reclassify_other():
+    """Remove 'Other' category entries from the enrichment cache so they get re-classified."""
+    log_path = PROJECT_ROOT / "data" / ".enrichment_log.json"
+    relevant_path = PROJECT_ROOT / "data" / "filtered" / "relevant.json"
+
+    if not log_path.exists():
+        print("  [!] No enrichment log found.")
+        return
+    if not relevant_path.exists():
+        print("  [!] No relevant.json found.")
+        return
+
+    with open(log_path, "r", encoding="utf-8") as f:
+        log = json.load(f)
+    with open(relevant_path, "r", encoding="utf-8") as f:
+        relevant = json.load(f)
+
+    other_ids = []
+    for notice in relevant:
+        cat = (notice.get("_trailer_category_1_ai")
+               or notice.get("trailer_category_1")
+               or (notice.get("_ai") or {}).get("trailer_category_1", ""))
+        if cat == "Other":
+            other_ids.append(notice.get("tender_id"))
+
+    print(f"  Other notices to reclassify: {len(other_ids)}")
+    removed = 0
+    for tid in other_ids:
+        if tid in log:
+            del log[tid]
+            removed += 1
+
+    with open(log_path, "w", encoding="utf-8") as f:
+        json.dump(log, f, ensure_ascii=False, indent=2)
+
+    print(f"  Removed {removed} entries from enrichment log.")
+    print("  Now run: python main.py --phase classify")
+    print("  Or:      python main.py --all --since <date> --two-stage")
+
+
 def main():
     parser = argparse.ArgumentParser(
         description="TED Defence Trailer Scraper Pipeline"
@@ -713,7 +753,11 @@ def main():
     # Enrichment flags
     parser.add_argument(
         "--enrich", action="store_true",
-        help="Add fulltext enrichment step (Phase 3c) after AI classification"
+        help="[Deprecated — enrichment now runs by default] Kept for backward compatibility"
+    )
+    parser.add_argument(
+        "--no-enrich", action="store_true",
+        help="Skip fulltext enrichment and award-match (saves time/cost for quick runs)"
     )
     parser.add_argument(
         "--enrich-only", action="store_true",
@@ -721,7 +765,11 @@ def main():
     )
     parser.add_argument(
         "--award-match", action="store_true",
-        help="Run award notice matching step (Phase 3d)"
+        help="Run award notice matching step (Phase 3d) — runs by default with enrichment"
+    )
+    parser.add_argument(
+        "--reclassify-other", action="store_true",
+        help="Remove 'Other' category notices from enrichment cache and re-classify them"
     )
     # Additional sources
     parser.add_argument(
@@ -806,11 +854,17 @@ def main():
         date_from = args.since
         print(f"  --since: overriding date_from to {date_from}")
 
+    # ── reclassify-other mode ──
+    if getattr(args, "reclassify_other", False):
+        print("\n  Mode: RECLASSIFY-OTHER (removing 'Other' from cache → re-classify)")
+        _reclassify_other()
+        return
+
     # ── enrich-only mode ──
     if args.enrich_only:
         print("\n  Mode: ENRICH-ONLY (skipping phases 1-3b)")
         run_phase_enrich(config, test_mode=args.test)
-        if args.award_match or args.enrich:
+        if not getattr(args, "no_enrich", False):
             run_phase_award_match(config, test_mode=args.test)
         run_phase_export(config, test_mode=args.test)
         return
@@ -913,9 +967,10 @@ def main():
                 total = _merge_national_into_relevant(nat_notices)
                 print(f"  relevant.json after national merge: {total} notices")
         run_phase_classify(config, test_mode=args.test, args=args)
-        if args.enrich:
+        if not getattr(args, "no_enrich", False):
             run_phase_enrich(config, test_mode=args.test)
-        if args.award_match or args.enrich:
+            run_phase_award_match(config, test_mode=args.test)
+        elif args.award_match:
             run_phase_award_match(config, test_mode=args.test)
         run_phase_export(config, test_mode=args.test)
         if args.review:

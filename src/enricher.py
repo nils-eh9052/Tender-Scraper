@@ -166,7 +166,7 @@ class FulltextEnricher:
                 }
                 logger.info(f"  Enriched value: {enrichment['value_amount']} {enrichment.get('value_currency', '')}")
 
-        # Winner
+        # Winner — also update status to Awarded if we found one
         if enrichment.get("winner_name"):
             award = notice.get("award") or {}
             if not award.get("winner_name"):
@@ -177,6 +177,8 @@ class FulltextEnricher:
                     "_enriched": True,
                 }
                 logger.info(f"  Enriched winner: {enrichment['winner_name']}")
+            if notice.get("_status") != "Awarded":
+                notice["_status"] = "Awarded"
 
         # Quantity
         if enrichment.get("trailer_quantity") is not None:
@@ -196,6 +198,15 @@ class FulltextEnricher:
 
         return notice
 
+    def _get_enrichment_text(self, notice: dict) -> Optional[str]:
+        """Get text for enrichment. Priority: national raw text > TED HTML/PDF download."""
+        national_text = notice.get("_national_raw_text")
+        if national_text and len(str(national_text)) > 200:
+            return str(national_text)
+        tid = notice.get("tender_id", "")
+        links = notice.get("links") or (notice.get("_raw") or {}).get("links") or {}
+        return self.fetcher.fetch(tid, links=links)
+
     def enrich_notice(self, notice: dict) -> dict:
         """Enrich a single notice. Returns updated notice dict."""
         tid = notice.get("tender_id", "")
@@ -208,9 +219,8 @@ class FulltextEnricher:
                 return self._apply_enrichment(notice, cached)
             return notice
 
-        # Fetch fulltext — pass links so htmlDirect.ENG is used (not the async /texts endpoint)
-        links = notice.get("links") or (notice.get("_raw") or {}).get("links") or {}
-        fulltext = self.fetcher.fetch(tid, links=links)
+        # Get fulltext (national raw text or TED download)
+        fulltext = self._get_enrichment_text(notice)
         if not fulltext:
             logger.warning(f"  No fulltext for {tid}, skipping enrichment")
             return notice

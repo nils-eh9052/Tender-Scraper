@@ -73,6 +73,34 @@ NON_DEFENCE_AUTHORITY_PATTERNS = [
 ]
 
 
+class ClassifierStats:
+    """Tracks classification run statistics for monitoring and reporting."""
+
+    ERROR_THRESHOLD = 3
+
+    def __init__(self):
+        self.total = 0
+        self.cached = 0
+        self.classified = 0
+        self.errors = 0
+        self.error_ids = []
+        self.permanent_errors = []
+
+    def report(self):
+        print(f"\n  Classification Stats:")
+        print(f"    Total:             {self.total}")
+        print(f"    From cache:        {self.cached}")
+        print(f"    AI calls:          {self.classified}")
+        print(f"    Errors (retryable):{self.errors}")
+        if self.error_ids:
+            print(f"    Failed IDs:        {self.error_ids[:10]}")
+        if self.permanent_errors:
+            print(f"    Permanent errors:  {len(self.permanent_errors)}")
+            print(f"    Permanent IDs:     {self.permanent_errors[:10]}")
+        if self.total > 0 and self.errors / max(self.total, 1) > 0.05:
+            print(f"  [WARNING] Error rate {self.errors/self.total:.1%} exceeds 5% threshold!")
+
+
 class AiClassifier:
     """Two-step AI classifier: strict filter + precise classification."""
 
@@ -290,26 +318,32 @@ RULES:
             logger.info(f"TEST MODE: Classifying max {max_calls} of "
                         f"{len(notices)} notices (AI calls limited)")
 
-        stats = {
+        run_stats = {
             "blacklisted": 0, "cached_relevant": 0, "cached_irrelevant": 0,
             "ai_relevant": 0, "ai_irrelevant": 0, "ai_errors": 0,
             "api_calls": 0,
         }
+        stats = ClassifierStats()
         relevant_notices = []
 
         for i, notice in enumerate(notices):
             tid = notice.get("tender_id", "")
             auth = (notice.get("contracting_authority") or {})
             auth_name = auth.get("name_short") or auth.get("name", "")
+            stats.total += 1
 
             # ── Blacklist check (no AI call) ──
             if self.is_blacklisted_authority(auth_name):
-                stats["blacklisted"] += 1
+                run_stats["blacklisted"] += 1
                 continue
 
             # ── Cache check — always produces ONE notice per tender ──
             if tid in log:
-                cached = log[tid].get("result")
+                entry = log[tid]
+                if entry.get("_permanent_error"):
+                    stats.permanent_errors.append(tid)
+                    continue
+                cached = entry.get("result")
                 if cached is not None:
                     if isinstance(cached, list):
                         # Old multi-lot array format: merge into slot dict
@@ -319,29 +353,46 @@ RULES:
                             n = dict(notice)
                             self._apply_ai_result(n, merged)
                             relevant_notices.append(n)
-                            stats["cached_relevant"] += 1
+                            run_stats["cached_relevant"] += 1
+                            stats.cached += 1
                         else:
-                            stats["cached_irrelevant"] += 1
+                            run_stats["cached_irrelevant"] += 1
                     elif cached.get("relevant"):
                         n = dict(notice)
                         self._apply_ai_result(n, cached)
                         relevant_notices.append(n)
-                        stats["cached_relevant"] += 1
+                        run_stats["cached_relevant"] += 1
+                        stats.cached += 1
                     else:
-                        stats["cached_irrelevant"] += 1
+                        run_stats["cached_irrelevant"] += 1
                     continue
 
             # ── AI call limit (test mode) ──
-            if stats["api_calls"] >= max_calls:
+            if run_stats["api_calls"] >= max_calls:
                 continue
 
             # ── AI classification ──
             result = self.classify_notice(notice)
-            stats["api_calls"] += 1
+            run_stats["api_calls"] += 1
+            stats.classified += 1
 
             if result is None:
-                # API error → skip (don't cache, retry next run)
-                stats["ai_errors"] += 1
+                # API error → track failure count, potentially mark permanent
+                run_stats["ai_errors"] += 1
+                stats.errors += 1
+                stats.error_ids.append(tid)
+                entry = log.get(tid) or {}
+                fail_count = entry.get("_error_count", 0) + 1
+                log[tid] = {
+                    **entry,
+                    "result": None,
+                    "_error_count": fail_count,
+                    "_last_error": time.strftime("%Y-%m-%d %H:%M:%S"),
+                }
+                if fail_count >= ClassifierStats.ERROR_THRESHOLD:
+                    log[tid]["_permanent_error"] = True
+                    stats.permanent_errors.append(tid)
+                    logger.warning(f"Marking {tid} as permanent error after {fail_count} failures")
                 continue
 
             # Cache result
@@ -364,20 +415,19 @@ RULES:
                 n = dict(notice)
                 self._apply_ai_result(n, result)
                 relevant_notices.append(n)
-                stats["ai_relevant"] += 1
+                run_stats["ai_relevant"] += 1
             else:
-                stats["ai_irrelevant"] += 1
+                run_stats["ai_irrelevant"] += 1
 
             # Save log periodically
-            if stats["api_calls"] % 10 == 0:
+            if run_stats["api_calls"] % 10 == 0:
                 self._save_log(log)
-                total_done = sum(v for v in stats.values())
                 logger.info(
                     f"AI progress: {i+1}/{len(notices)} | "
-                    f"API: {stats['api_calls']} calls | "
-                    f"Relevant: {stats['ai_relevant']+stats['cached_relevant']} | "
-                    f"Rejected: {stats['ai_irrelevant']+stats['cached_irrelevant']+stats['blacklisted']} | "
-                    f"Errors: {stats['ai_errors']}")
+                    f"API: {run_stats['api_calls']} calls | "
+                    f"Relevant: {run_stats['ai_relevant']+run_stats['cached_relevant']} | "
+                    f"Rejected: {run_stats['ai_irrelevant']+run_stats['cached_irrelevant']+run_stats['blacklisted']} | "
+                    f"Errors: {run_stats['ai_errors']}")
 
             time.sleep(0.5)
 
@@ -386,14 +436,19 @@ RULES:
 
         logger.info(
             f"\nAI Classification Complete:\n"
-            f"  Blacklisted (no AI call):  {stats['blacklisted']}\n"
-            f"  Cached relevant:           {stats['cached_relevant']}\n"
-            f"  Cached irrelevant:         {stats['cached_irrelevant']}\n"
-            f"  AI calls made:             {stats['api_calls']}\n"
-            f"    → relevant:              {stats['ai_relevant']}\n"
-            f"    → irrelevant:            {stats['ai_irrelevant']}\n"
-            f"    → errors (will retry):   {stats['ai_errors']}\n"
+            f"  Blacklisted (no AI call):  {run_stats['blacklisted']}\n"
+            f"  Cached relevant:           {run_stats['cached_relevant']}\n"
+            f"  Cached irrelevant:         {run_stats['cached_irrelevant']}\n"
+            f"  AI calls made:             {run_stats['api_calls']}\n"
+            f"    → relevant:              {run_stats['ai_relevant']}\n"
+            f"    → irrelevant:            {run_stats['ai_irrelevant']}\n"
+            f"    → errors (will retry):   {run_stats['ai_errors']}\n"
             f"  RESULT: {len(relevant_notices)} notices for Excel")
+
+        stats.report()
+
+        if stats.permanent_errors:
+            print(f"\n  [!] Permanent errors (skipped in future runs): {stats.permanent_errors[:20]}")
 
         return relevant_notices
 

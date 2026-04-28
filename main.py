@@ -390,6 +390,81 @@ def _merge_uk_into_relevant(uk_notices: list) -> int:
     return len(merged)
 
 
+def run_bulk_comparison(config: dict, test_mode: bool = False) -> list:
+    """Find notices in TED bulk CSV that our API queries missed."""
+    print("\n" + "="*60)
+    print("  TED BULK CSV: Comparing against existing dataset")
+    print("="*60)
+
+    from src.ted_bulk_loader import TEDBulkLoader
+
+    loader = TEDBulkLoader(config, cache_dir=str(PROJECT_ROOT / "data" / "raw" / "ted_bulk"))
+
+    filtered_path = PROJECT_ROOT / "data" / "filtered" / "relevant.json"
+    existing_ids: set = set()
+    if filtered_path.exists():
+        with open(filtered_path, "r", encoding="utf-8") as f:
+            existing = json.load(f)
+        existing_ids = {n.get("tender_id", "") for n in existing}
+        print(f"  Existing dataset: {len(existing)} notices, {len(existing_ids)} unique IDs")
+    else:
+        print("  [!] No relevant.json found — comparison will show all bulk matches")
+
+    missing = loader.find_missing_notices(
+        existing_ids=existing_ids,
+        test_mode=test_mode,
+    )
+
+    if missing:
+        print(f"\n  Notices in TED CSV but NOT in our data: {len(missing)}")
+        print(f"  {'Tender ID':<18} {'Country':<8} {'CPV':<12}")
+        print(f"  {'-'*18} {'-'*8} {'-'*12}")
+        for m in missing[:20]:
+            print(f"  {m.get('tender_id','?'):<18} {m.get('country','?'):<8} {m.get('cpv','?'):<12}")
+        if len(missing) > 20:
+            print(f"  ... and {len(missing) - 20} more")
+    else:
+        print("  No missing notices found (or no bulk data available)")
+
+    out_path = PROJECT_ROOT / "data" / "raw" / "ted_bulk" / "missing_notices.json"
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    with open(out_path, "w", encoding="utf-8") as f:
+        json.dump(missing, f, ensure_ascii=False, indent=2)
+    print(f"\n  Saved: {out_path} ({len(missing)} entries)")
+
+    return missing
+
+
+def run_canada(config: dict, test_mode: bool = False) -> list:
+    """Load Canadian DND procurement data from open.canada.ca."""
+    print("\n" + "="*60)
+    print("  CANADA: open.canada.ca DND Procurement")
+    print("="*60)
+
+    from src.canada_loader import CanadaOpenDataLoader
+
+    loader = CanadaOpenDataLoader(cache_dir=str(PROJECT_ROOT / "data" / "raw" / "canada"))
+
+    resources = loader.discover_all_resource_urls()
+    if resources:
+        print(f"  Dataset resources ({len(resources)}):")
+        for r in resources[:5]:
+            print(f"    [{r.get('format','?'):6s}] {r.get('name','')[:40]} — {r.get('url','')[:60]}")
+
+    matches = loader.load_and_filter(test_mode=test_mode)
+
+    if matches:
+        print(f"\n  Found {len(matches)} DND trailer contracts:")
+        for m in matches[:10]:
+            print(f"    {m.get('tender_id','?'):<22} {m.get('date','?'):<12} {m.get('title','')[:50]}")
+        if len(matches) > 10:
+            print(f"  ... and {len(matches) - 10} more")
+    else:
+        print("  No DND trailer contracts found (check logs)")
+
+    return matches
+
+
 def run_review(config: dict):
     """Optional: Opus-based post-run quality review of the latest Excel."""
     print("\n" + "="*60)
@@ -592,6 +667,16 @@ def run_national_scraping(countries: list, config: dict,
         adapter_registry["pl"] = (PLAdapter, create_pl_config)
     except ImportError:
         pass
+    try:
+        from src.national_scraper.adapters.fi_adapter import FIAdapter, create_fi_config
+        adapter_registry["fi"] = (FIAdapter, create_fi_config)
+    except ImportError:
+        pass
+    try:
+        from src.national_scraper.adapters.se_adapter import SEAdapter, create_se_config
+        adapter_registry["se"] = (SEAdapter, create_se_config)
+    except ImportError:
+        pass
 
     all_notices = []
     screenshot_dir = str(PROJECT_ROOT / "data" / "raw" / "screenshots")
@@ -663,6 +748,46 @@ def _merge_national_into_relevant(national_notices: list) -> int:
     return len(merged)
 
 
+def _reclassify_other():
+    """Remove 'Other' category entries from the enrichment cache so they get re-classified."""
+    log_path = PROJECT_ROOT / "data" / ".enrichment_log.json"
+    relevant_path = PROJECT_ROOT / "data" / "filtered" / "relevant.json"
+
+    if not log_path.exists():
+        print("  [!] No enrichment log found.")
+        return
+    if not relevant_path.exists():
+        print("  [!] No relevant.json found.")
+        return
+
+    with open(log_path, "r", encoding="utf-8") as f:
+        log = json.load(f)
+    with open(relevant_path, "r", encoding="utf-8") as f:
+        relevant = json.load(f)
+
+    other_ids = []
+    for notice in relevant:
+        cat = (notice.get("_trailer_category_1_ai")
+               or notice.get("trailer_category_1")
+               or (notice.get("_ai") or {}).get("trailer_category_1", ""))
+        if cat == "Other":
+            other_ids.append(notice.get("tender_id"))
+
+    print(f"  Other notices to reclassify: {len(other_ids)}")
+    removed = 0
+    for tid in other_ids:
+        if tid in log:
+            del log[tid]
+            removed += 1
+
+    with open(log_path, "w", encoding="utf-8") as f:
+        json.dump(log, f, ensure_ascii=False, indent=2)
+
+    print(f"  Removed {removed} entries from enrichment log.")
+    print("  Now run: python main.py --phase classify")
+    print("  Or:      python main.py --all --since <date> --two-stage")
+
+
 def main():
     parser = argparse.ArgumentParser(
         description="TED Defence Trailer Scraper Pipeline"
@@ -713,7 +838,11 @@ def main():
     # Enrichment flags
     parser.add_argument(
         "--enrich", action="store_true",
-        help="Add fulltext enrichment step (Phase 3c) after AI classification"
+        help="[Deprecated — enrichment now runs by default] Kept for backward compatibility"
+    )
+    parser.add_argument(
+        "--no-enrich", action="store_true",
+        help="Skip fulltext enrichment and award-match (saves time/cost for quick runs)"
     )
     parser.add_argument(
         "--enrich-only", action="store_true",
@@ -721,7 +850,11 @@ def main():
     )
     parser.add_argument(
         "--award-match", action="store_true",
-        help="Run award notice matching step (Phase 3d)"
+        help="Run award notice matching step (Phase 3d) — runs by default with enrichment"
+    )
+    parser.add_argument(
+        "--reclassify-other", action="store_true",
+        help="Remove 'Other' category notices from enrichment cache and re-classify them"
     )
     # Additional sources
     parser.add_argument(
@@ -762,6 +895,14 @@ def main():
              "Takes known TED tenders and searches for the same authorities on "
              "the national portal. E.g. --validate-portals de pl"
     )
+    parser.add_argument(
+        "--ted-bulk", action="store_true",
+        help="Load TED Open Data CSV bulk dumps and find notices missing from our dataset"
+    )
+    parser.add_argument(
+        "--canada", action="store_true",
+        help="Load Canadian DND procurement data from open.canada.ca Open Data"
+    )
 
     args = parser.parse_args()
 
@@ -782,6 +923,18 @@ def main():
         from src.classifier import AiClassifier
         AiClassifier.clear_log()
         print("  [OK] AI enrichment log cleared. All notices will be re-processed on next run.")
+        return
+
+    # ── TED bulk CSV standalone mode ──
+    if getattr(args, "ted_bulk", False) and not args.all and not args.phase:
+        print("\n  Mode: TED BULK CSV (historical data comparison)")
+        run_bulk_comparison(config, test_mode=args.test)
+        return
+
+    # ── Canada standalone mode ──
+    if getattr(args, "canada", False) and not args.all and not args.phase:
+        print("\n  Mode: CANADA OPEN DATA (DND procurement)")
+        run_canada(config, test_mode=args.test)
         return
 
     # ── Portal validation mode ──
@@ -806,11 +959,17 @@ def main():
         date_from = args.since
         print(f"  --since: overriding date_from to {date_from}")
 
+    # ── reclassify-other mode ──
+    if getattr(args, "reclassify_other", False):
+        print("\n  Mode: RECLASSIFY-OTHER (removing 'Other' from cache → re-classify)")
+        _reclassify_other()
+        return
+
     # ── enrich-only mode ──
     if args.enrich_only:
         print("\n  Mode: ENRICH-ONLY (skipping phases 1-3b)")
         run_phase_enrich(config, test_mode=args.test)
-        if args.award_match or args.enrich:
+        if not getattr(args, "no_enrich", False):
             run_phase_award_match(config, test_mode=args.test)
         run_phase_export(config, test_mode=args.test)
         return
@@ -913,9 +1072,10 @@ def main():
                 total = _merge_national_into_relevant(nat_notices)
                 print(f"  relevant.json after national merge: {total} notices")
         run_phase_classify(config, test_mode=args.test, args=args)
-        if args.enrich:
+        if not getattr(args, "no_enrich", False):
             run_phase_enrich(config, test_mode=args.test)
-        if args.award_match or args.enrich:
+            run_phase_award_match(config, test_mode=args.test)
+        elif args.award_match:
             run_phase_award_match(config, test_mode=args.test)
         run_phase_export(config, test_mode=args.test)
         if args.review:

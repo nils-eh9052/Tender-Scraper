@@ -282,7 +282,8 @@ class CZAdapter(BaseAdapter):
                 return []
 
         # Wait for results to render (server renders the table)
-        self.browser.wait_seconds(12)
+        # 6s is sufficient for most responses; was 12s before sprint6/performance.
+        self.browser.wait_seconds(6)
 
         safe_kw = re.sub(r"[^a-z0-9]", "_", keyword[:15].lower())
         self.browser._screenshot(f"cz_search_{safe_kw}")
@@ -443,12 +444,26 @@ class CZAdapter(BaseAdapter):
 
     @staticmethod
     def _parse_czech_date(text: str) -> str:
-        """Parse Czech date format dd. mm. yyyy or dd.mm.yyyy → YYYY-MM-DD."""
+        """Parse Czech/NEN date formats → YYYY-MM-DD.
+
+        Handles:
+          dd. mm. yyyy  (Czech locale)
+          dd.mm.yyyy    (Czech compact)
+          dd/mm/yyyy    (NEN portal — DATE OF PUBLICATION ON PROFILE)
+          dd/mm/yyyy, HH:MM  (NEN with time component)
+          YYYY-MM-DD    (ISO)
+        """
+        # dd/mm/yyyy with optional time suffix (NEN format)
+        m = re.search(r"(\d{1,2})/(\d{1,2})/(\d{4})", text)
+        if m:
+            return f"{m.group(3)}-{m.group(2).zfill(2)}-{m.group(1).zfill(2)}"
+        # dd. mm. yyyy or dd.mm.yyyy
         m = re.search(r"(\d{1,2})\s*\.\s*(\d{1,2})\s*\.\s*(\d{4})", text)
         if m:
             return f"{m.group(3)}-{m.group(2).zfill(2)}-{m.group(1).zfill(2)}"
-        m2 = re.search(r"(\d{4}-\d{2}-\d{2})", text)
-        return m2.group(1) if m2 else ""
+        # ISO YYYY-MM-DD
+        m = re.search(r"(\d{4}-\d{2}-\d{2})", text)
+        return m.group(1) if m else ""
 
     def _find_title(self, text: str) -> str:
         m = re.search(r"(?:Název|Předmět|Name|Title)[:\s]+([^\n]{10,200})", text, re.IGNORECASE)
@@ -505,6 +520,17 @@ class CZAdapter(BaseAdapter):
         return None
 
     def _find_value(self, text: str) -> Optional[float]:
+        # NEN English interface: "ESTIMATED VALUE (EXCL. VAT)\n153,107.43"
+        m = re.search(r"ESTIMATED VALUE \(EXCL\. VAT\)\n([\d,. ]+)", text)
+        if m:
+            raw = m.group(1).strip().replace(" ", "").replace(",", "")
+            try:
+                v = float(raw)
+                if v > 0:
+                    return v
+            except ValueError:
+                pass
+
         for pat in [
             r"(?:Předpokládaná hodnota|Odhadovaná hodnota)[^\d]{0,20}([\d\s,.]+)\s*(?:CZK|Kč|KČ)",
             r"([\d\s,.]+)\s*(?:CZK|Kč|KČ)\b",

@@ -756,6 +756,16 @@ def run_national_scraping(countries: list, config: dict,
     except ImportError:
         pass
     try:
+        from src.national_scraper.adapters.fr_adapter import FRAdapter, create_fr_config
+        adapter_registry["fr"] = (FRAdapter, create_fr_config)
+    except ImportError:
+        pass
+    try:
+        from src.national_scraper.adapters.dk_adapter import DKAdapter, create_dk_config
+        adapter_registry["dk"] = (DKAdapter, create_dk_config)
+    except ImportError:
+        pass
+    try:
         from src.national_scraper.adapters.ro_adapter import ROAdapter, create_ro_config
         adapter_registry["ro"] = (ROAdapter, create_ro_config)
     except ImportError:
@@ -768,6 +778,16 @@ def run_national_scraping(countries: list, config: dict,
     try:
         from src.national_scraper.adapters.be_adapter import BEAdapter, create_be_config
         adapter_registry["be"] = (BEAdapter, create_be_config)
+    except ImportError:
+        pass
+    try:
+        from src.national_scraper.adapters.es_adapter import ESAdapter, create_es_config
+        adapter_registry["es"] = (ESAdapter, create_es_config)
+    except ImportError:
+        pass
+    try:
+        from src.national_scraper.adapters.it_adapter import ITAdapter, create_it_config
+        adapter_registry["it"] = (ITAdapter, create_it_config)
     except ImportError:
         pass
 

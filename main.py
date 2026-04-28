@@ -687,6 +687,16 @@ def run_national_scraping(countries: list, config: dict,
         adapter_registry["cz"] = (CZAdapter, create_cz_config)
     except ImportError:
         pass
+    try:
+        from src.national_scraper.adapters.fr_adapter import FRAdapter, create_fr_config
+        adapter_registry["fr"] = (FRAdapter, create_fr_config)
+    except ImportError:
+        pass
+    try:
+        from src.national_scraper.adapters.dk_adapter import DKAdapter, create_dk_config
+        adapter_registry["dk"] = (DKAdapter, create_dk_config)
+    except ImportError:
+        pass
 
     all_notices = []
     screenshot_dir = str(PROJECT_ROOT / "data" / "raw" / "screenshots")

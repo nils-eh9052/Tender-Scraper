@@ -25,9 +25,12 @@ import json
 import logging
 import os
 import sys
+import time
 import yaml
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 from datetime import datetime, date
+from threading import Lock
 
 # Load .env file (API keys etc.)
 _env_path = Path(__file__).parent / ".env"
@@ -64,6 +67,62 @@ from src.classifier import AiClassifier, TwoStageClassifier, ParallelClassifier,
 from src.uk_scraper import UKContractsFinderScraper
 
 LAST_RUN_PATH = PROJECT_ROOT / "data" / ".last_run.json"
+
+# ── Timing utility ───────────────────────────────────────────────────────────
+
+_phase_timings: list[tuple[str, float]] = []
+
+
+class Timer:
+    """Context manager that prints elapsed time and records it for the summary."""
+    def __init__(self, name: str):
+        self.name = name
+        self._start: float = 0.0
+
+    def __enter__(self):
+        self._start = time.time()
+        print(f"\n  [timer] {self.name}...")
+        return self
+
+    def __exit__(self, *_):
+        elapsed = time.time() - self._start
+        _phase_timings.append((self.name, elapsed))
+        print(f"  [timer] {self.name}: {elapsed:.1f}s")
+
+
+def _print_timing_summary():
+    if not _phase_timings:
+        return
+    print("\n" + "="*60)
+    print("  TIMING SUMMARY")
+    print("="*60)
+    total = sum(t for _, t in _phase_timings)
+    for name, t in _phase_timings:
+        bar = "#" * int(t / total * 30) if total else ""
+        print(f"  {name:<32} {t:6.1f}s  {bar}")
+    print(f"  {'TOTAL':<32} {total:6.1f}s")
+
+
+# ── Adapter registry ─────────────────────────────────────────────────────────
+
+def get_adapter_registry() -> dict:
+    """Return all available national portal adapters."""
+    registry = {}
+    for mod, cls_name, cfg_name, key in [
+        ("src.national_scraper.adapters.de_adapter", "DEAdapter", "create_de_config", "de"),
+        ("src.national_scraper.adapters.pl_adapter", "PLAdapter", "create_pl_config", "pl"),
+        ("src.national_scraper.adapters.fi_adapter", "FIAdapter", "create_fi_config", "fi"),
+        ("src.national_scraper.adapters.se_adapter", "SEAdapter", "create_se_config", "se"),
+        ("src.national_scraper.adapters.no_adapter", "NOAdapter", "create_no_config", "no"),
+        ("src.national_scraper.adapters.cz_adapter", "CZAdapter", "create_cz_config", "cz"),
+    ]:
+        try:
+            import importlib
+            m = importlib.import_module(mod)
+            registry[key] = (getattr(m, cls_name), getattr(m, cfg_name))
+        except (ImportError, AttributeError):
+            pass
+    return registry
 
 
 def setup_logging(verbose: bool = False):
@@ -177,8 +236,12 @@ def run_phase_filter(config: dict):
 
 
 def _build_classifier(args):
-    """Build the appropriate classifier based on CLI flags."""
-    # OpenRouter backend (--llm openrouter) — inactive by default, quality not yet validated
+    """Build the appropriate classifier based on CLI flags.
+
+    Parallel execution is ON by default (--sequential to disable).
+    """
+    sequential = getattr(args, "sequential", False)
+
     if getattr(args, "llm", "anthropic") == "openrouter":
         print("  Using OpenRouterClassifier (LLM_MODEL_NAME from .env — EXPERIMENTAL)")
         return OpenRouterClassifier()
@@ -186,19 +249,21 @@ def _build_classifier(args):
     if args.batch:
         print("  Using BatchClassifier (50% discount via Batches API)")
         return BatchClassifier()
-    elif args.two_stage:
-        print("  Using TwoStageClassifier (Haiku pre-filter + Sonnet)")
-        cls = TwoStageClassifier()
-        if args.parallel:
-            print("  Wrapping with ParallelClassifier")
-            return ParallelClassifier(cls)
-        return cls
-    elif args.parallel:
-        print("  Using ParallelClassifier")
-        base = AiClassifier()
-        return ParallelClassifier(base)
+
+    if args.two_stage:
+        base = TwoStageClassifier()
+        tag = "TwoStageClassifier (Haiku pre-filter + Sonnet)"
     else:
-        return AiClassifier()
+        base = AiClassifier()
+        tag = "AiClassifier (Sonnet)"
+
+    if sequential:
+        print(f"  Using {tag} [sequential]")
+        return base
+
+    # Default: wrap with 5-worker parallel executor
+    print(f"  Using {tag} + ParallelClassifier (5 workers)")
+    return ParallelClassifier(base)
 
 
 def run_phase_classify(config: dict, test_mode: bool = False, args=None):
@@ -508,7 +573,8 @@ def run_review(config: dict):
     print(f"  Saved: data/quality_review.json")
 
 
-def run_phase_export(config: dict, test_mode: bool = False):
+def run_phase_export(config: dict, test_mode: bool = False,
+                     canada_notices: list = None):
     """Phase 4: Excel export."""
     print("\n" + "="*60)
     print("  PHASE 4: Excel Export")
@@ -517,13 +583,15 @@ def run_phase_export(config: dict, test_mode: bool = False):
     exporter = ExcelExporter(config)
     path = exporter.export(
         filtered_dir=str(PROJECT_ROOT / "data" / "filtered"),
-        test_mode=test_mode
+        test_mode=test_mode,
+        canada_notices=canada_notices or [],
     )
 
     if path:
         print(f"\n  [OK] Excel exported: {path}")
-        print(f"  Template: Vorlage.xlsx (Scraper Data)")
-        print(f"  Format: Defence-only, deduplicated, 14 columns, English")
+        print(f"  Template: Vorlage.xlsx (Scraper Data + Canada tab)")
+        if canada_notices:
+            print(f"  Canada (Historical): {len(canada_notices)} contracts")
     else:
         print("  [!] No data to export")
 
@@ -687,6 +755,21 @@ def run_national_scraping(countries: list, config: dict,
         adapter_registry["cz"] = (CZAdapter, create_cz_config)
     except ImportError:
         pass
+    try:
+        from src.national_scraper.adapters.ro_adapter import ROAdapter, create_ro_config
+        adapter_registry["ro"] = (ROAdapter, create_ro_config)
+    except ImportError:
+        pass
+    try:
+        from src.national_scraper.adapters.nl_adapter import NLAdapter, create_nl_config
+        adapter_registry["nl"] = (NLAdapter, create_nl_config)
+    except ImportError:
+        pass
+    try:
+        from src.national_scraper.adapters.be_adapter import BEAdapter, create_be_config
+        adapter_registry["be"] = (BEAdapter, create_be_config)
+    except ImportError:
+        pass
 
     all_notices = []
     screenshot_dir = str(PROJECT_ROOT / "data" / "raw" / "screenshots")
@@ -739,6 +822,103 @@ def run_national_scraping(countries: list, config: dict,
             all_notices.extend(notices)
 
     return all_notices
+
+
+def run_single_national_isolated(country: str, config: dict,
+                                  test_mode: bool = False,
+                                  headless: bool = True) -> list:
+    """
+    Run a single national adapter with its own BrowserCore instance.
+
+    Safe to call from a thread — each invocation owns its Playwright browser.
+    REST-only adapters (NO, PL) still receive a BrowserCore but use it only
+    for detail-page fetches if needed.
+    """
+    from src.national_scraper.core import BrowserCore
+
+    registry = get_adapter_registry()
+    if country not in registry:
+        print(f"  [parallel] No adapter for '{country}'")
+        return []
+
+    AdapterClass, config_factory = registry[country]
+    adapter_config = config_factory()
+    screenshot_dir = str(PROJECT_ROOT / "data" / "raw" / "screenshots")
+
+    print(f"  [parallel] Starting {adapter_config.country_name} ({country.upper()})...")
+    try:
+        with BrowserCore(headless=headless, slow_mo=100,
+                         screenshot_dir=screenshot_dir) as browser:
+            adapter = AdapterClass(browser, adapter_config)
+            results = adapter.search_all_keywords(
+                max_results_per_keyword=30,
+                test_mode=test_mode,
+            )
+            defence = adapter.filter_defence(results)
+            detail_limit = 3 if test_mode else len(defence)
+            notices = []
+            for i, r in enumerate(defence[:detail_limit]):
+                detail = adapter.get_detail(r)
+                if detail:
+                    notices.append(adapter.to_standard_format(detail))
+        print(f"  [parallel] {country.upper()} done: {len(notices)} notices")
+        return notices
+    except Exception as exc:
+        print(f"  [parallel] {country.upper()} failed: {exc}")
+        return []
+
+
+_merge_lock = Lock()
+
+
+def run_all_sources_parallel(config: dict, args) -> dict:
+    """
+    Launch all independent data sources concurrently and return their results.
+
+    TED index, UK scraper, and each national portal adapter run in separate
+    threads.  Results are collected and returned; merging into relevant.json
+    happens after the sequential filter step.
+    """
+    headless = not getattr(args, "visible", False)
+    test_mode = args.test
+
+    tasks: dict[str, callable] = {}
+
+    # TED index is always included
+    tasks["ted_index"] = lambda: run_phase_index(config, test_mode=test_mode,
+                                                  date_from=getattr(args, "_date_from", None))
+
+    # UK Contracts Finder
+    if getattr(args, "uk", False):
+        tasks["uk"] = lambda: run_phase_uk(config, test_mode=test_mode,
+                                            date_from=getattr(args, "_date_from", None))
+
+    # National portal adapters — one browser instance per country
+    if args.national is not None:
+        countries = args.national if args.national else list(get_adapter_registry().keys())
+        for country in countries:
+            c = country.lower()
+            tasks[f"national_{c}"] = lambda _c=c: run_single_national_isolated(
+                _c, config, test_mode=test_mode, headless=headless)
+
+    max_workers = min(len(tasks), 6)
+    print(f"\n  Launching {len(tasks)} source(s) in parallel (max {max_workers} threads)...")
+    for name in tasks:
+        print(f"    • {name}")
+
+    results: dict[str, object] = {}
+    with ThreadPoolExecutor(max_workers=max_workers) as executor:
+        futures = {executor.submit(fn): name for name, fn in tasks.items()}
+        for future in as_completed(futures):
+            name = futures[future]
+            try:
+                results[name] = future.result()
+                print(f"  [parallel] {name}: done")
+            except Exception as exc:
+                print(f"  [parallel] {name}: FAILED — {exc}")
+                results[name] = None
+
+    return results
 
 
 def _merge_national_into_relevant(national_notices: list) -> int:
@@ -830,7 +1010,11 @@ def main():
     )
     parser.add_argument(
         "--parallel", action="store_true",
-        help="Use ParallelClassifier (5 concurrent requests with retry + jitter)"
+        help="[Kept for backward compat] Parallel AI calls are now the default"
+    )
+    parser.add_argument(
+        "--sequential", action="store_true",
+        help="Disable parallel AI calls and parallel source fetching (for debugging)"
     )
     parser.add_argument(
         "--batch", action="store_true",
@@ -943,8 +1127,15 @@ def main():
 
     # ── Canada standalone mode ──
     if getattr(args, "canada", False) and not args.all and not args.phase:
-        print("\n  Mode: CANADA OPEN DATA (DND procurement)")
-        run_canada(config, test_mode=args.test)
+        print("\n  Mode: CANADA OPEN DATA (DND procurement) → Excel export")
+        from src.canada_loader import CanadaOpenDataLoader
+        loader = CanadaOpenDataLoader(cache_dir=str(PROJECT_ROOT / "data" / "raw" / "canada"))
+        canada_notices = loader.load_and_filter(
+            test_mode=args.test,
+            classify=bool(os.environ.get("ANTHROPIC_API_KEY"))
+        )
+        print(f"  [OK] Canada: {len(canada_notices)} contracts")
+        run_phase_export(config, test_mode=args.test, canada_notices=canada_notices)
         return
 
     # ── Portal validation mode ──
@@ -968,6 +1159,9 @@ def main():
     elif args.since:
         date_from = args.since
         print(f"  --since: overriding date_from to {date_from}")
+
+    # Store date_from on args so parallel helpers can access it
+    args._date_from = date_from
 
     # ── reclassify-other mode ──
     if getattr(args, "reclassify_other", False):
@@ -1061,35 +1255,100 @@ def main():
 
     # ── Full pipeline ──
     elif args.all:
-        run_phase_index(config, test_mode=args.test, date_from=date_from)
-        run_phase_details(config, test_mode=args.test)
-        run_phase_filter(config)
-        if args.uk:
-            uk_notices = run_phase_uk(config, test_mode=args.test, date_from=date_from)
-            total = _merge_uk_into_relevant(uk_notices)
-            print(f"  relevant.json after UK merge: {total} notices")
-        if args.de:
-            run_phase_de(config, test_mode=args.test)
-        if args.pl:
-            run_phase_pl(config, test_mode=args.test)
-        if args.national is not None:
-            countries = args.national if args.national else ["de", "pl"]
-            headless = not args.visible
-            nat_notices = run_national_scraping(
-                countries=countries, config=config,
-                test_mode=args.test, headless=headless)
-            if nat_notices:
-                total = _merge_national_into_relevant(nat_notices)
+        sequential = getattr(args, "sequential", False)
+
+        if sequential:
+            # ── Sequential fallback (original behaviour) ──
+            print("\n  Mode: SEQUENTIAL (--sequential flag set)")
+            with Timer("Phase 1+2: TED Index"):
+                run_phase_index(config, test_mode=args.test, date_from=date_from)
+                run_phase_details(config, test_mode=args.test)
+            with Timer("Phase 3: Filter"):
+                run_phase_filter(config)
+            if args.uk:
+                with Timer("Source: UK Contracts Finder"):
+                    uk_notices = run_phase_uk(config, test_mode=args.test, date_from=date_from)
+                    total = _merge_uk_into_relevant(uk_notices)
+                    print(f"  relevant.json after UK merge: {total} notices")
+            if args.de:
+                with Timer("Source: DE service.bund.de"):
+                    run_phase_de(config, test_mode=args.test)
+            if args.pl:
+                with Timer("Source: PL BZP"):
+                    run_phase_pl(config, test_mode=args.test)
+            if args.national is not None:
+                countries = args.national if args.national else list(get_adapter_registry().keys())
+                headless = not args.visible
+                with Timer(f"Source: National ({', '.join(c.upper() for c in countries)})"):
+                    nat_notices = run_national_scraping(
+                        countries=countries, config=config,
+                        test_mode=args.test, headless=headless)
+                    if nat_notices:
+                        total = _merge_national_into_relevant(nat_notices)
+                        print(f"  relevant.json after national merge: {total} notices")
+        else:
+            # ── Parallel source fetching ──
+            print("\n  Mode: PARALLEL (sources run concurrently)")
+            with Timer("Phase 1: All Sources (parallel)"):
+                source_results = run_all_sources_parallel(config, args)
+
+            # UK results come back as raw notices — merge after filter
+            uk_notices_parallel = source_results.get("uk") or []
+
+            # National results: one key per country
+            nat_notices_parallel = []
+            for key, val in source_results.items():
+                if key.startswith("national_") and val:
+                    nat_notices_parallel.extend(val)
+
+            with Timer("Phase 3: Filter"):
+                run_phase_filter(config)
+
+            # Merge non-TED sources into relevant.json (sequential — one writer at a time)
+            if uk_notices_parallel:
+                total = _merge_uk_into_relevant(uk_notices_parallel)
+                print(f"  relevant.json after UK merge: {total} notices")
+            if args.de:
+                with Timer("Source: DE service.bund.de"):
+                    run_phase_de(config, test_mode=args.test)
+            if args.pl:
+                with Timer("Source: PL BZP"):
+                    run_phase_pl(config, test_mode=args.test)
+            if nat_notices_parallel:
+                total = _merge_national_into_relevant(nat_notices_parallel)
                 print(f"  relevant.json after national merge: {total} notices")
-        run_phase_classify(config, test_mode=args.test, args=args)
+
+        with Timer("Phase 3b: AI Classify"):
+            run_phase_classify(config, test_mode=args.test, args=args)
+
         if not getattr(args, "no_enrich", False):
-            run_phase_enrich(config, test_mode=args.test)
-            run_phase_award_match(config, test_mode=args.test)
+            with Timer("Phase 3c: Fulltext Enrich"):
+                run_phase_enrich(config, test_mode=args.test)
+            with Timer("Phase 3d: Award Match"):
+                run_phase_award_match(config, test_mode=args.test)
         elif args.award_match:
-            run_phase_award_match(config, test_mode=args.test)
-        run_phase_export(config, test_mode=args.test)
+            with Timer("Phase 3d: Award Match"):
+                run_phase_award_match(config, test_mode=args.test)
+
+        # ── Canada historical data ──
+        canada_notices = []
+        if getattr(args, "canada", False):
+            with Timer("Source: Canada Open Data"):
+                from src.canada_loader import CanadaOpenDataLoader
+                loader = CanadaOpenDataLoader(
+                    cache_dir=str(PROJECT_ROOT / "data" / "raw" / "canada"))
+                canada_notices = loader.load_and_filter(
+                    test_mode=args.test,
+                    classify=bool(os.environ.get("ANTHROPIC_API_KEY"))
+                )
+                print(f"  [OK] Canada (Historical): {len(canada_notices)} contracts")
+
+        with Timer("Phase 4: Export"):
+            run_phase_export(config, test_mode=args.test, canada_notices=canada_notices)
+
         if args.review:
-            run_review(config)
+            with Timer("Phase 5: Quality Review"):
+                run_review(config)
 
         # Save last run
         filtered_path = PROJECT_ROOT / "data" / "filtered" / "relevant.json"
@@ -1099,6 +1358,7 @@ def main():
             save_last_run(notices_processed=len(notices))
             print(f"\n  [OK] Saved .last_run.json ({len(notices)} notices processed)")
 
+        _print_timing_summary()
         print("\n  [OK] Full pipeline complete!")
     else:
         parser.print_help()

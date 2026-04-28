@@ -14,7 +14,7 @@ import re
 import shutil
 from pathlib import Path
 from datetime import datetime, date
-from typing import Optional, Union
+from typing import Optional, Union, Set
 
 from openpyxl import load_workbook, Workbook
 from openpyxl.styles import Font, PatternFill, Alignment, Border, Side
@@ -156,7 +156,41 @@ def determine_status(notice: dict, flat: dict) -> str:
         days_old = (date.today() - pub_date).days
         return "Open" if 0 <= days_old < 180 else "Closed"
 
+    # 5. National portal ID year fallback (e.g. CZ-N006/24/V00015605 → year 2024)
+    tid = str(notice.get("tender_id", ""))
+    m = re.search(r"[/_-](\d{2})[/_]", tid)
+    if m:
+        year = 2000 + int(m.group(1))
+        if year <= date.today().year - 1:
+            return "Closed"
+        return "Open"
+
     return "Unknown"
+
+
+_NATIONAL_PREFIXES = ("UK-", "NO-", "CZ-", "PL-", "DE-", "SE-", "FI-", "CA-")
+
+
+def determine_source(notice: dict) -> str:
+    """Return the correct Source label for a notice.
+
+    Rule: TED notices keep "TED" (optionally suffixed with national portal code
+    if they were enriched from a national source). National-only notices use
+    their own source code.
+    """
+    tid = notice.get("tender_id", "")
+    current = notice.get("source", "") or "TED"
+
+    is_national_only = any(tid.startswith(p) for p in _NATIONAL_PREFIXES)
+    if is_national_only:
+        return current  # already correct (e.g. "CZ-NEN", "UK-CF")
+
+    # TED notice — keep "TED", append national suffix if enriched from portal
+    if current.startswith("TED+"):
+        return current  # already tagged (e.g. "TED+NO-DF")
+    if notice.get("source_url_national") and current not in ("TED", ""):
+        return f"TED+{current}"
+    return "TED"
 
 
 # Column definitions: (header, field_key, width, data_type)
@@ -307,10 +341,8 @@ class ExcelExporter:
         # Tender status (Open / Awarded / Closed / Unknown)
         flat["_status"] = determine_status(notice, flat)
 
-        # Source tagging (TED / UK-CF / TED+DE-SB / ...)
-        # Default to "TED" for notices that don't carry an explicit source,
-        # since the pre-UK dataset was pure TED.
-        flat["_source"] = notice.get("source") or "TED"
+        # Source tagging — use determine_source() for consistent labelling
+        flat["_source"] = determine_source(notice)
         flat["_source_url_national"] = notice.get("source_url_national") or ""
 
         return flat
@@ -336,7 +368,8 @@ class ExcelExporter:
 
     def export(self, filtered_dir: str = "data/filtered",
                filename: Optional[str] = None,
-               test_mode: bool = False) -> str:
+               test_mode: bool = False,
+               canada_notices: Optional[list] = None) -> str:
         """Export AI-classified notices to Excel with native data types."""
         filtered_path = Path(filtered_dir)
         relevant = self._load_json(filtered_path / "relevant.json")
@@ -486,11 +519,20 @@ class ExcelExporter:
         last_col = get_column_letter(self.COL_OFFSET + len(COLUMNS) - 1)
         ws.auto_filter.ref = f"B{self.HEADER_ROW}:{last_col}{self.DATA_START_ROW + row_count}"
 
+        # ── Canada (Historical) sheet ──
+        canada_row_count = 0
+        if canada_notices:
+            # Ensure sheet exists
+            if self.CANADA_SHEET_NAME not in wb.sheetnames:
+                wb.create_sheet(self.CANADA_SHEET_NAME)
+            canada_row_count = self.export_canada_sheet(wb, canada_notices)
+
         wb.save(output_path)
 
         logger.info(f"Excel exported: {output_path}")
-        logger.info(f"  Rows: {row_count}")
-        logger.info(f"  Columns: {len(COLUMNS)}")
+        logger.info(f"  Scraper Data rows: {row_count}")
+        if canada_notices:
+            logger.info(f"  Canada (Historical) rows: {canada_row_count}")
 
         # Always publish a fixed-name copy for GitHub / customer access.
         # Skipped for test exports so test runs don't overwrite the public file.
@@ -533,6 +575,106 @@ class ExcelExporter:
             score += 25
         score += len(str(n.get("publication_date", "")))
         return score
+
+    # ── Canada (Historical) Sheet ──
+
+    CANADA_SHEET_NAME = "Canada (Historical)"
+    CANADA_COLUMNS = [
+        ("Contract ID",       "tender_id",           20, "str"),   # B
+        ("Title",             "title",               55, "str"),   # C
+        ("Country",           "country",             12, "str"),   # D
+        ("Authority",         "authority",           35, "str"),   # E
+        ("Contract Date",     "date",                16, "date"),  # F
+        ("Status",            "status",              12, "str"),   # G
+        ("Value (CAD)",       "value_cad",           18, "num"),   # H
+        ("Currency",          "currency",            10, "str"),   # I
+        ("Value (EUR)",       "value_eur",           18, "num"),   # J
+        ("Trailer Type (1)",  "trailer_type_1",      35, "str"),   # K
+        ("Category (1)",      "trailer_category_1",  18, "str"),   # L
+        ("Quantity (1)",      "trailer_quantity_1",  14, "int"),   # M
+        ("Winner",            "winner",              30, "str"),   # N
+        ("Source",            "source",              10, "str"),   # O
+        ("Description",       "description",         65, "str"),   # P
+    ]
+
+    def export_canada_sheet(self, wb, canada_notices: list) -> int:
+        """Write Canadian historical DND contracts to 'Canada (Historical)' sheet."""
+        sheet_name = self.CANADA_SHEET_NAME
+
+        if sheet_name not in wb.sheetnames:
+            ws = wb.create_sheet(sheet_name)
+        else:
+            ws = wb[sheet_name]
+
+        # Clear existing data rows
+        for row in range(5, max(ws.max_row + 1, 6)):
+            for col in range(1, 18):
+                ws.cell(row=row, column=col).value = None
+
+        # Title
+        ws.cell(row=2, column=2,
+                value="BPW Defense | Canada DND Contracts (Historical)").font = self.TITLE_FONT
+
+        # Headers
+        ws.column_dimensions["A"].width = 3
+        for col_idx, (header, _, width, _) in enumerate(self.CANADA_COLUMNS):
+            col = self.COL_OFFSET + col_idx
+            cell = ws.cell(row=self.HEADER_ROW, column=col, value=header)
+            cell.fill = self.HEADER_FILL
+            cell.font = self.HEADER_FONT
+            cell.alignment = Alignment(horizontal="center", vertical="center", wrap_text=True)
+            ws.column_dimensions[get_column_letter(col)].width = width
+        ws.row_dimensions[self.HEADER_ROW].height = 35
+
+        thin_border = Border(bottom=Side(style="thin", color="E0E0E0"))
+        row_count = 0
+
+        for notice in canada_notices:
+            excel_row = self.DATA_START_ROW + row_count
+            for col_idx, (_, field, _, dtype) in enumerate(self.CANADA_COLUMNS):
+                col = self.COL_OFFSET + col_idx
+                value = notice.get(field)
+                cell = ws.cell(row=excel_row, column=col)
+
+                if dtype == "date":
+                    d = parse_date(str(value)) if value else None
+                    if isinstance(d, date):
+                        cell.value = d
+                        cell.number_format = "YYYY-MM-DD"
+                    else:
+                        cell.value = str(value) if value else ""
+                    cell.font = self.DATA_FONT
+                elif dtype == "num":
+                    v = clean_value(value)
+                    cell.value = v
+                    if v is not None:
+                        cell.number_format = '#,##0'
+                    cell.font = self.DATA_FONT
+                elif dtype == "int":
+                    v = clean_int(value)
+                    cell.value = v
+                    if v is not None:
+                        cell.number_format = '#,##0'
+                    cell.font = self.DATA_FONT
+                else:
+                    cell.value = str(value) if value and value not in ("null", "None") else ""
+                    cell.font = self.DATA_FONT
+
+                cell.alignment = Alignment(vertical="top", wrap_text=True)
+                cell.border = thin_border
+
+            ws.row_dimensions[excel_row].height = self.ROW_HEIGHT
+            row_count += 1
+
+        # Auto-filter
+        if row_count > 0:
+            last_col = get_column_letter(self.COL_OFFSET + len(self.CANADA_COLUMNS) - 1)
+            ws.auto_filter.ref = (
+                f"B{self.HEADER_ROW}:{last_col}{self.DATA_START_ROW + row_count}"
+            )
+
+        logger.info(f"Canada sheet written: {row_count} rows")
+        return row_count
 
     @staticmethod
     def _load_json(path: Path) -> list:

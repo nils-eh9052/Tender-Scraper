@@ -1,0 +1,106 @@
+[
+  {
+    "title": "Kirjaudu tai rekisteröidy",
+    "url": "",
+    "authority": "",
+    "reference_id": "",
+    "date": "",
+    "snippet": "Kirjaudu tai rekisteröidy"
+  },
+  {
+    "title": "Etusivu",
+    "url": "https://www.hankintailmoitukset.fi/fi/",
+    "authority": "",
+    "reference_id": "",
+    "date": "",
+    "snippet": "Etusivu"
+  },
+  {
+    "title": "Ohjeet",
+    "url": "https://www.hankintailmoitukset.fi/fi/info",
+    "authority": "",
+    "reference_id": "",
+    "date": "",
+    "snippet": "Ohjeet"
+  },
+  {
+    "title": "Hae hankintoja",
+    "url": "https://www.hankintailmoitukset.fi/fi/search",
+    "authority": "",
+    "reference_id": "",
+    "date": "",
+    "snippet": "Hae hankintoja"
+  },
+  {
+    "title": "Suomeksi På svenska In English",
+    "url": "https://www.hankintailmoitukset.fi/fi/search?top=75&type=ContractNotices&of=datePublished&od=desc&m=0&eformNr&oldNr",
+    "authority": "",
+    "reference_id": "",
+    "date": "",
+    "snippet": "Suomeksi På svenska In English"
+  },
+  {
+    "title": "Kirjaudu",
+    "url": "",
+    "authority": "",
+    "reference_id": "",
+    "date": "",
+    "snippet": "Kirjaudu"
+  },
+  {
+    "title": "Rekisteröidy",
+    "url": "",
+    "authority": "",
+    "reference_id": "",
+    "date": "",
+    "snippet": "Rekisteröidy"
+  },
+  {
+    "title": "Nimi",
+    "url": "",
+    "authority": "",
+    "reference_id": "",
+    "date": "",
+    "snippet": "Nimi"
+  },
+  {
+    "title": "Julkaistu (Suomen aikaa)",
+    "url": "",
+    "authority": "",
+    "reference_id": "",
+    "date": "",
+    "snippet": "Julkaistu (Suomen aikaa)"
+  },
+  {
+    "title": "Määräaika (Suomen aikaa)",
+    "url": "",
+    "authority": "",
+    "reference_id": "",
+    "date": "",
+    "snippet": "Määräaika (Suomen aikaa)"
+  },
+  {
+    "title": "Ilmoitustyyppi",
+    "url": "",
+    "authority": "",
+    "reference_id": "",
+    "date": "",
+    "snippet": "Ilmoitustyyppi"
+  },
+  {
+    "title": "Ostajaorganisaatio",
+    "url": "",
+    "authority": "",
+    "reference_id": "",
+    "date": "",
+    "snippet": "Ostajaorganisaatio"
+  },
+  {
+    "title": "Lataa hakutulokset (.csv)",
+    "url": "",
+    "authority": "",
+    "reference_id": "",
+    "date": "",
+    "snippet": "Lataa hakutulokset (.csv)"
+  }
+]

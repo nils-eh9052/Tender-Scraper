@@ -107,6 +107,7 @@ def _print_timing_summary():
 
 def get_adapter_registry() -> dict:
     """Return all available national portal adapters."""
+    import importlib
     registry = {}
     for mod, cls_name, cfg_name, key in [
         ("src.national_scraper.adapters.de_adapter", "DEAdapter", "create_de_config", "de"),
@@ -115,9 +116,15 @@ def get_adapter_registry() -> dict:
         ("src.national_scraper.adapters.se_adapter", "SEAdapter", "create_se_config", "se"),
         ("src.national_scraper.adapters.no_adapter", "NOAdapter", "create_no_config", "no"),
         ("src.national_scraper.adapters.cz_adapter", "CZAdapter", "create_cz_config", "cz"),
+        ("src.national_scraper.adapters.fr_adapter", "FRAdapter", "create_fr_config", "fr"),
+        ("src.national_scraper.adapters.dk_adapter", "DKAdapter", "create_dk_config", "dk"),
+        ("src.national_scraper.adapters.ro_adapter", "ROAdapter", "create_ro_config", "ro"),
+        ("src.national_scraper.adapters.nl_adapter", "NLAdapter", "create_nl_config", "nl"),
+        ("src.national_scraper.adapters.be_adapter", "BEAdapter", "create_be_config", "be"),
+        ("src.national_scraper.adapters.es_adapter", "ESAdapter", "create_es_config", "es"),
+        ("src.national_scraper.adapters.it_adapter", "ITAdapter", "create_it_config", "it"),
     ]:
         try:
-            import importlib
             m = importlib.import_module(mod)
             registry[key] = (getattr(m, cls_name), getattr(m, cfg_name))
         except (ImportError, AttributeError):

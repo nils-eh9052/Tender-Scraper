@@ -137,6 +137,7 @@ class FulltextFetcher:
           1. Return cached text if already on disk.
           2. Use `links["htmlDirect"]` from the notice detail (if provided) — ENG preferred.
           3. Fall back to constructed URL: TED_NOTICE_URL.format(notice_id=notice_id).
+          4. Try PDF links as last resort.
 
         HTTP 202 from /texts endpoint = async rendering (old endpoint), skip.
         """
@@ -161,7 +162,7 @@ class FulltextFetcher:
                 resp = self.session.get(url, timeout=30)
                 if resp.status_code == 200:
                     text = _extract_clean_text(resp.text)
-                    if len(text) > 100:
+                    if len(text) > 200:
                         self._save_cache(notice_id, text)
                         logger.debug(f"Fetched fulltext for {notice_id}: {len(text)} chars via {url}")
                         return text
@@ -173,6 +174,61 @@ class FulltextFetcher:
                     logger.warning(f"Fulltext fetch failed for {notice_id}: HTTP {resp.status_code}")
             except requests.RequestException as e:
                 logger.error(f"Fulltext fetch error for {notice_id}: {e}")
+
+        # PDF fallback
+        if links:
+            text = self._try_pdf(notice_id, links)
+            if text and len(text) > 200:
+                return text
+
+        return None
+
+    def _try_pdf(self, notice_id: str, links: dict) -> Optional[str]:
+        """Download PDF from TED links and extract text with pdfplumber."""
+        pdf_links = links.get("pdf") or {}
+        if not pdf_links:
+            return None
+
+        safe_id = notice_id.replace("/", "_").replace("\\", "_")
+
+        for lang in ["ENG", "DEU", "FRA"]:
+            url = pdf_links.get(lang) if isinstance(pdf_links, dict) else None
+            if not url:
+                url = self._pick_url(pdf_links)
+            if not url:
+                continue
+
+            try:
+                self._rate_limit()
+                resp = self.session.get(url, timeout=30)
+                if resp.status_code != 200:
+                    continue
+
+                pdf_path = FULLTEXT_DIR / f"{safe_id}_{lang}.pdf"
+                pdf_path.write_bytes(resp.content)
+
+                try:
+                    import pdfplumber
+                except ImportError:
+                    logger.warning("pdfplumber not installed — PDF extraction skipped. "
+                                   "Run: pip install pdfplumber")
+                    return None
+
+                text_parts = []
+                with pdfplumber.open(str(pdf_path)) as pdf:
+                    for page in pdf.pages[:30]:
+                        page_text = page.extract_text()
+                        if page_text:
+                            text_parts.append(page_text)
+
+                text = "\n".join(text_parts)
+                if text:
+                    self._save_cache(notice_id, text[:MAX_CHARS])
+                    logger.info(f"PDF extracted for {notice_id} ({lang}): {len(text)} chars")
+                    return text[:MAX_CHARS]
+
+            except Exception as e:
+                logger.warning(f"PDF extraction failed for {notice_id} ({lang}): {e}")
 
         return None
 

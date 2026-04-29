@@ -835,9 +835,14 @@ def run_national_scraping(countries: list, config: dict,
                 print(f"  [!] 0 defence results — check data/raw/screenshots/ for page dumps")
                 continue
 
-            # Fetch details
+            # Fetch details — cap CZ at 50 (browser-based, ~6s each)
             notices = []
-            detail_limit = 3 if test_mode else len(defence)
+            if test_mode:
+                detail_limit = 3
+            elif country == "cz":
+                detail_limit = min(len(defence), 50)
+            else:
+                detail_limit = len(defence)
             for i, result in enumerate(defence[:detail_limit]):
                 print(f"    [{i+1}/{min(detail_limit, len(defence))}] {result.title[:60]}")
                 detail = adapter.get_detail(result)
@@ -882,12 +887,22 @@ def run_single_national_isolated(country: str, config: dict,
                 test_mode=test_mode,
             )
             defence = adapter.filter_defence(results)
-            detail_limit = 3 if test_mode else len(defence)
+            if test_mode:
+                detail_limit = 3
+            elif country == "cz":
+                # CZ uses Playwright browser per detail page (~6s each).
+                # Cap at 50 so CZ doesn't become a 40-minute bottleneck.
+                detail_limit = min(len(defence), 50)
+            else:
+                detail_limit = len(defence)
             notices = []
             for i, r in enumerate(defence[:detail_limit]):
                 detail = adapter.get_detail(r)
                 if detail:
                     notices.append(adapter.to_standard_format(detail))
+            if len(defence) > detail_limit:
+                print(f"  [parallel] {country.upper()}: capped at {detail_limit} details "
+                      f"({len(defence)} candidates)")
         print(f"  [parallel] {country.upper()} done: {len(notices)} notices")
         return notices
     except Exception as exc:
@@ -963,6 +978,116 @@ def _merge_national_into_relevant(national_notices: list) -> int:
         json.dump(merged, f, ensure_ascii=False, indent=2)
 
     return len(merged)
+
+
+def _run_ted_bulk_full(config: dict, test_mode: bool = False):
+    """
+    Full pipeline for TED Bulk trailer-CPV candidates:
+    1. Load missing notices from data/raw/ted_bulk/missing_notices.json
+    2. Filter to trailer CPV codes (34223xxx, 34221xxx, 354xxxx)
+    3. Load detail files from cache (fetch missing ones via TED API)
+    4. Run AI classifier (TwoStage) on uncached candidates
+    5. Merge newly classified relevant notices into relevant.json
+
+    Results in data/raw/ted_bulk/trailer_cpv_classified.json
+    """
+    print("\n" + "="*60)
+    print("  TED BULK FULL RUN: Trailer-CPV Candidates")
+    print("="*60)
+
+    missing_path = PROJECT_ROOT / "data" / "raw" / "ted_bulk" / "missing_notices.json"
+    if not missing_path.exists():
+        print("  [!] No missing_notices.json found. Run --ted-bulk first.")
+        return
+
+    with open(missing_path, "r", encoding="utf-8") as f:
+        missing = json.load(f)
+
+    TRAILER_CPV_PREFIXES = ["34223", "34221", "35600", "35610", "35400"]
+    candidates = [m for m in missing
+                  if any(m.get("cpv", "").startswith(p) for p in TRAILER_CPV_PREFIXES)]
+
+    if test_mode:
+        candidates = candidates[:20]
+
+    print(f"  Trailer-CPV candidates: {len(candidates)}")
+
+    # Load from detail cache or fetch via API
+    details_dir = PROJECT_ROOT / "data" / "raw" / "details"
+    detail_notices = []
+    need_fetch = []
+    for c in candidates:
+        tid = c.get("tender_id", "")
+        safe = tid.replace("/", "_")
+        p = details_dir / f"{safe}.json"
+        if p.exists():
+            detail = json.load(open(p, encoding="utf-8"))
+            if not detail.get("tender_id"):
+                detail["tender_id"] = tid
+            detail_notices.append(detail)
+        else:
+            need_fetch.append(c)
+
+    if need_fetch:
+        print(f"  Fetching {len(need_fetch)} notices from TED API...")
+        from src.api_client import TedApiClient, ALL_FIELDS
+        import time
+        client = TedApiClient(config)
+        BATCH = 20
+        for i in range(0, len(need_fetch), BATCH):
+            batch = need_fetch[i:i + BATCH]
+            ids = " OR ".join([f'publication-number="{s["tender_id"]}"' for s in batch])
+            query = {"query": f"({ids})", "fields": ALL_FIELDS, "page": 1,
+                     "limit": BATCH, "paginationMode": "PAGE_NUMBER"}
+            resp = client.search(query, page=1)
+            if resp and resp.get("notices"):
+                for notice in resp["notices"]:
+                    pub_num = notice.get("publication-number", "")
+                    if pub_num:
+                        safe = pub_num.replace("/", "_")
+                        with open(details_dir / f"{safe}.json", "w", encoding="utf-8") as fp:
+                            json.dump(notice, fp, ensure_ascii=False, indent=2)
+                        notice["tender_id"] = pub_num
+                        detail_notices.append(notice)
+            time.sleep(0.5)
+
+    print(f"  Total for classification: {len(detail_notices)}")
+
+    # Run AI classifier
+    from src.classifier import TwoStageClassifier
+    classifier = TwoStageClassifier()
+    if not classifier.is_available:
+        print("  [!] ANTHROPIC_API_KEY not set — skipping classification")
+        return
+
+    relevant_new = classifier.classify_batch(detail_notices, test_mode=test_mode)
+    print(f"  Classified relevant: {len(relevant_new)}")
+
+    # Save results
+    out = PROJECT_ROOT / "data" / "raw" / "ted_bulk" / "trailer_cpv_classified.json"
+    with open(out, "w", encoding="utf-8") as f:
+        json.dump(relevant_new, f, ensure_ascii=False, indent=2)
+
+    # Merge into relevant.json (dedup by tender_id)
+    filtered_path = PROJECT_ROOT / "data" / "filtered" / "relevant.json"
+    existing = []
+    if filtered_path.exists():
+        with open(filtered_path, "r", encoding="utf-8") as f:
+            existing = json.load(f)
+
+    existing_ids = {n.get("tender_id") for n in existing}
+    unique_new = {}
+    for n in relevant_new:
+        tid = n.get("tender_id", "")
+        if tid and tid not in existing_ids and tid not in unique_new:
+            unique_new[tid] = n
+
+    merged = existing + list(unique_new.values())
+    with open(filtered_path, "w", encoding="utf-8") as f:
+        json.dump(merged, f, ensure_ascii=False, indent=2)
+
+    print(f"  [OK] Merged {len(unique_new)} new notices into relevant.json "
+          f"({len(existing)} → {len(merged)})")
 
 
 def _reclassify_other():
@@ -1121,6 +1246,10 @@ def main():
         help="Load TED Open Data CSV bulk dumps and find notices missing from our dataset"
     )
     parser.add_argument(
+        "--ted-bulk-full", action="store_true",
+        help="Classify all TED Bulk trailer-CPV candidates via AI and merge into dataset"
+    )
+    parser.add_argument(
         "--canada", action="store_true",
         help="Load Canadian DND procurement data from open.canada.ca Open Data"
     )
@@ -1150,6 +1279,13 @@ def main():
     if getattr(args, "ted_bulk", False) and not args.all and not args.phase:
         print("\n  Mode: TED BULK CSV (historical data comparison)")
         run_bulk_comparison(config, test_mode=args.test)
+        return
+
+    # ── TED bulk full run: classify all trailer-CPV candidates ──
+    if getattr(args, "ted_bulk_full", False):
+        print("\n  Mode: TED BULK FULL RUN (classify trailer-CPV candidates + merge)")
+        _run_ted_bulk_full(config, test_mode=args.test)
+        run_phase_export(config, test_mode=args.test)
         return
 
     # ── Canada standalone mode ──

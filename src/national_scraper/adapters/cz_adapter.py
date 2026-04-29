@@ -281,8 +281,9 @@ class CZAdapter(BaseAdapter):
                 logger.warning(f"CZ: could not submit search: {e}")
                 return []
 
-        # Wait for results to render (server renders the table)
-        self.browser.wait_seconds(12)
+        # Wait for results to render (server renders the table).
+        # Reduced from 12s to 6s in sprint6/performance — results arrive in 3-4s.
+        self.browser.wait_seconds(6)
 
         safe_kw = re.sub(r"[^a-z0-9]", "_", keyword[:15].lower())
         self.browser._screenshot(f"cz_search_{safe_kw}")

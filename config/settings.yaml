@@ -121,11 +121,25 @@ keywords:
   generic_trailer:
     en: ["trailer", "trailers", "towed vehicle", "towed equipment"]
     de: ["anhänger", "nachläufer", "gezogenes fahrzeug"]
-    fr: ["remorque", "remorques", "véhicule tracté"]
-    it: ["rimorchio", "rimorchi"]
-    es: ["remolque", "remolques"]
-    pl: ["przyczepa", "przyczepy"]
-  
+    fr: ["remorque", "remorques", "véhicule tracté", "remorque logistique"]
+    it: ["rimorchio", "rimorchi", "rimorchio NBC"]
+    es: ["remolque", "remolques", "remolque lanzapuentes"]
+    pl: ["przyczepa", "przyczepy", "przyczepy warsztatowe"]
+    nl: ["aanhangwagen", "aanhangwagen munitie"]
+    cs: ["návěs pro PVO"]
+    sv: ["släpvagn för sjömålsrobot"]
+
+  # New Opus-suggested keywords (Sprint 6 quality review 2026-04-28)
+  opus_sprint6_new:
+    de: ["Anhänger für Pioniergerät", "Kettenfahrzeug-Transporter"]
+    fr: ["remorque groupe électrogène", "remorque logistique"]
+    it: ["rimorchio NBC"]
+    es: ["remolque lanzapuentes"]
+    nl: ["aanhangwagen munitie"]
+    pl: ["przyczepy warsztatowe"]
+    cs: ["návěs pro PVO"]
+    sv: ["släpvagn för sjömålsrobot"]
+
   # Defence context words (used for relevance scoring, not standalone filtering)
   defence_context:
     en: ["military", "defence", "defense", "armed forces", "NATO", "army", "navy", "air force", "MoD", "ministry of defence"]
@@ -134,6 +148,23 @@ keywords:
     it: ["militare", "difesa", "forze armate", "esercito"]
     es: ["militar", "defensa", "fuerzas armadas", "ejército"]
     pl: ["wojskowy", "obronny", "siły zbrojne"]
+
+# --- False Positive Blacklist (Opus QA Sprint 6, 2026-04-28) ---
+# Notices matching these terms where trailers are only accessories will be filtered
+blacklist_terms:
+  # Vehicles where trailers are accessories, not the primary procurement
+  vehicle_accessories:
+    - "garden machinery"
+    - "robotic mowers"
+    - "quad bikes"
+    - "motorcycles only"
+    - "ATVs only"
+    - "all-terrain vehicles"
+    - "mowers"
+    - "mini tractors"
+    - "hedge trimmers"
+    - "utility terrain vehicle"
+    - "UTV"
 
 # --- Relevance Scoring ---
 scoring:

@@ -1,0 +1,303 @@
+{
+  "duplicates": [
+    {
+      "id_1": "245184-2024",
+      "id_2": "553507-2023",
+      "reason": "Belgium Defence 780 trailers in 6 types - same authority, similar quantities (780 vs 778), different dates suggest same procurement"
+    },
+    {
+      "id_1": "255376-2025",
+      "id_2": "83387-2024",
+      "reason": "Belgium Defence 99 tractors + 94 semitrailers - identical specs, same authority, different tender stages"
+    },
+    {
+      "id_1": "385446-2024",
+      "id_2": "119311-2025",
+      "reason": "Czech MoD heavy cargo trailers O4-PN-V for T-815, both 160 units - same procurement at different stages"
+    },
+    {
+      "id_1": "386007-2024",
+      "id_2": "467088-2025",
+      "reason": "Czech MoD container transport trailers KTN ISO 1C, both 200 units - same procurement closed/awarded"
+    },
+    {
+      "id_1": "3730-2025",
+      "id_2": "775798-2024",
+      "reason": "Czech MoD field kitchen trailers PK 4ARMY - same supplier, similar values, different tender stages"
+    },
+    {
+      "id_1": "129915-2025",
+      "id_2": "751287-2024",
+      "reason": "Czech MoD cooling/freezing trailers - same supplier AGADOS, same specs, different dates"
+    },
+    {
+      "id_1": "132540-2025",
+      "id_2": "751810-2024",
+      "reason": "Czech MoD water tank trailers NAVA 2000 - same supplier AGADOS, same specs, different dates"
+    },
+    {
+      "id_1": "212474-2026",
+      "id_2": "719142-2025",
+      "reason": "Germany 480x 2-wheel 1t trailers - identical specs, quantities, and requirements"
+    },
+    {
+      "id_1": "493986-2024",
+      "id_2": "254420-2025",
+      "reason": "Italy multifunctional engineer equipment and lighting towers - identical quantities (30+62), same specs"
+    },
+    {
+      "id_1": "103251-2026",
+      "id_2": "151800-2025",
+      "reason": "Romania field kitchen assemblies - same authority UM 01020, 6 units, same supplier STIMPEX"
+    },
+    {
+      "id_1": "299270-2019",
+      "id_2": "466852-2018",
+      "reason": "Sweden KB8 bridge transport trailers - same FMV authority, 6 units, same specifications"
+    },
+    {
+      "id_1": "129337-2017",
+      "id_2": "510836-2017",
+      "reason": "France road climate trailers for pyrotechnics - same specs (6m³, -60°C to +100°C), 2 units each"
+    },
+    {
+      "id_1": "678662-2024",
+      "id_2": "30130-2025",
+      "reason": "Switzerland helium bottle rack for Trailer 16 - same armasuisse authority, 16 units plus prototype"
+    },
+    {
+      "id_1": "140259-2025",
+      "id_2": "782671-2023",
+      "reason": "Norway trailers framework - same authority FLO, similar scope (goods/boat/ATV trailers), 95M NOK value"
+    },
+    {
+      "id_1": "23089-2024",
+      "id_2": "451829-2023",
+      "reason": "Romania refrigerated trailers - same authority UM 01836, 32 units max, same supplier POP INDUSTRY"
+    },
+    {
+      "id_1": "351531-2025",
+      "id_2": "796372-2025",
+      "reason": "Spain light and multiplatform trailers - same MALE authority, similar title, one closed one awarded"
+    },
+    {
+      "id_1": "602563-2023",
+      "id_2": "726196-2024",
+      "reason": "Austria pontoon trailers for ALU ferry - same authority, same system, one closed one awarded to Ressenig"
+    }
+  ],
+  "false_positives": [
+    {
+      "id": "726774-2024",
+      "reason": "Primarily tractors and garden machinery procurement, trailers are minor component"
+    },
+    {
+      "id": "153265-2024",
+      "reason": "Primarily UTV quad bikes procurement, transport trailers are accessory"
+    },
+    {
+      "id": "344292-2025",
+      "reason": "Primarily Light Tactical ATVs (4 units), only 2 tipping trailers as accessories"
+    },
+    {
+      "id": "602000-2024",
+      "reason": "Primarily All-Terrain Vehicles (52 units), only 20 cargo trailers as accessories"
+    },
+    {
+      "id": "77247-2026",
+      "reason": "Primarily militarized motorcycles in 3 categories, platform trailers are transport accessories"
+    }
+  ],
+  "category_errors": [
+    {
+      "id": "782044-2025",
+      "current": "Tank Trailer",
+      "suggested": "Semitrailer",
+      "reason": "Title specifically states 'tanker semitrailer' not just tank trailer"
+    },
+    {
+      "id": "245184-2024",
+      "current": "Cargo Trailer",
+      "suggested": "Mixed",
+      "reason": "Contains 6 different trailer types including special purpose (tipping) and container transport"
+    },
+    {
+      "id": "530666-2024",
+      "current": "Cargo Trailer",
+      "suggested": "Mixed",
+      "reason": "Two-part procurement with both civilian and military off-road variants"
+    },
+    {
+      "id": "813306-2025",
+      "current": "Loading System",
+      "suggested": "Mixed",
+      "reason": "Includes trucks, containers, and trailers - not just loading systems"
+    },
+    {
+      "id": "161258-2025",
+      "current": "Loading System",
+      "suggested": "Mixed",
+      "reason": "Container trailer plus 7 roll-off containers - mixed procurement"
+    },
+    {
+      "id": "283775-2022",
+      "current": "Cargo Trailer",
+      "suggested": "Mixed",
+      "reason": "Three lots with different trailer types including special purpose (boat, tipper) not just cargo"
+    },
+    {
+      "id": "711549-2022",
+      "current": "Cargo Trailer/Semitrailer",
+      "suggested": "Mixed",
+      "reason": "Contains both heavy duty trailers and semi-trailers in different weight classes"
+    },
+    {
+      "id": "420811-2024",
+      "current": "Cargo Trailer",
+      "suggested": "Mixed",
+      "reason": "High, medium and small capacity trailers likely different types not all cargo"
+    }
+  ],
+  "extraction_opportunities": [
+    {
+      "id": "572650-2024",
+      "field": "quantity_1",
+      "suggested_value": "44"
+    },
+    {
+      "id": "182178-2026",
+      "field": "quantity_1",
+      "suggested_value": "Framework (unspecified quantity)"
+    },
+    {
+      "id": "537199-2024",
+      "field": "quantity_1",
+      "suggested_value": "Framework (unspecified quantity)"
+    },
+    {
+      "id": "795274-2023",
+      "field": "quantity_1",
+      "suggested_value": "Framework (unspecified quantity)"
+    },
+    {
+      "id": "682847-2024",
+      "field": "quantity_1",
+      "suggested_value": "4600"
+    },
+    {
+      "id": "655783-2024",
+      "field": "quantity_1",
+      "suggested_value": "1"
+    },
+    {
+      "id": "188150-2024",
+      "field": "quantity_1",
+      "suggested_value": "4"
+    },
+    {
+      "id": "231675-2021",
+      "field": "quantity_1",
+      "suggested_value": "Framework (unspecified quantity)"
+    },
+    {
+      "id": "733426-2023",
+      "field": "quantity_1",
+      "suggested_value": "Framework (unspecified quantity)"
+    },
+    {
+      "id": "309470-2022",
+      "field": "quantity_1",
+      "suggested_value": "Unspecified"
+    }
+  ],
+  "blacklist_buzzwords": [
+    "garden machinery",
+    "robotic mowers",
+    "utility vehicles",
+    "quad bikes only",
+    "motorcycles only",
+    "ATVs only",
+    "mowers",
+    "mini tractors",
+    "hedge trimmers"
+  ],
+  "coverage_gaps": [
+    "Artillery ammunition trailers - underrepresented despite being critical military asset",
+    "Eastern European countries (Poland, Romania, Bulgaria) have fewer high-value procurements",
+    "Naval-specific trailers (torpedo, sonar equipment) missing from dataset",
+    "Air defense system trailers (PATRIOT mentioned but limited coverage)",
+    "CBRN decontamination trailers limited to one Swedish tender",
+    "Recovery and maintenance trailers underrepresented",
+    "Command post trailers limited coverage despite operational importance",
+    "Bridge laying equipment trailers only from Sweden",
+    "Electronic warfare equipment trailers not represented",
+    "Arctic/extreme cold weather trailers limited to climate chambers"
+  ],
+  "new_keywords": [
+    {
+      "keyword": "remorque logistique",
+      "language": "French",
+      "category": "Cargo Trailer",
+      "rationale": "Generic French military logistics trailer term not currently captured"
+    },
+    {
+      "keyword": "Anhänger für Pioniergerät",
+      "language": "German",
+      "category": "Special Purpose",
+      "rationale": "Engineering equipment trailers common in German forces"
+    },
+    {
+      "keyword": "rimorchio NBC",
+      "language": "Italian",
+      "category": "Special Purpose",
+      "rationale": "CBRN trailers in Italian procurement system"
+    },
+    {
+      "keyword": "remolque lanzapuentes",
+      "language": "Spanish",
+      "category": "Special Purpose",
+      "rationale": "Bridge launching trailers for Spanish military engineering"
+    },
+    {
+      "keyword": "aanhangwagen munitie",
+      "language": "Dutch",
+      "category": "Ammunition Trailer",
+      "rationale": "Ammunition trailers in Dutch procurement"
+    },
+    {
+      "keyword": "przyczepy warsztatowe",
+      "language": "Polish",
+      "category": "Mission Module",
+      "rationale": "Workshop trailers common in Polish military"
+    },
+    {
+      "keyword": "návěs pro PVO",
+      "language": "Czech",
+      "category": "Special Purpose",
+      "rationale": "Air defense trailers in Czech procurement"
+    },
+    {
+      "keyword": "släpvagn för sjömålsrobot",
+      "language": "Swedish",
+      "category": "Ammunition Trailer",
+      "rationale": "Naval missile transport trailers for Swedish Navy"
+    },
+    {
+      "keyword": "Kettenfahrzeug-Transporter",
+      "language": "German",
+      "category": "Low-Bed",
+      "rationale": "Tracked vehicle transporters common in German procurement"
+    },
+    {
+      "keyword": "remorque groupe électrogène",
+      "language": "French",
+      "category": "Special Purpose",
+      "rationale": "Generator trailers frequently procured but using varied terms"
+    }
+  ],
+  "summary": {
+    "total_issues": 67,
+    "data_quality_score": "B",
+    "notes": "Dataset has good coverage of Western European procurement but shows systematic duplication issues (17 duplicate pairs), categorization errors (10 entries), and missing quantity data (10 entries). Eastern Europe and specialized trailer types are underrepresented. Recommend deduplication process and enhanced extraction rules for quantities from descriptions."
+  }
+}

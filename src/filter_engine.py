@@ -13,10 +13,15 @@ Pipeline:
 import json
 import re
 import logging
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 from typing import Optional
 
 logger = logging.getLogger(__name__)
+
+# Filter result cache — avoids re-scoring files that haven't changed.
+# Maps tender_id (file stem) → {"is_defence": bool, "score": int}
+_FILTER_CACHE_FILE = Path(__file__).parent.parent / "data" / ".filter_cache.json"
 
 
 class FilterEngine:
@@ -382,18 +387,73 @@ class FilterEngine:
 
         return name.strip().rstrip(",;.")
 
+    # ── Filter cache helpers ──────────────────────────────────────────────────
+
+    def _load_filter_cache(self) -> dict:
+        """Load the on-disk filter result cache (empty dict if missing/corrupt)."""
+        try:
+            if _FILTER_CACHE_FILE.exists():
+                with open(_FILTER_CACHE_FILE, "r", encoding="utf-8") as f:
+                    return json.load(f)
+        except Exception as exc:
+            logger.debug("Filter cache load error (ignored): %s", exc)
+        return {}
+
+    def _save_filter_cache(self, cache: dict):
+        """Persist filter result cache atomically."""
+        try:
+            _FILTER_CACHE_FILE.parent.mkdir(parents=True, exist_ok=True)
+            tmp = _FILTER_CACHE_FILE.with_suffix(".tmp")
+            with open(tmp, "w", encoding="utf-8") as f:
+                json.dump(cache, f)
+            tmp.replace(_FILTER_CACHE_FILE)
+        except Exception as exc:
+            logger.warning("Filter cache save error (ignored): %s", exc)
+
+    def _score_one_file(self, json_file: Path) -> dict:
+        """
+        Load and score a single notice JSON.  Returns a result dict containing
+        the notice data plus scoring metadata.  Suitable for use in a thread pool.
+        """
+        try:
+            with open(json_file, "r", encoding="utf-8") as f:
+                notice = json.load(f)
+        except Exception as exc:
+            logger.debug("Failed to load %s: %s", json_file, exc)
+            return {"_stem": json_file.stem, "_failed": True, "_is_defence": False, "_score": 0}
+
+        if notice.get("_fetch_failed"):
+            return {"_stem": json_file.stem, "_failed": True, "_is_defence": False, "_score": 0}
+
+        score_result = self.score_notice(notice)
+        is_defence = self._is_defence_notice(notice, score_result)
+
+        return {
+            "_stem": json_file.stem,
+            "_failed": False,
+            "_is_defence": is_defence,
+            "_score": score_result["total_score"],
+            "_score_result": score_result,
+            "_notice": notice,
+        }
+
+    # ── Main filter entry point ───────────────────────────────────────────────
+
     def filter_and_score_all(self, details_dir: str = "data/raw/details",
-                              output_dir: str = "data/filtered") -> dict:
+                              output_dir: str = "data/filtered",
+                              workers: int = 8) -> dict:
         """
         Process all fetched notices: score, classify, filter.
 
-        Applies:
-        - Relevance scoring
-        - STRICT defence-only filter
-        - Deduplication (prefer award/result over announcement)
-        - Authority name shortening
+        Uses an incremental cache to skip files already scored on a previous run.
+        New files are processed in parallel using a thread pool (IO-bound on Windows).
 
-        Returns summary statistics.
+        Flow:
+          1. Load cache → identify which file stems have already been scored.
+          2. New files → score in parallel with ThreadPoolExecutor.
+          3. Defence files (new + cache-hits that are defence) → re-read JSON,
+             shorten authority, detect quantity, build enriched record.
+          4. Deduplicate, sort, save.  Update cache with new results.
         """
         details_path = Path(details_dir)
         output_path = Path(output_dir)
@@ -402,9 +462,38 @@ class FilterEngine:
         threshold_relevant = self.scoring.get("threshold_relevant", 25)
         threshold_high = self.scoring.get("threshold_high_confidence", 50)
 
-        all_scored = []
-        relevant = []
-        high_confidence = []
+        # ── Step 1: split files into cached vs new ──
+        cache = self._load_filter_cache()
+        all_files = sorted(details_path.glob("*.json"))
+
+        new_files = [f for f in all_files if f.stem not in cache]
+        cached_stems = {f.stem for f in all_files if f.stem in cache}
+
+        logger.info(
+            "Filter: %d total files — %d new, %d cached",
+            len(all_files), len(new_files), len(cached_stems),
+        )
+        print(f"  Filter: {len(all_files)} files — {len(new_files)} new, "
+              f"{len(cached_stems)} cached (skipping re-score)")
+
+        # ── Step 2: score new files in parallel ──
+        new_scored: list[dict] = []
+        if new_files:
+            actual_workers = min(workers, len(new_files))
+            print(f"  Scoring {len(new_files)} new files ({actual_workers} threads)...")
+            with ThreadPoolExecutor(max_workers=actual_workers) as pool:
+                futs = {pool.submit(self._score_one_file, f): f for f in new_files}
+                for done in as_completed(futs):
+                    result = done.result()
+                    new_scored.append(result)
+                    # Update cache entry
+                    cache[result["_stem"]] = {
+                        "is_defence": result["_is_defence"],
+                        "score": result["_score"],
+                    }
+            self._save_filter_cache(cache)
+
+        # ── Step 3: assemble all defence+relevant records ──
         stats = {
             "total_processed": 0,
             "total_relevant": 0,
@@ -417,46 +506,30 @@ class FilterEngine:
             "score_distribution": {},
         }
 
-        # Process each notice
-        for json_file in sorted(details_path.glob("*.json")):
-            notice = json.load(open(json_file, "r", encoding="utf-8"))
+        all_scored_enriched: list[dict] = []
+        relevant: list[dict] = []
+        high_confidence: list[dict] = []
 
-            if notice.get("_fetch_failed"):
-                continue
-
+        def _enrich_and_collect(notice: dict, score_result: dict):
+            """Apply authority shortening, quantity detection, collect into buckets."""
             stats["total_processed"] += 1
-
-            # Score
-            score_result = self.score_notice(notice)
-            notice["_scoring"] = score_result
-
-            # Strict defence filter
-            is_defence = self._is_defence_notice(notice, score_result)
-            if not is_defence:
-                stats["total_non_defence_skipped"] += 1
-                continue
-
             stats["total_defence"] += 1
 
-            # Shorten authority name
             auth = notice.get("contracting_authority") or {}
             if auth.get("name"):
                 auth["name_short"] = self.shorten_authority(auth["name"])
 
-            # Detect quantity
             qty = self.detect_quantity(notice)
             if qty:
                 notice["_quantity"] = qty
 
-            # Build enriched record
             enriched = {
                 **notice,
                 "relevance_score": score_result["total_score"],
                 "trailer_categories": score_result["matched_categories"],
                 "is_defence": True,
             }
-
-            all_scored.append(enriched)
+            all_scored_enriched.append(enriched)
 
             total = score_result["total_score"]
             bucket = f"{(total // 10) * 10}-{(total // 10) * 10 + 9}"
@@ -465,44 +538,108 @@ class FilterEngine:
 
             if total >= threshold_relevant:
                 relevant.append(enriched)
-
                 for cat in score_result["matched_categories"]:
-                    stats["by_category"][cat] = \
-                        stats["by_category"].get(cat, 0) + 1
-
+                    stats["by_category"][cat] = stats["by_category"].get(cat, 0) + 1
                 country = (notice.get("contracting_authority", {})
                            .get("country", "unknown"))
-                stats["by_country"][country] = \
-                    stats["by_country"].get(country, 0) + 1
+                stats["by_country"][country] = stats["by_country"].get(country, 0) + 1
 
             if total >= threshold_high:
                 high_confidence.append(enriched)
 
-        # Deduplicate
+        # Process new files whose score results are already in memory
+        for result in new_scored:
+            if result.get("_failed") or not result.get("_is_defence"):
+                if not result.get("_failed"):
+                    stats["total_non_defence_skipped"] += 1
+                continue
+            _enrich_and_collect(result["_notice"], result["_score_result"])
+
+        # Process cached defence files.
+        # If the cache entry has a stored "enriched" dict, use it directly (no file IO).
+        # Otherwise fall back to re-reading the file and scoring it.
+        stats["total_non_defence_skipped"] += sum(
+            1 for stem in cached_stems if not cache[stem]["is_defence"]
+        )
+
+        defence_cached_stems = [
+            stem for stem in cached_stems
+            if cache[stem]["is_defence"] and cache[stem]["score"] >= threshold_relevant
+        ]
+
+        if defence_cached_stems:
+            stems_with_cache = [s for s in defence_cached_stems if "enriched" in cache[s]]
+            stems_need_read  = [s for s in defence_cached_stems if "enriched" not in cache[s]]
+
+            # Fast path: use stored enriched dict
+            for stem in stems_with_cache:
+                enriched = cache[stem]["enriched"]
+                all_scored_enriched.append(enriched)
+                stats["total_processed"] += 1
+                stats["total_defence"] += 1
+                total = enriched.get("relevance_score", 0)
+                bucket = f"{(total // 10) * 10}-{(total // 10) * 10 + 9}"
+                stats["score_distribution"][bucket] = stats["score_distribution"].get(bucket, 0) + 1
+                if total >= threshold_relevant:
+                    relevant.append(enriched)
+                if total >= threshold_high:
+                    high_confidence.append(enriched)
+
+            # Slow path: re-read files not yet in cache, then persist enriched data
+            if stems_need_read:
+                logger.info("Re-reading %d defence+relevant files (will cache enriched data)...",
+                            len(stems_need_read))
+                stem_to_file = {f.stem: f for f in all_files}
+                for stem in stems_need_read:
+                    f = stem_to_file.get(stem)
+                    if not f:
+                        continue
+                    try:
+                        with open(f, "r", encoding="utf-8") as fh:
+                            notice = json.load(fh)
+                        if notice.get("_fetch_failed"):
+                            continue
+                        score_result = self.score_notice(notice)
+                        notice["_scoring"] = score_result
+                        _enrich_and_collect(notice, score_result)
+                        # Store enriched in cache to avoid re-reads on next run.
+                        # all_scored_enriched[-1] is always the record just appended.
+                        cache[stem]["enriched"] = all_scored_enriched[-1]
+                    except Exception as exc:
+                        logger.debug("Re-read error %s: %s", stem, exc)
+                self._save_filter_cache(cache)
+
+        # Count cached non-relevant defence files in totals
+        stats["total_processed"] += len(cached_stems) - len(defence_cached_stems) + sum(
+            1 for stem in cached_stems
+            if cache[stem]["is_defence"] and cache[stem]["score"] < threshold_relevant
+        )
+        stats["total_defence"] += sum(
+            1 for stem in cached_stems
+            if cache[stem]["is_defence"] and cache[stem]["score"] < threshold_relevant
+        )
+
+        # ── Step 4: deduplicate, sort, save ──
         relevant = self._deduplicate(relevant)
         high_confidence = self._deduplicate(high_confidence)
 
         stats["total_relevant"] = len(relevant)
         stats["total_high_confidence"] = len(high_confidence)
 
-        # Sort by score descending
         relevant.sort(key=lambda x: x.get("relevance_score", 0), reverse=True)
         high_confidence.sort(key=lambda x: x.get("relevance_score", 0), reverse=True)
 
-        # Save results
-        self._save_json(output_path / "all_scored.json", all_scored)
+        self._save_json(output_path / "all_scored.json", all_scored_enriched)
         self._save_json(output_path / "relevant.json", relevant)
         self._save_json(output_path / "high_confidence.json", high_confidence)
         self._save_json(output_path / "filter_stats.json", stats)
 
-        logger.info(f"\nFilter Results:")
-        logger.info(f"  Total processed: {stats['total_processed']}")
-        logger.info(f"  Defence notices: {stats['total_defence']}")
-        logger.info(f"  Non-defence skipped: {stats['total_non_defence_skipped']}")
-        logger.info(f"  Relevant (>={threshold_relevant}): {stats['total_relevant']}")
-        logger.info(f"  High confidence (>={threshold_high}): {stats['total_high_confidence']}")
-        logger.info(f"  Categories: {stats['by_category']}")
-        logger.info(f"  Countries: {stats['by_country']}")
+        logger.info("Filter Results:")
+        logger.info("  Total processed: %d", stats["total_processed"])
+        logger.info("  Defence notices: %d", stats["total_defence"])
+        logger.info("  Non-defence skipped: %d", stats["total_non_defence_skipped"])
+        logger.info("  Relevant (>=%d): %d", threshold_relevant, stats["total_relevant"])
+        logger.info("  High confidence (>=%d): %d", threshold_high, stats["total_high_confidence"])
 
         return stats
 

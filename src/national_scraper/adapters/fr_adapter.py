@@ -204,14 +204,9 @@ class FRAdapter(BaseAdapter):
                     all_results[key] = r
             logger.info(f"FR: Phase 2 -> {len(all_results)} total")
 
-            # Phase 3: Full MINARM sweep (enrichment — finds notices with no trailer keyword in title)
-            minarm_where = "nomacheteur like '%MINARM%' or nomacheteur like '%MINDEF%'"
-            logger.info("FR: Phase 3 — full MINARM sweep")
-            for r in self._api_search(minarm_where, 500):
-                key = r.reference_id or r.title[:50]
-                if key and key not in all_results:
-                    all_results[key] = r
-            logger.info(f"FR: Phase 3 -> {len(all_results)} total")
+            # Phase 3 (full MINARM sweep) removed in sprint6/performance:
+            # fetching 538 detail API calls to get only 13 relevant notices is wasteful.
+            # Phase 1+2 already covers all DIRECTIVE-81 trailer notices (high precision).
 
         logger.info(f"FR: search_all_keywords -> {len(all_results)} unique results")
         return list(all_results.values())

@@ -437,29 +437,69 @@ class ExcelExporter:
             ws.column_dimensions[get_column_letter(col)].width = width
         ws.row_dimensions[self.HEADER_ROW].height = 35
 
-        # Load UK blacklist (notices excluded from export — training, sports, university)
-        uk_blacklist: set = set()
-        uk_blacklist_path = Path(__file__).parent.parent / "config" / "uk_blacklist.json"
-        if uk_blacklist_path.exists():
+        # ── Load unified blacklist ──────────────────────────────────────────────
+        # Sources: config/blacklist.json (false positives, known duplicates, UK
+        # training/sports) and legacy config/uk_blacklist.json.
+        blacklist: set = set()
+        _config_root = Path(__file__).parent.parent / "config"
+
+        # New unified blacklist
+        _bl_path = _config_root / "blacklist.json"
+        if _bl_path.exists():
             try:
-                with open(uk_blacklist_path, encoding="utf-8") as _f:
-                    _bl = json.load(_f)
-                uk_blacklist = set(_bl.get("blacklisted_ids", []))
-                if uk_blacklist:
-                    logger.info(f"UK blacklist loaded: {len(uk_blacklist)} IDs")
+                _bl_data = json.loads(_bl_path.read_text(encoding="utf-8"))
+                for _section in _bl_data.values():
+                    if isinstance(_section, dict) and "ids" in _section:
+                        blacklist.update(_section["ids"])
             except Exception as _e:
-                logger.warning(f"Could not load UK blacklist: {_e}")
+                logger.warning(f"Could not load blacklist.json: {_e}")
+
+        # Legacy UK blacklist (for backward-compat; usually merged into blacklist.json)
+        _uk_path = _config_root / "uk_blacklist.json"
+        if _uk_path.exists():
+            try:
+                _uk_data = json.loads(_uk_path.read_text(encoding="utf-8"))
+                blacklist.update(_uk_data.get("blacklisted_ids", []))
+            except Exception as _e:
+                logger.warning(f"Could not load uk_blacklist.json: {_e}")
+
+        if blacklist:
+            logger.info(f"Blacklist loaded: {len(blacklist)} IDs total")
+
+        # ── Load manual category/field overrides ────────────────────────────────
+        # config/manual_overrides.json: {tender_id: {field: value, ...}}
+        # Applied after AI classification — permanent Opus-review corrections.
+        manual_overrides: dict = {}
+        _ov_path = _config_root / "manual_overrides.json"
+        if _ov_path.exists():
+            try:
+                manual_overrides = json.loads(_ov_path.read_text(encoding="utf-8"))
+                if manual_overrides:
+                    logger.info(f"Manual overrides loaded: {len(manual_overrides)} entries")
+            except Exception as _e:
+                logger.warning(f"Could not load manual_overrides.json: {_e}")
 
         # Data rows
         thin_border = Border(bottom=Side(style="thin", color="E0E0E0"))
         row_count = 0
+        blacklisted_count = 0
 
         for notice in relevant:
-            # Skip blacklisted tender IDs (UK training/sports/university notices)
-            if notice.get("tender_id") in uk_blacklist:
+            # Skip blacklisted IDs (false positives, duplicates, UK irrelevant)
+            if notice.get("tender_id") in blacklist:
+                blacklisted_count += 1
                 continue
 
+            # Apply manual overrides before flattening
+            if manual_overrides and notice.get("tender_id") in manual_overrides:
+                ov = manual_overrides[notice["tender_id"]]
+                for _field, _val in ov.items():
+                    if not _field.startswith("_reason"):
+                        notice = {**notice, _field: _val}
+
             flat = self._flatten_notice(notice)
+            if blacklisted_count and row_count == 0:
+                logger.info(f"Export: {blacklisted_count} notices excluded by blacklist")
 
             # Skip if no trailer type in slot 1
             trailer_type = flat.get("_trailer_type_1_final", "")

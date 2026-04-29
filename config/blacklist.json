@@ -1,0 +1,45 @@
+{
+  "_comment": "Permanent exclusions. false_positives=trailers are accessories; known_duplicates=older/weaker stage of same procurement. Populated by Opus QA Sprint 6.",
+  "false_positives": {
+    "_comment": "ATVs, motorcycles, garden machinery where trailers are minor accessories.",
+    "ids": [
+      "153265-2024",
+      "344292-2025",
+      "602000-2024",
+      "726774-2024",
+      "77247-2026"
+    ]
+  },
+  "known_duplicates": {
+    "_comment": "Older/preliminary stage of a paired procurement. Newer stage retained.",
+    "ids": [
+      "129337-2017",
+      "151800-2025",
+      "351531-2025",
+      "385446-2024",
+      "386007-2024",
+      "451829-2023",
+      "466852-2018",
+      "493986-2024",
+      "553507-2023",
+      "602563-2023",
+      "678662-2024",
+      "719142-2025",
+      "751287-2024",
+      "751810-2024",
+      "775798-2024",
+      "782671-2023",
+      "83387-2024"
+    ]
+  },
+  "uk_irrelevant": {
+    "_comment": "UK training/sports/university notices.",
+    "ids": [
+      "UK-tender_344671/1186016",
+      "UK-tender_336462/1140912",
+      "UK-BIP83050068",
+      "UK-BIP82987676",
+      "UK-BIP77766607"
+    ]
+  }
+}

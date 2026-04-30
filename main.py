@@ -127,6 +127,10 @@ def get_adapter_registry() -> dict:
         ("src.national_scraper.adapters.ch_adapter", "CHAdapter", "create_ch_config", "ch"),
         ("src.national_scraper.adapters.uk_fts_adapter", "UKFTSAdapter", "create_uk_fts_config", "gb"),
         ("src.national_scraper.adapters.de_evergabe_adapter", "DEEvergabeAdapter", "create_de_evergabe_config", "de-ev"),
+        ("src.national_scraper.adapters.gr_adapter", "GRAdapter", "create_gr_config", "gr"),
+        ("src.national_scraper.adapters.ee_adapter", "EEAdapter", "create_ee_config", "ee"),
+        ("src.national_scraper.adapters.lv_adapter", "LVAdapter", "create_lv_config", "lv"),
+        ("src.national_scraper.adapters.lt_adapter", "LTAdapter", "create_lt_config", "lt"),
     ]:
         try:
             m = importlib.import_module(mod)
@@ -981,6 +985,26 @@ def run_national_scraping(countries: list, config: dict,
     try:
         from src.national_scraper.adapters.de_evergabe_adapter import DEEvergabeAdapter, create_de_evergabe_config
         adapter_registry["de-ev"] = (DEEvergabeAdapter, create_de_evergabe_config)
+    except ImportError:
+        pass
+    try:
+        from src.national_scraper.adapters.gr_adapter import GRAdapter, create_gr_config
+        adapter_registry["gr"] = (GRAdapter, create_gr_config)
+    except ImportError:
+        pass
+    try:
+        from src.national_scraper.adapters.ee_adapter import EEAdapter, create_ee_config
+        adapter_registry["ee"] = (EEAdapter, create_ee_config)
+    except ImportError:
+        pass
+    try:
+        from src.national_scraper.adapters.lv_adapter import LVAdapter, create_lv_config
+        adapter_registry["lv"] = (LVAdapter, create_lv_config)
+    except ImportError:
+        pass
+    try:
+        from src.national_scraper.adapters.lt_adapter import LTAdapter, create_lt_config
+        adapter_registry["lt"] = (LTAdapter, create_lt_config)
     except ImportError:
         pass
 

@@ -27,6 +27,8 @@ FX_RATES_TO_EUR = {
     "EUR": 1.0, "DKK": 0.134, "SEK": 0.087, "PLN": 0.233,
     "CZK": 0.040, "RON": 0.201, "NOK": 0.085, "GBP": 1.17,
     "CHF": 1.06, "HRK": 0.133, "BGN": 0.511, "HUF": 0.0025,
+    "UAH": 0.023,   # ~43 UAH = 1 EUR (April 2026)
+    "CAD": 0.68,    # ~1.47 CAD = 1 EUR (April 2026)
 }
 
 # ── Country normalization ──

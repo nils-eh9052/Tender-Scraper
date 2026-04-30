@@ -22,14 +22,22 @@ DISCOVERY STATUS (Sprint 11):
   For defence trailer procurement, TED coverage is likely complete.
   Greek MoD has published on TED: Contracts Finder equivalent for GR is TED.
 
-  IMPLEMENTATION: Browser-based stub. Navigates to the search portal,
+  Sprint 11 screenshot findings:
+    - Promitheus homepage loads successfully (693KB screenshot)
+    - Portal shows "Αναζήτηση" (Search) section — public access without login
+    - Both AADP and GDAEE URLs load the SAME Promitheus homepage
+      (ΓΔΑΕΕ/GDAEE is not a separate sub-portal — redirects to main)
+    - Left sidebar shows login options for ΕΣΗΔΗΣ, Promitheus ESPDint, ΚΗΜΔΗΣ
+    - Oracle ADF WebCenter architecture confirmed
+
+  IMPLEMENTATION: Browser-based stub. Navigates to the portal,
   takes screenshots, then returns empty pending full discovery.
 
   TODO Sprint 12:
-    1. Intercept XHR from browser DevTools during manual search
-    2. Identify ViewState/ADF_TOKEN pattern
-    3. Implement ADF-form POST scraper with session management
-    4. Consider: ESHDHS portal for classified/defence-specific tenders
+    1. Navigate to Αναζήτηση section on homepage
+    2. Extract javax.faces.ViewState from form hidden field
+    3. POST CPV "34223" search — parse HTML table response
+    4. Note: GDAEE portal = same as main portal, no separate URL needed
 
 TRAILER KEYWORDS (Greek):
   ρυμουλκούμενο = trailer (generic)

@@ -192,48 +192,34 @@ scoring:
 
 ---
 
-## 9. Aktueller Stand (Sprint 10, 2026-04-30)
+## 9. Aktueller Stand (Sprint 11 Chat 1, 2026-04-30)
 
-**Branch:** `sprint10/adapter-fixes` (merge to main pending)  
-**Excel:** `data/export/260430_TED_Tender Data_00.01.xlsx`
+**Branch:** `sprint11/fixes-new-countries`  
+**Letztes Excel:** `data/export/260430_TED_Tender Data_00.01.xlsx` (Sprint 10, 250 notices)
 
-| Quelle | relevant.json | Excel |
-|--------|--------------|-------|
-| TED | 194 | ~188 |
-| CZ-NEN | 32 | ~32 |
-| FR-BOAMP | 13 | ~13 |
-| UK-CF | 6 | ~6 |
-| NO-Doffin | 3 | ~3 |
-| NL-TenderNed | 1 | ~1 |
-| UA-Prozorro | 1 | ~1 |
-| **Gesamt** | **250** | **230** |
-
-### Sprint 10 Änderungen
+### Sprint 11 Chat 1 Änderungen
 | Komponente | Änderung |
 |------------|----------|
-| `resilience.py` | NEW — RetrySession (backoff, UA-Rotation, 429/5xx retry) |
-| `core.py` goto() | Retry-Loop mit 2^attempt backoff |
-| `main.py` | graceful degradation: `results[name] = []` statt `None` |
-| `uk_fts_adapter.py` | RetrySession + consecutive_errors (max=5) + max_pages 200→20 |
-| `ua_adapter.py` | RetrySession + detail_limit 200→500 |
-| `ch_adapter.py` | RetrySession + erweiterte Keywords + LBA/VBS Sweeps |
-| `it_adapter.py` | `_fix_anac_url()` für Liferay CMS fehlerhafte Hrefs |
+| `uk_fts_adapter.py` | Monatliche Datumsfenster statt 365-Tage-Range; `_month_windows()` helper; 64 Monate seit Jan 2021 |
+| `ch_adapter.py` | Historisch ab 2024-07-01; CPV/Authority limit 200/300→500; 400-Fallback in `_api_search` |
+| `gr_adapter.py` | NEW Stub — Promitheus Homepage navigiert, Screenshots gemacht |
+| `ee_adapter.py` | NEW REST API Versuch + graceful 404 Fallback |
+| `lv_adapter.py` | NEW RSS+Browser Adapter + Session-First Navigation fix |
+| `lt_adapter.py` | NEW REST API + SPA-aware Browser Fallback |
+| `main.py` | 4 neue Adapter registriert (gr, ee, lv, lt) → 21 Adapter total |
 
-### Erste UA-Prozorro Notice
-```
-UA-UA-2026-04-08-011067-a — Напівпричіп трал в/п 30-50 т
-Військова частина Т0930 — 20,800,000 UAH (~€480K) — Low-Bed
-```
-
-### Letzte Commits
-- Sprint 10: IT URL fix (_fix_anac_url) + UK-FTS max_pages 200→20
-- Sprint 10: resilience.py + core.py retry + main.py [] + uk_fts/ua/ch fixes
-- Sprint 9b: Merge + keyword expansion + full run (249 notices, 229 rows)
+### Adapter Status (Sprint 11 Discovery)
+| Land | Adapter | Status | Discovery |
+|------|---------|--------|-----------|
+| GR | Promitheus | Stub | Homepage lädt, ADF-Form braucht ViewState — Sprint 12 |
+| EE | riigihanked | Stub | API 404 — Endpunkt geändert, XHR-Intercept nötig |
+| LV | eis.gov.lv | Stub | Session-Fehler — Browser-Fix: Homepage zuerst |
+| LT | cvpp | Stub | React SPA — `/Notice/Search` 404, XHR-Intercept nötig |
 
 ### Bekannte offene Probleme
-1. **UK-FTS Cursor-Timeout**: Seite 5 Cursor dauerhaft broken — 0 defence results, ~40min Blockzeit; Fix: monthly date chunks
-2. **CH simap.ch**: historische Anhänger — kein `--since` Limit empfohlen für armasuisse full run
-3. **UA Prozorro**: nur 1/780 defence candidates als Anhänger erkannt — bessere kyrillische Keywords nötig
+1. **UK-FTS**: Fix deployed (monthly windows). Noch kein volles Ergebnis — Full-Run nötig
+2. **EE/LV/LT/GR**: Alle Stubs — echte APIs noch zu discovern (Sprint 12)
+3. **UA Prozorro**: nur 1/780 defence candidates als Anhänger — bessere kyrillische Keywords nötig
 4. **CZ Detail-Cap**: 150 von 216 Kandidaten geholt (zu langsam, ~28 min)
 5. **"Other"-Kategorie ~3.6%**: 9 schlecht klassifizierte Notices
 
@@ -262,9 +248,12 @@ UA-UA-2026-04-08-011067-a — Напівпричіп трал в/п 30-50 т
 
 ## 12. Sprint Backlog (Priorität)
 
-### Hoch (Sprint 11)
-- **UK-FTS Date Chunking**: Monthly date windows statt 365-Tage-Range, um Cursor-Timeout zu vermeiden
-- **CH ohne --since**: armasuisse full run ohne Datumslimit für historische Anhänger
+### Hoch (Sprint 12)
+- **EE API Discovery**: XHR-Intercept auf riigihanked.riik.ee → richtiger Endpunkt
+- **LV Session Fix**: Homepage-first Navigation + Open Data CSV als Fallback
+- **LT SPA Discovery**: XHR-Intercept auf cvpp.eviesiejipirkimai.lt
+- **GR ADF Form**: ViewState extrahieren + CPV-basierte POST-Search
+- **UK-FTS Full Run**: 64-Monate-Scan ausführen und Ergebnis messen
 - **UA Kyrillisch**: Bessere Trailer-Keywords (причіп, напівпричіп, трал) + CPV-only Match
 
 ### Mittel

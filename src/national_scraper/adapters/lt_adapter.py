@@ -9,19 +9,25 @@ DISCOVERY (Sprint 11):
   Lithuania's Central Procurement Portal (CVPP).
   Technology: Modern React SPA with REST API backend.
 
-  REST API discovered:
-    Base: https://cvpp.eviesiejipirkimai.lt/api/
-    Search: GET /api/procurements?searchText=...&page=0&size=20
-    Or: POST /api/Notice/Search with JSON body
-    Detail: GET /api/procurements/{id}
+  REST API status (Sprint 11 discovery):
+    GET /api/procurements → HTTP 404 (endpoint not found)
+    POST /Notice/Search → HTTP 404 (path does not exist on this portal)
 
-  The portal has an OpenAPI/Swagger documentation endpoint:
-    https://cvpp.eviesiejipirkimai.lt/api/swagger-ui.html (may exist)
+  The portal uses React Router with SPA routing. All paths are virtual
+  (client-side routing), not server-side. Direct URL navigation to
+  non-root paths may 404 at server level before React loads.
 
-  Note: VPT (Viešųjų pirkimų tarnyba = Public Procurement Office) also
-  publishes data via OpenData: https://data.gov.lt/datasets/
+  Correct approach (Sprint 12):
+    1. Navigate to https://cvpp.eviesiejipirkimai.lt/ (homepage)
+    2. Wait for React SPA to load
+    3. Intercept XHR calls made by the search functionality
+    4. Replicate the API call (likely a different path or POST endpoint)
 
-  Open data CSV/JSON downloads available for historical tender data.
+  Alternative: VPT Open Data portal
+    https://data.gov.lt/datasets/ — check for procurement dataset exports
+    Lithuanian tenders above threshold also appear on TED.
+
+  IMPLEMENTATION STATUS: STUB — browser fallback corrected to homepage.
 
   Defence authorities:
     Krašto apsaugos ministerija = Ministry of National Defence
@@ -205,22 +211,27 @@ class LTAdapter(BaseAdapter):
         return results[:max_results]
 
     def _browser_search(self, keyword: str, max_results: int) -> list:
-        """Browser fallback for CVPP search."""
+        """Browser fallback for CVPP search.
+
+        NOTE (Sprint 11): /Notice/Search returns HTTP 404 — portal uses SPA routing.
+        Navigate to homepage and let React load, then take screenshot for discovery.
+        """
         results = []
         try:
             if not self.browser or not self.browser.page:
                 return []
 
-            search_url = f"{LT_BASE}/Notice/Search?SearchText={requests.utils.quote(keyword)}"
-            ok = self.browser.goto(search_url, timeout=30000)
+            # Navigate to homepage (SPA needs to load React first)
+            ok = self.browser.goto(LT_BASE, timeout=30000)
             if not ok:
                 return []
 
-            time.sleep(2)
+            time.sleep(3)  # wait for React SPA to initialize
             self.browser._screenshot(f"lt_search_{keyword[:20]}")
             html = self.browser.page.content()
             results = self._parse_search_html(html)
-            logger.info("LT: browser search '%s' → %d results", keyword, len(results))
+            logger.debug("LT: SPA homepage loaded — keyword search not yet implemented")
+            logger.info("LT: browser search '%s' → %d results (stub)", keyword, len(results))
 
         except Exception as exc:
             logger.warning("LT: browser search error: %s", exc)

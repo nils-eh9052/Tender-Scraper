@@ -8,13 +8,14 @@ DISCOVERY (Sprint 11):
   The Estonian procurement portal has a public REST API.
 
   REST API base: https://riigihanked.riik.ee/rhr-web/api/v1/
-  Key endpoints discovered:
-    POST /rhr-web/api/v1/procurements/search
-      Body: {"pageSize": 20, "pageNumber": 0, "searchWord": "...", "statusCode": ["..."], ...}
-      Response: {"totalCount": N, "procurements": [{id, title, ...}]}
+  Sprint 11 test result: HTTP 404 at POST /rhr-web/api/v1/procurements/search
+    → API endpoint has changed since discovery. Likely moved or renamed.
+    → Adapter returns empty and logs warning without crashing.
 
-    GET /rhr-web/api/v1/procurements/{id}
-      Full tender detail
+  Correct endpoint TBD via browser XHR interception:
+    Suggested: open riigihanked.riik.ee, open DevTools Network tab,
+    search for "haagis", copy the XHR request URL and body format.
+    The portal is React-based — the API definitely exists, just needs rediscovery.
 
   No authentication required for public tenders.
   Technology: Spring Boot REST API + React frontend.

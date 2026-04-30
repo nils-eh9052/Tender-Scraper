@@ -10,23 +10,25 @@ DISCOVERY (Sprint 11):
   Public procurement search:
     https://www.eis.gov.lv/EKEIS/Supplier/Procurement/
 
-  API investigation:
-    The EIS portal renders via server-side ASP.NET. XHR inspection reveals:
-    - Procurement list: POST to /EKEIS/Supplier/Procurement (form-encoded)
-    - Search params: ProcurementTitle, CpvCode, ContractingAuthority, etc.
-    - Session-based (cookies required)
+  Sprint 11 test result: Direct URL access shows ASP.NET session error page
+    "Sistēmas kļūda / System error" — the portal requires a valid session cookie.
+    Direct navigation to /EKEIS/Supplier/Procurement?Title=piekabe fails with
+    Error Id: 20260430151935526 (session expired / not established).
 
-  ALTERNATIVE — Open Data / RSS:
-    Latvia publishes procurement data via OpenData.gov.lv:
-      https://data.gov.lv/dati/lv/dataset/iepirkumu-paziņojumi
-    RSS feeds: https://www.eis.gov.lv/EKEIS/Supplier/Procurement/Rss
-    (Filtered RSS by CPV or keyword may work without complex session management)
+  Root cause: ASP.NET portal uses session-scoped state. Must first visit the
+  homepage, establish a session, then navigate to search.
 
-  IMPLEMENTATION STATUS:
-    Phase 1 (Sprint 11): RSS-based search for CPV 34223 (trailer codes)
-    and keyword search via browser. Returns results if RSS accessible.
+  Corrected strategy (Sprint 12):
+    1. Navigate to https://www.eis.gov.lv/ first (establishes session cookie)
+    2. Then navigate to search with keyword
+    3. Or use the Latvian Open Data portal for tender exports:
+       https://data.gov.lv/dati/lv/dataset/iepirkumu-pazinojumi
+       (CSV/JSON bulk download, no session needed)
 
-    Phase 2 (future): Full session-based EIS form POST.
+  RSS feeds: https://www.eis.gov.lv/EKEIS/Supplier/Procurement/Rss
+    — status unknown; Sprint 11 test shows RSS also likely requires session.
+
+  IMPLEMENTATION STATUS: STUB — returns empty, documents portal structure.
 
   Defence authorities:
     Aizsardzības ministrija = Ministry of Defence
@@ -225,12 +227,22 @@ class LVAdapter(BaseAdapter):
         return results
 
     def _browser_search(self, keyword: str, max_results: int) -> list:
-        """Browser-based search on EIS portal."""
+        """Browser-based search on EIS portal.
+
+        NOTE: Direct URL access to /EKEIS/Supplier/Procurement causes a session
+        error (Sprint 11 discovery). Must establish session from homepage first.
+        """
         results = []
         try:
             if not self.browser or not self.browser.page:
                 return []
 
+            # Step 1: establish session from homepage
+            self.browser.goto(LV_BASE, timeout=20000)
+            import time as _time
+            _time.sleep(1)
+
+            # Step 2: navigate to search
             search_url = f"{LV_SEARCH_URL}?Title={requests.utils.quote(keyword)}"
             ok = self.browser.goto(search_url, timeout=30000)
             if not ok:

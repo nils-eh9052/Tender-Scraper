@@ -80129,9 +80129,12 @@
     "title": "Sweden-Stockholm: Unmanned aerial vehicles"
   },
   "464996-2017": {
-    "result": null,
-    "_error_count": 1,
-    "_last_error": "2026-04-28 23:33:58"
+    "result": {
+      "relevant": false,
+      "reason": "No description provided and CPV 35400000 (Military vehicles and associated parts) is too general to determine if trailers are the primary procurement subject"
+    },
+    "timestamp": "2026-04-30 09:00:07",
+    "title": "United Kingdom-Bristol: Military vehicles and associated parts"
   },
   "35180-2025": {
     "result": {
@@ -81233,6 +81236,256 @@
       "reason": "No specific procurement subject identified - generic market consultation without CPV codes or detailed description"
     },
     "timestamp": "2026-04-29 13:21:28",
+    "title": ""
+  },
+  "147850-2021": {
+    "result": {
+      "relevant": true,
+      "title_english": "Italy-Rome: Trailers, semi-trailers and mobile containers",
+      "description_english": "Military procurement of trailers, semi-trailers and mobile containers by Italian Ministry of Defence - Terrestrial Armaments Directorate",
+      "trailer_type_1": "Military trailer (type not specified in notice)",
+      "trailer_category_1": "Other",
+      "trailer_quantity_1": null,
+      "trailer_type_2": null,
+      "trailer_category_2": null,
+      "trailer_quantity_2": null,
+      "additional_equipment": null,
+      "additional_qty": null,
+      "contract_duration": null
+    },
+    "timestamp": "2026-04-30 08:59:49",
+    "title": "Italy-Rome: Trailers, semi-trailers and mobile containers"
+  },
+  "376629-2021": {
+    "result": {
+      "relevant": false,
+      "reason": "No description provided and CPV 35000000 is too general to determine if trailers are the primary procurement subject"
+    },
+    "timestamp": "2026-04-30 08:59:52",
+    "title": "Bulgaria-Sofia: Security, fire-fighting, police and defence equipment"
+  },
+  "39494-2022": {
+    "result": {
+      "relevant": false,
+      "reason": "No description provided and CPV codes are too general - cannot determine if trailers are the primary procurement subject"
+    },
+    "timestamp": "2026-04-30 08:59:55",
+    "title": "Netherlands-The Hague: Security, fire-fighting, police and defence equipment"
+  },
+  "541884-2024": {
+    "result": {
+      "relevant": false,
+      "reason": "Primary procurement subject is VAN-type military vehicles (trucks), not trailers"
+    },
+    "timestamp": "2026-04-30 08:59:59",
+    "title": "Poland – Military vehicles and associated parts – Dostawa Pojazdów operacyjnych WS grupy A i B z pod"
+  },
+  "33766-2018": {
+    "result": {
+      "relevant": false,
+      "reason": "Haiku pre-filter: not a defence trailer"
+    },
+    "timestamp": "2026-04-30 09:00:00",
+    "title": "Italy-Rome: Mechanical spare parts for military vehicles"
+  },
+  "113762-2024": {
+    "result": {
+      "relevant": false,
+      "reason": "Haiku pre-filter: not a defence trailer"
+    },
+    "timestamp": "2026-04-30 09:00:01",
+    "title": "Germany – Cartridges – Herstellung und Lieferung von Patronen 12,7mm x 99 HK (AF33)"
+  },
+  "78497-2021": {
+    "result": {
+      "relevant": false,
+      "reason": "Haiku pre-filter: not a defence trailer"
+    },
+    "timestamp": "2026-04-30 09:00:02",
+    "title": "Italy-Rome: Ambulances"
+  },
+  "218629-2024": {
+    "result": {
+      "relevant": false,
+      "reason": "Haiku pre-filter: not a defence trailer"
+    },
+    "timestamp": "2026-04-30 09:00:04",
+    "title": "Finland – Parts for military aerospace equipment – F/A-18 HORNET-HÄVITTÄJÄKALUSTON ILMASTOINTIJÄRJES"
+  },
+  "196448-2018": {
+    "result": {
+      "relevant": false,
+      "reason": "Haiku pre-filter: not a defence trailer"
+    },
+    "timestamp": "2026-04-30 09:00:08",
+    "title": "United Kingdom-Telford: Electronic and electrical spare parts for military vehicles"
+  },
+  "298288-2016": {
+    "result": {
+      "relevant": false,
+      "reason": "Haiku pre-filter: not a defence trailer"
+    },
+    "timestamp": "2026-04-30 09:00:10",
+    "title": "Germany-Bonn: Repair and maintenance services of military vehicles"
+  },
+  "140451-2020": {
+    "result": {
+      "relevant": false,
+      "reason": "Haiku pre-filter: not a defence trailer"
+    },
+    "timestamp": "2026-04-30 09:00:11",
+    "title": "United Kingdom-Bristol: Electronic and electrical spare parts for warships"
+  },
+  "196167-2019": {
+    "result": {
+      "relevant": false,
+      "reason": "Haiku pre-filter: not a defence trailer"
+    },
+    "timestamp": "2026-04-30 09:00:13",
+    "title": "United Kingdom-Bristol: Ships"
+  },
+  "204538-2021": {
+    "result": {
+      "relevant": false,
+      "reason": "Haiku pre-filter: not a defence trailer"
+    },
+    "timestamp": "2026-04-30 09:00:14",
+    "title": "Netherlands-Utrecht: Ammunition"
+  },
+  "228438-2022": {
+    "result": {
+      "relevant": false,
+      "reason": "Haiku pre-filter: not a defence trailer"
+    },
+    "timestamp": "2026-04-30 09:00:16",
+    "title": "Germany-Coblenz: Armoured weapon carriers"
+  },
+  "128170-2019": {
+    "result": {
+      "relevant": false,
+      "reason": "Haiku pre-filter: not a defence trailer"
+    },
+    "timestamp": "2026-04-30 09:00:17",
+    "title": "Romania-Bucharest: Rifles"
+  },
+  "568223-2020": {
+    "result": {
+      "relevant": false,
+      "reason": "Haiku pre-filter: not a defence trailer"
+    },
+    "timestamp": "2026-04-30 09:00:18",
+    "title": "Bulgaria-Sofia: Parts of firearms and ammunition"
+  },
+  "544997-2018": {
+    "result": {
+      "relevant": false,
+      "reason": "Haiku pre-filter: not a defence trailer"
+    },
+    "timestamp": "2026-04-30 09:00:19",
+    "title": "Belgium-Evere: Weapons, ammunition and associated parts"
+  },
+  "634030-2021": {
+    "result": {
+      "relevant": false,
+      "reason": "Intelligence, surveillance, target acquisition and reconnaissance (ISTAR) systems are not trailer-based equipment - this is about electronic/optical surveillance equipment, not trailers"
+    },
+    "timestamp": "2026-04-30 09:00:22",
+    "title": "Bulgaria-Sofia: Intelligence, surveillance, target acquisition and reconnaissance"
+  },
+  "644950-2022": {
+    "result": {
+      "relevant": false,
+      "reason": "Haiku pre-filter: not a defence trailer"
+    },
+    "timestamp": "2026-04-30 09:00:23",
+    "title": "Lithuania-Vilnius: Parts of firearms and ammunition"
+  },
+  "625696-2023": {
+    "result": {
+      "relevant": false,
+      "reason": "Primary procurement subject is shooting practice targets, not trailers"
+    },
+    "timestamp": "2026-04-30 09:00:26",
+    "title": "Sweden-Stockholm: Targets for shooting practice"
+  },
+  "452630-2016": {
+    "result": {
+      "relevant": false,
+      "reason": "Haiku pre-filter: not a defence trailer"
+    },
+    "timestamp": "2026-04-30 09:00:28",
+    "title": "Bulgaria-Sofia: Parts of firearms and ammunition"
+  },
+  "94960-2017": {
+    "result": {
+      "relevant": false,
+      "reason": "Haiku pre-filter: not a defence trailer"
+    },
+    "timestamp": "2026-04-30 09:00:29",
+    "title": "Lithuania-Vilnius: Ammunition for firearms and warfare"
+  },
+  "384505-2020": {
+    "result": {
+      "relevant": false,
+      "reason": "Primary procurement subject is sensors (CPV 35125100), not trailers"
+    },
+    "timestamp": "2026-04-30 09:00:32",
+    "title": "Portugal-Lisbon: Sensors"
+  },
+  "PL-2026/BZP 00222568/01": {
+    "result": {
+      "relevant": false,
+      "reason": "Haiku pre-filter: not a defence trailer"
+    },
+    "timestamp": "2026-04-30 09:00:33",
+    "title": ""
+  },
+  "PL-2026/BZP 00222251/01": {
+    "result": {
+      "relevant": false,
+      "reason": "Haiku pre-filter: not a defence trailer"
+    },
+    "timestamp": "2026-04-30 09:00:34",
+    "title": ""
+  },
+  "PL-2026/BZP 00223014/01": {
+    "result": {
+      "relevant": false,
+      "reason": "Haiku pre-filter: not a defence trailer"
+    },
+    "timestamp": "2026-04-30 09:00:36",
+    "title": ""
+  },
+  "PL-2026/BZP 00221429/01": {
+    "result": {
+      "relevant": false,
+      "reason": "Haiku pre-filter: not a defence trailer"
+    },
+    "timestamp": "2026-04-30 09:00:37",
+    "title": ""
+  },
+  "PL-2026/BZP 00221358/01": {
+    "result": {
+      "relevant": false,
+      "reason": "Haiku pre-filter: not a defence trailer"
+    },
+    "timestamp": "2026-04-30 09:00:38",
+    "title": ""
+  },
+  "PL-2026/BZP 00221238/01": {
+    "result": {
+      "relevant": false,
+      "reason": "Haiku pre-filter: not a defence trailer"
+    },
+    "timestamp": "2026-04-30 09:00:39",
+    "title": ""
+  },
+  "DE-editor": {
+    "result": {
+      "relevant": false,
+      "reason": "Haiku pre-filter: not a defence trailer"
+    },
+    "timestamp": "2026-04-30 09:00:40",
     "title": ""
   }
 }

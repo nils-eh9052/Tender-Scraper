@@ -82071,5 +82071,169 @@
     },
     "timestamp": "2026-04-30 11:22:41",
     "title": ""
+  },
+  "479785-2023": {
+    "result": {
+      "relevant": false,
+      "reason": "No description provided and CPV codes are generic security/defence equipment codes that don't specifically indicate trailer procurement"
+    },
+    "timestamp": "2026-04-30 12:54:16",
+    "title": "Slovenia-Ljubljana: Security, fire-fighting, police and defence equipment"
+  },
+  "3851-2023": {
+    "result": {
+      "relevant": false,
+      "reason": "Haiku pre-filter: not a defence trailer"
+    },
+    "timestamp": "2026-04-30 12:54:17",
+    "title": "Romania-București: Military aircrafts"
+  },
+  "545809-2019": {
+    "result": {
+      "relevant": false,
+      "reason": "Procurement is for parts of military vehicles (spare parts only), not trailers as primary procurement subject"
+    },
+    "timestamp": "2026-04-30 12:54:20",
+    "title": "United Kingdom-Telford: Parts of military vehicles"
+  },
+  "450339-2016": {
+    "result": {
+      "relevant": false,
+      "reason": "Title indicates 'Parts of military vehicles' - this is about spare parts only, not procurement of trailers as primary subject"
+    },
+    "timestamp": "2026-04-30 12:54:24",
+    "title": "United Kingdom-Telford: Parts of military vehicles"
+  },
+  "733005-2024": {
+    "result": {
+      "relevant": false,
+      "reason": "Haiku pre-filter: not a defence trailer"
+    },
+    "timestamp": "2026-04-30 12:54:25",
+    "title": "Poland – Grenades – Dostawa środków bojowych"
+  },
+  "377674-2018": {
+    "result": {
+      "relevant": false,
+      "reason": "Haiku pre-filter: not a defence trailer"
+    },
+    "timestamp": "2026-04-30 12:54:26",
+    "title": "France-Toulon: Inflatable craft"
+  },
+  "824674-2025": {
+    "result": {
+      "relevant": false,
+      "reason": "Haiku pre-filter: not a defence trailer"
+    },
+    "timestamp": "2026-04-30 12:54:27",
+    "title": "Denmark – Weapons, ammunition and associated parts – Procurement of Surface Based Air and Missile De"
+  },
+  "196163-2019": {
+    "result": {
+      "relevant": false,
+      "reason": "Haiku pre-filter: not a defence trailer"
+    },
+    "timestamp": "2026-04-30 12:54:28",
+    "title": "United Kingdom-Bristol: Ships"
+  },
+  "477775-2024": {
+    "result": {
+      "relevant": true,
+      "title_english": "Italy - Supply of 10 armory shelter containers",
+      "description_english": "Supply of 10 specialized armory shelter containers for military use",
+      "trailer_type_1": "Armory shelter container",
+      "trailer_category_1": "Special Purpose",
+      "trailer_quantity_1": 10,
+      "trailer_type_2": null,
+      "trailer_category_2": null,
+      "trailer_quantity_2": null,
+      "additional_equipment": null,
+      "additional_qty": null,
+      "contract_duration": null
+    },
+    "timestamp": "2026-04-30 12:54:32",
+    "title": "Italy – Special-purpose mobile containers – Fornitura n. 10 shelter armeria"
+  },
+  "599473-2022": {
+    "result": {
+      "relevant": false,
+      "reason": "Haiku pre-filter: not a defence trailer"
+    },
+    "timestamp": "2026-04-30 12:54:34",
+    "title": "Finland-Tampere: Parts for military aerospace equipment"
+  },
+  "462452-2022": {
+    "result": {
+      "relevant": false,
+      "reason": "Haiku pre-filter: not a defence trailer"
+    },
+    "timestamp": "2026-04-30 12:54:35",
+    "title": "Romania-București: Electronic warfare systems and counter measures"
+  },
+  "46897-2020": {
+    "result": {
+      "relevant": false,
+      "reason": "Title indicates 'Vans' and CPV 34136000 is for vans/light commercial vehicles, not trailers"
+    },
+    "timestamp": "2026-04-30 12:54:38",
+    "title": "Italy-Rome: Vans"
+  },
+  "544998-2018": {
+    "result": {
+      "relevant": false,
+      "reason": "Haiku pre-filter: not a defence trailer"
+    },
+    "timestamp": "2026-04-30 12:54:40",
+    "title": "Belgium-Evere: Weapons, ammunition and associated parts"
+  },
+  "456158-2017": {
+    "result": {
+      "relevant": false,
+      "reason": "Haiku pre-filter: not a defence trailer"
+    },
+    "timestamp": "2026-04-30 12:54:41",
+    "title": "Lithuania-Vilnius: Light firearms"
+  },
+  "384502-2020": {
+    "result": {
+      "relevant": false,
+      "reason": "Primary procurement subject is sensors, not trailers or trailer-based systems"
+    },
+    "timestamp": "2026-04-30 12:54:43",
+    "title": "Portugal-Lisbon: Sensors"
+  },
+  "568221-2020": {
+    "result": {
+      "relevant": false,
+      "reason": "Haiku pre-filter: not a defence trailer"
+    },
+    "timestamp": "2026-04-30 12:54:45",
+    "title": "Bulgaria-Sofia: Parts of firearms and ammunition"
+  },
+  "CH-b9dde9af-06d2-4805-b734-1e3fde26a8f5": {
+    "result": {
+      "relevant": false,
+      "reason": "Haiku pre-filter: not a defence trailer"
+    },
+    "timestamp": "2026-04-30 12:54:46",
+    "title": ""
+  },
+  "UA-UA-2026-04-08-011067-a": {
+    "result": {
+      "relevant": true,
+      "title_english": "Military Semi-trailer Low-bed Transporter 30-50 tons",
+      "description_english": "Procurement of military semi-trailer low-bed transporter with capacity of 30-50 tons for heavy equipment transport by Ukrainian Armed Forces unit T0930",
+      "trailer_type_1": "30-50 ton low-bed semi-trailer transporter",
+      "trailer_category_1": "Low-Bed",
+      "trailer_quantity_1": null,
+      "trailer_type_2": null,
+      "trailer_category_2": null,
+      "trailer_quantity_2": null,
+      "additional_equipment": null,
+      "additional_qty": null,
+      "contract_duration": null
+    },
+    "timestamp": "2026-04-30 12:54:51",
+    "title": ""
   }
 }

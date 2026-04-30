@@ -192,9 +192,10 @@ scoring:
 
 ---
 
-## 9. Aktueller Stand (Sprint 9b, 2026-04-30)
+## 9. Aktueller Stand (Sprint 10, 2026-04-30)
 
-**Branch:** `main`
+**Branch:** `sprint10/adapter-fixes` (merge to main pending)  
+**Excel:** `data/export/260430_TED_Tender Data_00.01.xlsx`
 
 | Quelle | relevant.json | Excel |
 |--------|--------------|-------|
@@ -204,33 +205,37 @@ scoring:
 | UK-CF | 6 | ~6 |
 | NO-Doffin | 3 | ~3 |
 | NL-TenderNed | 1 | ~1 |
-| **Gesamt** | **249** | **229** |
+| UA-Prozorro | 1 | ~1 |
+| **Gesamt** | **250** | **230** |
 
-### Neue Adapter (Sprint 9)
-| Adapter | Status | Ergebnis |
-|---------|--------|---------|
-| CH simap.ch | ✅ | 28 fetched, 0 relevant (armasuisse, keine aktuellen Anhänger) |
-| DE evergabe | ✅ | 24 fetched, 0 relevant (zu breit, nicht-Anhänger) |
-| UK-FTS | ✅ | 0 (Timeout Seite 2) |
-| UA Prozorro | ✅ | 0 (kyrillische Keywords fehlen) |
-| CanadaBuys | ✅ | 604 historische DND contracts (eigenes Excel-Sheet) |
+### Sprint 10 Änderungen
+| Komponente | Änderung |
+|------------|----------|
+| `resilience.py` | NEW — RetrySession (backoff, UA-Rotation, 429/5xx retry) |
+| `core.py` goto() | Retry-Loop mit 2^attempt backoff |
+| `main.py` | graceful degradation: `results[name] = []` statt `None` |
+| `uk_fts_adapter.py` | RetrySession + consecutive_errors (max=5) + max_pages 200→20 |
+| `ua_adapter.py` | RetrySession + detail_limit 200→500 |
+| `ch_adapter.py` | RetrySession + erweiterte Keywords + LBA/VBS Sweeps |
+| `it_adapter.py` | `_fix_anac_url()` für Liferay CMS fehlerhafte Hrefs |
 
-### Neue Kategorien (Sprint 9b)
-- **Field Kitchen**: 23 notices
-- **Ammunition Trailer**: 4 notices
+### Erste UA-Prozorro Notice
+```
+UA-UA-2026-04-08-011067-a — Напівпричіп трал в/п 30-50 т
+Військова частина Т0930 — 20,800,000 UAH (~€480K) — Low-Bed
+```
 
 ### Letzte Commits
+- Sprint 10: IT URL fix (_fix_anac_url) + UK-FTS max_pages 200→20
+- Sprint 10: resilience.py + core.py retry + main.py [] + uk_fts/ua/ch fixes
 - Sprint 9b: Merge + keyword expansion + full run (249 notices, 229 rows)
-- Sprint 9 Chat 3: CanadaBuys + Ukraine Prozorro
-- Sprint 9 Chat 2: UK FTS + DE evergabe + CredentialManager
-- Sprint 9 Chat 1: CZ force-include + Switzerland simap.ch
 
 ### Bekannte offene Probleme
-1. **UA Prozorro**: kyrillische Trailer-Keywords fehlen (причіп, напівпричіп)
-2. **UK-FTS Timeout**: Seite 2 bricht ab — nur 10 releases gescannt
-3. **CH simap.ch**: historische Anhänger auf archiv.simap.ch (andere API); kein `--since` Limit empfohlen
-4. **DROPS/EPLS TED-Queries**: erst beim nächsten `--phase index` Run aktiv
-5. **"Other"-Kategorie ~3%**: 8 schlecht klassifizierte Notices
+1. **UK-FTS Cursor-Timeout**: Seite 5 Cursor dauerhaft broken — 0 defence results, ~40min Blockzeit; Fix: monthly date chunks
+2. **CH simap.ch**: historische Anhänger — kein `--since` Limit empfohlen für armasuisse full run
+3. **UA Prozorro**: nur 1/780 defence candidates als Anhänger erkannt — bessere kyrillische Keywords nötig
+4. **CZ Detail-Cap**: 150 von 216 Kandidaten geholt (zu langsam, ~28 min)
+5. **"Other"-Kategorie ~3.6%**: 9 schlecht klassifizierte Notices
 
 ---
 
@@ -257,17 +262,19 @@ scoring:
 
 ## 12. Sprint Backlog (Priorität)
 
-### Hoch
-- **UA Kyrillisch**: Trailer-Keywords auf Ukrainisch ergänzen (причіп, напівпричіп, низькорамний)
-- **UK-FTS Timeout**: Timeout erhöhen oder CPV-basierte Query implementieren
-- **CH ohne --since**: CH full run ohne Datumslimit für historische armasuisse Anhänger
+### Hoch (Sprint 11)
+- **UK-FTS Date Chunking**: Monthly date windows statt 365-Tage-Range, um Cursor-Timeout zu vermeiden
+- **CH ohne --since**: armasuisse full run ohne Datumslimit für historische Anhänger
+- **UA Kyrillisch**: Bessere Trailer-Keywords (причіп, напівпричіп, трал) + CPV-only Match
 
 ### Mittel
 - **FI Hilma adapter** ausbauen (aktuell STUB)
 - **DROPS/EPLS TED-Run**: `--phase index` ohne Checkpoint für neue Queries (text_search_5–8)
 - **DE-EV Filterung verbessern**: CPV-basierte Suche statt Keyword
+- **CZ Detail-Cap**: 150→216 oder faster parallel fetching
 
 ### Niedrig
 - **Fulltext als Default** (aktuell optional)
 - **Award-Match Automation** für "Closed"-Status
 - **archiv.simap.ch** adapter für CH historische Daten
+- **"Other"-Kategorie**: Prompt-Tuning oder manueller Re-Classify Pass (9 notices)

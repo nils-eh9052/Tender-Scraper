@@ -12,10 +12,18 @@ Tidsfrist
 SMV-venlig
 Indkøbsproces
 Anslået værdi
-Resultater (57)
+Resultater (55)
 Din søgning: FMI Forsvaret
 Vis kun aktive bekendtgørelser
 Opret udbudsagent
+DIREKTE TILDELING
+Danish Ministry of Defence Acquisition and Logistics Organisation
+Transportudstyr og transporthjælpemidler
+Materiellet anvendes indenfor områderne løft, træk og surring (LTS). Løftemateriel anvendes i forbindelse med løfteopgaver udført med kraner og lignende. Trækmateriel anvendes til brug på Forsvarets k...
+CPV-kode
+Transportudstyr og transporthjælpemidler [34000000]
+Offentliggørelsesdato
+29-04-2026
 TILDELING
 Forsvarsministeriets Materiel- og Indkøbsstyrelse
 Udbud vedr. produktion af faner og tilknyttede reparationsydelser
@@ -238,14 +246,6 @@ Offentliggørelsesdato
 18-03-2026
 Anslået værdi
 28.000.000 DKK
-TILDELING
-Forsvarsministeriets Materiel- og Indkøbsstyrelse
-Rammeaftale om datakommunikation og beredskabslinjer
-Anskaffelsen vedrører indkøb og servicering af datakommunikation og beredskabslinjer, herunder migrering af eksisterende kobberforbindelser, der udfases. En væsentlig del af leverancerne omfatter be...
-CPV-kode
-Telekommunikation [64200000]
-Offentliggørelsesdato
-16-03-2026
 1
 2
 3

@@ -321,7 +321,11 @@ class ExcelExporter:
         for slot in (1, 2):
             flat[f"_trailer_type_{slot}_final"] = notice.get(f"_trailer_type_{slot}_ai") or ""
             flat[f"_trailer_cat_{slot}_final"] = notice.get(f"_trailer_category_{slot}_ai") or ""
-            flat[f"_trailer_qty_{slot}_int"] = clean_int(notice.get(f"_trailer_quantity_{slot}_ai"))
+            # Fall back to legacy _trailer_quantity_ai (slot 1 only) if slot field is empty
+            qty = notice.get(f"_trailer_quantity_{slot}_ai")
+            if qty is None and slot == 1:
+                qty = notice.get("_trailer_quantity_ai")
+            flat[f"_trailer_qty_{slot}_int"] = clean_int(qty)
 
         flat["_contract_duration_final"] = notice.get("_contract_duration_ai", "")
         flat["_additional_equip_final"] = notice.get("_additional_equipment_ai", "")

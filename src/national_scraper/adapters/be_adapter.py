@@ -1,21 +1,34 @@
 """
 Belgium Adapter — publicprocurement.be (BOSA eProcurement)
 
-Portal:  https://www.publicprocurement.be (BOSA eProcurement Vue SPA)
+Portal:  https://www.publicprocurement.be (Vue.js / Vuetify SPA)
 Defence: La Défense / De Defensie, DGMR, Composante Terre
 Language: FR + NL (bilingual)
 
-Strategy:
-  1. Primary: Playwright-based search on the Vue SPA
-     - Navigate to the procurement notices search page
-     - Intercept the XHR/Fetch API call to /api/sea/... with capture_response()
-     - Parse the JSON response for defence trailer notices
-  2. Fallback: Parse the HTML page using DOM text extraction
+Discovered API (via network interception):
+  POST https://www.publicprocurement.be/api/sea/search/publications
+  Auth: Keycloak JWT from localStorage['public__confidentialAuth__token']
+  Returns: {"publications": [...], "totalCount": N}
+  Triggered by: navigating to /bda (Bulletin des Adjudications)
 
-The BOSA eProcurement portal is a Vue.js SPA at:
-  https://www.publicprocurement.be
-The backend search API requires a session token, obtained automatically
-by the browser during the Angular/Vue app initialization.
+Strategy:
+  1. Navigate to /bda — Vue.js app auto-calls the SEA search API on load
+  2. Capture the POST /api/sea/search/publications response via capture_response()
+  3. Filter results locally for defence authorities + trailer CPV codes
+  4. For targeted searches: use page.evaluate() to POST with filter params
+     using the captured Keycloak JWT token
+
+Publication structure:
+  organisation.organisationNames: [{language, text}]
+  cpvMainCode.code, cpvAdditionalCodes[].code
+  referenceNumber, publicationDate, dispatchDate
+  lots: [{title, description}]
+  noticeIds: [TED notice IDs for cross-referencing]
+  publicationType, publicationReferenceNumbersBDA / TED
+
+Token acquisition:
+  The Keycloak token is stored in localStorage['public__confidentialAuth__token']
+  It's auto-refreshed by the Vue.js app, valid for ~3600 seconds.
 """
 
 import re
@@ -30,9 +43,10 @@ from ..base_adapter import BaseAdapter, AdapterConfig, SearchResult, NoticeDetai
 
 logger = logging.getLogger(__name__)
 
-BASE_URL     = "https://www.publicprocurement.be"
-SEARCH_URL   = "https://www.publicprocurement.be/en/procurement-projects"
-NOTICE_URL   = "https://www.publicprocurement.be/en/procurement-projects/{notice_id}"
+BASE_URL  = "https://www.publicprocurement.be"
+BDA_URL   = "https://www.publicprocurement.be/bda"
+SEA_API   = "https://www.publicprocurement.be/api/sea/search/publications"
+NOTICE_URL = "https://www.publicprocurement.be/bda/{pub_id}"
 
 TRAILER_KEYWORDS_BE = [
     # French
@@ -41,27 +55,27 @@ TRAILER_KEYWORDS_BE = [
     # Dutch
     "aanhangwagen", "oplegger", "dieplader", "tankwagen",
     "aanhanger", "veldkeuken",
-    # English (used in BE defence tenders)
+    # English
     "trailer", "semi-trailer", "low-bed",
 ]
 
 DEFENCE_ORG_BE = [
-    "Défense",
-    "Defensie",
-    "DGMR",
-    "Direction Générale Material Resources",
-    "Composante Terre",
-    "Landcomponent",
-    "Composante Air",
-    "Luchtcomponent",
-    "Composante Marine",
-    "Marinecomponent",
-    "Ministère de la Défense",
-    "Ministerie van Defensie",
-    "NATO",
+    "défense",
+    "defensie",
+    "dgmr",
+    "direction générale material resources",
+    "composante terre",
+    "landcomponent",
+    "composante air",
+    "luchtcomponent",
+    "composante marine",
+    "marinecomponent",
+    "ministère de la défense",
+    "ministerie van defensie",
+    "nato",
 ]
 
-TRAILER_CPV_CODES = ["34223300", "34220000", "34223100", "34221000", "35400000"]
+TRAILER_CPV_PREFIXES = ["34223", "34221", "35400", "35600"]
 
 
 def create_be_config() -> AdapterConfig:
@@ -70,7 +84,7 @@ def create_be_config() -> AdapterConfig:
         country_code="BE",
         source_code="BE-EP",
         base_url=BASE_URL,
-        search_url=SEARCH_URL,
+        search_url=BDA_URL,
         language="fr",
         trailer_keywords=TRAILER_KEYWORDS_BE,
         defence_authorities=DEFENCE_ORG_BE,
@@ -80,167 +94,224 @@ def create_be_config() -> AdapterConfig:
 
 class BEAdapter(BaseAdapter):
     """
-    Belgium adapter — BOSA eProcurement via Playwright.
+    Belgium adapter — BOSA publicprocurement.be via Playwright.
 
-    Search strategy:
-    1. Navigate to the BOSA procurement search page with CPV filter
-    2. Capture the XHR API call that the Vue app makes
-    3. Parse the JSON response for defence trailer notices
-    4. Fall back to DOM text parsing if capture fails
+    Navigate to /bda to trigger the SEA publications API call, then
+    filter locally for Défense/Defensie authorities with trailer CPVs.
+    For targeted searches, use the captured JWT token to POST filter requests.
     """
 
     def __init__(self, browser: BrowserCore, config: AdapterConfig):
         super().__init__(browser, config)
-        self._session = self._build_rest_session()
-
-    def _build_rest_session(self):
-        """Optional REST session for API fallback."""
-        try:
-            import requests, urllib3
-            urllib3.disable_warnings()
-            ssl_off = os.environ.get("SSL_VERIFY_DISABLE", "").strip().lower() in ("1", "true", "yes")
-            session = __import__("requests").Session()
-            session.verify = not ssl_off
-            session.headers.update({
-                "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/124.0.0.0",
-                "Accept": "application/json",
-                "Origin": "https://www.publicprocurement.be",
-                "Referer": "https://www.publicprocurement.be/",
-            })
-            return session
-        except ImportError:
-            return None
+        self._token: str = ""
+        self._session_ready = False
 
     # ── Search ──
 
     def search(self, keyword: str, max_results: int = 50) -> list:
-        """Search by keyword via Playwright browser."""
-        encoded = keyword.replace(" ", "+")
-        url = f"{SEARCH_URL}?text={encoded}"
-        return self._load_and_capture(url, max_results=max_results)
+        """Single keyword — delegates to search_all_keywords."""
+        return []
 
     def search_all_keywords(self, max_results_per_keyword: int = 50,
                             test_mode: bool = False) -> list:
-        """Search Belgian defence trailer notices via CPV and keyword filters."""
+        """
+        Search Belgian e-Procurement for defence trailer notices.
+
+        1. Load /bda — Vue.js auto-calls POST /api/sea/search/publications
+        2. Capture the initial all-publications response
+        3. Filter locally for Défense/Defensie + trailer keywords/CPVs
+        4. If token available: also run targeted CPV searches via JS eval
+        """
         all_results: dict[str, SearchResult] = {}
 
-        # Phase 1: CPV searches
-        cpv_list = TRAILER_CPV_CODES[:2] if test_mode else TRAILER_CPV_CODES
-        for cpv in cpv_list:
-            logger.info(f"BE: searching CPV {cpv}")
-            url = f"{SEARCH_URL}?cpvCodes={cpv}"
-            hits = self._load_and_capture(url, max_results=20 if test_mode else 100)
-            hits_def = [h for h in hits if self._is_defence(h)]
-            for h in hits_def:
-                key = h.reference_id or h.url
-                if key and key not in all_results:
-                    all_results[key] = h
-            logger.info(f"BE: CPV {cpv} → {len(hits)} raw, {len(hits_def)} defence, total {len(all_results)}")
-            time.sleep(self.config.min_interval_seconds)
+        # Step 1: Load /bda and capture initial search results
+        initial = self._load_bda_and_capture()
+        logger.info(f"BE: /bda initial load → {len(initial)} publications captured")
 
-        # Phase 2: Keyword + defence authority
-        kw_list = TRAILER_KEYWORDS_BE[:2] if test_mode else TRAILER_KEYWORDS_BE[:5]
-        for kw in kw_list:
-            logger.info(f"BE: keyword '{kw}' + Défense filter")
-            encoded = kw.replace(" ", "+")
-            url = f"{SEARCH_URL}?text={encoded}"
-            hits = self._load_and_capture(url, max_results=20 if test_mode else 50)
-            hits_def = [h for h in hits if self._is_defence(h)]
-            for h in hits_def:
-                key = h.reference_id or h.url
+        for r in initial:
+            if self._is_defence(r) and (self._is_trailer_related(r) or
+                                         self._has_trailer_cpv(r)):
+                key = r.reference_id or r.url
                 if key and key not in all_results:
-                    all_results[key] = h
-            logger.info(f"BE: kw '{kw}' → {len(hits)} raw, {len(hits_def)} defence, total {len(all_results)}")
-            time.sleep(self.config.min_interval_seconds)
+                    all_results[key] = r
+
+        # Step 2: Targeted CPV searches via fetch (if token available)
+        if self._token and not test_mode:
+            cpv_list = TRAILER_CPV_PREFIXES
+            for cpv_prefix in cpv_list:
+                logger.info(f"BE: targeted CPV search {cpv_prefix}...")
+                hits = self._fetch_cpv_publications(cpv_prefix, max_results=50)
+                for r in hits:
+                    if self._is_defence(r):
+                        key = r.reference_id or r.url
+                        if key and key not in all_results:
+                            all_results[key] = r
+                logger.info(f"BE: CPV {cpv_prefix} → {len(hits)} defence hits, total {len(all_results)}")
+                time.sleep(self.config.min_interval_seconds)
+
+        # Step 3: Keyword searches
+        kw_list = TRAILER_KEYWORDS_BE[:2] if test_mode else TRAILER_KEYWORDS_BE[:6]
+        if self._token:
+            for kw in kw_list:
+                hits = self._fetch_keyword_publications(kw, max_results=30)
+                for r in hits:
+                    if self._is_defence(r):
+                        key = r.reference_id or r.url
+                        if key and key not in all_results:
+                            all_results[key] = r
+                logger.info(f"BE: kw '{kw}' → {len(hits)} hits, total {len(all_results)}")
+                time.sleep(self.config.min_interval_seconds)
 
         results = list(all_results.values())
         logger.info(f"BE: search_all_keywords → {len(results)} total")
         return results
 
-    def _load_and_capture(self, url: str, max_results: int = 50) -> list:
-        """Load search page and capture API response or parse DOM."""
-        captured_items = []
+    def _load_bda_and_capture(self) -> list:
+        """
+        Navigate to /bda and capture the initial SEA publications API response.
+        The Vue.js app calls POST /api/sea/search/publications on page load.
+        """
+        captured = {"data": None}
 
         def trigger():
-            self.browser.goto(url, wait_for="networkidle", timeout=45000)
+            self.browser.goto(BDA_URL, wait_for="networkidle", timeout=45000)
+            time.sleep(3)
 
-        # Try to capture the JSON API response from the Vue app
-        # The BOSA portal calls /api/sea/... internally with auth headers
         data = self.browser.capture_response(
-            url_pattern="/api/sea/",
+            url_pattern="/api/sea/search/publications",
             trigger=trigger,
             timeout=20000,
         )
 
         if data and isinstance(data, dict):
-            items = (data.get("content") or data.get("items") or
-                     data.get("results") or data.get("notices") or [])
-            logger.info(f"BE: captured JSON with {len(items)} items from {url}")
-            captured_items = [self._item_to_result(i) for i in items[:max_results]]
-        elif data and isinstance(data, list):
-            logger.info(f"BE: captured JSON list with {len(data)} items")
-            captured_items = [self._item_to_result(i) for i in data[:max_results]]
-        else:
-            logger.info(f"BE: no JSON captured, parsing DOM")
-            captured_items = self._parse_dom()
-
-        return captured_items
-
-    def _parse_dom(self) -> list:
-        """Parse notice list from rendered Vue.js DOM."""
-        results = []
-        try:
-            text = self.browser.get_page_text()
-            if not text:
-                return results
-            lines = [l.strip() for l in text.split("\n") if l.strip()]
-            logger.debug(f"BE DOM: {len(lines)} text lines")
-            # Screenshot for debugging
-            self.browser._screenshot("be_search_result")
-        except Exception as e:
-            logger.error(f"BE: DOM parsing error: {e}")
-        return results
-
-    def _item_to_result(self, item: dict) -> SearchResult:
-        """Convert BOSA API item to SearchResult."""
-        notice_id = (item.get("id") or item.get("noticeId") or
-                     item.get("publicationId") or "")
-        ref_id = str(item.get("referenceNumber") or item.get("fileReference") or
-                     item.get("reference") or notice_id)
-        # Title: prefer FR first, then NL, then generic
-        title = (item.get("title") or item.get("titleFr") or item.get("titleNl") or
-                 item.get("subject") or item.get("name") or "")
-        if isinstance(title, dict):
-            title = title.get("fr") or title.get("nl") or title.get("en") or str(title)
-        authority = (item.get("buyerName") or item.get("buyer", {}).get("name", "")
-                     if isinstance(item.get("buyer"), dict) else
-                     item.get("buyer") or item.get("organisationName") or
-                     item.get("contractingAuthority") or "")
-        date_str = (item.get("publicationDate") or item.get("datePublication") or
-                    item.get("date") or "")[:10]
-
-        value = None
-        for vk in ("estimatedValue", "totalValue", "contractValue", "value"):
-            v = item.get(vk)
-            if isinstance(v, dict):
-                v = v.get("amount") or v.get("value")
+            pubs = data.get("publications") or []
+            total = data.get("totalCount", 0)
+            logger.info(f"BE: captured {len(pubs)}/{total} publications from /bda")
+            # Try to get token
             try:
-                if v and float(str(v).replace(",", ".")) > 0:
-                    value = float(str(v).replace(",", "."))
-                    break
-            except (ValueError, TypeError):
+                self._token = self.browser.page.evaluate(
+                    "() => localStorage.getItem('public__confidentialAuth__token') || ''"
+                ) or ""
+                self._session_ready = bool(self._token)
+            except Exception:
                 pass
+            return [self._pub_to_result(p) for p in pubs]
+        else:
+            logger.warning("BE: no SEA response captured from /bda — VPN may block")
+            # Try to get token anyway
+            try:
+                self._token = self.browser.page.evaluate(
+                    "() => localStorage.getItem('public__confidentialAuth__token') || ''"
+                ) or ""
+                self._session_ready = bool(self._token)
+            except Exception:
+                pass
+            return []
 
-        url = NOTICE_URL.format(notice_id=notice_id) if notice_id else BASE_URL
-        meta = json.dumps({"noticeId": str(notice_id), "org": authority}, ensure_ascii=False)
+    def _fetch_cpv_publications(self, cpv_prefix: str, max_results: int = 50) -> list:
+        """POST to SEA API with CPV filter using JWT token."""
+        return self._sea_post({
+            "cpvCodes": [cpv_prefix],
+            "page": 0,
+            "size": max_results,
+        })
+
+    def _fetch_keyword_publications(self, keyword: str, max_results: int = 30) -> list:
+        """POST to SEA API with keyword filter."""
+        return self._sea_post({
+            "shortDescription": keyword,
+            "page": 0,
+            "size": max_results,
+        })
+
+    def _sea_post(self, body: dict) -> list:
+        """Call POST /api/sea/search/publications via page.evaluate with JWT token."""
+        if not self._token:
+            return []
+        try:
+            result = self.browser.page.evaluate("""
+                (args) => {
+                    const [token, requestBody] = args;
+                    return fetch('https://www.publicprocurement.be/api/sea/search/publications', {
+                        method: 'POST',
+                        credentials: 'include',
+                        headers: {
+                            'Authorization': 'Bearer ' + token,
+                            'Accept': 'application/json',
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(requestBody)
+                    }).then(async r => {
+                        if (r.status !== 200) return {error: r.status};
+                        const d = await r.json();
+                        return {ok: true, total: d.totalCount,
+                                publications: d.publications || []};
+                    }).catch(e => ({error: e.message}));
+                }
+            """, [self._token, body])
+
+            if not result or result.get("error"):
+                return []
+            return [self._pub_to_result(p) for p in result.get("publications", [])]
+        except Exception as e:
+            logger.error(f"BE: SEA POST error: {e}")
+            return []
+
+    def _pub_to_result(self, pub: dict) -> SearchResult:
+        """Convert BOSA publication to SearchResult."""
+        pub_id = str(pub.get("publicationWorkspaceId") or pub.get("procedureId") or "")
+        ref_id = str(pub.get("referenceNumber") or pub_id)
+
+        # Organisation name: prefer FR, then NL, then EN
+        org = pub.get("organisation") or {}
+        org_names = org.get("organisationNames") or []
+        authority = ""
+        for lang in ("FR", "NL", "EN"):
+            for n in org_names:
+                if n.get("language") == lang:
+                    authority = n.get("text", "")
+                    break
+            if authority:
+                break
+        if not authority and org_names:
+            authority = org_names[0].get("text", "") if isinstance(org_names[0], dict) else ""
+
+        # Title from lots
+        lots = pub.get("lots") or []
+        title = ""
+        if lots and isinstance(lots[0], dict):
+            title = (lots[0].get("title") or lots[0].get("description") or "")[:200]
+        if not title:
+            # Try to build from CPV
+            cpv_info = pub.get("cpvMainCode") or {}
+            cpv_desc = cpv_info.get("descriptions") or []
+            for d in cpv_desc:
+                if d.get("language") == "EN":
+                    title = d.get("text", "")
+                    break
+            if not title and cpv_desc:
+                title = cpv_desc[0].get("text", "")
+
+        cpv_main = (pub.get("cpvMainCode") or {}).get("code", "")
+        date_str = (pub.get("publicationDate") or pub.get("dispatchDate") or "")[:10]
+
+        # Check if notice appears in TED (for cross-referencing)
+        ted_ids = pub.get("publicationReferenceNumbersTED") or []
+
+        url = NOTICE_URL.format(pub_id=pub_id) if pub_id else BASE_URL
+        meta = json.dumps({
+            "pubId": pub_id,
+            "org": authority,
+            "cpv": cpv_main,
+            "ted": ted_ids[:2] if ted_ids else [],
+        }, ensure_ascii=False)
 
         return SearchResult(
-            title=str(title),
+            title=title,
             url=url,
-            authority=str(authority),
+            authority=authority,
             reference_id=ref_id,
             date=date_str,
-            value=value,
             currency="EUR",
             snippet=meta[:500],
         )
@@ -254,15 +325,30 @@ class BEAdapter(BaseAdapter):
         auth_lower = (result.authority or "").lower()
         title_lower = (result.title or "").lower()
         combined = f"{auth_lower} {title_lower}"
-        for pattern in self.config.defence_authorities:
-            if pattern.lower() in combined:
-                return True
-        return False
+        return any(p in combined for p in self.config.defence_authorities)
+
+    _TRAILER_KW = (
+        "remorque", "aanhangwagen", "oplegger", "dieplader",
+        "trailer", "semi-trailer", "porte-char", "cisterne",
+        "tankwagen", "aanhanger", "semitrailer",
+    )
+
+    def _is_trailer_related(self, result: SearchResult) -> bool:
+        title_lower = (result.title or "").lower()
+        return any(kw in title_lower for kw in self._TRAILER_KW)
+
+    def _has_trailer_cpv(self, result: SearchResult) -> bool:
+        try:
+            meta = json.loads(result.snippet or "{}")
+            cpv = meta.get("cpv", "")
+            return any(cpv.startswith(p) for p in TRAILER_CPV_PREFIXES)
+        except Exception:
+            return False
 
     # ── Detail ──
 
     def get_detail(self, result: SearchResult) -> Optional[NoticeDetail]:
-        """Fetch full notice detail via Playwright."""
+        """Load detail page and extract fields."""
         if not result.url or result.url == BASE_URL:
             return self._detail_from_result(result)
 
@@ -270,33 +356,17 @@ class BEAdapter(BaseAdapter):
         if not ok:
             return self._detail_from_result(result)
 
-        safe_ref = re.sub(r"[^a-zA-Z0-9]", "_", result.reference_id or "unknown")
-        self.browser._screenshot(f"be_detail_{safe_ref}")
+        safe = re.sub(r"[^a-zA-Z0-9]", "_", result.reference_id or "be")
+        self.browser._screenshot(f"be_detail_{safe}")
 
         page_text = self.browser.get_page_text()
         if not page_text or len(page_text) < 50:
             return self._detail_from_result(result)
 
-        title = (self._find_field(page_text, [
-            r"(?:Objet du marché|Voorwerp van de opdracht|Subject)[:\s]+([^\n]{10,200})",
-            r"(?:Titre|Titel|Title)[:\s]+([^\n]{10,200})",
-        ]) or result.title or "")
-
-        authority = (self._find_field(page_text, [
-            r"(?:Pouvoir adjudicateur|Aanbestedende overheid|Buyer)[:\s]+([^\n]{5,150})",
-            r"(?:Nom officiel|Officiële naam)[:\s]+([^\n]{5,150})",
-        ]) or result.authority or "")
-
         description = (self._find_field(page_text, [
-            r"(?:Description|Beschrijving|Korte beschrijving|Objet)[:\s]+(.{30,500}?)(?=\n[A-Z]|$)",
+            r"(?:Objet|Voorwerp|Subject)[:\s]+(.{30,500}?)(?=\n[A-Z]|$)",
+            r"(?:Description|Beschrijving)[:\s]+(.{30,400}?)(?=\n|$)",
         ]) or "")[:500]
-
-        date_str = (self._find_field(page_text, [
-            r"(?:Date de publication|Publicatiedatum|Publication date)[:\s]+(\d{2}[./]\d{2}[./]\d{4})",
-            r"(\d{4}-\d{2}-\d{2})",
-        ]) or result.date or "")
-        if date_str:
-            date_str = self._normalize_date(date_str)
 
         value = None
         val_str = self._find_field(page_text, [
@@ -314,23 +384,21 @@ class BEAdapter(BaseAdapter):
             r"(?:Contractant|Titulaire|Opdrachtnemer)[:\s]+([^\n]{5,120})",
         ]) or ""
 
-        quantity = None
-        m = re.search(r"(\d+)\s*(?:remorque|aanhangwagen|oplegger|trailer|stuks?|pièces?)",
-                      page_text, re.IGNORECASE)
-        if m:
-            try:
-                quantity = int(m.group(1))
-            except ValueError:
-                pass
+        date_str = (self._find_field(page_text, [
+            r"(?:Date|Datum)[:\s]+(\d{2}[./]\d{2}[./]\d{4})",
+        ]) or result.date or "")
+        if re.match(r"\d{2}[./]\d{2}[./]\d{4}", date_str):
+            m = re.match(r"(\d{2})[./](\d{2})[./](\d{4})", date_str)
+            if m:
+                date_str = f"{m.group(3)}-{m.group(2)}-{m.group(1)}"
 
         return NoticeDetail(
-            title=title,
+            title=result.title,
             description=description,
-            authority=authority,
+            authority=result.authority,
             date=date_str,
             value=value,
             currency="EUR",
-            quantity=quantity,
             winner=winner[:120] if winner else "",
             reference_id=result.reference_id,
             url=result.url,
@@ -351,8 +419,6 @@ class BEAdapter(BaseAdapter):
             raw_text=result.title or "",
         )
 
-    # ── Utility ──
-
     @staticmethod
     def _find_field(text: str, patterns: list) -> str:
         for pat in patterns:
@@ -360,10 +426,3 @@ class BEAdapter(BaseAdapter):
             if m:
                 return m.group(1).strip()[:300]
         return ""
-
-    @staticmethod
-    def _normalize_date(date_str: str) -> str:
-        m = re.match(r"(\d{2})[./](\d{2})[./](\d{4})", date_str)
-        if m:
-            return f"{m.group(3)}-{m.group(2)}-{m.group(1)}"
-        return date_str[:10]

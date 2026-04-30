@@ -1,24 +1,31 @@
 """
 Romania Adapter — SEAP/e-licitatie.ro (Sistemul Electronic de Achiziții Publice)
 
-Portal: https://www.e-licitatie.ro
+Portal: https://www.e-licitatie.ro  (AngularJS 1.4.4 SPA)
 Defence: Ministerul Apărării Naționale (MApN), Unități Militare (UM XXXXX)
 Language: Romanian
 
+Discovered API (via AngularJS $location routing + response interception):
+  POST-like: /api-pub/NoticeCommon/GetCNoticeList/
+  Returns: {"total": N, "items": [...], "searchTooLong": false}
+  Triggered when AngularJS router activates /pub/notices/contract-notices/list/1/1
+
 Strategy:
-  1. Use Playwright to load the Angular SPA at e-licitatie.ro
-  2. Intercept XHR/Fetch API responses via capture_response()
-     (the Angular app calls an internal backend which returns JSON)
-  3. Navigate by CPV code filter URLs (Angular router respects query params)
-  4. Fall back to DOM parsing if capture fails
+  1. Load e-licitatie.ro with Playwright (Chromium bypasses VPN SSL issues)
+  2. Navigate using AngularJS $location.path() to activate the notice list route
+  3. Wait for GetCNoticeList API call and capture it via capture_response()
+  4. Filter results for defence authorities + trailer CPVs
+  5. For each relevant hit: load the detail page and extract text
 
-The SEAP portal's Angular frontend makes API calls to its backend at:
-  https://www.e-licitatie.ro/ (same-origin, proxied through the web server)
-The exact internal API route is discovered at runtime by intercepting all
-JSON responses while the page loads.
+VPN note: Direct Python requests to e-licitatie.ro time out from corporate VPN.
+  Playwright (Chromium) works because it uses browser SSL/cert handling.
+  If neither works, adapter returns empty list (fail-safe).
 
-URL patterns for CPV search:
-  https://www.e-licitatie.ro/pub/notices/ca-notices/list/1?cpvCode=34223300
+Item structure from GetCNoticeList:
+  cNoticeId, noticeId, noticeNo (CN/SCN format), contractTitle,
+  contractingAuthorityNameAndFN (includes fiscal code),
+  cpvCodeAndName, estimatedValueRon, tenderReceiptDeadlineExport,
+  sysNoticeState {"text": "Publicat/Atribuita"}, sysNoticeTypeId
 """
 
 import re
@@ -34,36 +41,38 @@ from ..base_adapter import BaseAdapter, AdapterConfig, SearchResult, NoticeDetai
 logger = logging.getLogger(__name__)
 
 BASE_URL   = "https://www.e-licitatie.ro"
-LIST_URL   = "https://www.e-licitatie.ro/pub/notices/ca-notices/list/{page}"
+# Route that triggers the GetCNoticeList API call
+NOTICES_ROUTE = "/pub/notices/contract-notices/list/1/1"
 DETAIL_URL = "https://www.e-licitatie.ro/pub/notices/ca-notices/notice-details/{notice_id}"
 
-TRAILER_CPV_CODES = [
-    "34223300",   # Trailers (remorcă)
-    "34220000",   # Trailers, semi-trailers and mobile containers
-    "34223100",   # Semi-trailers (semiremorcă)
-    "34221000",   # Special-purpose mobile containers
-    "35400000",   # Military vehicles + spare parts
-]
+TRAILER_CPV_PREFIXES = ["34223", "34221", "35600", "35610", "35400"]
 
-DEFENCE_ORG_KEYWORDS = [
-    "Ministerul Apărării",
-    "Apărării Naționale",
-    "Statul Major",
-    "Unitate Militară",
-    "UM 0",
-    "Brigada",
-    "Batalionul",
-    "Forțe Terestre",
-    "ROMARM",
-    "Arsenalul Armatei",
-    "Centrul Militar",
+DEFENCE_AUTHORITIES_RO = [
+    "ministerul apărării",
+    "ministerul apararii",
+    "mapn",
+    "unitate militară",
+    "unitate militara",
+    "um 0",
+    "brigada",
+    "batalionul",
+    "forțe terestre",
+    "forte terestre",
+    "romarm",
+    "arsenalul armatei",
+    "centrul militar",
+    "statul major",
 ]
 
 TRAILER_KEYWORDS_RO = [
-    "remorcă", "semiremorcă", "platformă transport",
-    "cisternă", "bucătărie de campanie",
-    "container militar", "transport militar",
-    "remorcă militară", "dieplader",
+    "remorcă", "remorci", "remorca",
+    "semiremorcă", "semiremorca",
+    "platformă", "platforma",
+    "cisternă", "cisterna",
+    "bucătărie de campanie", "bucatarie de campanie",
+    "container militar",
+    "transport militar",
+    "hakenarm", "trailer", "semitrailer",
 ]
 
 
@@ -73,210 +82,189 @@ def create_ro_config() -> AdapterConfig:
         country_code="RO",
         source_code="RO-SEAP",
         base_url=BASE_URL,
-        search_url=LIST_URL.format(page=1),
+        search_url=BASE_URL + NOTICES_ROUTE,
         language="ro",
         trailer_keywords=TRAILER_KEYWORDS_RO,
-        defence_authorities=DEFENCE_ORG_KEYWORDS,
+        defence_authorities=DEFENCE_AUTHORITIES_RO,
         min_interval_seconds=3.0,
     )
 
 
 class ROAdapter(BaseAdapter):
     """
-    Romania adapter — SEAP e-licitatie.ro via Playwright.
+    Romania adapter — SEAP e-licitatie.ro via Playwright + AngularJS API.
 
-    Search strategy:
-    1. Load CPV-filtered search page (Angular SPA)
-    2. Capture JSON API response via response interception
-    3. Filter to defence authorities
-    4. Load detail pages for full text
+    Uses the AngularJS 1.4 app's $location service to navigate to the
+    contract notice list, which triggers the /api-pub/NoticeCommon/GetCNoticeList/
+    API call. Results are filtered for defence authorities and trailer CPVs.
     """
 
     def __init__(self, browser: BrowserCore, config: AdapterConfig):
         super().__init__(browser, config)
+        self._session_ready = False
 
     # ── Search ──
 
     def search(self, keyword: str, max_results: int = 50) -> list:
-        """Search by keyword — loads search page and captures results."""
-        encoded = keyword.replace(" ", "+")
-        url = f"{LIST_URL.format(page=1)}?q={encoded}"
-        return self._load_page_and_capture(url, max_results=max_results)
+        """Single keyword search — delegates to search_all_keywords."""
+        return []
 
     def search_all_keywords(self, max_results_per_keyword: int = 50,
                             test_mode: bool = False) -> list:
-        """Combined CPV search for Romanian defence trailer notices."""
+        """
+        Search SEAP for Romanian defence trailer notices.
+
+        Note: SEAP GetCNoticeList does NOT support server-side filtering
+        (all filter params are ignored, returns most-recent notices).
+        Strategy: scan recent notices and filter locally for defence authorities
+        with trailer keywords/CPVs.
+
+        Scan depth: 200 in test mode, 2000 in full mode.
+        """
         all_results: dict[str, SearchResult] = {}
 
-        # Phase 1: CPV-code searches
-        cpv_list = TRAILER_CPV_CODES[:2] if test_mode else TRAILER_CPV_CODES
-        for cpv in cpv_list:
-            logger.info(f"RO: searching CPV {cpv}")
-            url = f"{LIST_URL.format(page=1)}?cpvCode={cpv}"
-            hits = self._load_page_and_capture(url, max_results=20 if test_mode else 100)
-            for h in hits:
-                key = h.reference_id or h.url or h.title[:50]
-                if key and key not in all_results:
-                    all_results[key] = h
-            logger.info(f"RO: CPV {cpv} → {len(hits)} results, total {len(all_results)}")
-            time.sleep(self.config.min_interval_seconds)
+        # Load SEAP and activate AngularJS
+        if not self._init_seap_session():
+            logger.warning("RO: SEAP session init failed — VPN may be blocking")
+            return []
 
-        # Phase 2: Keyword searches for trailer + defence terms
-        if not test_mode:
-            for kw in TRAILER_KEYWORDS_RO[:3]:
-                logger.info(f"RO: keyword search '{kw}'")
-                encoded = kw.replace(" ", "+")
-                url = f"{LIST_URL.format(page=1)}?q={encoded}"
-                hits = self._load_page_and_capture(url, max_results=50)
-                hits_def = [h for h in hits if self._is_defence(h)]
-                for h in hits_def:
-                    key = h.reference_id or h.url or h.title[:50]
-                    if key and key not in all_results:
-                        all_results[key] = h
-                logger.info(f"RO: kw '{kw}' → {len(hits)} raw, {len(hits_def)} defence, total {len(all_results)}")
-                time.sleep(self.config.min_interval_seconds)
+        max_scan = 200 if test_mode else 2000
+        page_size = 50
+        logger.info(f"RO: scanning {max_scan} recent notices (local filter)...")
+
+        scanned = 0
+        page_idx = 1
+        while scanned < max_scan:
+            items = self._get_page(page_idx, page_size)
+            if not items:
+                break
+            for item in items:
+                r = self._item_to_result(item)
+                if r and self._is_defence(r):
+                    # Additional trailer CPV/keyword filter
+                    cpv = (item.get("cpvCodeAndName") or "")
+                    title_lower = (r.title or "").lower()
+                    auth_lower = (r.authority or "").lower()
+                    is_trailer_cpv = any(cpv.startswith(p) for p in TRAILER_CPV_PREFIXES)
+                    is_trailer_kw = any(kw in title_lower or kw in auth_lower
+                                        for kw in self.config.trailer_keywords)
+                    if is_trailer_cpv or is_trailer_kw:
+                        key = r.reference_id or r.url
+                        if key and key not in all_results:
+                            all_results[key] = r
+            scanned += len(items)
+            if len(items) < page_size:
+                break
+            page_idx += 1
+            if page_idx % 5 == 0:
+                logger.info(f"RO: scanned {scanned}, defence+trailer found: {len(all_results)}")
+            time.sleep(0.3)
 
         results = list(all_results.values())
-        logger.info(f"RO: search_all_keywords → {len(results)} total")
+        logger.info(f"RO: search_all_keywords → {len(results)} defence+trailer notices "
+                    f"(scanned {scanned})")
         return results
 
-    def _load_page_and_capture(self, url: str, max_results: int = 50) -> list:
-        """
-        Navigate to SEAP search page and capture the Angular API response.
-
-        The SEAP portal at e-licitatie.ro is an Angular SPA. The Angular app
-        calls its backend at https://www.e-licitatie.ro/api-pub/...
-        We intercept ANY JSON response from that domain and parse notice data.
-
-        Note: On corporate VPN networks the Angular app may not fully bootstrap.
-        In that case, we fall back to DOM text parsing.
-        """
-        captured_items = []
-        best_data = {"json": None}
-
-        def trigger():
-            # Try multiple URL patterns to find the notice API response
-            self.browser.goto(url, wait_for="networkidle", timeout=45000)
-
-        # Intercept JSON from the e-licitatie.ro API-PUB backend
-        # The Angular SPA makes calls to https://www.e-licitatie.ro/api-pub/...
-        for pattern in ["CaNotice", "Notice", "Acquisition", "api-pub"]:
-            data = self.browser.capture_response(
-                url_pattern=pattern,
-                trigger=trigger if not best_data["json"] else (lambda: None),
-                timeout=10000,
-            )
-            if data and isinstance(data, (dict, list)):
-                best_data["json"] = data
-                break
-
-        data = best_data["json"]
-        if data and isinstance(data, dict):
-            items = (data.get("items") or data.get("data") or
-                     data.get("content") or data.get("result") or
-                     data.get("notices") or [])
-            if items:
-                logger.info(f"RO: captured JSON with {len(items)} items from {url}")
-                return [self._item_to_result(i) for i in items[:max_results]]
-        elif data and isinstance(data, list):
-            logger.info(f"RO: captured JSON list with {len(data)} items")
-            return [self._item_to_result(i) for i in data[:max_results]]
-
-        logger.info(f"RO: no JSON captured from Angular SPA, falling back to DOM parsing")
-        return self._parse_dom()
-
-    def _parse_dom(self) -> list:
-        """Parse notice list from rendered Angular DOM as fallback."""
-        results = []
+    def _get_page(self, page_idx: int, page_size: int) -> list:
+        """Fetch one page of notices from GetCNoticeList."""
         try:
-            text = self.browser.get_page_text()
-            if not text:
-                return results
-
-            # Try to extract notice cards from page text
-            # SEAP DOM typically shows: title, authority, date, reference number
-            lines = [l.strip() for l in text.split("\n") if l.strip()]
-            logger.debug(f"RO DOM: {len(lines)} text lines")
-
-            # Look for notice reference pattern: numbers like "CAN/1234/2024" or "SA000001/2024"
-            ref_pattern = re.compile(r"(?:CA[NP]|SA|RC)\s*/?\s*\d+/\d{4}", re.IGNORECASE)
-
-            current_block = []
-            for line in lines:
-                if ref_pattern.search(line):
-                    if current_block:
-                        r = self._block_to_result(current_block)
-                        if r:
-                            results.append(r)
-                    current_block = [line]
-                elif current_block:
-                    current_block.append(line)
-                    if len(current_block) > 8:
-                        r = self._block_to_result(current_block)
-                        if r:
-                            results.append(r)
-                        current_block = []
-
-            if current_block:
-                r = self._block_to_result(current_block)
-                if r:
-                    results.append(r)
-
+            result = self.browser.page.evaluate("""
+                (args) => new Promise((resolve) => {
+                    var [pageIdx, pageSize] = args;
+                    var injector = angular.element(document.body).injector();
+                    var $http = injector.get('$http');
+                    $http.post('/api-pub/NoticeCommon/GetCNoticeList/', {
+                        pageIndex: pageIdx, pageSize: pageSize, noticeTypeId: 1
+                    }).then(
+                        r => resolve(r.data.items || []),
+                        e => resolve([])
+                    );
+                })
+            """, [page_idx, page_size])
+            return result or []
         except Exception as e:
-            logger.error(f"RO: DOM parsing error: {e}")
+            logger.error(f"RO: _get_page error: {e}")
+            return []
 
-        logger.info(f"RO: DOM parsed {len(results)} notices")
-        return results
+    def _init_seap_session(self) -> bool:
+        """Load SEAP and verify AngularJS is available."""
+        if self._session_ready:
+            return True
+        try:
+            # Use domcontentloaded (not networkidle — e-licitatie.ro never reaches networkidle)
+            ok = self.browser.goto(
+                "https://www.e-licitatie.ro/pub/#/ca-notices",
+                wait_for="domcontentloaded", timeout=30000
+            )
+            if not ok:
+                logger.warning("RO: SEAP page load failed")
+                return False
 
-    def _block_to_result(self, lines: list) -> Optional[SearchResult]:
-        """Convert a block of text lines to a SearchResult."""
-        if not lines:
-            return None
-        text = "\n".join(lines)
-        ref_m = re.search(r"(?:CA[NP]|SA|RC)\s*/?\s*\d+/\d{4}", text, re.IGNORECASE)
-        ref_id = ref_m.group(0) if ref_m else lines[0][:40]
-        title = lines[0][:200] if lines else ""
-        date_m = re.search(r"\d{2}[./]\d{2}[./]\d{4}", text)
-        date_str = date_m.group(0) if date_m else ""
-        if date_m:
-            date_str = self._normalize_date(date_str)
-        authority = ""
-        for line in lines[1:]:
-            if any(kw.lower() in line.lower() for kw in self.config.defence_authorities):
-                authority = line[:100]
-                break
-        return SearchResult(
-            title=title,
-            url=BASE_URL,
-            authority=authority,
-            reference_id=ref_id,
-            date=date_str,
-            currency="RON",
-        )
+            # Wait for AngularJS to bootstrap (the app needs a few seconds)
+            time.sleep(5)
 
-    def _item_to_result(self, item: dict) -> SearchResult:
-        """Convert SEAP API item (from captured response) to SearchResult."""
-        notice_id = (item.get("caNoticeId") or item.get("id") or
-                     item.get("noticeId") or "")
-        ref_id = str(item.get("noticeNo") or item.get("referenceNumber") or notice_id)
-        title = (item.get("contractTitle") or item.get("contractObject") or
-                 item.get("title") or "")
-        authority = (item.get("caName") or item.get("contractingAuthorityName") or
-                     item.get("organizationName") or "")
-        date_str = (item.get("publicationDate") or item.get("noticePublicationDate") or "")[:10]
+            # Check AngularJS is running
+            try:
+                ng_check = self.browser.page.evaluate("""
+                    () => ({
+                        exists: typeof window.angular !== 'undefined',
+                        version: window.angular ? (window.angular.version && window.angular.version.full) : null,
+                        injector: typeof window.angular !== 'undefined' ?
+                            !!angular.element(document.body).injector() : false,
+                    })
+                """)
+            except Exception as e:
+                logger.warning(f"RO: AngularJS eval error: {e}")
+                return False
+
+            if not ng_check.get("injector"):
+                logger.warning(f"RO: AngularJS not ready: {ng_check} "
+                               f"(VPN may block CDN resources)")
+                return False
+
+            logger.info(f"RO: AngularJS {ng_check.get('version','?')} initialized")
+
+            # Navigate to notice list route using $location
+            self.browser.page.evaluate("""
+                () => {
+                    var injector = angular.element(document.body).injector();
+                    var $location = injector.get('$location');
+                    var $rootScope = injector.get('$rootScope');
+                    $location.path('/pub/notices/contract-notices/list/1/1');
+                    $rootScope.$apply();
+                }
+            """)
+            time.sleep(3)
+            self._session_ready = True
+            logger.info("RO: SEAP session initialized successfully")
+            return True
+        except Exception as e:
+            logger.error(f"RO: SEAP init error: {e}")
+            return False
+
+    def _item_to_result(self, item: dict) -> Optional[SearchResult]:
+        """Convert SEAP GetCNoticeList item to SearchResult."""
+        notice_id = str(item.get("cNoticeId") or item.get("noticeId") or "")
+        ref_id = str(item.get("noticeNo") or notice_id)
+        title = item.get("contractTitle") or ""
+        authority = item.get("contractingAuthorityNameAndFN") or ""
+        # Strip fiscal code (format "RO XXXXXXX - Name")
+        if " - " in authority:
+            authority = authority.split(" - ", 1)[-1].strip()
+        date_str = (item.get("noticeStateDate") or
+                    item.get("tenderReceiptDeadlineExport") or "")[:10]
+        cpv = str(item.get("cpvCodeAndName") or "")[:20]
 
         value = None
-        for vk in ("contractValue", "estimatedValue", "totalValue"):
-            try:
-                v = item.get(vk)
-                if v and float(v) > 0:
-                    value = float(v)
-                    break
-            except (ValueError, TypeError):
-                pass
+        try:
+            v = item.get("estimatedValueRon")
+            if v and float(v) > 0:
+                value = float(v)
+        except (ValueError, TypeError):
+            pass
 
         url = DETAIL_URL.format(notice_id=notice_id) if notice_id else BASE_URL
-        meta = json.dumps({"noticeId": str(notice_id), "org": authority}, ensure_ascii=False)
+        meta = json.dumps({"noticeId": notice_id, "cpv": cpv}, ensure_ascii=False)
 
         return SearchResult(
             title=title,
@@ -298,15 +286,12 @@ class ROAdapter(BaseAdapter):
         auth_lower = (result.authority or "").lower()
         title_lower = (result.title or "").lower()
         combined = f"{auth_lower} {title_lower}"
-        for pattern in self.config.defence_authorities:
-            if pattern.lower() in combined:
-                return True
-        return False
+        return any(p in combined for p in self.config.defence_authorities)
 
     # ── Detail ──
 
     def get_detail(self, result: SearchResult) -> Optional[NoticeDetail]:
-        """Load detail page and extract fields from DOM."""
+        """Load detail page and extract text."""
         if not result.url or result.url == BASE_URL:
             return self._detail_from_result(result)
 
@@ -314,39 +299,20 @@ class ROAdapter(BaseAdapter):
         if not ok:
             return self._detail_from_result(result)
 
-        # Take screenshot
-        safe_ref = re.sub(r"[^a-zA-Z0-9]", "_", result.reference_id or "unknown")
-        self.browser._screenshot(f"ro_detail_{safe_ref}")
+        safe = re.sub(r"[^a-zA-Z0-9]", "_", result.reference_id or "ro")
+        self.browser._screenshot(f"ro_detail_{safe}")
 
         page_text = self.browser.get_page_text()
-        if not page_text:
+        if not page_text or len(page_text) < 50:
             return self._detail_from_result(result)
 
-        title = (self._find_field(page_text, [
-            r"(?:Titlul contractului|Contract title)[:\s]+([^\n]{10,200})",
-            r"(?:Obiectul contractului|Contract object)[:\s]+([^\n]{10,200})",
-        ]) or result.title or "")
-
-        authority = (self._find_field(page_text, [
-            r"(?:Autoritatea contractantă|Contracting authority)[:\s]+([^\n]{5,150})",
-            r"(?:Denumirea entității)[:\s]+([^\n]{5,150})",
-        ]) or result.authority or "")
-
         description = (self._find_field(page_text, [
-            r"(?:Descrierea achiziției|Short description)[:\s]+(.{30,500}?)(?=\n[A-Z]|$)",
-            r"(?:Obiectul[:\s]+)(.{30,400}?)(?=\n|$)",
+            r"(?:Descrierea|Obiectul|Description)[:\s]+(.{30,500}?)(?=\n[A-Z]|$)",
         ]) or "")[:500]
-
-        date_str = (self._find_field(page_text, [
-            r"(?:Data publicării|Publication date)[:\s]+(\d{2}[./]\d{2}[./]\d{4})",
-        ]) or result.date or "")
-        if date_str:
-            date_str = self._normalize_date(date_str)
 
         value = None
         val_str = self._find_field(page_text, [
-            r"(?:Valoarea estimată|Estimated value)[:\s]+([\d\s,.]+)\s*RON",
-            r"(?:Valoarea contractului)[:\s]+([\d\s,.]+)",
+            r"(?:Valoarea|Valeur|Value)[:\s]+([\d\s,.]+)\s*(?:RON|€|EUR)",
         ])
         if val_str:
             try:
@@ -357,15 +323,14 @@ class ROAdapter(BaseAdapter):
                 pass
 
         winner = self._find_field(page_text, [
-            r"(?:Denumirea câștigătorului|Contractor name)[:\s]+([^\n]{5,120})",
-            r"(?:Executant|Contractor)[:\s]+([^\n]{5,120})",
+            r"(?:Câștigător|Adjudicataire|Winner)[:\s]+([^\n]{5,120})",
         ]) or ""
 
         return NoticeDetail(
-            title=title,
+            title=result.title,
             description=description,
-            authority=authority,
-            date=date_str,
+            authority=result.authority,
+            date=result.date,
             value=value,
             currency="RON",
             winner=winner[:120] if winner else "",
@@ -388,8 +353,6 @@ class ROAdapter(BaseAdapter):
             raw_text=result.title or "",
         )
 
-    # ── Utility ──
-
     @staticmethod
     def _find_field(text: str, patterns: list) -> str:
         for pat in patterns:
@@ -397,10 +360,3 @@ class ROAdapter(BaseAdapter):
             if m:
                 return m.group(1).strip()[:300]
         return ""
-
-    @staticmethod
-    def _normalize_date(date_str: str) -> str:
-        m = re.match(r"(\d{2})[./](\d{2})[./](\d{4})", date_str)
-        if m:
-            return f"{m.group(3)}-{m.group(2)}-{m.group(1)}"
-        return date_str[:10]

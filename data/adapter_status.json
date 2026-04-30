@@ -1,0 +1,136 @@
+{
+  "de": {
+    "status": "working",
+    "method": "Playwright",
+    "portal": "service.bund.de",
+    "api": "HTML form + pagination",
+    "notes": "0 current trailer tenders open; BAAINBw uses E-Vergabe instead. Periodic check needed.",
+    "last_tested": "2026-04-26"
+  },
+  "pl": {
+    "status": "working",
+    "method": "REST API (no browser)",
+    "portal": "eZamowienia.gov.pl",
+    "api": "GET /mo-board/api/v1/Board/Search + CPV+wojsk filter",
+    "notes": "4 notices found. CPV 34223300+org name cross-filter.",
+    "last_tested": "2026-04-26"
+  },
+  "fi": {
+    "status": "working_no_data",
+    "method": "Playwright",
+    "portal": "Hilma.fi",
+    "api": "REST API hankintailmoitukset.fi",
+    "notes": "Puolustusvoimat uses TED not Hilma. 0 defence trailer notices found.",
+    "last_tested": "2026-04-27"
+  },
+  "se": {
+    "status": "working",
+    "method": "REST API",
+    "portal": "Kommersannons.se",
+    "api": "GET /api/search",
+    "notes": "FMV (Försvarets Materielverk) is key buyer. 9 notices found.",
+    "last_tested": "2026-04-27"
+  },
+  "no": {
+    "status": "working",
+    "method": "REST API",
+    "portal": "Doffin.no",
+    "api": "GET /api/tenders",
+    "notes": "3 Forsvaret defence notices found.",
+    "last_tested": "2026-04-27"
+  },
+  "cz": {
+    "status": "working",
+    "method": "Playwright",
+    "portal": "NEN/NIPEZ",
+    "api": "VVZ form scraping",
+    "notes": "32 Ministerstvo obrany notices found. Slow (49min full run).",
+    "last_tested": "2026-04-27"
+  },
+  "fr": {
+    "status": "working",
+    "method": "REST API",
+    "portal": "BOAMP",
+    "api": "GET api.boamp.fr/explore",
+    "notes": "13 MINARM (Ministère des Armées) notices found.",
+    "last_tested": "2026-04-27"
+  },
+  "dk": {
+    "status": "working",
+    "method": "Playwright",
+    "portal": "Udbud.dk",
+    "api": "Angular SPA + form submit",
+    "notes": "2 FMI (Forsvarets Materieltjeneste) notices found.",
+    "last_tested": "2026-04-27"
+  },
+  "nl": {
+    "status": "working",
+    "method": "REST API (scan+filter)",
+    "portal": "TenderNed",
+    "api": "GET /papi/tenderned-rs-tns/v2/publicaties (no server filter)",
+    "notes": "API returns all 143k publications, filter locally. 14 Defensie notices found in 500 scan.",
+    "last_tested": "2026-04-28"
+  },
+  "ro": {
+    "status": "working_vpn_limited",
+    "method": "Playwright + AngularJS 1.4 API",
+    "portal": "SEAP e-licitatie.ro",
+    "api": "POST /api-pub/NoticeCommon/GetCNoticeList/ via Angular $http (no server filter)",
+    "notes": "API discovered: AngularJS 1.4.4 app. Post filter not working — scan+filter locally. Requires Playwright (direct requests timeout on VPN). 200 notices scanned in test mode, 0 defence+trailer found (need full 2000).",
+    "last_tested": "2026-04-29",
+    "discovery": {
+      "api_endpoint": "POST /api-pub/NoticeCommon/GetCNoticeList/",
+      "activation": "AngularJS $location.path('/pub/notices/contract-notices/list/1/1')",
+      "item_fields": [
+        "cNoticeId",
+        "noticeNo",
+        "contractTitle",
+        "contractingAuthorityNameAndFN",
+        "cpvCodeAndName",
+        "estimatedValueRon"
+      ]
+    }
+  },
+  "be": {
+    "status": "working_no_filter",
+    "method": "Playwright + Vue.js + Keycloak JWT",
+    "portal": "publicprocurement.be (BOSA eProcurement)",
+    "api": "POST /api/sea/search/publications (Keycloak JWT required)",
+    "notes": "API discovered: Vue.js SPA with Keycloak JWT auto-obtained. /bda page triggers auto-POST with 270k results. Manual POST returns 400 — exact body format not yet captured. 0 Belgian defence exclusives found (Défense uses TED).",
+    "last_tested": "2026-04-29",
+    "discovery": {
+      "auth": "Keycloak JWT in localStorage['public__confidentialAuth__token']",
+      "api_endpoint": "POST /api/sea/search/publications",
+      "trigger": "Navigate to /bda — Vue app auto-calls on page load",
+      "response_format": {
+        "publications": "list",
+        "totalCount": "int"
+      },
+      "pub_fields": [
+        "organisation.organisationNames",
+        "cpvMainCode.code",
+        "referenceNumber",
+        "publicationDate",
+        "lots",
+        "noticeIds",
+        "publicationReferenceNumbersTED"
+      ]
+    }
+  },
+  "es": {
+    "status": "working",
+    "method": "Playwright",
+    "portal": "PLACE (plataforma.contratacion.gob.es)",
+    "api": "IBM WebSphere form scraping",
+    "notes": "Jefatura de Asuntos Económicos del MALE is key buyer. JS-click workaround needed.",
+    "last_tested": "2026-04-27"
+  },
+  "it": {
+    "status": "working",
+    "method": "REST+Playwright",
+    "portal": "ANAC (appalti.anticorruzione.it)",
+    "api": "REST API first, Playwright for details",
+    "notes": "Ministero della Difesa / SGD-DNA is key buyer. Rate limiting applies.",
+    "last_tested": "2026-04-27"
+  }
+}

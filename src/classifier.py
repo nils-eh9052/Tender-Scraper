@@ -467,13 +467,21 @@ RULES:
             for slot in (1, 2, 3):
                 notice[f"_trailer_type_{slot}_ai"] = result.get(f"trailer_type_{slot}") or None
                 notice[f"_trailer_category_{slot}_ai"] = result.get(f"trailer_category_{slot}") or None
-                notice[f"_trailer_quantity_{slot}_ai"] = result.get(f"trailer_quantity_{slot}")
+                # Preserve existing non-null quantity (from fulltext enricher).
+                # Only overwrite if AI found a quantity OR the field is currently empty.
+                ai_qty = result.get(f"trailer_quantity_{slot}")
+                existing_qty = notice.get(f"_trailer_quantity_{slot}_ai")
+                if ai_qty is not None or existing_qty is None:
+                    notice[f"_trailer_quantity_{slot}_ai"] = ai_qty
             notice["_overflow_ai"] = bool(result.get("overflow", False))
         else:
             # Old-format backward compat: map trailer_type → slot 1
             notice["_trailer_type_1_ai"] = result.get("trailer_type") or None
             notice["_trailer_category_1_ai"] = result.get("trailer_category") or None
-            notice["_trailer_quantity_1_ai"] = result.get("trailer_quantity")
+            ai_qty = result.get("trailer_quantity")
+            existing_qty = notice.get("_trailer_quantity_1_ai")
+            if ai_qty is not None or existing_qty is None:
+                notice["_trailer_quantity_1_ai"] = ai_qty
             notice["_trailer_type_2_ai"] = None
             notice["_trailer_category_2_ai"] = None
             notice["_trailer_quantity_2_ai"] = None

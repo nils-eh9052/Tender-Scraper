@@ -180,11 +180,16 @@ class FulltextEnricher:
             if notice.get("_status") != "Awarded":
                 notice["_status"] = "Awarded"
 
-        # Quantity
+        # Quantity — write to both the legacy field and the slot-1 field so the
+        # exporter can find it regardless of which field name is checked.
         if enrichment.get("trailer_quantity") is not None:
+            qty = enrichment["trailer_quantity"]
             if notice.get("_trailer_quantity_ai") is None:
-                notice["_trailer_quantity_ai"] = enrichment["trailer_quantity"]
-                logger.info(f"  Enriched quantity: {enrichment['trailer_quantity']}")
+                notice["_trailer_quantity_ai"] = qty
+            # Also populate the slot-based field used by classifier + exporter
+            if not notice.get("_trailer_quantity_1_ai"):
+                notice["_trailer_quantity_1_ai"] = qty
+                logger.info(f"  Enriched quantity: {qty}")
 
         # Contract duration
         if enrichment.get("contract_duration"):

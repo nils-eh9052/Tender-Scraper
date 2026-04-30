@@ -1,18 +1,25 @@
 """
 Canada Open Data Loader
 
-Queries Canadian DND procurement contract data via the open.canada.ca
-CKAN Datastore API. Only historical/completed contracts — no open tenders.
-Useful for market sizing and competitor analysis.
+Two data sources:
+1. Historical contracts (CKAN Datastore API) — completed DND contracts since ~2009
+   Dataset: Proactive Publication - Contracts
+   Resource: fac950c0-00d5-4ec1-a4d3-9cbebf98a305
 
-Dataset: Proactive Publication - Contracts
-URL: https://open.canada.ca/data/en/dataset/d8f85d91-7dec-4fd1-8055-483b77225d8b
-API resource: fac950c0-00d5-4ec1-a4d3-9cbebf98a305
+2. Active/recent tender notices (CanadaBuys Open Data CSVs) — updated every 2h
+   Source: open.canada.ca, dataset 6abd20d4-7a1c-4b38-baa2-9525d0bb2fd2
+   Files: open tenders (currently active), yearly archives (2022-2027)
+   Access: canadabuys.canada.ca CSV files, no login needed, Browser UA required
+
+Active tenders get source="CA-CB" (CanadaBuys) and go into the main pipeline.
+Historical contracts keep source="CA-OD" and appear in the Canada (Historical) Excel tab.
 """
 
 import logging
 import json
 import os
+import io
+import csv
 import requests
 import urllib3
 from pathlib import Path
@@ -29,33 +36,59 @@ RESOURCE_ID = "fac950c0-00d5-4ec1-a4d3-9cbebf98a305"
 
 DND_ORG = "dnd-mdn"
 
+# CanadaBuys CSV URLs (updated every 2 hours)
+CB_OPEN_TENDERS_URL   = "https://canadabuys.canada.ca/opendata/pub/openTenderNotice-ouvertAvisAppelOffres.csv"
+CB_YEARLY_URLS = [
+    "https://canadabuys.canada.ca/opendata/pub/2026-2027-TenderNotice-AvisAppelOffres.csv",
+    "https://canadabuys.canada.ca/opendata/pub/2025-2026-TenderNotice-AvisAppelOffres.csv",
+    "https://canadabuys.canada.ca/opendata/pub/2024-2025-TenderNotice-AvisAppelOffres.csv",
+]
+
+# DND filter terms (column values in CanadaBuys CSVs)
+DND_TERMS = [
+    "national defence", "défense nationale", "department of national defence",
+    "ministère de la défense nationale", "dnd-mdn",
+]
+
 TRAILER_KEYWORDS_EN = [
     "trailer",
     "semi-trailer",
     "semitrailer",
     "low-bed",
+    "lowbed",
     "tank trailer",
     "fuel trailer",
     "field kitchen",
     "container trailer",
     "flatbed trailer",
+    "flatbed",
     "hook lift",
+    "hooklift",
     "ammunition trailer",
     "loading system",
     "low loader",
     "cargo trailer",
     "remorque",
+    "pintle",
+    "shelter",
+    "cisterne",
+    "semi-remorque",
 ]
 
 
 class CanadaOpenDataLoader:
-    """Loads Canadian DND procurement data via the open.canada.ca CKAN Datastore API."""
+    """Loads Canadian DND procurement data from open.canada.ca."""
 
     def __init__(self, cache_dir: str = "data/raw/canada"):
         self.cache_dir = Path(cache_dir)
         self.cache_dir.mkdir(parents=True, exist_ok=True)
         self._session = requests.Session()
         self._session.verify = SSL_VERIFY
+        # CanadaBuys requires a browser-like User-Agent for CSV access
+        self._session.headers.update({
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/124.0.0.0",
+            "Accept": "text/html,application/xhtml+xml,application/xml,text/csv,*/*",
+        })
 
     def discover_all_resource_urls(self) -> list:
         """Return all resources for the dataset (for transparency/debugging)."""
@@ -175,4 +208,137 @@ class CanadaOpenDataLoader:
             "description": (
                 row.get("description_en", row.get("description_fr", ""))
             )[:500],
+        }
+
+    # ── CanadaBuys Active Tenders ─────────────────────────────────────────
+
+    def load_active_tenders(self, test_mode: bool = False,
+                            years_back: int = 2) -> list:
+        """
+        Load active/recent DND trailer tenders from CanadaBuys Open Data CSVs.
+
+        Downloads:
+        1. Open tender notices (currently active, updated every 2h)
+        2. Yearly archives for the last `years_back` fiscal years
+
+        Returns list of normalized notice dicts with source="CA-CB".
+        """
+        cache_path = self.cache_dir / "canadabuys_tenders.json"
+        if cache_path.exists() and not test_mode:
+            with open(cache_path, encoding="utf-8") as f:
+                cached = json.load(f)
+            logger.info(f"CanadaBuys: {len(cached)} cached active/recent tenders")
+            return cached
+
+        all_rows: dict = {}  # keyed by referenceNumber for dedup
+
+        # 1. Currently open tenders
+        open_rows = self._fetch_cb_csv(CB_OPEN_TENDERS_URL, "open tenders")
+        for r in open_rows:
+            key = r.get("referenceNumber-numeroReference", "")
+            if key and key not in all_rows:
+                all_rows[key] = r
+
+        # 2. Recent yearly archives
+        limit = 1 if test_mode else years_back
+        for url in CB_YEARLY_URLS[:limit]:
+            year_rows = self._fetch_cb_csv(url, url.split("/")[-1][:20])
+            for r in year_rows:
+                key = r.get("referenceNumber-numeroReference", "")
+                if key and key not in all_rows:
+                    all_rows[key] = r
+
+        # Filter for DND + trailer keywords
+        dnd_trailer = [r for r in all_rows.values()
+                       if self._is_dnd_cb(r) and self._is_trailer_cb(r)]
+
+        logger.info(f"CanadaBuys: {len(dnd_trailer)} DND trailer tenders "
+                    f"(from {len(all_rows)} total)")
+
+        normalized = [self._normalize_tender_row(r) for r in dnd_trailer]
+
+        if not test_mode:
+            with open(cache_path, "w", encoding="utf-8") as f:
+                json.dump(normalized, f, ensure_ascii=False, indent=2)
+
+        return normalized
+
+    def _fetch_cb_csv(self, url: str, label: str) -> list:
+        """Download a CanadaBuys CSV and return rows as list of dicts."""
+        try:
+            resp = self._session.get(url, timeout=60)
+            if resp.status_code == 200:
+                text = resp.content.decode("utf-8-sig", errors="replace")
+                rows = list(csv.DictReader(io.StringIO(text)))
+                logger.info(f"CanadaBuys {label}: {len(rows)} rows")
+                return rows
+            else:
+                logger.warning(f"CanadaBuys {label}: HTTP {resp.status_code}")
+        except Exception as e:
+            logger.error(f"CanadaBuys {label} download error: {e}")
+        return []
+
+    @staticmethod
+    def _is_dnd_cb(row: dict) -> bool:
+        """Check if a CanadaBuys row is from DND."""
+        text = " ".join(str(v) for v in row.values()).lower()
+        return any(d in text for d in DND_TERMS)
+
+    @staticmethod
+    def _is_trailer_cb(row: dict) -> bool:
+        """Check if a CanadaBuys row is trailer-related."""
+        title_en = str(row.get("title-titre-eng", "")).lower()
+        title_fr = str(row.get("title-titre-fra", "")).lower()
+        desc_en  = str(row.get("tenderDescription-descriptionAppelOffres-eng", "")).lower()
+        desc_fr  = str(row.get("tenderDescription-descriptionAppelOffres-fra", "")).lower()
+        combined = f"{title_en} {title_fr} {desc_en} {desc_fr}"
+        return any(kw in combined for kw in TRAILER_KEYWORDS_EN)
+
+    def _normalize_tender_row(self, row: dict) -> dict:
+        """Normalize a CanadaBuys CSV row to our standard notice format."""
+        ref = row.get("referenceNumber-numeroReference", "")
+        sol = row.get("solicitationNumber-numeroSollicitation", "")
+        title_en = row.get("title-titre-eng", "") or row.get("title-titre-fra", "")
+        title_fr = row.get("title-titre-fra", "")
+        pub_date  = row.get("publicationDate-datePublication", "")[:10]
+        close_date = row.get("tenderClosingDate-appelOffresDateCloture", "")[:10]
+        status    = row.get("tenderStatus-appelOffresStatut-eng", "Open")
+        authority = (row.get("contractingEntityName-nomEntitContractante-eng", "")
+                     or "Department of National Defence (Canada)")
+        desc_en   = row.get("tenderDescription-descriptionAppelOffres-eng", "")[:500]
+        url_en    = row.get("noticeURL-URLavis-eng", "")
+        gsin      = row.get("gsin-nibs", "")
+        gsin_desc = row.get("gsinDescription-nibsDescription-eng", "")
+
+        # CanadaBuys source URL on the portal
+        if not url_en and sol:
+            url_en = f"https://canadabuys.canada.ca/en/tender-opportunities/tender-notice/{sol}"
+
+        return {
+            "tender_id": f"CA-CB-{ref}" if ref else f"CA-CB-{sol}",
+            "source": "CA-CB",
+            "_source": "CA-CB",
+            "_source_url_national": url_en,
+            "ted_url": "",
+            "_title_final": title_en[:200],
+            "_title_english": title_en[:200],
+            "_country_normalized": "Canada",
+            "_authority_name": authority[:100],
+            "_pub_date": pub_date,
+            "_status": "Open" if not close_date or close_date >= "2026-01-01" else "Closed",
+            "_value_num": None,
+            "_value_currency": "CAD",
+            "_value_eur_num": None,
+            "_description_final": desc_en,
+            "_trailer_type_1_ai": None,   # will be classified later
+            "_trailer_category_1_ai": None,
+            "_trailer_qty_1_ai": None,
+            "title": title_en,
+            "title_fr": title_fr,
+            "closing_date": close_date,
+            "solicitation_number": sol,
+            "gsin": gsin,
+            "gsin_description": gsin_desc,
+            "country": "Canada",
+            "currency": "CAD",
         }

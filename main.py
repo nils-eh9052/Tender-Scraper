@@ -123,6 +123,10 @@ def get_adapter_registry() -> dict:
         ("src.national_scraper.adapters.be_adapter", "BEAdapter", "create_be_config", "be"),
         ("src.national_scraper.adapters.es_adapter", "ESAdapter", "create_es_config", "es"),
         ("src.national_scraper.adapters.it_adapter", "ITAdapter", "create_it_config", "it"),
+        ("src.national_scraper.adapters.ua_adapter", "UAAdapter", "create_ua_config", "ua"),
+        ("src.national_scraper.adapters.ch_adapter", "CHAdapter", "create_ch_config", "ch"),
+        ("src.national_scraper.adapters.uk_fts_adapter", "UKFTSAdapter", "create_uk_fts_config", "gb"),
+        ("src.national_scraper.adapters.de_evergabe_adapter", "DEEvergabeAdapter", "create_de_evergabe_config", "de-ev"),
     ]:
         try:
             m = importlib.import_module(mod)
@@ -445,6 +449,112 @@ def run_phase_uk(config: dict, test_mode: bool = False, date_from: str | None = 
     return notices
 
 
+_NATIONAL_FORCE_INCLUDE_PATH = PROJECT_ROOT / "config" / "national_force_include.json"
+
+
+def update_national_force_include(notices: list):
+    """
+    Save relevant national notice IDs to national_force_include.json so they
+    survive future full runs regardless of NEN/portal pagination.
+
+    Called after classify so only AI-confirmed relevant notices are persisted.
+    """
+    try:
+        if _NATIONAL_FORCE_INCLUDE_PATH.exists():
+            with open(_NATIONAL_FORCE_INCLUDE_PATH, "r", encoding="utf-8") as f:
+                force = json.load(f)
+        else:
+            force = {}
+    except Exception:
+        force = {}
+
+    added = 0
+    for notice in notices:
+        src = (notice.get("source") or "").replace("TED+", "").split("+")[0]
+        tid = notice.get("tender_id", "")
+        if not tid or not src or src == "TED":
+            continue
+        if src not in force:
+            force[src] = []
+        if tid not in force[src]:
+            force[src].append(tid)
+            added += 1
+
+    _NATIONAL_FORCE_INCLUDE_PATH.parent.mkdir(parents=True, exist_ok=True)
+    with open(_NATIONAL_FORCE_INCLUDE_PATH, "w", encoding="utf-8") as f:
+        json.dump(force, f, ensure_ascii=False, indent=2)
+    if added:
+        print(f"  [force-include] +{added} new national IDs saved")
+
+
+def ensure_force_includes(notices: list) -> list:
+    """
+    Append force-included national notices that are missing from the current
+    relevant.json.  Reconstructs minimal notice dicts from the enrichment log.
+
+    Called just before export so the Excel always contains all known-relevant
+    national notices even when the portal adapter didn't fetch them this run.
+    """
+    if not _NATIONAL_FORCE_INCLUDE_PATH.exists():
+        return notices
+
+    try:
+        with open(_NATIONAL_FORCE_INCLUDE_PATH, "r", encoding="utf-8") as f:
+            force = json.load(f)
+    except Exception:
+        return notices
+
+    # Load enrichment log for reconstruction
+    log_path = PROJECT_ROOT / "data" / ".enrichment_log.json"
+    log: dict = {}
+    if log_path.exists():
+        try:
+            with open(log_path, "r", encoding="utf-8") as f:
+                log = json.load(f)
+        except Exception:
+            pass
+
+    existing_ids = {n.get("tender_id", "") for n in notices}
+    added = 0
+
+    for src_key, ids in force.items():
+        if src_key.startswith("_"):
+            continue
+        for tid in ids:
+            if tid in existing_ids:
+                continue
+            log_entry = log.get(tid, {})
+            result = log_entry.get("result") or {}
+            if not result.get("relevant", False):
+                continue
+            # Reconstruct minimal notice dict from enrichment log cache
+            notice = {
+                "tender_id": tid,
+                "source": src_key,
+                "_title_english": result.get("title_english", log_entry.get("title", "")),
+                "_description_english": result.get("description_english", ""),
+                "_trailer_type_1_ai": result.get("trailer_type_1") or result.get("trailer_type"),
+                "_trailer_category_1_ai": result.get("trailer_category_1") or result.get("trailer_category"),
+                "_trailer_quantity_1_ai": result.get("trailer_quantity_1") or result.get("trailer_quantity"),
+                "_trailer_type_2_ai": result.get("trailer_type_2"),
+                "_trailer_category_2_ai": result.get("trailer_category_2"),
+                "_trailer_quantity_2_ai": result.get("trailer_quantity_2"),
+                "_additional_equipment_ai": result.get("additional_equipment"),
+                "_additional_qty_ai": result.get("additional_qty"),
+                "_contract_duration_ai": result.get("contract_duration"),
+                "_fulltext_enriched": False,
+                "_force_included": True,
+            }
+            notices = list(notices)
+            notices.append(notice)
+            existing_ids.add(tid)
+            added += 1
+
+    if added:
+        print(f"  [force-include] Restored {added} national notices from cache")
+    return notices
+
+
 def _merge_uk_into_relevant(uk_notices: list) -> int:
     """Append UK notices to data/filtered/relevant.json with cross-source dedup."""
     filtered_path = PROJECT_ROOT / "data" / "filtered" / "relevant.json"
@@ -460,6 +570,60 @@ def _merge_uk_into_relevant(uk_notices: list) -> int:
         json.dump(merged, f, ensure_ascii=False, indent=2)
 
     return len(merged)
+
+
+def dedup_uk_fts_vs_cf(fts_notices: list, existing_notices: list) -> tuple[list, int]:
+    """
+    Cross-dedup UK-FTS notices against existing UK-CF notices.
+
+    Exact match on tender_id; title-similarity match as fallback (≥4 common words).
+    Returns (new_only, enriched_count) — new_only are FTS notices not found in CF,
+    enriched_count is how many CF entries got winner/value data from FTS.
+    """
+    existing_uk = {
+        n.get("tender_id", ""): n
+        for n in existing_notices
+        if "UK" in str(n.get("source", ""))
+    }
+
+    new_notices: list = []
+    enriched = 0
+
+    for fts in fts_notices:
+        fts_tid = fts.get("tender_id", "")
+        fts_title_words = set(str(fts.get("_title_final", "")).lower().split())
+
+        matched_key = None
+
+        # Exact ID match
+        if fts_tid in existing_uk:
+            matched_key = fts_tid
+        else:
+            # Title similarity
+            for uid, ex in existing_uk.items():
+                ex_words = set(str(ex.get("_title_final", "")).lower().split())
+                if len(fts_title_words & ex_words) >= 4:
+                    matched_key = uid
+                    break
+
+        if matched_key:
+            ex = existing_uk[matched_key]
+            changed = False
+            if not ex.get("_winner_name") and fts.get("_winner_name"):
+                ex["_winner_name"] = fts["_winner_name"]
+                changed = True
+            if not (ex.get("estimated_value") and ex["estimated_value"].get("amount")):
+                if fts.get("estimated_value") and fts["estimated_value"].get("amount"):
+                    ex["estimated_value"] = fts["estimated_value"]
+                    changed = True
+            if changed:
+                ex["source"] = ex.get("source", "UK-CF") + "+UK-FTS"
+                enriched += 1
+        else:
+            new_notices.append(fts)
+
+    logger.info(f"UK-FTS dedup: {enriched} CF enriched, {len(new_notices)} new FTS-only")
+    return new_notices, enriched
 
 
 def run_bulk_comparison(config: dict, test_mode: bool = False) -> list:
@@ -508,7 +672,7 @@ def run_bulk_comparison(config: dict, test_mode: bool = False) -> list:
 
 
 def run_canada(config: dict, test_mode: bool = False) -> list:
-    """Load Canadian DND procurement data from open.canada.ca."""
+    """Load Canadian DND procurement data: historical contracts + active CanadaBuys tenders."""
     print("\n" + "="*60)
     print("  CANADA: open.canada.ca DND Procurement")
     print("="*60)
@@ -517,24 +681,31 @@ def run_canada(config: dict, test_mode: bool = False) -> list:
 
     loader = CanadaOpenDataLoader(cache_dir=str(PROJECT_ROOT / "data" / "raw" / "canada"))
 
-    resources = loader.discover_all_resource_urls()
-    if resources:
-        print(f"  Dataset resources ({len(resources)}):")
-        for r in resources[:5]:
-            print(f"    [{r.get('format','?'):6s}] {r.get('name','')[:40]} — {r.get('url','')[:60]}")
-
+    # 1. Historical contracts (CKAN Datastore)
     matches = loader.load_and_filter(test_mode=test_mode)
-
     if matches:
-        print(f"\n  Found {len(matches)} DND trailer contracts:")
-        for m in matches[:10]:
+        print(f"\n  [Historical] {len(matches)} DND trailer contracts (CA-OD):")
+        for m in matches[:5]:
             print(f"    {m.get('tender_id','?'):<22} {m.get('date','?'):<12} {m.get('title','')[:50]}")
-        if len(matches) > 10:
-            print(f"  ... and {len(matches) - 10} more")
     else:
-        print("  No DND trailer contracts found (check logs)")
+        print("  [Historical] No DND trailer contracts found")
 
-    return matches
+    # 2. Active/recent tenders (CanadaBuys Open Data CSVs)
+    print("\n  Loading CanadaBuys active tenders...")
+    active = loader.load_active_tenders(test_mode=test_mode)
+    if active:
+        print(f"  [Active/Recent] {len(active)} DND trailer tenders (CA-CB):")
+        for t in active[:10]:
+            title = t.get("_title_final") or t.get("title", "")
+            date = t.get("_pub_date","")
+            status = t.get("_status","")
+            print(f"    {t.get('tender_id','?'):<30} [{status:6}] {date:<12} {title[:50]}")
+        if len(active) > 10:
+            print(f"  ... and {len(active) - 10} more")
+    else:
+        print("  [Active] No active DND trailer tenders found")
+
+    return matches  # historical returned separately; active go through classifier
 
 
 def run_review(config: dict):
@@ -797,6 +968,21 @@ def run_national_scraping(countries: list, config: dict,
         adapter_registry["it"] = (ITAdapter, create_it_config)
     except ImportError:
         pass
+    try:
+        from src.national_scraper.adapters.ch_adapter import CHAdapter, create_ch_config
+        adapter_registry["ch"] = (CHAdapter, create_ch_config)
+    except ImportError:
+        pass
+    try:
+        from src.national_scraper.adapters.uk_fts_adapter import UKFTSAdapter, create_uk_fts_config
+        adapter_registry["gb"] = (UKFTSAdapter, create_uk_fts_config)
+    except ImportError:
+        pass
+    try:
+        from src.national_scraper.adapters.de_evergabe_adapter import DEEvergabeAdapter, create_de_evergabe_config
+        adapter_registry["de-ev"] = (DEEvergabeAdapter, create_de_evergabe_config)
+    except ImportError:
+        pass
 
     all_notices = []
     screenshot_dir = str(PROJECT_ROOT / "data" / "raw" / "screenshots")
@@ -840,7 +1026,7 @@ def run_national_scraping(countries: list, config: dict,
             if test_mode:
                 detail_limit = 3
             elif country == "cz":
-                detail_limit = min(len(defence), 50)
+                detail_limit = min(len(defence), 150)
             else:
                 detail_limit = len(defence)
             for i, result in enumerate(defence[:detail_limit]):
@@ -892,7 +1078,7 @@ def run_single_national_isolated(country: str, config: dict,
             elif country == "cz":
                 # CZ uses Playwright browser per detail page (~6s each).
                 # Cap at 50 so CZ doesn't become a 40-minute bottleneck.
-                detail_limit = min(len(defence), 50)
+                detail_limit = min(len(defence), 150)
             else:
                 detail_limit = len(defence)
             notices = []
@@ -1293,11 +1479,14 @@ def main():
         print("\n  Mode: CANADA OPEN DATA (DND procurement) → Excel export")
         from src.canada_loader import CanadaOpenDataLoader
         loader = CanadaOpenDataLoader(cache_dir=str(PROJECT_ROOT / "data" / "raw" / "canada"))
-        canada_notices = loader.load_and_filter(
-            test_mode=args.test,
-            classify=bool(os.environ.get("ANTHROPIC_API_KEY"))
-        )
-        print(f"  [OK] Canada: {len(canada_notices)} contracts")
+        canada_notices = loader.load_and_filter(test_mode=args.test)
+        active_tenders = loader.load_active_tenders(test_mode=args.test)
+        print(f"  [OK] Canada historical: {len(canada_notices)} contracts")
+        print(f"  [OK] CanadaBuys active: {len(active_tenders)} tenders")
+        if active_tenders:
+            for t in active_tenders[:5]:
+                title = t.get("_title_final","") or t.get("title","")
+                print(f"    [{t.get('_pub_date','?')}] {title[:70]}")
         run_phase_export(config, test_mode=args.test, canada_notices=canada_notices)
         return
 
@@ -1484,6 +1673,13 @@ def main():
         with Timer("Phase 3b: AI Classify"):
             run_phase_classify(config, test_mode=args.test, args=args)
 
+        # ── Persist all relevant national IDs for future runs ──
+        filtered_path = PROJECT_ROOT / "data" / "filtered" / "relevant.json"
+        if filtered_path.exists():
+            with open(filtered_path, "r", encoding="utf-8") as _f:
+                _classified = json.load(_f)
+            update_national_force_include(_classified)
+
         if not getattr(args, "no_enrich", False):
             with Timer("Phase 3c: Fulltext Enrich"):
                 run_phase_enrich(config, test_mode=args.test)
@@ -1493,6 +1689,15 @@ def main():
             with Timer("Phase 3d: Award Match"):
                 run_phase_award_match(config, test_mode=args.test)
 
+        # ── Restore force-included national notices missing this run ──
+        if filtered_path.exists():
+            with open(filtered_path, "r", encoding="utf-8") as _f:
+                _current = json.load(_f)
+            _restored = ensure_force_includes(_current)
+            if len(_restored) > len(_current):
+                with open(filtered_path, "w", encoding="utf-8") as _f:
+                    json.dump(_restored, _f, ensure_ascii=False, indent=2)
+
         # ── Canada historical data ──
         canada_notices = []
         if getattr(args, "canada", False):
@@ -1500,10 +1705,7 @@ def main():
                 from src.canada_loader import CanadaOpenDataLoader
                 loader = CanadaOpenDataLoader(
                     cache_dir=str(PROJECT_ROOT / "data" / "raw" / "canada"))
-                canada_notices = loader.load_and_filter(
-                    test_mode=args.test,
-                    classify=bool(os.environ.get("ANTHROPIC_API_KEY"))
-                )
+                canada_notices = loader.load_and_filter(test_mode=args.test)
                 print(f"  [OK] Canada (Historical): {len(canada_notices)} contracts")
 
         with Timer("Phase 4: Export"):

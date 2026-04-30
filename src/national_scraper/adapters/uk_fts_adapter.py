@@ -144,7 +144,7 @@ class UKFTSAdapter(BaseAdapter):
         since = (datetime.utcnow() - timedelta(days=days_back)).strftime(
             "%Y-%m-%dT00:00:00Z"
         )
-        max_pages = 3 if test_mode else 200
+        max_pages = 3 if test_mode else 20  # FTS API cursor timeouts worsen with depth; 20p×10=200 releases
         page_size = 10  # keep small to avoid VPN timeouts
 
         logger.info(

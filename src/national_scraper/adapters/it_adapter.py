@@ -43,6 +43,29 @@ DIFESA_URL = "https://www.difesa.it"
 
 # ANAC portal search URL
 ANAC_SEARCH = f"{BASE_URL}/risultati-ricerca"
+
+
+def _fix_anac_url(href: str) -> str:
+    """
+    Fix malformed ANAC portal URLs — the Liferay CMS sometimes emits hrefs
+    where the slash between domain and path is missing, e.g.:
+      https://www.anticorruzione.itrisultati-ricerca  (missing /)
+      https://www.anticorruzione.it-/cerca-il-bando  (leading hyphen from path)
+    Normalise to absolute https://www.anticorruzione.it/... form.
+    """
+    if not href:
+        return href
+    if href.startswith("http"):
+        # Already absolute — fix missing slash: "anticorruzione.it<path>" → "anticorruzione.it/<path>"
+        for domain in (BASE_URL, DIFESA_URL):
+            if href.startswith(domain) and len(href) > len(domain):
+                rest = href[len(domain):]
+                if rest and not rest.startswith("/"):
+                    href = domain + "/" + rest.lstrip("-")
+                    break
+        return href
+    # Relative URL — build absolute
+    return BASE_URL.rstrip("/") + "/" + href.lstrip("/-")
 # ANAC advanced CIG search
 ANAC_CIG_SEARCH = f"{BASE_URL}/-/cerca-il-bando"
 
@@ -276,8 +299,7 @@ class ITAdapter(BaseAdapter):
         """Convert a Liferay search API item to SearchResult."""
         title = item.get("title", item.get("headline", ""))
         url = item.get("contentUrl", item.get("friendlyUrlPath", ""))
-        if not url.startswith("http"):
-            url = BASE_URL + "/" + url.lstrip("/")
+        url = _fix_anac_url(url)
 
         if not title or len(title) < 5:
             return None
@@ -335,8 +357,7 @@ class ITAdapter(BaseAdapter):
             if text_lower in ("dettaglio", "vedi", "apri", "leggi", "scheda"):
                 continue
 
-            if not href.startswith("http"):
-                href = BASE_URL + ("/" if not href.startswith("/") else "") + href.lstrip("/")
+            href = _fix_anac_url(href)
 
             # Deduplicate by URL
             if href in seen_urls:

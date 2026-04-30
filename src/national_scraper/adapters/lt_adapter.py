@@ -211,27 +211,88 @@ class LTAdapter(BaseAdapter):
         return results[:max_results]
 
     def _browser_search(self, keyword: str, max_results: int) -> list:
-        """Browser fallback for CVPP search.
-
-        NOTE (Sprint 11): /Notice/Search returns HTTP 404 — portal uses SPA routing.
-        Navigate to homepage and let React load, then take screenshot for discovery.
-        """
+        """Browser fallback for CVPP search using page.evaluate() after React renders."""
         results = []
         try:
             if not self.browser or not self.browser.page:
                 return []
 
-            # Navigate to homepage (SPA needs to load React first)
+            # Navigate to homepage — React SPA must initialize before search
             ok = self.browser.goto(LT_BASE, timeout=30000)
             if not ok:
                 return []
 
-            time.sleep(3)  # wait for React SPA to initialize
+            time.sleep(4)  # wait for React SPA to render
+
+            # Try to find a search input and submit the keyword
+            try:
+                filled = self.browser.page.evaluate(f"""
+                    () => {{
+                        const inputs = document.querySelectorAll(
+                            'input[type="text"], input[type="search"], input[placeholder*="iesk"]'
+                        );
+                        for (const inp of inputs) {{
+                            inp.focus();
+                            inp.value = {json.dumps(keyword)};
+                            inp.dispatchEvent(new Event('input', {{bubbles: true}}));
+                            inp.dispatchEvent(new Event('change', {{bubbles: true}}));
+                            return true;
+                        }}
+                        return false;
+                    }}
+                """)
+                if filled:
+                    time.sleep(1)
+                    # Submit by pressing Enter on the search input
+                    self.browser.page.keyboard.press("Enter")
+                    time.sleep(3)
+            except Exception:
+                pass
+
             self.browser._screenshot(f"lt_search_{keyword[:20]}")
-            html = self.browser.page.content()
-            results = self._parse_search_html(html)
-            logger.debug("LT: SPA homepage loaded — keyword search not yet implemented")
-            logger.info("LT: browser search '%s' → %d results (stub)", keyword, len(results))
+
+            # Extract links via JS after React has rendered the DOM
+            links = self.browser.page.evaluate("""
+                () => {
+                    const results = [];
+                    document.querySelectorAll("a[href]").forEach(a => {
+                        const href = a.href || "";
+                        const text = (a.textContent || "").trim();
+                        if (text.length > 5 && href.includes("eviesiejipirkimai.lt") &&
+                            !href.endsWith("/") && !href.includes("javascript") &&
+                            (href.match(/\\/\\d{4,}/) || href.includes("/skelbimas/") ||
+                             href.includes("/pirkimas/"))) {
+                            results.push({href, text: text.slice(0, 200)});
+                        }
+                    });
+                    return results;
+                }
+            """)
+
+            seen = set()
+            for link in (links or []):
+                href = link.get("href", "")
+                text = link.get("text", "").strip()
+                if not href or not text or href in seen:
+                    continue
+                seen.add(href)
+
+                m = re.search(r"/(\d{4,})/?(?:\?|$|#|$)", href)
+                ref_id = m.group(1) if m else href[-40:]
+
+                results.append(SearchResult(
+                    title=text[:200],
+                    url=href,
+                    authority="",
+                    reference_id=ref_id,
+                    date="",
+                    currency="EUR",
+                    snippet=keyword,  # preserve search term for filter_defence
+                ))
+                if len(results) >= max_results:
+                    break
+
+            logger.info("LT: browser search '%s' → %d results", keyword, len(results))
 
         except Exception as exc:
             logger.warning("LT: browser search error: %s", exc)
@@ -315,9 +376,13 @@ class LTAdapter(BaseAdapter):
         trailer_kw = [k.lower() for k in self.config.trailer_keywords]
 
         for r in results:
-            combined = f"{(r.authority or '').lower()} {(r.title or '').lower()}"
+            combined = (
+                f"{(r.authority or '').lower()} "
+                f"{(r.title or '').lower()} "
+                f"{(r.snippet or '').lower()}"  # snippet holds search keyword
+            )
             is_defence = any(kw in combined for kw in defence_kw)
-            is_trailer = any(kw in (r.title or "").lower() for kw in trailer_kw)
+            is_trailer = any(kw in combined for kw in trailer_kw)
             if is_defence and is_trailer:
                 kept.append(r)
 

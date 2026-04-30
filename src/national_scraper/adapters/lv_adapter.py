@@ -1,39 +1,43 @@
 """
-Latvia Adapter — EIS (eis.gov.lv)
+Latvia Adapter — IUB (Iepirkumu uzraudzības birojs)
 
-Portal: https://www.eis.gov.lv
+Portal: https://info.iub.gov.lv
+Backend API: https://infob.iub.gov.lv/api/search
 Defence: Aizsardzības ministrija (Ministry of Defence), NBS (National Armed Forces)
 
 DISCOVERY (Sprint 11):
-  Latvia's Electronic Information System (EIS) for public procurement.
+  EIS portal (eis.gov.lv) is completely broken — all requests return ASP.NET
+  session errors. EIS is unreachable without a valid session cookie.
 
-  Public procurement search:
-    https://www.eis.gov.lv/EKEIS/Supplier/Procurement/
+  Primary source: IUB (Iepirkumu uzraudzības birojs) at info.iub.gov.lv.
+  The Vue.js SPA uses a JSON API backend at infob.iub.gov.lv/api/search:
 
-  Sprint 11 test result: Direct URL access shows ASP.NET session error page
-    "Sistēmas kļūda / System error" — the portal requires a valid session cookie.
-    Direct navigation to /EKEIS/Supplier/Procurement?Title=piekabe fails with
-    Error Id: 20260430151935526 (session expired / not established).
+    GET https://infob.iub.gov.lv/api/search
+        ?search={keyword}&withInflections=true&searchPhrase=true
+    Returns JSON array of up to 20 notice objects.
+    No authentication required.
 
-  Root cause: ASP.NET portal uses session-scoped state. Must first visit the
-  homepage, establish a session, then navigate to search.
+  Notice URL: https://info.iub.gov.lv/lv/pazinojumi/{uuid}
+    where {uuid} is the `identifier` field from the API response.
 
-  Corrected strategy (Sprint 12):
-    1. Navigate to https://www.eis.gov.lv/ first (establishes session cookie)
-    2. Then navigate to search with keyword
-    3. Or use the Latvian Open Data portal for tender exports:
-       https://data.gov.lv/dati/lv/dataset/iepirkumu-pazinojumi
-       (CSV/JSON bulk download, no session needed)
+  Notice object fields:
+    identifier       UUID (used for notice URL)
+    procurementIdentifier  human-readable ID like "NBS 2025/123"
+    name             tender title
+    organizationName contracting authority name
+    publicationDate  ISO datetime
+    amount           contract value string
+    currency         "EUR"
+    cpvCodes         list of {code, caption}
+    externalId       numeric ID (alternative URL key)
 
-  RSS feeds: https://www.eis.gov.lv/EKEIS/Supplier/Procurement/Rss
-    — status unknown; Sprint 11 test shows RSS also likely requires session.
+IMPLEMENTATION STATUS: ACTIVE — uses infob.iub.gov.lv JSON API directly.
 
-  IMPLEMENTATION STATUS: STUB — returns empty, documents portal structure.
-
-  Defence authorities:
-    Aizsardzības ministrija = Ministry of Defence
-    Nacionālie bruņotie spēki (NBS) = National Armed Forces
-    Valsts aizsardzības militārais birojs = State Defence Military Bureau
+Defence authorities:
+  Aizsardzības ministrija = Ministry of Defence
+  Nacionālie bruņotie spēki (NBS) = National Armed Forces
+  Valsts aizsardzības militārais birojs = State Defence Military Bureau
+  Zemessardze = National Guard
 
 TRAILER KEYWORDS (Latvian):
   piekabe = trailer
@@ -45,12 +49,11 @@ TRAILER KEYWORDS (Latvian):
   zempiekraujamā piekabe = low-loader trailer
 """
 
-import json
 import logging
+import re
 import time
 from typing import Optional
 
-import requests
 import urllib3
 
 from ..core import BrowserCore
@@ -60,22 +63,18 @@ from ..resilience import RetrySession
 logger = logging.getLogger(__name__)
 urllib3.disable_warnings()
 
-LV_BASE = "https://www.eis.gov.lv"
-LV_SEARCH_URL = f"{LV_BASE}/EKEIS/Supplier/Procurement"
-LV_RSS_URL = f"{LV_BASE}/EKEIS/Supplier/Procurement/Rss"
-LV_NOTICE_URL = f"{LV_BASE}/EKEIS/Supplier/Procurement/{{id}}"
-
-# CPV codes for trailers (Latvia uses EU CPV codes)
-TRAILER_CPV_CODES = ["34223000", "34223100", "34223200", "34223300"]
+LV_IUB_API = "https://infob.iub.gov.lv/api/search"
+LV_IUB_NOTICE_URL = "https://info.iub.gov.lv/lv/pazinojumi/{uuid}"
+LV_IUB_SEARCH = "https://info.iub.gov.lv/lv/meklet"  # for base_url / config
 
 
 def create_lv_config() -> AdapterConfig:
     return AdapterConfig(
         country_name="Latvia",
         country_code="LV",
-        source_code="LV-EIS",
-        base_url=LV_BASE,
-        search_url=LV_SEARCH_URL,
+        source_code="LV-IUB",
+        base_url=LV_IUB_SEARCH,
+        search_url=LV_IUB_API,
         language="lv",
         trailer_keywords=[
             "piekabe",              # trailer
@@ -98,197 +97,132 @@ def create_lv_config() -> AdapterConfig:
             "Zemessardze",
             "Ministry of Defence",
         ],
-        min_interval_seconds=2.0,
+        min_interval_seconds=1.0,
     )
 
 
 class LVAdapter(BaseAdapter):
     """
-    Latvia EIS adapter.
+    Latvia IUB adapter using the infob.iub.gov.lv JSON API.
+
+    EIS portal (eis.gov.lv) is broken — all requests return session errors.
+    The IUB Vue.js SPA (info.iub.gov.lv) uses a public JSON API backend that
+    can be called directly without authentication or Playwright.
 
     Strategy:
-    1. Try RSS feed filtered by CPV 34223 (trailer codes) — no session needed
-    2. Browser-based keyword search on EIS portal
-    3. Filter results for defence authority + trailer keyword
+    1. REST search on infob.iub.gov.lv/api/search per keyword and per authority
+    2. Filter by defence authority + trailer keyword in returned JSON
+    3. Notice detail page is info.iub.gov.lv/lv/pazinojumi/{uuid}
 
     Latvia is EU member — above-threshold tenders appear on TED.
-    This adapter captures below-threshold and national-only notices.
+    This adapter targets below-threshold and national-only notices.
     """
 
     def __init__(self, browser: BrowserCore, config: AdapterConfig):
         super().__init__(browser, config)
         self._session = RetrySession(max_retries=3, backoff_base=2.0, rotate_ua=True)
-        self._session.update_headers({
-            "Accept": "application/rss+xml, application/xml, text/html, */*",
-        })
+        self._session.update_headers({"Accept": "application/json"})
 
     # ── Search ────────────────────────────────────────────────────────────
 
     def search(self, keyword: str, max_results: int = 50) -> list:
-        return self._rss_search(cpv_prefix="34223", keyword=keyword, max_results=max_results)
+        return self._api_search(keyword, max_results)
 
     def search_all_keywords(self, max_results_per_keyword: int = 50,
                             test_mode: bool = False) -> list:
         all_results: dict[str, SearchResult] = {}
 
-        # Phase 1: CPV-based RSS search for trailer codes
-        logger.info("LV: Phase 1 — CPV trailer search via RSS/API")
-        for cpv in (TRAILER_CPV_CODES[:1] if test_mode else TRAILER_CPV_CODES):
-            for r in self._rss_search(cpv_prefix=cpv[:5], max_results=100):
+        kw_list = self.config.trailer_keywords[:2] if test_mode else self.config.trailer_keywords
+        auth_list = [] if test_mode else self.config.defence_authorities[:4]
+
+        for kw in kw_list:
+            for r in self._api_search(kw, max_results_per_keyword):
                 key = r.reference_id or r.url
                 if key and key not in all_results:
                     all_results[key] = r
             time.sleep(self.config.min_interval_seconds)
 
-        # Phase 2: Keyword search via browser (if RSS yields no results)
-        if not all_results or not test_mode:
-            logger.info("LV: Phase 2 — browser keyword search")
-            kw_list = self.config.trailer_keywords[:2] if test_mode else self.config.trailer_keywords[:5]
-            for kw in kw_list:
-                for r in self._browser_search(kw, max_results_per_keyword):
-                    key = r.reference_id or r.url
-                    if key and key not in all_results:
-                        all_results[key] = r
-                time.sleep(self.config.min_interval_seconds)
+        for auth in auth_list:
+            for r in self._api_search(auth, 50):
+                key = r.reference_id or r.url
+                if key and key not in all_results:
+                    all_results[key] = r
+            time.sleep(self.config.min_interval_seconds)
 
         logger.info("LV: search_all_keywords → %d candidates", len(all_results))
         return list(all_results.values())
 
-    def _rss_search(self, cpv_prefix: str = None, keyword: str = None,
-                    max_results: int = 50) -> list:
-        """Try EIS RSS feed for trailer CPV codes."""
-        params = {}
-        if cpv_prefix:
-            params["cpvCode"] = cpv_prefix
-        if keyword:
-            params["title"] = keyword
-
-        try:
-            resp = self._session.get(LV_RSS_URL, params=params, timeout=20)
-            if resp.status_code != 200:
-                logger.debug("LV: RSS HTTP %s — will try browser", resp.status_code)
-                return []
-
-            content = resp.text
-            if "<rss" not in content.lower() and "<feed" not in content.lower():
-                logger.debug("LV: RSS response is not XML — portal may require session")
-                return []
-
-            return self._parse_rss(content, max_results)
-
-        except Exception as exc:
-            logger.debug("LV: RSS fetch error: %s", exc)
-            return []
-
-    def _parse_rss(self, xml_content: str, max_results: int) -> list:
-        """Parse RSS/Atom feed from EIS portal."""
-        import xml.etree.ElementTree as ET
+    def _api_search(self, keyword: str, max_results: int) -> list:
+        """Call infob.iub.gov.lv JSON API and parse results."""
         results = []
-        try:
-            root = ET.fromstring(xml_content)
-            ns = {"atom": "http://www.w3.org/2005/Atom"}
+        page = 1
 
-            # Try Atom first, then RSS
-            items = root.findall(".//atom:entry", ns) or root.findall(".//item")
+        while len(results) < max_results:
+            try:
+                resp = self._session.get(
+                    LV_IUB_API,
+                    params={
+                        "search": keyword,
+                        "withInflections": "true",
+                        "searchPhrase": "true",
+                        "page": page,
+                    },
+                    timeout=20,
+                )
+                if resp.status_code != 200:
+                    logger.warning("LV: API HTTP %s for '%s'", resp.status_code, keyword)
+                    break
 
-            for item in items[:max_results]:
-                title_el = (item.find("atom:title", ns) or item.find("title"))
-                link_el = (item.find("atom:link", ns) or item.find("link"))
-                date_el = (item.find("atom:published", ns) or
-                           item.find("atom:updated", ns) or
-                           item.find("pubDate"))
+                items = resp.json()
+                if not isinstance(items, list) or not items:
+                    break
 
-                title = (title_el.text or "").strip() if title_el is not None else ""
-                link = (link_el.get("href") or (link_el.text or "")).strip() if link_el is not None else ""
-                pub_date = (date_el.text or "")[:10] if date_el is not None else ""
+                for item in items:
+                    sr = self._item_to_result(item, keyword)
+                    if sr:
+                        results.append(sr)
 
-                # Extract ID from link
-                ref_id = ""
-                import re
-                m = re.search(r"/(\d+)/?$", link)
-                if m:
-                    ref_id = m.group(1)
+                # API returns 20 items per page; stop if fewer returned
+                if len(items) < 20:
+                    break
+                page += 1
 
-                if not title:
-                    continue
+            except Exception as exc:
+                logger.warning("LV: API search error for '%s': %s", keyword, exc)
+                break
 
-                results.append(SearchResult(
-                    title=title[:200],
-                    url=link or LV_SEARCH_URL,
-                    authority="",  # not in RSS, filled at detail stage
-                    reference_id=ref_id or link,
-                    date=pub_date,
-                    currency="EUR",
-                ))
-
-        except ET.ParseError as exc:
-            logger.debug("LV: RSS parse error: %s", exc)
-
-        return results
-
-    def _browser_search(self, keyword: str, max_results: int) -> list:
-        """Browser-based search on EIS portal.
-
-        NOTE: Direct URL access to /EKEIS/Supplier/Procurement causes a session
-        error (Sprint 11 discovery). Must establish session from homepage first.
-        """
-        results = []
-        try:
-            if not self.browser or not self.browser.page:
-                return []
-
-            # Step 1: establish session from homepage
-            self.browser.goto(LV_BASE, timeout=20000)
-            import time as _time
-            _time.sleep(1)
-
-            # Step 2: navigate to search
-            search_url = f"{LV_SEARCH_URL}?Title={requests.utils.quote(keyword)}"
-            ok = self.browser.goto(search_url, timeout=30000)
-            if not ok:
-                return []
-
-            time.sleep(2)
-            self.browser._screenshot(f"lv_search_{keyword[:20]}")
-
-            # Parse results from page
-            page_html = self.browser.page.content()
-            results = self._parse_search_html(page_html)
-            logger.info("LV: browser search '%s' → %d results", keyword, len(results))
-
-        except Exception as exc:
-            logger.warning("LV: browser search error: %s", exc)
-
+        logger.info("LV: API search '%s' → %d results", keyword, len(results))
         return results[:max_results]
 
-    def _parse_search_html(self, html: str) -> list:
-        """Parse search results from EIS HTML page."""
-        import re
-        results = []
+    def _item_to_result(self, item: dict, keyword: str = "") -> Optional[SearchResult]:
+        uuid = str(item.get("identifier") or "").strip()
+        if not uuid:
+            return None
 
-        # Look for procurement links: /EKEIS/Supplier/Procurement/NNNNN
-        for m in re.finditer(
-            r'href=["\']([^"\']*?/Procurement/(\d+)[^"\']*?)["\'].*?'
-            r'>([^<]{5,200})<',
-            html,
-            re.DOTALL
-        ):
-            url = m.group(1)
-            ref_id = m.group(2)
-            title = m.group(3).strip()
-            if not url.startswith("http"):
-                url = LV_BASE + url
+        title = str(item.get("name") or "").strip()
+        authority = str(item.get("organizationName") or "").strip()
+        pub_date = str(item.get("publicationDate") or "")[:10]
+        proc_id = str(item.get("procurementIdentifier") or uuid[:8])
 
-            results.append(SearchResult(
-                title=title[:200],
-                url=url,
-                authority="",
-                reference_id=ref_id,
-                date="",
-                currency="EUR",
-            ))
+        value = None
+        raw_amount = item.get("amount")
+        if raw_amount:
+            try:
+                value = float(str(raw_amount).replace(",", ".").replace(" ", ""))
+            except (ValueError, TypeError):
+                pass
 
-        return results
+        url = LV_IUB_NOTICE_URL.format(uuid=uuid)
+        return SearchResult(
+            title=title[:200],
+            url=url,
+            authority=authority[:200],
+            reference_id=proc_id,
+            date=pub_date,
+            value=value,
+            currency=item.get("currency", "EUR"),
+            snippet=keyword,  # preserve search term for filter_defence
+        )
 
     # ── Filter ────────────────────────────────────────────────────────────
 
@@ -298,15 +232,11 @@ class LVAdapter(BaseAdapter):
         trailer_kw = [k.lower() for k in self.config.trailer_keywords]
 
         for r in results:
-            auth_low = (r.authority or "").lower()
-            title_low = (r.title or "").lower()
-            combined = f"{auth_low} {title_low}"
-
+            # Check only title + authority — snippet would accept all keyword-search results
+            combined = f"{(r.authority or '').lower()} {(r.title or '').lower()}"
+            is_trailer = any(kw in combined for kw in trailer_kw)
             is_defence = any(kw in combined for kw in defence_kw)
-            is_trailer = any(kw in title_low for kw in trailer_kw)
-
-            # If we have no authority (RSS case), keep trailer hits and verify at detail stage
-            if (is_trailer and (is_defence or not r.authority)):
+            if is_trailer and is_defence:
                 kept.append(r)
 
         logger.info("LV: filter_defence: %d → %d", len(results), len(kept))
@@ -315,96 +245,23 @@ class LVAdapter(BaseAdapter):
     # ── Detail ────────────────────────────────────────────────────────────
 
     def get_detail(self, result: SearchResult) -> Optional[NoticeDetail]:
-        if not self.browser or not self.browser.page:
-            return self._detail_from_result(result)
-
-        try:
-            url = result.url
-            if not url.startswith("http"):
-                url = LV_NOTICE_URL.format(id=result.reference_id)
-
-            ok = self.browser.goto(url, timeout=30000)
-            if not ok:
-                return self._detail_from_result(result)
-
-            time.sleep(1.5)
-            html = self.browser.page.content()
-            return self._parse_detail_html(html, result)
-
-        except Exception as exc:
-            logger.error("LV: detail error for %s: %s", result.reference_id, exc)
-            return self._detail_from_result(result)
-
-    def _parse_detail_html(self, html: str, result: SearchResult) -> NoticeDetail:
-        import re
-
-        def extract(pattern: str, default: str = "") -> str:
-            m = re.search(pattern, html, re.IGNORECASE | re.DOTALL)
-            return (m.group(1).strip() if m else default)
-
-        title = extract(r'<h1[^>]*>(.*?)</h1>') or result.title
-        # Clean HTML tags
-        title = re.sub(r"<[^>]+>", "", title).strip()
-
-        authority = extract(
-            r'(?:Pasūtītājs|Iepirkuma veicējs|Contracting\s+Authority)[^:]*:\s*'
-            r'<[^>]*>([^<]+)</[^>]*>'
-        ) or result.authority
-
-        pub_date = extract(
-            r'(?:Publicēšanas datums|Published)[^:]*:\s*(\d{4}-\d{2}-\d{2})'
-        ) or result.date
-
-        value = result.value
-        val_str = extract(
-            r'(?:Līguma vērtība|Estimated value)[^:]*:\s*([\d\s,.]+)\s*(?:EUR|€)'
-        )
-        if val_str:
-            try:
-                value = float(val_str.replace(" ", "").replace(",", "."))
-            except ValueError:
-                pass
-
-        description = extract(
-            r'(?:Apraksts|Description)[^:]*:\s*<[^>]*>(.*?)</[^>]*>', ""
-        )[:500]
-        description = re.sub(r"<[^>]+>", " ", description).strip()
-
-        winner = extract(
-            r'(?:Uzvarētājs|Award winner|Piegādātājs)[^:]*:\s*<[^>]*>([^<]+)</[^>]*>'
-        )
-
-        return NoticeDetail(
-            title=title[:200],
-            description=description,
-            authority=authority[:200],
-            date=pub_date,
-            value=value,
-            currency="EUR",
-            winner=winner[:200] if winner else "",
-            reference_id=result.reference_id,
-            url=result.url,
-            source_code="LV-EIS",
-            raw_text=re.sub(r"<[^>]+>", " ", html)[:3000],
-        )
-
-    def _detail_from_result(self, result: SearchResult) -> NoticeDetail:
         return NoticeDetail(
             title=result.title,
+            description="",
             authority=result.authority,
             date=result.date,
             value=result.value,
             currency="EUR",
             reference_id=result.reference_id,
             url=result.url,
-            source_code="LV-EIS",
+            source_code="LV-IUB",
             raw_text=result.title or "",
         )
 
     def to_standard_format(self, detail: NoticeDetail) -> dict:
         return {
-            "tender_id": f"LV-EIS-{detail.reference_id}",
-            "source": "LV-EIS",
+            "tender_id": f"LV-IUB-{detail.reference_id}",
+            "source": "LV-IUB",
             "source_url_national": detail.url,
             "_title_final": detail.title,
             "_country_normalized": "Latvia",
@@ -416,7 +273,7 @@ class LVAdapter(BaseAdapter):
             "_description_final": detail.description or "",
             "_national_raw_text": detail.raw_text or "",
             "_trailer_quantity_1": detail.quantity,
-            "_raw": {"source": "LV-EIS", "url": detail.url},
+            "_raw": {"source": "LV-IUB", "url": detail.url},
             "estimated_value": (
                 {"amount": detail.value, "currency": "EUR"} if detail.value else None
             ),

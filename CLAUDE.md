@@ -192,45 +192,36 @@ scoring:
 
 ---
 
-## 9. Aktueller Stand (Sprint 9b, 2026-04-30)
+## 9. Aktueller Stand (Sprint 11 Chat 1, 2026-04-30)
 
-**Branch:** `main`
+**Branch:** `sprint11/fixes-new-countries`  
+**Letztes Excel:** `data/export/260430_TED_Tender Data_00.01.xlsx` (Sprint 10, 250 notices)
 
-| Quelle | relevant.json | Excel |
-|--------|--------------|-------|
-| TED | 194 | ~188 |
-| CZ-NEN | 32 | ~32 |
-| FR-BOAMP | 13 | ~13 |
-| UK-CF | 6 | ~6 |
-| NO-Doffin | 3 | ~3 |
-| NL-TenderNed | 1 | ~1 |
-| **Gesamt** | **249** | **229** |
+### Sprint 11 Chat 1 Änderungen
+| Komponente | Änderung |
+|------------|----------|
+| `uk_fts_adapter.py` | Monatliche Datumsfenster statt 365-Tage-Range; `_month_windows()` helper; 64 Monate seit Jan 2021 |
+| `ch_adapter.py` | Historisch ab 2024-07-01; CPV/Authority limit 200/300→500; 400-Fallback in `_api_search` |
+| `gr_adapter.py` | NEW Stub — Promitheus Homepage navigiert, Screenshots gemacht |
+| `ee_adapter.py` | NEW REST API Versuch + graceful 404 Fallback |
+| `lv_adapter.py` | NEW RSS+Browser Adapter + Session-First Navigation fix |
+| `lt_adapter.py` | NEW REST API + SPA-aware Browser Fallback |
+| `main.py` | 4 neue Adapter registriert (gr, ee, lv, lt) → 21 Adapter total |
 
-### Neue Adapter (Sprint 9)
-| Adapter | Status | Ergebnis |
-|---------|--------|---------|
-| CH simap.ch | ✅ | 28 fetched, 0 relevant (armasuisse, keine aktuellen Anhänger) |
-| DE evergabe | ✅ | 24 fetched, 0 relevant (zu breit, nicht-Anhänger) |
-| UK-FTS | ✅ | 0 (Timeout Seite 2) |
-| UA Prozorro | ✅ | 0 (kyrillische Keywords fehlen) |
-| CanadaBuys | ✅ | 604 historische DND contracts (eigenes Excel-Sheet) |
-
-### Neue Kategorien (Sprint 9b)
-- **Field Kitchen**: 23 notices
-- **Ammunition Trailer**: 4 notices
-
-### Letzte Commits
-- Sprint 9b: Merge + keyword expansion + full run (249 notices, 229 rows)
-- Sprint 9 Chat 3: CanadaBuys + Ukraine Prozorro
-- Sprint 9 Chat 2: UK FTS + DE evergabe + CredentialManager
-- Sprint 9 Chat 1: CZ force-include + Switzerland simap.ch
+### Adapter Status (Sprint 11 Discovery)
+| Land | Adapter | Status | Discovery |
+|------|---------|--------|-----------|
+| GR | Promitheus | Stub | Homepage lädt, ADF-Form braucht ViewState — Sprint 12 |
+| EE | riigihanked | Stub | API 404 — Endpunkt geändert, XHR-Intercept nötig |
+| LV | eis.gov.lv | Stub | Session-Fehler — Browser-Fix: Homepage zuerst |
+| LT | cvpp | Stub | React SPA — `/Notice/Search` 404, XHR-Intercept nötig |
 
 ### Bekannte offene Probleme
-1. **UA Prozorro**: kyrillische Trailer-Keywords fehlen (причіп, напівпричіп)
-2. **UK-FTS Timeout**: Seite 2 bricht ab — nur 10 releases gescannt
-3. **CH simap.ch**: historische Anhänger auf archiv.simap.ch (andere API); kein `--since` Limit empfohlen
-4. **DROPS/EPLS TED-Queries**: erst beim nächsten `--phase index` Run aktiv
-5. **"Other"-Kategorie ~3%**: 8 schlecht klassifizierte Notices
+1. **UK-FTS**: Fix deployed (monthly windows). Noch kein volles Ergebnis — Full-Run nötig
+2. **EE/LV/LT/GR**: Alle Stubs — echte APIs noch zu discovern (Sprint 12)
+3. **UA Prozorro**: nur 1/780 defence candidates als Anhänger — bessere kyrillische Keywords nötig
+4. **CZ Detail-Cap**: 150 von 216 Kandidaten geholt (zu langsam, ~28 min)
+5. **"Other"-Kategorie ~3.6%**: 9 schlecht klassifizierte Notices
 
 ---
 
@@ -257,17 +248,22 @@ scoring:
 
 ## 12. Sprint Backlog (Priorität)
 
-### Hoch
-- **UA Kyrillisch**: Trailer-Keywords auf Ukrainisch ergänzen (причіп, напівпричіп, низькорамний)
-- **UK-FTS Timeout**: Timeout erhöhen oder CPV-basierte Query implementieren
-- **CH ohne --since**: CH full run ohne Datumslimit für historische armasuisse Anhänger
+### Hoch (Sprint 12)
+- **EE API Discovery**: XHR-Intercept auf riigihanked.riik.ee → richtiger Endpunkt
+- **LV Session Fix**: Homepage-first Navigation + Open Data CSV als Fallback
+- **LT SPA Discovery**: XHR-Intercept auf cvpp.eviesiejipirkimai.lt
+- **GR ADF Form**: ViewState extrahieren + CPV-basierte POST-Search
+- **UK-FTS Full Run**: 64-Monate-Scan ausführen und Ergebnis messen
+- **UA Kyrillisch**: Bessere Trailer-Keywords (причіп, напівпричіп, трал) + CPV-only Match
 
 ### Mittel
 - **FI Hilma adapter** ausbauen (aktuell STUB)
 - **DROPS/EPLS TED-Run**: `--phase index` ohne Checkpoint für neue Queries (text_search_5–8)
 - **DE-EV Filterung verbessern**: CPV-basierte Suche statt Keyword
+- **CZ Detail-Cap**: 150→216 oder faster parallel fetching
 
 ### Niedrig
 - **Fulltext als Default** (aktuell optional)
 - **Award-Match Automation** für "Closed"-Status
 - **archiv.simap.ch** adapter für CH historische Daten
+- **"Other"-Kategorie**: Prompt-Tuning oder manueller Re-Classify Pass (9 notices)

@@ -13,7 +13,8 @@ Key API parameters:
   lang             : de | fr | it | en
   cpvCodes         : CPV code filter (comma-separated)
   newestPubTypes   : tender | award | advance_notice | request_for_information
-  newestPublicationFrom / newestPublicationUntil : YYYY-MM-DD
+  newestPublicationFrom / newestPublicationUntil : YYYY-MM-DD (use cautiously — API returns 400 if
+                       combined with cpvCodes; works for standalone date queries)
   itemsPerPage     : page size (max ~100)
   lastItem         : cursor pagination (YYYYMMDD|projectNumber)
 
@@ -22,6 +23,16 @@ Detail endpoints:
   GET /api/publications/v1/project/{projectId}/publication-details/{pubId}?lang=en
 
 Note: Switzerland is not EU/EWR, so NO overlap with TED. All findings are new.
+
+Historical coverage:
+  simap.ch relaunched on the current platform in July 2024.
+  Data before July 2024 is on archiv.simap.ch — no known public REST API
+  for the archive. This adapter always scans from 2024-07-01 to today,
+  regardless of the pipeline's global --since argument.
+
+  archiv.simap.ch investigation (Sprint 11): older platform, no API endpoint
+  found. Manual browsing possible at https://www.archiv.simap.ch but not
+  programmatically accessible without CAPTCHA bypass.
 
 Defence procurement authorities:
   armasuisse (Bundesamt fuer Ruestung / Office federal de l'armement)
@@ -40,7 +51,6 @@ Trailer CPV codes (same international standard):
 import re
 import time
 import logging
-import os
 from typing import Optional
 
 from ..core import BrowserCore
@@ -84,18 +94,23 @@ def create_ch_config() -> AdapterConfig:
         search_url=SIMAP_API_SEARCH,
         language="de",
         trailer_keywords=[
-            # German (proper umlauts — simap.ch full-text search requires them)
+            # German — simap.ch full-text search requires proper umlauts
             "Anhänger",
+            "Tiefladeanhänger",
             "Sattelanhänger",
             "Tieflader",
             "Tankanhänger",
             "Feldküche",
             "Wechselaufbau",
+            "Abrollbehälter",
             "Shelter",
+            "Munitionsanhänger",
+            "Panzertransportanhänger",
             # French
             "remorque",
             "semi-remorque",
             "cuisine roulante",
+            "remorque plateforme",
             # Italian
             "rimorchio",
             "semirimorchio",
@@ -131,25 +146,13 @@ class CHAdapter(BaseAdapter):
 
     def _build_session(self):
         try:
-            import requests
-            import urllib3
-            urllib3.disable_warnings()
+            from ..resilience import RetrySession
         except ImportError:
-            logger.error("CH: 'requests' not installed")
+            logger.error("CH: resilience module not available")
             return None
 
-        import requests as rl
-        session = rl.Session()
-        session.verify = not (
-            os.environ.get("SSL_VERIFY_DISABLE", "").strip().lower()
-            in ("1", "true", "yes")
-        )
-        session.headers.update({
-            "User-Agent": (
-                "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
-                "AppleWebKit/537.36 (KHTML, like Gecko) "
-                "Chrome/124.0.0.0 Safari/537.36"
-            ),
+        session = RetrySession(max_retries=3, backoff_base=2.0, rotate_ua=True)
+        session.update_headers({
             "Accept": "application/json, */*",
             "Referer": SIMAP_BASE,
         })
@@ -166,20 +169,26 @@ class CHAdapter(BaseAdapter):
     def search_all_keywords(self, max_results_per_keyword: int = 30,
                             test_mode: bool = False) -> list:
         """
-        Three-phase search:
+        Three-phase search.  Always scans from 2024-07-01 (simap.ch relaunch),
+        regardless of the pipeline's global --since argument.
+
         1. Keyword searches (trailer vocabulary)
         2. CPV-based search for trailer codes
-        3. armasuisse full sweep (all recent tenders)
+        3. Defence authority sweeps (armasuisse, LBA, VBS DDPS)
         """
         if not self._session:
             return []
+
+        # Historical start: simap.ch relaunch date — always full history
+        historical_from = "2024-07-01"
 
         all_results: dict = {}  # key = project_id
 
         # Phase 1: Keyword searches
         kw_list = self.config.trailer_keywords[:2] if test_mode else self.config.trailer_keywords
         for kw in kw_list:
-            for r in self._api_search({"search": kw}, max_results_per_keyword):
+            params = {"search": kw, "newestPublicationFrom": historical_from}
+            for r in self._api_search(params, max_results_per_keyword):
                 key = r.reference_id or r.url or r.title[:50]
                 if key and key not in all_results:
                     all_results[key] = r
@@ -187,21 +196,26 @@ class CHAdapter(BaseAdapter):
 
         # Phase 2: Trailer CPV codes (skip in test mode)
         if not test_mode:
-            logger.info("CH: searching by trailer CPV codes")
+            logger.info("CH: searching by trailer CPV codes (from %s)", historical_from)
             cpv_str = ",".join(TRAILER_CPV_CODES)
-            for r in self._api_search({"cpvCodes": cpv_str}, 200):
+            # Note: newestPublicationFrom cannot be combined with cpvCodes — API returns 400
+            for r in self._api_search({"cpvCodes": cpv_str}, 500):
                 key = r.reference_id or r.url or r.title[:50]
                 if key and key not in all_results:
                     all_results[key] = r
             time.sleep(self.config.min_interval_seconds)
 
-        # Phase 3: armasuisse authority sweep (always — most reliable source)
-        logger.info("CH: armasuisse authority sweep")
+        # Phase 3: authority sweeps for Swiss defence orgs
         limit_arm = 30 if test_mode else 500
-        for r in self._api_search({"search": "armasuisse"}, limit_arm):
-            key = r.reference_id or r.url or r.title[:50]
-            if key and key not in all_results:
-                all_results[key] = r
+        authority_searches = ["armasuisse", "Logistikbasis der Armee", "VBS DDPS", "Schweizer Armee"]
+        for auth_kw in authority_searches:
+            logger.info("CH: authority sweep — %s (from %s)", auth_kw, historical_from)
+            params = {"search": auth_kw, "newestPublicationFrom": historical_from}
+            for r in self._api_search(params, limit_arm):
+                key = r.reference_id or r.url or r.title[:50]
+                if key and key not in all_results:
+                    all_results[key] = r
+            time.sleep(self.config.min_interval_seconds)
 
         logger.info("CH: search_all_keywords -> %d unique results", len(all_results))
         return list(all_results.values())
@@ -266,7 +280,10 @@ class CHAdapter(BaseAdapter):
         Paginate through simap.ch project-search API.
 
         Pagination: cursor-based via pagination.lastItem (format "YYYYMMDD|projectNumber").
-        NOTE: Do NOT send newestPubTypes or newestPublicationFrom — they cause HTTP 400.
+
+        NOTE: newestPublicationFrom causes HTTP 400 when combined with cpvCodes.
+        When we get a 400, we retry without the date filter and log a warning.
+        newestPubTypes alone also causes 400 — don't pass it.
         """
         if not self._session:
             return []
@@ -279,6 +296,7 @@ class CHAdapter(BaseAdapter):
 
         all_results: dict = {}
         last_item = None
+        date_filter_stripped = False
 
         while len(all_results) < max_results:
             page_params = dict(base_params)
@@ -287,6 +305,18 @@ class CHAdapter(BaseAdapter):
 
             try:
                 resp = self._session.get(SIMAP_API_SEARCH, params=page_params, timeout=20)
+
+                if resp.status_code == 400 and "newestPublicationFrom" in base_params and not date_filter_stripped:
+                    # Date filter incompatible with this query (e.g. cpvCodes combo) — retry without it
+                    logger.debug(
+                        "CH API: 400 with newestPublicationFrom — retrying without date filter"
+                    )
+                    base_params.pop("newestPublicationFrom", None)
+                    base_params.pop("newestPublicationUntil", None)
+                    date_filter_stripped = True
+                    last_item = None
+                    continue
+
                 if resp.status_code != 200:
                     logger.warning("CH API: %s %s", resp.status_code, resp.text[:200])
                     break

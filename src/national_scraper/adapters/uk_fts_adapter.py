@@ -3,22 +3,29 @@ UK Find a Tender Service (FTS) Adapter
 
 OCDS-conformant REST API, free, no authentication required.
 Covers UK government contracts above the threshold (≈£139K post-Brexit).
-Complements UK Contracts Finder, which focuses on SME-accessible notices.
 
 API: https://www.find-tender.service.gov.uk/api/1.0/ocdsReleasePackages
-Pagination: follow links.next URL returned in each response.
+Pagination: cursor-based via links.next URL.
 No keyword/buyer filter in the API — we paginate and filter client-side.
 
-Strategy:
-  Pull notices updated within the configured window (default: last 180 days),
-  filter for defence buyers + trailer keywords, cap at max_pages requests.
-  Results are cached in data/raw/uk_fts/ to support incremental runs.
+Strategy (Sprint 11 rewrite):
+  MONTHLY DATE WINDOWS instead of one 365-day range.
+  Root cause of Sprint 10 issue: FTS API cursor 546092 timed out permanently
+  because 365-day ranges generate deep cursor chains that become stale.
+
+  Fix: one query per calendar month (updatedFrom + updatedTo per month),
+  max 10 pages per month. If a cursor times out within a month, skip that
+  month's remaining pages and move to the next month — fresh cursor, fresh start.
+
+  Post-Brexit coverage: January 2021 → today.
+  In test_mode: last 90 days only (1 month window, max 3 pages).
 """
 
 import json
 import logging
 import re
 import time
+from datetime import date, timedelta
 from pathlib import Path
 from typing import Optional
 
@@ -26,12 +33,16 @@ import requests
 import urllib3
 
 from ..base_adapter import BaseAdapter, AdapterConfig, SearchResult, NoticeDetail
+from ..resilience import RetrySession
 
 logger = logging.getLogger(__name__)
 urllib3.disable_warnings()
 
 FTS_API = "https://www.find-tender.service.gov.uk/api/1.0/ocdsReleasePackages"
 CACHE_DIR = Path("data/raw/uk_fts")
+
+# Post-Brexit: FTS launched January 2021
+FTS_HISTORY_START = date(2021, 1, 1)
 
 _DEFENCE_BUYER_KW = {
     "ministry of defence",
@@ -97,26 +108,32 @@ def _has_trailer_kw(text: str) -> bool:
     return any(kw in low for kw in _TRAILER_KW)
 
 
+def _month_windows(start: date, end: date):
+    """Yield (month_start, month_end) tuples covering start..end inclusive."""
+    current = date(start.year, start.month, 1)
+    while current <= end:
+        if current.month == 12:
+            next_month = date(current.year + 1, 1, 1)
+        else:
+            next_month = date(current.year, current.month + 1, 1)
+        month_end = min(next_month - timedelta(days=1), end)
+        yield current, month_end
+        current = next_month
+
+
 class UKFTSAdapter(BaseAdapter):
     """
     UK Find a Tender Service — OCDS REST API.
 
-    The API has no search/filter parameters beyond date ranges; we must
-    paginate through all notices and filter for defence + trailer relevance
-    client-side.  We cap at max_pages to bound runtime.
+    Uses monthly date windows to avoid deep-cursor timeouts.
+    Each month starts a fresh cursor chain; a broken cursor only wastes
+    that month's remaining pages, not the entire scan.
     """
 
     def __init__(self, browser, config: AdapterConfig):
         super().__init__(browser, config)
-        import os
-        self._session = requests.Session()
-        self._session.verify = not (
-            os.environ.get("SSL_VERIFY_DISABLE", "").strip().lower() in ("1", "true", "yes")
-        )
-        self._session.headers.update({
-            "Accept": "application/json",
-            "User-Agent": "TED-Defence-Trailer-Research/2.0",
-        })
+        self._session = RetrySession(max_retries=3, backoff_base=2.0, rotate_ua=True)
+        self._session.update_headers({"Accept": "application/json"})
         self._last_request = 0.0
         CACHE_DIR.mkdir(parents=True, exist_ok=True)
 
@@ -128,12 +145,8 @@ class UKFTSAdapter(BaseAdapter):
         self._last_request = time.time()
 
     def search(self, keyword: str, max_results: int = 200) -> list[SearchResult]:
-        """
-        'keyword' is ignored — FTS API has no keyword filter.
-        Instead we paginate through recent defence notices and filter locally.
-        Call search_all_keywords() once to get the full set.
-        """
-        return []  # actual work done in search_all_keywords
+        """Keyword not used by FTS API — actual work in search_all_keywords."""
+        return []
 
     def search_all_keywords(
         self,
@@ -141,100 +154,146 @@ class UKFTSAdapter(BaseAdapter):
         test_mode: bool = False,
     ) -> list[SearchResult]:
         """
-        Paginate FTS releases updated in the last N days, filter for
-        defence + trailer relevance, return deduplicated SearchResults.
+        Scan FTS releases month-by-month, filter for defence + trailer,
+        return deduplicated SearchResults.
+
+        Monthly window strategy prevents cursor-timeout cascades:
+        if a cursor fails mid-month, we give up that month's tail and
+        continue with the next month from a fresh cursor.
         """
-        from datetime import datetime, timedelta
+        today = date.today()
+        if test_mode:
+            scan_start = today - timedelta(days=90)
+            max_pages_per_month = 3
+        else:
+            scan_start = FTS_HISTORY_START
+            max_pages_per_month = 10  # 10 pages × 10 releases = 100 per month max
 
-        days_back = 7 if test_mode else 365
-        since = (datetime.utcnow() - timedelta(days=days_back)).strftime(
-            "%Y-%m-%dT00:00:00Z"
-        )
-        max_pages = 3 if test_mode else 200
-        page_size = 10  # keep small to avoid VPN timeouts
-
-        logger.info(
-            f"UK-FTS: fetching notices since {since[:10]}, "
-            f"max {max_pages} pages × {page_size}"
-        )
+        page_size = 10  # keep small — FTS deep pagination is slow
 
         results: dict[str, SearchResult] = {}
-        url: Optional[str] = None
-        params = {"limit": page_size, "updatedFrom": since}
-        pages = 0
+        total_pages = 0
+        total_releases = 0
 
-        while pages < max_pages:
-            self._wait()
-            try:
-                if url:
-                    resp = self._session.get(url, timeout=45)
-                else:
-                    resp = self._session.get(FTS_API, params=params, timeout=45)
+        logger.info(
+            f"UK-FTS: monthly scan {scan_start} → {today}, "
+            f"max {max_pages_per_month} pages/month"
+        )
 
-                if resp.status_code != 200:
-                    logger.warning(f"UK-FTS HTTP {resp.status_code}: {resp.text[:200]}")
-                    break
+        for month_start, month_end in _month_windows(scan_start, today):
+            month_label = month_start.strftime("%Y-%m")
+            params = {
+                "limit": page_size,
+                "updatedFrom": month_start.isoformat() + "T00:00:00Z",
+                "updatedTo": month_end.isoformat() + "T23:59:59Z",
+            }
 
-                data = resp.json()
-                releases = data.get("releases", [])
-                if not releases:
-                    break
+            url: Optional[str] = None
+            pages = 0
+            month_new = 0
+            consecutive_errors = 0
+            max_consecutive = 3  # per-month limit (was 5 global in Sprint 10)
 
-                for r in releases:
-                    tender = r.get("tender", {})
-                    buyer = r.get("buyer", {})
-                    buyer_name = buyer.get("name", "")
+            while pages < max_pages_per_month:
+                self._wait()
+                try:
+                    if url:
+                        resp = self._session.get(url, timeout=60)
+                    else:
+                        resp = self._session.get(FTS_API, params=params, timeout=60)
 
-                    if not _is_defence_buyer(buyer_name):
-                        continue
+                    if resp.status_code != 200:
+                        logger.warning(
+                            f"UK-FTS {month_label} HTTP {resp.status_code}: {resp.text[:200]}"
+                        )
+                        break
 
-                    title = tender.get("title", "") or ""
-                    desc = tender.get("description", "") or ""
+                    consecutive_errors = 0
+                    data = resp.json()
+                    releases = data.get("releases", [])
+                    if not releases:
+                        break
 
-                    if not _has_trailer_kw(title + " " + desc):
-                        continue
+                    total_releases += len(releases)
+                    for r in releases:
+                        tender = r.get("tender", {})
+                        buyer = r.get("buyer", {})
+                        buyer_name = buyer.get("name", "")
 
-                    ref_id = r.get("id", "") or r.get("ocid", "")
-                    if not ref_id:
-                        continue
+                        if not _is_defence_buyer(buyer_name):
+                            continue
 
-                    safe_id = re.sub(r"[^\w\-]", "_", ref_id)
-                    notice_url = (
-                        f"https://www.find-tender.service.gov.uk/Notice/{safe_id}"
+                        title = tender.get("title", "") or ""
+                        desc = tender.get("description", "") or ""
+
+                        if not _has_trailer_kw(title + " " + desc):
+                            continue
+
+                        ref_id = r.get("id", "") or r.get("ocid", "")
+                        if not ref_id:
+                            continue
+
+                        if ref_id in results:
+                            continue  # already found in an earlier month
+
+                        safe_id = re.sub(r"[^\w\-]", "_", ref_id)
+                        notice_url = (
+                            f"https://www.find-tender.service.gov.uk/Notice/{safe_id}"
+                        )
+                        val_block = tender.get("value", {}) or {}
+
+                        sr = SearchResult(
+                            title=title,
+                            url=notice_url,
+                            authority=buyer_name,
+                            date=(r.get("date", "") or "")[:10],
+                            value=val_block.get("amount"),
+                            currency=val_block.get("currency", "GBP"),
+                            reference_id=ref_id,
+                            snippet=desc[:200],
+                        )
+                        results[ref_id] = sr
+                        month_new += 1
+
+                    pages += 1
+                    total_pages += 1
+                    links = data.get("links", {}) or {}
+                    url = links.get("next")
+                    if not url:
+                        break
+
+                except requests.exceptions.Timeout:
+                    consecutive_errors += 1
+                    logger.warning(
+                        f"UK-FTS timeout: {month_label} page {pages + 1} "
+                        f"({consecutive_errors}/{max_consecutive})"
                     )
-                    val_block = tender.get("value", {}) or {}
+                    if consecutive_errors >= max_consecutive:
+                        logger.warning(
+                            f"UK-FTS: cursor broken in {month_label}, skipping remaining pages"
+                        )
+                        break
+                    time.sleep(10 * consecutive_errors)
+                    continue
 
-                    sr = SearchResult(
-                        title=title,
-                        url=notice_url,
-                        authority=buyer_name,
-                        date=(r.get("date", "") or "")[:10],
-                        value=val_block.get("amount"),
-                        currency=val_block.get("currency", "GBP"),
-                        reference_id=ref_id,
-                        snippet=desc[:200],
-                    )
-                    results[ref_id] = sr
+                except Exception as exc:
+                    consecutive_errors += 1
+                    logger.error(f"UK-FTS error in {month_label}: {exc}")
+                    if consecutive_errors >= max_consecutive:
+                        break
+                    time.sleep(5)
+                    continue
 
-                pages += 1
-                links = data.get("links", {}) or {}
-                url = links.get("next")
-                if not url:
-                    break
-
+            if month_new > 0:
                 logger.info(
-                    f"UK-FTS page {pages}: {len(releases)} releases scanned, "
-                    f"{len(results)} defence+trailer so far"
+                    f"UK-FTS {month_label}: +{month_new} defence+trailer "
+                    f"({pages} pages scanned, {len(results)} total)"
                 )
 
-            except requests.exceptions.Timeout:
-                logger.warning(f"UK-FTS timeout on page {pages + 1}, stopping")
-                break
-            except Exception as exc:
-                logger.error(f"UK-FTS error: {exc}")
-                break
-
-        logger.info(f"UK-FTS: {len(results)} defence trailer notices from {pages} pages")
+        logger.info(
+            f"UK-FTS: scan complete — {len(results)} defence trailer notices "
+            f"from {total_pages} pages / {total_releases} releases scanned"
+        )
         return list(results.values())
 
     def filter_defence(self, results: list) -> list:
@@ -246,8 +305,7 @@ class UKFTSAdapter(BaseAdapter):
         if not result.reference_id:
             return None
 
-        # Check cache
-        cache_file = CACHE_DIR / f"{re.sub(r'[^\\w\\-]', '_', result.reference_id)}.json"
+        cache_file = CACHE_DIR / f"{re.sub(r'[^\w\-]', '_', result.reference_id)}.json"
         if cache_file.exists():
             try:
                 data = json.loads(cache_file.read_bytes())
@@ -257,14 +315,15 @@ class UKFTSAdapter(BaseAdapter):
 
         self._wait()
         try:
-            # Single-release endpoint: filter by ocid
             resp = self._session.get(
                 FTS_API,
                 params={"ocid": result.reference_id, "limit": 1},
                 timeout=45,
             )
             if resp.status_code != 200:
-                logger.warning(f"UK-FTS detail HTTP {resp.status_code} for {result.reference_id}")
+                logger.warning(
+                    f"UK-FTS detail HTTP {resp.status_code} for {result.reference_id}"
+                )
                 return None
 
             data = resp.json()
@@ -275,7 +334,6 @@ class UKFTSAdapter(BaseAdapter):
 
         except Exception as exc:
             logger.error(f"UK-FTS detail error for {result.reference_id}: {exc}")
-            # Return minimal detail from SearchResult
             return NoticeDetail(
                 title=result.title,
                 authority=result.authority,

@@ -85,7 +85,7 @@ class BrowserCore:
     # ── Navigation ──
 
     def goto(self, url: str, wait_for: str = "networkidle",
-             timeout: int = 30000) -> bool:
+             timeout: int = 30000, max_retries: int = 2) -> bool:
         """
         Navigate to URL and wait for page to be ready.
 
@@ -94,46 +94,61 @@ class BrowserCore:
             wait_for: "networkidle", "load", "domcontentloaded",
                       or a CSS selector to wait for
             timeout: Max wait time in ms
+            max_retries: Retry count on timeout/transient errors (default 2)
 
         Returns:
             True if successful, False on error
         """
         self._rate_limit()
-        try:
-            self._ensure_page_alive()
-            self.page.goto(url, wait_until="domcontentloaded", timeout=timeout)
 
-            if wait_for in ("networkidle", "load", "domcontentloaded"):
-                try:
-                    self.page.wait_for_load_state(wait_for, timeout=timeout)
-                except Exception:
-                    pass  # networkidle may never fire on some sites — not fatal
-            elif wait_for != "domcontentloaded":
-                # wait_for is a CSS selector
-                try:
-                    self.page.wait_for_selector(wait_for, timeout=min(timeout, 8000))
-                except Exception:
-                    pass  # Selector missing is not fatal
+        for attempt in range(max_retries + 1):
+            if attempt > 0:
+                backoff = 2 ** attempt
+                logger.info(f"goto retry {attempt}/{max_retries} for {url} in {backoff}s")
+                time.sleep(backoff)
 
-            self._dismiss_cookie_banner()
-            return True
+            try:
+                self._ensure_page_alive()
+                self.page.goto(url, wait_until="domcontentloaded", timeout=timeout)
 
-        except Exception as e:
-            err = str(e)
-            # Page/context was closed externally — recover by opening a new page
-            if "closed" in err.lower() or "target" in err.lower():
-                logger.warning(f"Page closed unexpectedly, recovering... ({url})")
-                try:
-                    self.page = self.context.new_page()
-                    self.page.goto(url, wait_until="domcontentloaded", timeout=timeout)
-                    self._dismiss_cookie_banner()
-                    return True
-                except Exception as e2:
-                    logger.error(f"Recovery navigation also failed: {url} — {e2}")
-                    return False
-            logger.error(f"Navigation failed: {url} — {e}")
-            self._screenshot(f"nav_error_{int(time.time())}")
-            return False
+                if wait_for in ("networkidle", "load", "domcontentloaded"):
+                    try:
+                        self.page.wait_for_load_state(wait_for, timeout=timeout)
+                    except Exception:
+                        pass  # networkidle may never fire on some sites — not fatal
+                elif wait_for != "domcontentloaded":
+                    # wait_for is a CSS selector
+                    try:
+                        self.page.wait_for_selector(wait_for, timeout=min(timeout, 8000))
+                    except Exception:
+                        pass  # Selector missing is not fatal
+
+                self._dismiss_cookie_banner()
+                return True
+
+            except Exception as e:
+                err = str(e)
+                # Page/context was closed externally — recover by opening a new page
+                if "closed" in err.lower() or "target" in err.lower():
+                    logger.warning(f"Page closed unexpectedly, recovering... ({url})")
+                    try:
+                        self.page = self.context.new_page()
+                        self.page.goto(url, wait_until="domcontentloaded", timeout=timeout)
+                        self._dismiss_cookie_banner()
+                        return True
+                    except Exception as e2:
+                        logger.error(f"Recovery navigation also failed: {url} — {e2}")
+                        return False
+
+                if attempt < max_retries:
+                    logger.warning(f"Navigation attempt {attempt + 1} failed: {url} — {e}")
+                    continue
+
+                logger.error(f"Navigation failed after {max_retries + 1} attempts: {url} — {e}")
+                self._screenshot(f"nav_error_{int(time.time())}")
+                return False
+
+        return False
 
     def _rate_limit(self):
         """Enforce minimum interval between navigations."""

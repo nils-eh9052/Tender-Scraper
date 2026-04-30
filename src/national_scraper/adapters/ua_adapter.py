@@ -30,7 +30,6 @@ import re
 import time
 import json
 import logging
-import os
 from typing import Optional
 
 import requests
@@ -38,6 +37,7 @@ import urllib3
 
 from ..core import BrowserCore
 from ..base_adapter import BaseAdapter, AdapterConfig, SearchResult, NoticeDetail
+from ..resilience import RetrySession
 
 urllib3.disable_warnings()
 logger = logging.getLogger(__name__)
@@ -121,10 +121,8 @@ class UAAdapter(BaseAdapter):
 
     def __init__(self, browser: BrowserCore, config: AdapterConfig):
         super().__init__(browser, config)
-        ssl_off = os.environ.get("SSL_VERIFY_DISABLE", "").strip().lower() in ("1", "true")
-        self._session = requests.Session()
-        self._session.verify = not ssl_off
-        self._session.headers.update({
+        self._session = RetrySession(max_retries=3, backoff_base=2.0, rotate_ua=False)
+        self._session.update_headers({
             "Accept": "application/json",
             "User-Agent": "TED-Defence-Trailer-Research/2.0 (defence procurement research)",
         })
@@ -151,7 +149,7 @@ class UAAdapter(BaseAdapter):
         """
         all_results: dict[str, SearchResult] = {}
         max_scan = 1000 if test_mode else 10000
-        detail_limit = 20 if test_mode else 200  # max detail fetches
+        detail_limit = 20 if test_mode else 500  # max detail fetches (increased from 200)
 
         # ── Stage 1: Scan list for defence entities ──
         defence_candidates = []

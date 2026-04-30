@@ -26,6 +26,7 @@ import requests
 import urllib3
 
 from ..base_adapter import BaseAdapter, AdapterConfig, SearchResult, NoticeDetail
+from ..resilience import RetrySession
 
 logger = logging.getLogger(__name__)
 urllib3.disable_warnings()
@@ -108,15 +109,8 @@ class UKFTSAdapter(BaseAdapter):
 
     def __init__(self, browser, config: AdapterConfig):
         super().__init__(browser, config)
-        import os
-        self._session = requests.Session()
-        self._session.verify = not (
-            os.environ.get("SSL_VERIFY_DISABLE", "").strip().lower() in ("1", "true", "yes")
-        )
-        self._session.headers.update({
-            "Accept": "application/json",
-            "User-Agent": "TED-Defence-Trailer-Research/2.0",
-        })
+        self._session = RetrySession(max_retries=3, backoff_base=2.0, rotate_ua=True)
+        self._session.update_headers({"Accept": "application/json"})
         self._last_request = 0.0
         CACHE_DIR.mkdir(parents=True, exist_ok=True)
 
@@ -162,19 +156,27 @@ class UKFTSAdapter(BaseAdapter):
         url: Optional[str] = None
         params = {"limit": page_size, "updatedFrom": since}
         pages = 0
+        consecutive_errors = 0
+        max_consecutive_errors = 5
 
         while pages < max_pages:
             self._wait()
             try:
                 if url:
-                    resp = self._session.get(url, timeout=45)
+                    resp = self._session.get(url, timeout=60)
                 else:
-                    resp = self._session.get(FTS_API, params=params, timeout=45)
+                    resp = self._session.get(FTS_API, params=params, timeout=60)
 
                 if resp.status_code != 200:
                     logger.warning(f"UK-FTS HTTP {resp.status_code}: {resp.text[:200]}")
-                    break
+                    consecutive_errors += 1
+                    if consecutive_errors >= max_consecutive_errors:
+                        logger.error("UK-FTS: too many consecutive errors, stopping")
+                        break
+                    time.sleep(5)
+                    continue
 
+                consecutive_errors = 0
                 data = resp.json()
                 releases = data.get("releases", [])
                 if not releases:
@@ -228,11 +230,24 @@ class UKFTSAdapter(BaseAdapter):
                 )
 
             except requests.exceptions.Timeout:
-                logger.warning(f"UK-FTS timeout on page {pages + 1}, stopping")
-                break
+                consecutive_errors += 1
+                logger.warning(
+                    f"UK-FTS timeout on page {pages + 1} "
+                    f"(consecutive errors: {consecutive_errors}/{max_consecutive_errors})"
+                )
+                if consecutive_errors >= max_consecutive_errors:
+                    logger.error("UK-FTS: too many consecutive timeouts, stopping")
+                    break
+                time.sleep(10 * consecutive_errors)
+                # Don't advance page counter — retry same page
+                continue
             except Exception as exc:
-                logger.error(f"UK-FTS error: {exc}")
-                break
+                consecutive_errors += 1
+                logger.error(f"UK-FTS error on page {pages + 1}: {exc}")
+                if consecutive_errors >= max_consecutive_errors:
+                    break
+                time.sleep(5)
+                continue
 
         logger.info(f"UK-FTS: {len(results)} defence trailer notices from {pages} pages")
         return list(results.values())

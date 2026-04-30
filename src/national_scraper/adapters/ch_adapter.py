@@ -40,7 +40,6 @@ Trailer CPV codes (same international standard):
 import re
 import time
 import logging
-import os
 from typing import Optional
 
 from ..core import BrowserCore
@@ -84,18 +83,23 @@ def create_ch_config() -> AdapterConfig:
         search_url=SIMAP_API_SEARCH,
         language="de",
         trailer_keywords=[
-            # German (proper umlauts — simap.ch full-text search requires them)
+            # German — simap.ch full-text search requires proper umlauts
             "Anhänger",
+            "Tiefladeanhänger",
             "Sattelanhänger",
             "Tieflader",
             "Tankanhänger",
             "Feldküche",
             "Wechselaufbau",
+            "Abrollbehälter",
             "Shelter",
+            "Munitionsanhänger",
+            "Panzertransportanhänger",
             # French
             "remorque",
             "semi-remorque",
             "cuisine roulante",
+            "remorque plateforme",
             # Italian
             "rimorchio",
             "semirimorchio",
@@ -131,25 +135,13 @@ class CHAdapter(BaseAdapter):
 
     def _build_session(self):
         try:
-            import requests
-            import urllib3
-            urllib3.disable_warnings()
+            from ..resilience import RetrySession
         except ImportError:
-            logger.error("CH: 'requests' not installed")
+            logger.error("CH: resilience module not available")
             return None
 
-        import requests as rl
-        session = rl.Session()
-        session.verify = not (
-            os.environ.get("SSL_VERIFY_DISABLE", "").strip().lower()
-            in ("1", "true", "yes")
-        )
-        session.headers.update({
-            "User-Agent": (
-                "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
-                "AppleWebKit/537.36 (KHTML, like Gecko) "
-                "Chrome/124.0.0.0 Safari/537.36"
-            ),
+        session = RetrySession(max_retries=3, backoff_base=2.0, rotate_ua=True)
+        session.update_headers({
             "Accept": "application/json, */*",
             "Referer": SIMAP_BASE,
         })
@@ -195,13 +187,16 @@ class CHAdapter(BaseAdapter):
                     all_results[key] = r
             time.sleep(self.config.min_interval_seconds)
 
-        # Phase 3: armasuisse authority sweep (always — most reliable source)
-        logger.info("CH: armasuisse authority sweep")
-        limit_arm = 30 if test_mode else 500
-        for r in self._api_search({"search": "armasuisse"}, limit_arm):
-            key = r.reference_id or r.url or r.title[:50]
-            if key and key not in all_results:
-                all_results[key] = r
+        # Phase 3: authority sweeps for Swiss defence orgs
+        limit_arm = 30 if test_mode else 300
+        authority_searches = ["armasuisse", "Logistikbasis der Armee", "VBS DDPS"]
+        for auth_kw in authority_searches:
+            logger.info("CH: authority sweep — %s", auth_kw)
+            for r in self._api_search({"search": auth_kw}, limit_arm):
+                key = r.reference_id or r.url or r.title[:50]
+                if key and key not in all_results:
+                    all_results[key] = r
+            time.sleep(self.config.min_interval_seconds)
 
         logger.info("CH: search_all_keywords -> %d unique results", len(all_results))
         return list(all_results.values())

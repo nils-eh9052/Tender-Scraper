@@ -1144,7 +1144,7 @@ def run_all_sources_parallel(config: dict, args) -> dict:
                 print(f"  [parallel] {name}: done")
             except Exception as exc:
                 print(f"  [parallel] {name}: FAILED — {exc}")
-                results[name] = None
+                results[name] = []
 
     return results
 

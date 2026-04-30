@@ -1,0 +1,90 @@
+2026-04-27 14:11:28 [INFO] src.national_scraper.core: Browser started (headless=False)
+2026-04-27 14:11:28 [INFO] src.national_scraper.validate_portals: DE: known authorities from TED: ['Bundesamt für Infrastruktur, Umweltschutz und Dienstleistungen der Bundeswehr', 'Bundesamt für Ausrüstung, Informationstechnik und Nutzung der Bundeswehr']
+2026-04-27 14:11:28 [INFO] src.national_scraper.validate_portals: DE: running VSVgV (Verteidigung & Sicherheit) filter...
+2026-04-27 14:11:28 [INFO] src.national_scraper.adapters.de_adapter: DE: loading search form for filter 'f-ausschreibungsart-vsvgv'
+2026-04-27 14:11:32 [INFO] src.national_scraper.adapters.de_adapter: DE: checked filter 'f-ausschreibungsart-vsvgv'
+2026-04-27 14:11:34 [INFO] src.national_scraper.adapters.de_adapter: DE: clicked Finden (first button in DOM)
+2026-04-27 14:11:40 [INFO] src.national_scraper.adapters.de_adapter: DE: filter 'f-ausschreibungsart-vsvgv' → 36 Ausschreibungen
+2026-04-27 14:11:40 [INFO] src.national_scraper.core: Screenshot saved: data\raw\screenshots\de_filter_f-ausschreibungsart-vsvgv.png
+2026-04-27 14:11:41 [INFO] src.national_scraper.adapters.de_adapter: DE: page 1: 15 links (total so far: 15)
+2026-04-27 14:11:45 [INFO] src.national_scraper.adapters.de_adapter: DE: page 2: 15 links (total so far: 30)
+2026-04-27 14:11:48 [INFO] src.national_scraper.adapters.de_adapter: DE: page 3: 6 links (total so far: 36)
+2026-04-27 14:11:48 [INFO] src.national_scraper.adapters.de_adapter: DE: no more pages after page 3
+2026-04-27 14:11:48 [INFO] src.national_scraper.validate_portals: DE: VSVgV → 36 results
+2026-04-27 14:11:48 [INFO] src.national_scraper.validate_portals: DE: running KFZ (Kraftfahrwesen) filter...
+2026-04-27 14:11:48 [INFO] src.national_scraper.adapters.de_adapter: DE: loading search form for filter 'f-leistung-kraftfahrwesen'
+2026-04-27 14:11:52 [INFO] src.national_scraper.adapters.de_adapter: DE: checked filter 'f-leistung-kraftfahrwesen'
+2026-04-27 14:11:53 [INFO] src.national_scraper.adapters.de_adapter: DE: clicked Finden (first button in DOM)
+2026-04-27 14:11:59 [INFO] src.national_scraper.adapters.de_adapter: DE: filter 'f-leistung-kraftfahrwesen' → 72 Ausschreibungen
+2026-04-27 14:12:00 [INFO] src.national_scraper.core: Screenshot saved: data\raw\screenshots\de_filter_f-leistung-kraftfahrwesen.png
+2026-04-27 14:12:00 [INFO] src.national_scraper.adapters.de_adapter: DE: page 1: 15 links (total so far: 15)
+2026-04-27 14:12:05 [INFO] src.national_scraper.adapters.de_adapter: DE: page 2: 15 links (total so far: 30)
+2026-04-27 14:12:08 [INFO] src.national_scraper.adapters.de_adapter: DE: page 3: 15 links (total so far: 45)
+2026-04-27 14:12:12 [INFO] src.national_scraper.adapters.de_adapter: DE: page 4: 15 links (total so far: 60)
+2026-04-27 14:12:16 [INFO] src.national_scraper.adapters.de_adapter: DE: page 5: 12 links (total so far: 72)
+2026-04-27 14:12:16 [INFO] src.national_scraper.adapters.de_adapter: DE: no more pages after page 5
+2026-04-27 14:12:16 [INFO] src.national_scraper.validate_portals: DE: KFZ → 72 results
+2026-04-27 14:12:16 [INFO] src.national_scraper.validate_portals: PL: known authorities from TED: ['Wojskowy Instytut Techniczny Uzbrojenia', 'Agencja Uzbrojenia', '12 WOJSKOWY ODDZIAŁ GOSPODARCZY']
+2026-04-27 14:12:16 [INFO] src.national_scraper.validate_portals: PL: searching OrganizationName='Wojskowy Instytut Techniczny Uzbrojenia'
+2026-04-27 14:12:18 [ERROR] src.national_scraper.validate_portals: PL: org search 'Wojskowy Instytut Techniczny Uzbrojenia' failed: 'dict' object has no attribute 'title'
+2026-04-27 14:12:18 [INFO] src.national_scraper.validate_portals: PL: searching OrganizationName='Agencja Uzbrojenia'
+2026-04-27 14:12:19 [ERROR] src.national_scraper.validate_portals: PL: org search 'Agencja Uzbrojenia' failed: 'dict' object has no attribute 'title'
+2026-04-27 14:12:19 [INFO] src.national_scraper.validate_portals: PL: searching OrganizationName='12 WOJSKOWY ODDZIAŁ GOSPODARCZY'
+2026-04-27 14:12:21 [ERROR] src.national_scraper.validate_portals: PL: org search '12 WOJSKOWY ODDZIAŁ GOSPODARCZY' failed: 'dict' object has no attribute 'title'
+2026-04-27 14:12:21 [INFO] src.national_scraper.validate_portals: PL: combined CPV 34223300 + OrganizationName='wojsk'...
+2026-04-27 14:12:21 [ERROR] src.national_scraper.validate_portals: PL: combined query failed: 'dict' object has no attribute 'title'
+2026-04-27 14:12:22 [INFO] src.national_scraper.core: Browser stopped
+
++==========================================================+
+|  TED Defence Trailer Scraper                             |
+|  Hybrid API + Filtering Pipeline                         |
++==========================================================+
+
+  Mode: PORTAL VALIDATION — DE, PL
+
+============================================================
+  PORTAL VALIDATION
+============================================================
+
+  [DE] Validating Germany (5 known TED tenders)
+    • 212474-2026: Bundesamt für Ausrüstung, Informationste — Germany – Trailers – Beschaffungsrahmenvereinbarun
+    • 813306-2025: Bundesamt für Infrastruktur, Umweltschut — Germany – Elevator-platforms trucks – Abrollkipper
+    • 719142-2025: Bundesamt für Ausrüstung, Informationste — Germany – Trailers – Beschaffungsrahmenvereinbarun
+    • 161258-2025: Bundesamt für Infrastruktur, Umweltschut — Germany – Trailers and semi-trailers – 1/DLII4/PV0
+    • 682847-2024: Bundesamt für Ausrüstung, Informationste — Germany – Trailers – Herstellung und Lieferung von
+
+
+  ┌─ Result: Portal carries defence tenders — 28 authority match(es), 6 trailer notice(s) found
+  │  Authority matches (28):
+  │    ✓ Bundesamt für Infrastruktur, U
+  │      → '6003025019-Abschluss eines Vertrages über die konventio'
+  │    ✓ Bundesamt für Infrastruktur, U
+  │      → 'Ergänzende fliegerische Grundlagenausbildung Jet Vergab'
+  │    ✓ Bundesamt für Infrastruktur, U
+  │      → '6003038661-BAAINBw E2.5F Rad, Vollgummireifen, WS Leopa'
+  │  Trailer notices (6):
+  │    🚛 [Zweckverband Abfallwirtsc] Lieferung von einem Wasserfass-Anhänger 2,7 m³ Ver
+  │    🚛 [Zweckverband Abfallwirtsc] Lieferung von einem Wasserfass-Anhänger 10 m³ mit 
+  │    🚛 [Gemeinde Wardenburg Veröf] Beschaffung Hakenliftanhänger 15 t Vergabestelle G
+  │  Searches run: 2
+  │    • VSVgV filter (Verteidigung & Sicherheit) → 36 hits
+  │    • KFZ filter (Kraftfahrwesen) → 72 hits
+  └─ Portal results: VSVgV=36, KFZ=72
+
+  [PL] Validating Poland (4 known TED tenders)
+    • 261427-2025: 12 WOJSKOWY ODDZIAŁ GOSPODARCZY — Poland – General-purpose trailers – DOSTAWA PRZYCZ
+    • 736943-2024: Wojskowy Instytut Techniczny Uzbrojenia — Poland – Radar – Śledzący radarowy system pomiarow
+    • 432811-2024: 12 WOJSKOWY ODDZIAŁ GOSPODARCZY — Poland – Trailers and semi-trailers – DOSTAWA PRZY
+    • 338523-2024: Agencja Uzbrojenia — Poland – Military vehicles and associated parts – 
+
+
+  ┌─ Result: Portal does NOT carry military trailer tenders (0 authority matches, 0 trailer notices from org searches)
+  │  Searches run: 3
+  └─ Searches: 3
+
+  [OK] Validation results saved → data\portal_validation.json
+
+  ─── Decision ───────────────────────────────────────
+  DE: ✓ FIX ADAPTER — portal has military trailers
+  PL: ✗ ABANDON — portal does not carry defence trailers
+

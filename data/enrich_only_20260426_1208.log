@@ -1,0 +1,26 @@
+2026-04-26 12:09:00 [INFO] src.exporter: Archived: 260426_TED_Tender Data_00.01.xlsx
+2026-04-26 12:09:00 [INFO] src.exporter: UK blacklist loaded: 5 IDs
+2026-04-26 12:09:00 [INFO] src.exporter: Excel exported: data\export\260426_TED_Tender Data_00.02.xlsx
+2026-04-26 12:09:00 [INFO] src.exporter:   Rows: 143
+2026-04-26 12:09:00 [INFO] src.exporter:   Columns: 23
+2026-04-26 12:09:00 [INFO] src.exporter: Latest copy: data\export\TED_Defence_Trailers_LATEST.xlsx
+
++==========================================================+
+|  TED Defence Trailer Scraper                             |
+|  Hybrid API + Filtering Pipeline                         |
++==========================================================+
+
+  Mode: ENRICH-ONLY (skipping phases 1-3b)
+
+============================================================
+  PHASE 3c: Fulltext Enrichment
+============================================================
+  [!] Skipped: ANTHROPIC_API_KEY not set
+
+============================================================
+  PHASE 4: Excel Export
+============================================================
+
+  [OK] Excel exported: data\export\260426_TED_Tender Data_00.02.xlsx
+  Template: Vorlage.xlsx (Scraper Data)
+  Format: Defence-only, deduplicated, 14 columns, English

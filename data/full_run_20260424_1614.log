@@ -1,0 +1,287 @@
+SSL verification DISABLED (SSL_VERIFY_DISABLE=1). This is expected on corporate VPN networks.
+2026-04-24 16:14:33 [INFO] src.index_builder: Built 11 search queries. 11 already completed. 17505 details already on disk.
+2026-04-24 16:14:33 [INFO] src.index_builder: Skipping completed query: defence_directive_trailer_cpv
+2026-04-24 16:14:33 [INFO] src.index_builder: Skipping completed query: defence_directive_military_vehicles
+2026-04-24 16:14:33 [INFO] src.index_builder: Skipping completed query: defence_directive_transport
+2026-04-24 16:14:33 [INFO] src.index_builder: Skipping completed query: general_32014L0024_trailer_cpv
+2026-04-24 16:14:33 [INFO] src.index_builder: Skipping completed query: general_32014L0025_trailer_cpv
+2026-04-24 16:14:33 [INFO] src.index_builder: Skipping completed query: all_trailer_cpv_no_filter
+2026-04-24 16:14:33 [INFO] src.index_builder: Skipping completed query: text_search_0
+2026-04-24 16:14:33 [INFO] src.index_builder: Skipping completed query: text_search_1
+2026-04-24 16:14:33 [INFO] src.index_builder: Skipping completed query: text_search_2
+2026-04-24 16:14:33 [INFO] src.index_builder: Skipping completed query: text_search_3
+2026-04-24 16:14:33 [INFO] src.index_builder: Skipping completed query: text_search_4
+2026-04-24 16:14:33 [INFO] src.index_builder: Index saved: C:\Users\nheinrich\Documents\ted-scraper\ted-scraper\data\raw\notice_index.json (17505 notices, 0 new details saved)
+2026-04-24 16:14:33 [INFO] src.index_builder: Force-include: 751810-2024 already on disk, skipping.
+2026-04-24 16:14:33 [INFO] src.index_builder: Force-include: 772125-2025 already on disk, skipping.
+2026-04-24 16:14:33 [INFO] src.index_builder: Force-include: 385446-2024 already on disk, skipping.
+2026-04-24 16:14:33 [INFO] src.index_builder: Force-include: 477617-2024 already on disk, skipping.
+2026-04-24 16:14:33 [INFO] src.index_builder: Force-include: 694394-2023 already on disk, skipping.
+2026-04-24 16:14:33 [INFO] src.index_builder: Force-include: 560361-2021 already on disk, skipping.
+2026-04-24 16:14:33 [INFO] src.index_builder: Force-include: 173135-2024 already on disk, skipping.
+2026-04-24 16:14:33 [INFO] src.index_builder: Force-include: 231675-2021 already on disk, skipping.
+2026-04-24 16:14:33 [INFO] src.index_builder: Force-include: 41901-2019 already on disk, skipping.
+2026-04-24 16:14:33 [INFO] src.index_builder: Force-include: fetched 0 new notices (out of 9 in list)
+2026-04-24 16:18:02 [INFO] src.filter_engine: Deduplication: 12880 -> 7360 (removed 5520 duplicates)
+2026-04-24 16:18:02 [INFO] src.filter_engine: Deduplication: 1838 -> 1056 (removed 782 duplicates)
+2026-04-24 16:18:17 [INFO] src.filter_engine: 
+Filter Results:
+2026-04-24 16:18:17 [INFO] src.filter_engine:   Total processed: 17505
+2026-04-24 16:18:17 [INFO] src.filter_engine:   Defence notices: 12911
+2026-04-24 16:18:17 [INFO] src.filter_engine:   Non-defence skipped: 4594
+2026-04-24 16:18:17 [INFO] src.filter_engine:   Relevant (>=25): 7360
+2026-04-24 16:18:17 [INFO] src.filter_engine:   High confidence (>=50): 1056
+2026-04-24 16:18:17 [INFO] src.filter_engine:   Categories: {'mission_module': 258, 'tank_trailer': 83, 'semitrailer': 66, 'low_bed': 16, 'loading_system': 13, 'special_purpose': 4}
+2026-04-24 16:18:17 [INFO] src.filter_engine:   Countries: {'NLD': 194, 'DEU': 872, 'Bulgaria': 172, 'Netherlands': 338, 'Poland': 928, 'United Kingdom': 657, 'Czech Republic': 169, 'Romania': 601, 'BGR': 25, 'DNK': 199, 'FIN': 163, 'SWE': 106, 'Germany': 1130, 'Slovenia': 278, 'Spain': 360, 'Italy': 343, 'FRA': 163, 'GRC': 23, 'POL': 489, 'Austria': 133, 'Denmark': 520, 'ITA': 57, 'France': 765, 'Latvia': 113, 'Finland': 504, 'BEL': 90, 'ROU': 301, 'Luxembourg': 19, 'Sweden': 245, 'SVN': 112, 'Estonia': 118, 'Ireland': 44, 'Lithuania': 288, 'ESP': 206, 'Cyprus': 43, 'Belgium': 256, 'Greece': 46, 'CZE': 340, 'LUX': 9, 'Czechia': 402, 'HRV': 70, 'EST': 92, 'Croatia': 125, 'LTU': 97, 'Norway': 167, 'Slovakia': 57, 'AUT': 19, 'LVA': 46, 'Hungary': 118, 'SVK': 48, 'NOR': 78, 'HUN': 18, 'IRL': 23, 'ROU\nROU\nROU': 6, 'CYP': 13, 'North Macedonia': 18, 'LVA\nLVA': 1, 'Portugal': 19, 'MKD': 8, 'ROU\nROU': 4, 'FIN\nFIN\nFIN\nFIN': 6, 'FIN\nFIN\nFIN': 1, 'HUN\nHUN\nHUN': 2, 'CHE': 4, 'Malta': 1, 'EST\nEST\nEST\nEST': 6, 'BEL\nBEL': 4, 'MLT': 3, 'FIN\nFIN': 1, 'EST\nEST\nEST': 2, 'PRT': 2}
+2026-04-24 16:18:19 [INFO] src.uk_scraper: UK search 'trailer' page 1: 100 results (hitCount=658)
+2026-04-24 16:18:20 [INFO] src.uk_scraper: UK search 'trailer' page 2: 100 results (hitCount=658)
+2026-04-24 16:18:21 [INFO] src.uk_scraper: UK search 'trailer' page 3: 100 results (hitCount=658)
+2026-04-24 16:18:22 [INFO] src.uk_scraper: UK search 'trailer' page 4: 100 results (hitCount=658)
+2026-04-24 16:18:23 [INFO] src.uk_scraper: UK search 'trailer' page 5: 100 results (hitCount=658)
+2026-04-24 16:18:23 [INFO] src.uk_scraper: After 'trailer': 100 unique notices total
+2026-04-24 16:18:23 [INFO] src.uk_scraper: UK search 'semi-trailer' page 1: 5 results (hitCount=5)
+2026-04-24 16:18:23 [INFO] src.uk_scraper: After 'semi-trailer': 102 unique notices total
+2026-04-24 16:18:24 [INFO] src.uk_scraper: After 'semitrailer': 102 unique notices total
+2026-04-24 16:18:25 [INFO] src.uk_scraper: UK search 'low-bed' page 1: 2 results (hitCount=2)
+2026-04-24 16:18:25 [INFO] src.uk_scraper: After 'low-bed': 104 unique notices total
+2026-04-24 16:18:29 [INFO] src.uk_scraper: UK search 'low loader' page 1: 100 results (hitCount=10995)
+2026-04-24 16:18:31 [INFO] src.uk_scraper: UK search 'low loader' page 2: 100 results (hitCount=10995)
+2026-04-24 16:18:34 [INFO] src.uk_scraper: UK search 'low loader' page 3: 100 results (hitCount=10995)
+2026-04-24 16:18:40 [INFO] src.uk_scraper: UK search 'low loader' page 4: 100 results (hitCount=10995)
+2026-04-24 16:18:45 [INFO] src.uk_scraper: UK search 'low loader' page 5: 100 results (hitCount=10995)
+2026-04-24 16:18:45 [INFO] src.uk_scraper: After 'low loader': 204 unique notices total
+2026-04-24 16:18:47 [INFO] src.uk_scraper: UK search 'tank trailer' page 1: 100 results (hitCount=2321)
+2026-04-24 16:18:49 [INFO] src.uk_scraper: UK search 'tank trailer' page 2: 100 results (hitCount=2321)
+2026-04-24 16:18:50 [INFO] src.uk_scraper: UK search 'tank trailer' page 3: 100 results (hitCount=2321)
+2026-04-24 16:18:51 [INFO] src.uk_scraper: UK search 'tank trailer' page 4: 100 results (hitCount=2321)
+2026-04-24 16:18:53 [INFO] src.uk_scraper: UK search 'tank trailer' page 5: 100 results (hitCount=2321)
+2026-04-24 16:18:53 [INFO] src.uk_scraper: After 'tank trailer': 274 unique notices total
+2026-04-24 16:18:54 [INFO] src.uk_scraper: UK search 'fuel tanker trailer' page 1: 100 results (hitCount=4456)
+2026-04-24 16:18:57 [INFO] src.uk_scraper: UK search 'fuel tanker trailer' page 2: 100 results (hitCount=4456)
+2026-04-24 16:18:59 [INFO] src.uk_scraper: UK search 'fuel tanker trailer' page 3: 100 results (hitCount=4456)
+2026-04-24 16:19:01 [INFO] src.uk_scraper: UK search 'fuel tanker trailer' page 4: 100 results (hitCount=4456)
+2026-04-24 16:19:02 [INFO] src.uk_scraper: UK search 'fuel tanker trailer' page 5: 100 results (hitCount=4456)
+2026-04-24 16:19:02 [INFO] src.uk_scraper: After 'fuel tanker trailer': 355 unique notices total
+2026-04-24 16:19:05 [INFO] src.uk_scraper: UK search 'hook lift' page 1: 100 results (hitCount=5669)
+2026-04-24 16:19:08 [INFO] src.uk_scraper: UK search 'hook lift' page 2: 100 results (hitCount=5669)
+2026-04-24 16:19:10 [INFO] src.uk_scraper: UK search 'hook lift' page 3: 100 results (hitCount=5669)
+2026-04-24 16:19:12 [INFO] src.uk_scraper: UK search 'hook lift' page 4: 100 results (hitCount=5669)
+2026-04-24 16:19:16 [INFO] src.uk_scraper: UK search 'hook lift' page 5: 100 results (hitCount=5669)
+2026-04-24 16:19:16 [INFO] src.uk_scraper: After 'hook lift': 454 unique notices total
+2026-04-24 16:19:17 [INFO] src.uk_scraper: UK search 'container trailer' page 1: 100 results (hitCount=2018)
+2026-04-24 16:19:19 [INFO] src.uk_scraper: UK search 'container trailer' page 2: 100 results (hitCount=2018)
+2026-04-24 16:19:20 [INFO] src.uk_scraper: UK search 'container trailer' page 3: 100 results (hitCount=2018)
+2026-04-24 16:19:22 [INFO] src.uk_scraper: UK search 'container trailer' page 4: 100 results (hitCount=2018)
+2026-04-24 16:19:24 [INFO] src.uk_scraper: UK search 'container trailer' page 5: 100 results (hitCount=2018)
+2026-04-24 16:19:24 [INFO] src.uk_scraper: After 'container trailer': 518 unique notices total
+2026-04-24 16:19:25 [INFO] src.uk_scraper: UK search 'flatbed trailer' page 1: 100 results (hitCount=717)
+2026-04-24 16:19:26 [INFO] src.uk_scraper: UK search 'flatbed trailer' page 2: 100 results (hitCount=717)
+2026-04-24 16:19:27 [INFO] src.uk_scraper: UK search 'flatbed trailer' page 3: 100 results (hitCount=717)
+2026-04-24 16:19:28 [INFO] src.uk_scraper: UK search 'flatbed trailer' page 4: 100 results (hitCount=717)
+2026-04-24 16:19:29 [INFO] src.uk_scraper: UK search 'flatbed trailer' page 5: 100 results (hitCount=717)
+2026-04-24 16:19:29 [INFO] src.uk_scraper: After 'flatbed trailer': 551 unique notices total
+2026-04-24 16:19:30 [INFO] src.uk_scraper: UK search 'military trailer' page 1: 100 results (hitCount=1831)
+2026-04-24 16:19:32 [INFO] src.uk_scraper: UK search 'military trailer' page 2: 100 results (hitCount=1831)
+2026-04-24 16:19:33 [INFO] src.uk_scraper: UK search 'military trailer' page 3: 100 results (hitCount=1831)
+2026-04-24 16:19:35 [INFO] src.uk_scraper: UK search 'military trailer' page 4: 100 results (hitCount=1831)
+2026-04-24 16:19:36 [INFO] src.uk_scraper: UK search 'military trailer' page 5: 100 results (hitCount=1831)
+2026-04-24 16:19:36 [INFO] src.uk_scraper: After 'military trailer': 570 unique notices total
+2026-04-24 16:19:37 [INFO] src.uk_scraper: UK search 'ammunition trailer' page 1: 100 results (hitCount=796)
+2026-04-24 16:19:38 [INFO] src.uk_scraper: UK search 'ammunition trailer' page 2: 100 results (hitCount=796)
+2026-04-24 16:19:39 [INFO] src.uk_scraper: UK search 'ammunition trailer' page 3: 100 results (hitCount=796)
+2026-04-24 16:19:40 [INFO] src.uk_scraper: UK search 'ammunition trailer' page 4: 100 results (hitCount=796)
+2026-04-24 16:19:41 [INFO] src.uk_scraper: UK search 'ammunition trailer' page 5: 100 results (hitCount=796)
+2026-04-24 16:19:41 [INFO] src.uk_scraper: After 'ammunition trailer': 608 unique notices total
+2026-04-24 16:20:11 [ERROR] src.uk_scraper: Contracts Finder request failed (attempt 1): HTTPSConnectionPool(host='www.contractsfinder.service.gov.uk', port=443): Read timed out. (read timeout=30)
+2026-04-24 16:20:41 [INFO] src.uk_scraper: UK search 'field kitchen' page 1: 100 results (hitCount=9711)
+2026-04-24 16:21:01 [INFO] src.uk_scraper: UK search 'field kitchen' page 2: 100 results (hitCount=9711)
+2026-04-24 16:21:03 [INFO] src.uk_scraper: UK search 'field kitchen' page 3: 100 results (hitCount=9711)
+2026-04-24 16:21:04 [INFO] src.uk_scraper: UK search 'field kitchen' page 4: 100 results (hitCount=9711)
+2026-04-24 16:21:06 [INFO] src.uk_scraper: UK search 'field kitchen' page 5: 100 results (hitCount=9711)
+2026-04-24 16:21:06 [INFO] src.uk_scraper: After 'field kitchen': 707 unique notices total
+2026-04-24 16:21:26 [INFO] src.uk_scraper: UK search 'shelter trailer' page 1: 100 results (hitCount=2793)
+2026-04-24 16:21:27 [INFO] src.uk_scraper: UK search 'shelter trailer' page 2: 100 results (hitCount=2793)
+2026-04-24 16:21:28 [INFO] src.uk_scraper: UK search 'shelter trailer' page 3: 100 results (hitCount=2793)
+2026-04-24 16:21:29 [INFO] src.uk_scraper: UK search 'shelter trailer' page 4: 100 results (hitCount=2793)
+2026-04-24 16:21:30 [INFO] src.uk_scraper: UK search 'shelter trailer' page 5: 100 results (hitCount=2793)
+2026-04-24 16:21:30 [INFO] src.uk_scraper: After 'shelter trailer': 784 unique notices total
+2026-04-24 16:21:31 [INFO] src.uk_scraper: UK search 'mission module' page 1: 100 results (hitCount=4031)
+2026-04-24 16:21:33 [INFO] src.uk_scraper: UK search 'mission module' page 2: 100 results (hitCount=4031)
+2026-04-24 16:21:34 [INFO] src.uk_scraper: UK search 'mission module' page 3: 100 results (hitCount=4031)
+2026-04-24 16:21:35 [INFO] src.uk_scraper: UK search 'mission module' page 4: 100 results (hitCount=4031)
+2026-04-24 16:21:36 [INFO] src.uk_scraper: UK search 'mission module' page 5: 100 results (hitCount=4031)
+2026-04-24 16:21:36 [INFO] src.uk_scraper: After 'mission module': 884 unique notices total
+2026-04-24 16:21:36 [INFO] src.uk_scraper: UK search complete: 884 unique notices
+2026-04-24 16:21:36 [INFO] src.uk_scraper: UK raw results: 884
+2026-04-24 16:21:37 [INFO] src.uk_scraper: UK defence-relevant: 86
+2026-04-24 16:21:37 [INFO] src.uk_scraper: UK pipeline complete: 86 normalized notices saved to C:\Users\nheinrich\Documents\ted-scraper\ted-scraper\data\raw\uk\uk_notices.json
+2026-04-24 16:46:13 [WARNING] src.classifier: Haiku pre-filter error: maximum recursion depth exceeded
+2026-04-24 16:46:15 [WARNING] src.classifier: Haiku pre-filter error: maximum recursion depth exceeded
+2026-04-24 16:46:16 [WARNING] src.classifier: Haiku pre-filter error: maximum recursion depth exceeded
+2026-04-24 16:46:16 [WARNING] src.classifier: Haiku pre-filter error: maximum recursion depth exceeded
+2026-04-24 16:46:16 [WARNING] src.classifier: Haiku pre-filter error: maximum recursion depth exceeded
+2026-04-24 16:46:16 [WARNING] src.classifier: Haiku pre-filter error: maximum recursion depth exceeded
+2026-04-24 16:46:16 [WARNING] src.classifier: Haiku pre-filter error: maximum recursion depth exceeded
+2026-04-24 16:46:16 [WARNING] src.classifier: Haiku pre-filter error: maximum recursion depth exceeded
+2026-04-24 16:46:16 [WARNING] src.classifier: Haiku pre-filter error: maximum recursion depth exceeded
+2026-04-24 16:46:16 [WARNING] src.classifier: Haiku pre-filter error: maximum recursion depth exceeded
+2026-04-24 16:46:16 [WARNING] src.classifier: Haiku pre-filter error: maximum recursion depth exceeded
+
++==========================================================+
+|  TED Defence Trailer Scraper                             |
+|  Hybrid API + Filtering Pipeline                         |
++==========================================================+
+  --since: overriding date_from to 2026-01-01
+
+============================================================
+  PHASE 1+2: Building Index & Fetching Details (merged)
+============================================================
+  Overriding date_from: 2026-01-01
+
+  Running force-include fetch...
+  Force-include: 0 new notices fetched
+
+  [OK] Index built: 17505 unique notices
+  [OK] Details saved: 17505 (inline with search)
+
+============================================================
+  PHASE 2: Detail Check (already fetched in Phase 1)
+============================================================
+
+  [OK] 17505 details already on disk (fetched in Phase 1)
+
+============================================================
+  PHASE 3: Filtering & Scoring
+============================================================
+
+  [OK] Processed: 17505
+  [OK] Defence:    12911
+  [--] Skipped:    4594 (non-defence)
+  [OK] Relevant:   7360 (after dedup)
+  [OK] High conf:  1056
+
+  By Category:
+    Mission Module................ 258
+    Tank Trailer.................. 83
+    Semitrailer................... 66
+    Low Bed....................... 16
+    Loading System................ 13
+    Special Purpose............... 4
+
+============================================================
+  PHASE 5: UK Contracts Finder
+============================================================
+  [OK] UK normalized notices: 86
+  Merge: 86 added, 0 enriched, 7446 total
+  relevant.json after UK merge: 7446 notices
+
+============================================================
+  PHASE 3b: AI Classification (Optional)
+============================================================
+  Using TwoStageClassifier (Haiku pre-filter + Sonnet)
+Traceback (most recent call last):
+  File "C:\Users\nheinrich\Documents\ted-scraper\ted-scraper\src\classifier.py", line 500, in _haiku_prefilter
+    resp = self.session.post(self.API_URL, json={
+        "model": self.HAIKU_MODEL,
+        "max_tokens": 10,
+        "messages": [{"role": "user", "content": prompt}]
+    }, timeout=20)
+  File "C:\Users\nheinrich\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\requests\sessions.py", line 640, in post
+    return self.request("POST", url, data=data, json=json, **kwargs)
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nheinrich\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\requests\sessions.py", line 578, in request
+    prep = self.prepare_request(req)
+  File "C:\Users\nheinrich\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\requests\sessions.py", line 487, in prepare_request
+    p.prepare(
+    ~~~~~~~~~^
+        method=request.method.upper(),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<10 lines>...
+        hooks=merge_hooks(request.hooks, self.hooks),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\nheinrich\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\requests\models.py", line 371, in prepare
+    self.prepare_cookies(cookies)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\nheinrich\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\requests\models.py", line 628, in prepare_cookies
+    cookie_header = get_cookie_header(self._cookies, self)
+  File "C:\Users\nheinrich\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\requests\cookies.py", line 146, in get_cookie_header
+    r = MockRequest(request)
+  File "C:\Users\nheinrich\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\requests\cookies.py", line 38, in __init__
+    self.type = urlparse(self._r.url).scheme
+                ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\nheinrich\AppData\Local\Python\pythoncore-3.14-64\Lib\urllib\parse.py", line 395, in urlparse
+    scheme, netloc, url, params, query, fragment = _urlparse(url, scheme, allow_fragments)
+                                                   ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nheinrich\AppData\Local\Python\pythoncore-3.14-64\Lib\urllib\parse.py", line 400, in _urlparse
+    scheme, netloc, url, query, fragment = _urlsplit(url, scheme, allow_fragments)
+                                           ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nheinrich\AppData\Local\Python\pythoncore-3.14-64\Lib\urllib\parse.py", line 520, in _urlsplit
+    netloc, url = _splitnetloc(url, 2)
+                  ~~~~~~~~~~~~^^^^^^^^
+RecursionError: maximum recursion depth exceeded
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\nheinrich\Documents\ted-scraper\ted-scraper\main.py", line 667, in <module>
+    main()
+    ~~~~^^
+  File "C:\Users\nheinrich\Documents\ted-scraper\ted-scraper\main.py", line 643, in main
+    run_phase_classify(config, test_mode=args.test, args=args)
+    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nheinrich\Documents\ted-scraper\ted-scraper\main.py", line 219, in run_phase_classify
+    relevant = classifier.classify_batch(notices, test_mode=test_mode)
+  File "C:\Users\nheinrich\Documents\ted-scraper\ted-scraper\src\classifier.py", line 523, in classify_batch
+    result = self._base.classify_batch(notices, test_mode=test_mode)
+  File "C:\Users\nheinrich\Documents\ted-scraper\ted-scraper\src\classifier.py", line 331, in classify_batch
+    result = self.classify_notice(notice)
+  File "C:\Users\nheinrich\Documents\ted-scraper\ted-scraper\src\classifier.py", line 516, in classify_notice
+    return self._base.classify_notice(notice)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "C:\Users\nheinrich\Documents\ted-scraper\ted-scraper\src\classifier.py", line 516, in classify_notice
+    return self._base.classify_notice(notice)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "C:\Users\nheinrich\Documents\ted-scraper\ted-scraper\src\classifier.py", line 516, in classify_notice
+    return self._base.classify_notice(notice)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  [Previous line repeated 979 more times]
+  File "C:\Users\nheinrich\Documents\ted-scraper\ted-scraper\src\classifier.py", line 514, in classify_notice
+    if not self._haiku_prefilter(notice):
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "C:\Users\nheinrich\Documents\ted-scraper\ted-scraper\src\classifier.py", line 509, in _haiku_prefilter
+    logger.warning(f"Haiku pre-filter error: {e}")
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nheinrich\AppData\Local\Python\pythoncore-3.14-64\Lib\logging\__init__.py", line 1532, in warning
+    self._log(WARNING, msg, args, **kwargs)
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nheinrich\AppData\Local\Python\pythoncore-3.14-64\Lib\logging\__init__.py", line 1665, in _log
+    self.handle(record)
+    ~~~~~~~~~~~^^^^^^^^
+  File "C:\Users\nheinrich\AppData\Local\Python\pythoncore-3.14-64\Lib\logging\__init__.py", line 1681, in handle
+    self.callHandlers(record)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "C:\Users\nheinrich\AppData\Local\Python\pythoncore-3.14-64\Lib\logging\__init__.py", line 1737, in callHandlers
+    hdlr.handle(record)
+    ~~~~~~~~~~~^^^^^^^^
+  File "C:\Users\nheinrich\AppData\Local\Python\pythoncore-3.14-64\Lib\logging\__init__.py", line 1027, in handle
+    self.emit(record)
+    ~~~~~~~~~^^^^^^^^
+  File "C:\Users\nheinrich\AppData\Local\Python\pythoncore-3.14-64\Lib\logging\__init__.py", line 1265, in emit
+    StreamHandler.emit(self, record)
+    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "C:\Users\nheinrich\AppData\Local\Python\pythoncore-3.14-64\Lib\logging\__init__.py", line 1151, in emit
+    msg = self.format(record)
+  File "C:\Users\nheinrich\AppData\Local\Python\pythoncore-3.14-64\Lib\logging\__init__.py", line 999, in format
+    return fmt.format(record)
+           ~~~~~~~~~~^^^^^^^^
+  File "C:\Users\nheinrich\AppData\Local\Python\pythoncore-3.14-64\Lib\logging\__init__.py", line 715, in format
+    s = self.formatMessage(record)
+  File "C:\Users\nheinrich\AppData\Local\Python\pythoncore-3.14-64\Lib\logging\__init__.py", line 684, in formatMessage
+    return self._style.format(record)
+           ~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "C:\Users\nheinrich\AppData\Local\Python\pythoncore-3.14-64\Lib\logging\__init__.py", line 472, in format
+    return self._format(record)
+           ~~~~~~~~~~~~^^^^^^^^
+RecursionError: maximum recursion depth exceeded

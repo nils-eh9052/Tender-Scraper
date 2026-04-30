@@ -1,0 +1,343 @@
+2026-04-26 12:09:56 [INFO] src.enricher: Fulltext enrichment: 148 notices need enrichment (out of 148 total)
+2026-04-26 12:09:56 [INFO] src.enricher: Enriching [1/148]: 182178-2026
+2026-04-26 12:10:04 [INFO] src.enricher:   Enriched duration: 36 months
+2026-04-26 12:10:05 [INFO] src.enricher: Enriching [2/148]: 572650-2024
+2026-04-26 12:10:08 [INFO] src.enricher:   Enriched quantity: 44
+2026-04-26 12:10:08 [INFO] src.enricher: Enriching [3/148]: 326948-2025
+2026-04-26 12:10:12 [INFO] src.enricher:   Enriched quantity: 40
+2026-04-26 12:10:12 [INFO] src.enricher: Enriching [4/148]: 245184-2024
+2026-04-26 12:10:15 [INFO] src.enricher:   Enriched quantity: 780
+2026-04-26 12:10:16 [INFO] src.enricher: Enriching [5/148]: 726774-2024
+2026-04-26 12:10:19 [INFO] src.enricher:   Enriched duration: 48 months
+2026-04-26 12:10:20 [INFO] src.enricher: Enriching [6/148]: 530666-2024
+2026-04-26 12:10:23 [INFO] src.enricher:   Enriched duration: 4 Years
+2026-04-26 12:10:23 [INFO] src.enricher: Enriching [7/148]: 537199-2024
+2026-04-26 12:10:27 [INFO] src.enricher: Enriching [8/148]: 345761-2025
+2026-04-26 12:10:30 [INFO] src.enricher:   Enriched quantity: 39
+2026-04-26 12:10:30 [INFO] src.enricher:   Enriched duration: 4 Years
+2026-04-26 12:10:30 [INFO] src.enricher: Enriching [9/148]: 782044-2025
+2026-04-26 12:10:34 [INFO] src.enricher: Enriching [10/148]: 749251-2025
+2026-04-26 12:10:37 [INFO] src.enricher: Enriching [11/148]: 795274-2023
+2026-04-26 12:10:39 [INFO] src.enricher:   Enriched duration: 48 months
+2026-04-26 12:10:40 [INFO] src.enricher: Enriching [12/148]: 432811-2024
+2026-04-26 12:10:43 [INFO] src.enricher: Enriching [13/148]: 227432-2024
+2026-04-26 12:10:48 [INFO] src.enricher: Enriching [14/148]: 488694-2022
+2026-04-26 12:10:51 [INFO] src.enricher:   Enriched quantity: 22
+2026-04-26 12:10:51 [INFO] src.enricher: Enriching [15/148]: 95616-2026
+2026-04-26 12:10:55 [INFO] src.enricher: Enriching [16/148]: 255376-2025
+2026-04-26 12:10:58 [INFO] src.enricher:   Enriched quantity: 112
+2026-04-26 12:10:58 [INFO] src.enricher:   Enriched duration: 10 Years
+2026-04-26 12:10:58 [INFO] src.enricher: Enriching [17/148]: 83387-2024
+2026-04-26 12:11:02 [INFO] src.enricher:   Enriched quantity: 112
+2026-04-26 12:11:02 [INFO] src.enricher:   Enriched duration: 10 Years
+2026-04-26 12:11:03 [INFO] src.enricher: Enriching [18/148]: 118630-2024
+2026-04-26 12:11:06 [INFO] src.enricher: Enriching [19/148]: 283775-2022
+2026-04-26 12:11:10 [INFO] src.enricher: Enriching [20/148]: 479148-2024
+2026-04-26 12:11:13 [INFO] src.enricher:   Enriched duration: 35 months
+2026-04-26 12:11:13 [INFO] src.enricher: Enriching [21/148]: 553507-2023
+2026-04-26 12:11:16 [INFO] src.enricher:   Enriched quantity: 778
+2026-04-26 12:11:17 [INFO] src.enricher: Enriching [22/148]: 207812-2024
+2026-04-26 12:11:20 [INFO] src.enricher:   Enriched quantity: 2
+2026-04-26 12:11:20 [INFO] src.enricher: Enriching [23/148]: 692756-2024
+2026-04-26 12:11:24 [INFO] src.enricher: Enriching [24/148]: 465260-2025
+2026-04-26 12:11:27 [INFO] src.enricher:   Enriched duration: 15 months
+2026-04-26 12:11:27 [INFO] src.enricher: Enriching [25/148]: 798124-2025
+2026-04-26 12:11:33 [INFO] src.enricher:   Enriched duration: 5 Weeks
+2026-04-26 12:11:34 [INFO] src.enricher: Enriching [26/148]: 711549-2022
+2026-04-26 12:11:37 [INFO] src.enricher:   Enriched quantity: 830
+2026-04-26 12:11:37 [INFO] src.enricher: Enriching [27/148]: 813306-2025
+2026-04-26 12:11:40 [INFO] src.enricher:   Enriched duration: 1 day
+2026-04-26 12:11:41 [INFO] src.enricher: Enriching [28/148]: 682847-2024
+2026-04-26 12:11:44 [INFO] src.enricher:   Enriched quantity: 9700
+2026-04-26 12:11:44 [INFO] src.enricher:   Enriched duration: 84 months
+2026-04-26 12:11:44 [INFO] src.enricher: Enriching [29/148]: 655783-2024
+2026-04-26 12:11:47 [INFO] src.enricher:   Enriched quantity: 1
+2026-04-26 12:11:48 [INFO] src.enricher: Enriching [30/148]: 865586-2025
+2026-04-26 12:11:51 [INFO] src.enricher:   Enriched duration: 21 months
+2026-04-26 12:11:52 [INFO] src.enricher: Enriching [31/148]: 13179-2023
+2026-04-26 12:11:54 [INFO] src.enricher:   Enriched value: 5503780.4 EUR
+2026-04-26 12:11:54 [INFO] src.enricher:   Enriched winner: MILOCO PRODUCTION
+2026-04-26 12:11:55 [INFO] src.enricher: Enriching [32/148]: 161258-2025
+2026-04-26 12:11:59 [INFO] src.enricher:   Enriched quantity: 1
+2026-04-26 12:11:59 [INFO] src.enricher:   Enriched duration: 1 day
+2026-04-26 12:11:59 [INFO] src.enricher: Enriching [33/148]: 188150-2024
+2026-04-26 12:12:02 [INFO] src.enricher:   Enriched quantity: 4
+2026-04-26 12:12:02 [INFO] src.enricher:   Enriched duration: 8 months
+2026-04-26 12:12:03 [INFO] src.enricher: Enriching [34/148]: 212474-2026
+2026-04-26 12:12:06 [INFO] src.enricher:   Enriched quantity: 480
+2026-04-26 12:12:06 [INFO] src.enricher: Enriching [35/148]: 231675-2021
+2026-04-26 12:12:10 [INFO] src.enricher:   Enriched quantity: 64
+2026-04-26 12:12:10 [INFO] src.enricher:   Enriched duration: 60 months
+2026-04-26 12:12:10 [INFO] src.enricher: Enriching [36/148]: 719142-2025
+2026-04-26 12:12:13 [INFO] src.enricher:   Enriched quantity: 480
+2026-04-26 12:12:14 [INFO] src.enricher: Enriching [37/148]: 3730-2025
+2026-04-26 12:12:17 [INFO] src.enricher:   Enriched duration: 28 months
+2026-04-26 12:12:17 [INFO] src.enricher: Enriching [38/148]: 734326-2023
+2026-04-26 12:12:20 [INFO] src.enricher:   Enriched duration: 78 months
+2026-04-26 12:12:21 [INFO] src.enricher: Enriching [39/148]: 775798-2024
+2026-04-26 12:12:24 [INFO] src.enricher:   Enriched duration: 29 months
+2026-04-26 12:12:24 [INFO] src.enricher: Enriching [40/148]: 77247-2026
+2026-04-26 12:12:27 [INFO] src.enricher:   Enriched duration: 60 months
+2026-04-26 12:12:28 [INFO] src.enricher: Enriching [41/148]: 209144-2020
+2026-04-26 12:12:30 [INFO] src.enricher: Enriching [42/148]: 309470-2022
+2026-04-26 12:12:34 [INFO] src.enricher:   Enriched winner: Firma Doll Fahrzeugbau GmbH
+2026-04-26 12:12:34 [INFO] src.enricher:   Enriched quantity: 249
+2026-04-26 12:12:34 [INFO] src.enricher: Enriching [43/148]: 119311-2025
+2026-04-26 12:12:37 [INFO] src.enricher:   Enriched quantity: 160
+2026-04-26 12:12:37 [INFO] src.enricher:   Enriched duration: 20 months
+2026-04-26 12:12:38 [INFO] src.enricher: Enriching [44/148]: 129915-2025
+2026-04-26 12:12:41 [INFO] src.enricher:   Enriched duration: 16 months
+2026-04-26 12:12:41 [INFO] src.enricher: Enriching [45/148]: 132540-2025
+2026-04-26 12:12:45 [INFO] src.enricher:   Enriched duration: 28 months
+2026-04-26 12:12:45 [INFO] src.enricher: Enriching [46/148]: 138296-2026
+2026-04-26 12:12:48 [INFO] src.enricher:   Enriched duration: 10 Years
+2026-04-26 12:12:49 [INFO] src.enricher: Enriching [47/148]: 582377-2025
+2026-04-26 12:12:53 [INFO] src.enricher: Enriching [48/148]: 254420-2025
+2026-04-26 12:12:56 [INFO] src.enricher:   Enriched quantity: 92
+2026-04-26 12:12:57 [INFO] src.enricher: Enriching [49/148]: 30130-2025
+2026-04-26 12:13:00 [INFO] src.enricher:   Enriched quantity: 16
+2026-04-26 12:13:00 [INFO] src.enricher:   Enriched duration: 48 months
+2026-04-26 12:13:00 [INFO] src.enricher: Enriching [50/148]: 385446-2024
+2026-04-26 12:13:04 [INFO] src.enricher:   Enriched quantity: 160
+2026-04-26 12:13:04 [INFO] src.enricher: Enriching [51/148]: 386007-2024
+2026-04-26 12:13:07 [INFO] src.enricher:   Enriched quantity: 200
+2026-04-26 12:13:08 [INFO] src.enricher: Enriching [52/148]: 467088-2025
+2026-04-26 12:13:12 [INFO] src.enricher:   Enriched quantity: 200
+2026-04-26 12:13:12 [INFO] src.enricher:   Enriched duration: 15 months
+2026-04-26 12:13:13 [INFO] src.enricher: Enriching [53/148]: 493986-2024
+2026-04-26 12:13:16 [INFO] src.enricher:   Enriched quantity: 92
+2026-04-26 12:13:16 [INFO] src.enricher: Enriching [54/148]: 590889-2025
+2026-04-26 12:13:20 [INFO] src.enricher: Enriching [55/148]: 620674-2024
+2026-04-26 12:13:23 [INFO] src.enricher: Enriching [56/148]: 678662-2024
+2026-04-26 12:13:26 [INFO] src.enricher:   Enriched quantity: 16
+2026-04-26 12:13:26 [INFO] src.enricher:   Enriched duration: 48 months
+2026-04-26 12:13:26 [INFO] src.enricher: Enriching [57/148]: 751810-2024
+2026-04-26 12:13:29 [INFO] src.enricher:   Enriched duration: 29 months
+2026-04-26 12:13:30 [INFO] src.enricher: Enriching [58/148]: 751287-2024
+2026-04-26 12:13:33 [INFO] src.enricher:   Enriched duration: 16 months
+2026-04-26 12:13:33 [INFO] src.enricher: Enriching [59/148]: 152406-2025
+2026-04-26 12:13:36 [INFO] src.enricher:   Enriched quantity: 2
+2026-04-26 12:13:37 [INFO] src.enricher: Enriching [60/148]: 18389-2020
+2026-04-26 12:13:40 [INFO] src.enricher:   Enriched winner: Timars Svets och Smide Aktiebolag
+2026-04-26 12:13:40 [INFO] src.enricher:   Enriched quantity: 6
+2026-04-26 12:13:40 [INFO] src.enricher: Enriching [61/148]: 299270-2019
+2026-04-26 12:13:43 [INFO] src.enricher:   Enriched quantity: 6
+2026-04-26 12:13:43 [INFO] src.enricher: Enriching [62/148]: 466852-2018
+2026-04-26 12:13:46 [INFO] src.enricher:   Enriched quantity: 6
+2026-04-26 12:13:47 [INFO] src.enricher: Enriching [63/148]: 591532-2024
+2026-04-26 12:13:50 [INFO] src.enricher: Enriching [64/148]: 261427-2025
+2026-04-26 12:13:52 [INFO] src.enricher:   Enriched quantity: 4
+2026-04-26 12:13:53 [INFO] src.enricher: Enriching [65/148]: 140259-2025
+2026-04-26 12:13:56 [INFO] src.enricher: Enriching [66/148]: 196651-2024
+2026-04-26 12:13:59 [INFO] src.enricher:   Enriched quantity: 7
+2026-04-26 12:13:59 [INFO] src.enricher:   Enriched duration: 3 days
+2026-04-26 12:13:59 [INFO] src.enricher: Enriching [67/148]: 15529-2026
+2026-04-26 12:14:02 [INFO] src.enricher:   Enriched quantity: 6
+2026-04-26 12:14:02 [INFO] src.enricher:   Enriched duration: 8 months
+2026-04-26 12:14:02 [INFO] src.enricher: Enriching [68/148]: 23089-2024
+2026-04-26 12:14:05 [INFO] src.enricher:   Enriched quantity: 32
+2026-04-26 12:14:06 [INFO] src.enricher: Enriching [69/148]: 451107-2025
+2026-04-26 12:14:08 [INFO] src.enricher:   Enriched duration: 24 months
+2026-04-26 12:14:09 [INFO] src.enricher: Enriching [70/148]: 660912-2024
+2026-04-26 12:14:12 [INFO] src.enricher:   Enriched quantity: 2
+2026-04-26 12:14:13 [INFO] src.enricher: Enriching [71/148]: 782671-2023
+2026-04-26 12:14:16 [INFO] src.enricher: Enriching [72/148]: 168172-2018
+2026-04-26 12:14:20 [INFO] src.enricher:   Enriched quantity: 2
+2026-04-26 12:14:20 [INFO] src.enricher: Enriching [73/148]: 309374-2017
+2026-04-26 12:14:24 [INFO] src.enricher: Enriching [74/148]: 673480-2024
+2026-04-26 12:14:27 [INFO] src.enricher:   Enriched duration: 10 Years
+2026-04-26 12:14:27 [INFO] src.enricher: Enriching [75/148]: 25210-2020
+2026-04-26 12:14:31 [INFO] src.enricher: Enriching [76/148]: 466150-2020
+2026-04-26 12:14:33 [INFO] src.enricher:   Enriched winner: Fruehauf Recambios, S. L.
+2026-04-26 12:14:34 [INFO] src.enricher: Enriching [77/148]: 330654-2018
+2026-04-26 12:14:37 [INFO] src.enricher:   Enriched winner: Ciscrea
+2026-04-26 12:14:37 [INFO] src.enricher: Enriching [78/148]: 416123-2016
+2026-04-26 12:14:40 [INFO] src.enricher:   Enriched duration: 24 months
+2026-04-26 12:14:41 [INFO] src.enricher: Enriching [79/148]: 449529-2018
+2026-04-26 12:14:44 [INFO] src.enricher:   Enriched quantity: 13
+2026-04-26 12:14:44 [INFO] src.enricher: Enriching [80/148]: 538504-2018
+2026-04-26 12:14:47 [INFO] src.enricher:   Enriched winner: Logic MH Ltd
+2026-04-26 12:14:47 [INFO] src.enricher:   Enriched duration: 84 months
+2026-04-26 12:14:48 [INFO] src.enricher: Enriching [81/148]: 520851-2023
+2026-04-26 12:14:50 [INFO] src.enricher:   Enriched quantity: 4
+2026-04-26 12:14:50 [INFO] src.enricher:   Enriched duration: 9 months
+2026-04-26 12:14:51 [INFO] src.enricher: Enriching [82/148]: 567897-2019
+2026-04-26 12:14:53 [INFO] src.enricher:   Enriched winner: O.A.G. Industries S.r.l.
+2026-04-26 12:14:54 [INFO] src.enricher: Enriching [83/148]: 584509-2024
+2026-04-26 12:14:57 [INFO] src.enricher:   Enriched quantity: 120
+2026-04-26 12:14:57 [INFO] src.enricher: Enriching [84/148]: 671960-2023
+2026-04-26 12:15:00 [INFO] src.enricher:   Enriched duration: 10 years
+2026-04-26 12:15:01 [INFO] src.enricher: Enriching [85/148]: 98678-2017
+2026-04-26 12:15:03 [INFO] src.enricher:   Enriched winner: SC Automecanica Medias SRL
+2026-04-26 12:15:03 [INFO] src.enricher:   Enriched duration: 24 months
+2026-04-26 12:15:04 [INFO] src.enricher: Enriching [86/148]: 461069-2018
+2026-04-26 12:15:07 [INFO] src.enricher: Enriching [87/148]: 109414-2018
+2026-04-26 12:15:10 [INFO] src.enricher:   Enriched value: 950000 EUR
+2026-04-26 12:15:10 [INFO] src.enricher:   Enriched quantity: 23
+2026-04-26 12:15:10 [INFO] src.enricher: Enriching [88/148]: 533765-2019
+2026-04-26 12:15:15 [INFO] src.enricher:   Enriched winner: Upgrade d.o.o.
+2026-04-26 12:15:15 [INFO] src.enricher: Enriching [89/148]: 174181-2019
+2026-04-26 12:15:18 [INFO] src.enricher:   Enriched quantity: 52
+2026-04-26 12:15:19 [INFO] src.enricher: Enriching [90/148]: 222647-2022
+2026-04-26 12:15:21 [INFO] src.enricher:   Enriched quantity: 2
+2026-04-26 12:15:22 [INFO] src.enricher: Enriching [91/148]: 236275-2019
+2026-04-26 12:15:27 [INFO] src.enricher:   Enriched value: 890100 EUR
+2026-04-26 12:15:27 [INFO] src.enricher:   Enriched winner: Jet-Tekno Oy
+2026-04-26 12:15:27 [INFO] src.enricher:   Enriched quantity: 23
+2026-04-26 12:15:27 [INFO] src.enricher: Enriching [92/148]: 302549-2020
+2026-04-26 12:15:30 [INFO] src.enricher:   Enriched quantity: 150
+2026-04-26 12:15:30 [INFO] src.enricher:   Enriched duration: 60 months
+2026-04-26 12:15:31 [INFO] src.enricher: Enriching [93/148]: 433510-2022
+2026-04-26 12:15:33 [INFO] src.enricher:   Enriched value: 8112744.0 EUR
+2026-04-26 12:15:33 [INFO] src.enricher:   Enriched winner: REMORQUES LOUAULT SARL
+2026-04-26 12:15:33 [INFO] src.enricher:   Enriched duration: 60 months
+2026-04-26 12:15:34 [INFO] src.enricher: Enriching [94/148]: 476399-2023
+2026-04-26 12:15:37 [INFO] src.enricher:   Enriched value: 50247933.88 CZK
+2026-04-26 12:15:37 [INFO] src.enricher:   Enriched winner: AGADOS, spol. s r.o.
+2026-04-26 12:15:37 [INFO] src.enricher: Enriching [95/148]: 437702-2018
+2026-04-26 12:15:41 [INFO] src.enricher:   Enriched quantity: 52
+2026-04-26 12:15:41 [INFO] src.enricher: Enriching [96/148]: 586629-2020
+2026-04-26 12:15:44 [INFO] src.enricher:   Enriched winner: Marzasa Martin Zaballos, S. A.
+2026-04-26 12:15:45 [INFO] src.enricher: Enriching [97/148]: 101734-2025
+2026-04-26 12:15:48 [INFO] src.enricher:   Enriched quantity: 1
+2026-04-26 12:15:48 [INFO] src.enricher:   Enriched duration: 16 months
+2026-04-26 12:15:48 [INFO] src.enricher: Enriching [98/148]: 341249-2019
+2026-04-26 12:15:52 [INFO] src.enricher:   Enriched winner: Agregaty Pex-Pool Plus Janusz Kania
+2026-04-26 12:15:53 [INFO] src.enricher: Enriching [99/148]: 515920-2018
+2026-04-26 12:15:56 [INFO] src.enricher:   Enriched duration: 26 months
+2026-04-26 12:15:56 [INFO] src.enricher: Enriching [100/148]: 133709-2018
+2026-04-26 12:16:00 [INFO] src.enricher:   Enriched value: 50000000 DKK
+2026-04-26 12:16:00 [INFO] src.enricher:   Enriched duration: 84 months
+2026-04-26 12:16:00 [INFO] src.enricher: Enriching [101/148]: 168694-2017
+2026-04-26 12:16:03 [INFO] src.enricher:   Enriched value: 45000000 DKK
+2026-04-26 12:16:03 [INFO] src.enricher:   Enriched duration: 84 months
+2026-04-26 12:16:03 [INFO] src.enricher: Enriching [102/148]: 185625-2018
+2026-04-26 12:16:06 [INFO] src.enricher:   Enriched winner: Glaucus ApS
+2026-04-26 12:16:07 [INFO] src.enricher: Enriching [103/148]: 222221-2019
+2026-04-26 12:16:09 [INFO] src.enricher:   Enriched winner: Westward Scania
+2026-04-26 12:16:09 [INFO] src.enricher:   Enriched quantity: 1
+2026-04-26 12:16:09 [INFO] src.enricher: Enriching [104/148]: 565835-2024
+2026-04-26 12:16:12 [INFO] src.enricher:   Enriched duration: 77 months
+2026-04-26 12:16:13 [INFO] src.enricher: Enriching [105/148]: 568054-2023
+2026-04-26 12:16:16 [INFO] src.enricher: Enriching [106/148]: 602000-2024
+2026-04-26 12:16:18 [INFO] src.enricher:   Enriched quantity: 20
+2026-04-26 12:16:18 [INFO] src.enricher:   Enriched duration: 84 months
+2026-04-26 12:16:19 [INFO] src.enricher: Enriching [107/148]: 287476-2018
+2026-04-26 12:16:22 [INFO] src.enricher:   Enriched winner: Zasław TSS Sp. z o.o Sp. k.
+2026-04-26 12:16:22 [INFO] src.enricher:   Enriched quantity: 15
+2026-04-26 12:16:23 [INFO] src.enricher: Enriching [108/148]: 129023-2016
+2026-04-26 12:16:26 [INFO] src.enricher:   Enriched quantity: 2
+2026-04-26 12:16:27 [INFO] src.enricher: Enriching [109/148]: 204192-2016
+2026-04-26 12:16:30 [INFO] src.enricher:   Enriched quantity: 263
+2026-04-26 12:16:30 [INFO] src.enricher: Enriching [110/148]: 147766-2020
+2026-04-26 12:16:32 [INFO] src.enricher:   Enriched winner: Fa. Fliegl Fahrzeugbau
+2026-04-26 12:16:32 [INFO] src.enricher:   Enriched quantity: 298
+2026-04-26 12:16:33 [INFO] src.enricher: Enriching [111/148]: 550168-2018
+2026-04-26 12:16:35 [INFO] src.enricher:   Enriched quantity: 400
+2026-04-26 12:16:36 [INFO] src.enricher: Enriching [112/148]: 335687-2017
+2026-04-26 12:16:39 [INFO] src.enricher:   Enriched quantity: 20
+2026-04-26 12:16:39 [INFO] src.enricher: Enriching [113/148]: 451829-2023
+2026-04-26 12:16:42 [INFO] src.enricher:   Enriched winner: POP INDUSTRY
+2026-04-26 12:16:42 [INFO] src.enricher:   Enriched quantity: 32
+2026-04-26 12:16:42 [INFO] src.enricher:   Enriched duration: 24 months
+2026-04-26 12:16:42 [INFO] src.enricher: Enriching [114/148]: 186475-2017
+2026-04-26 12:16:45 [INFO] src.enricher:   Enriched winner: ADNO Sp. z o.o.
+2026-04-26 12:16:45 [INFO] src.enricher:   Enriched quantity: 2
+2026-04-26 12:16:45 [INFO] src.enricher: Enriching [115/148]: 442117-2023
+2026-04-26 12:16:49 [INFO] src.enricher:   Enriched quantity: 56
+2026-04-26 12:16:50 [INFO] src.enricher: Enriching [116/148]: 278489-2016
+2026-04-26 12:16:53 [INFO] src.enricher:   Enriched value: 160000.0 EUR
+2026-04-26 12:16:53 [INFO] src.enricher:   Enriched winner: Jim Murphy Engineering (Tuam) Ltd
+2026-04-26 12:16:53 [INFO] src.enricher:   Enriched duration: 18 months
+2026-04-26 12:16:53 [INFO] src.enricher: Enriching [117/148]: 285082-2017
+2026-04-26 12:16:56 [INFO] src.enricher:   Enriched quantity: 8
+2026-04-26 12:16:56 [INFO] src.enricher:   Enriched duration: 9 months
+2026-04-26 12:16:56 [INFO] src.enricher: Enriching [118/148]: 33240-2017
+2026-04-26 12:17:01 [INFO] src.enricher:   Enriched duration: 48 months
+2026-04-26 12:17:01 [INFO] src.enricher: Enriching [119/148]: 453347-2020
+2026-04-26 12:17:04 [INFO] src.enricher:   Enriched quantity: 14
+2026-04-26 12:17:04 [INFO] src.enricher:   Enriched duration: 19 months
+2026-04-26 12:17:05 [INFO] src.enricher: Enriching [120/148]: 49638-2019
+2026-04-26 12:17:08 [INFO] src.enricher:   Enriched quantity: 298
+2026-04-26 12:17:08 [INFO] src.enricher:   Enriched duration: 48 months
+2026-04-26 12:17:08 [INFO] src.enricher: Enriching [121/148]: 517828-2017
+2026-04-26 12:17:11 [INFO] src.enricher:   Enriched quantity: 543
+2026-04-26 12:17:11 [INFO] src.enricher:   Enriched duration: 49 months
+2026-04-26 12:17:11 [INFO] src.enricher: Enriching [122/148]: 93750-2018
+2026-04-26 12:17:14 [INFO] src.enricher:   Enriched quantity: 8
+2026-04-26 12:17:15 [INFO] src.enricher: Enriching [123/148]: 103251-2026
+2026-04-26 12:17:17 [INFO] src.enricher:   Enriched duration: 24 months
+2026-04-26 12:17:18 [INFO] src.enricher: Enriching [124/148]: 151800-2025
+2026-04-26 12:17:21 [INFO] src.enricher:   Enriched duration: 24 months
+2026-04-26 12:17:22 [INFO] src.enricher: Enriching [125/148]: 153265-2024
+2026-04-26 12:17:25 [INFO] src.enricher:   Enriched duration: 6 months
+2026-04-26 12:17:26 [INFO] src.enricher: Enriching [126/148]: 748301-2024
+2026-04-26 12:17:29 [INFO] src.enricher: Enriching [127/148]: 207385-2026
+2026-04-26 12:17:32 [INFO] src.enricher: Enriching [128/148]: 252675-2024
+2026-04-26 12:17:35 [INFO] src.enricher:   Enriched duration: 24 months
+2026-04-26 12:17:35 [INFO] src.enricher: Enriching [129/148]: 338523-2024
+2026-04-26 12:17:39 [INFO] src.enricher: Enriching [130/148]: 363076-2022
+2026-04-26 12:17:41 [INFO] src.enricher:   Enriched value: 120000000 DKK
+2026-04-26 12:17:41 [INFO] src.enricher:   Enriched duration: 84 months
+2026-04-26 12:17:42 [INFO] src.enricher: Enriching [131/148]: 344292-2025
+2026-04-26 12:17:45 [INFO] src.enricher:   Enriched quantity: 2
+2026-04-26 12:17:45 [INFO] src.enricher:   Enriched duration: 180 Days
+2026-04-26 12:17:45 [INFO] src.enricher: Enriching [132/148]: 415869-2025
+2026-04-26 12:17:48 [INFO] src.enricher:   Enriched quantity: 1
+2026-04-26 12:17:48 [INFO] src.enricher: Enriching [133/148]: 473074-2022
+2026-04-26 12:17:51 [INFO] src.enricher:   Enriched duration: 24 months
+2026-04-26 12:17:52 [INFO] src.enricher: Enriching [134/148]: 685489-2025
+2026-04-26 12:17:55 [INFO] src.enricher:   Enriched quantity: 1
+2026-04-26 12:17:56 [INFO] src.enricher: Enriching [135/148]: 760994-2024
+2026-04-26 12:18:00 [INFO] src.enricher: Enriching [136/148]: 736943-2024
+2026-04-26 12:18:03 [INFO] src.enricher:   Enriched duration: 24 months
+2026-04-26 12:18:04 [INFO] src.enricher: Enriching [137/148]: 5860-2026
+2026-04-26 12:18:07 [INFO] src.enricher: Enriching [138/148]: 790962-2024
+2026-04-26 12:18:11 [INFO] src.enricher: Enriching [139/148]: UK-tender_285861/998388
+2026-04-26 12:18:11 [WARNING] src.enricher:   No fulltext for UK-tender_285861/998388, skipping enrichment
+2026-04-26 12:18:11 [INFO] src.enricher: Enriching [140/148]: UK-RQ0000031667
+2026-04-26 12:18:12 [WARNING] src.enricher:   No fulltext for UK-RQ0000031667, skipping enrichment
+2026-04-26 12:18:12 [INFO] src.enricher: Enriching [141/148]: UK-tender_347489/1184039
+2026-04-26 12:18:13 [WARNING] src.enricher:   No fulltext for UK-tender_347489/1184039, skipping enrichment
+2026-04-26 12:18:13 [INFO] src.enricher: Enriching [142/148]: UK-BIP83050068
+2026-04-26 12:18:14 [WARNING] src.enricher:   No fulltext for UK-BIP83050068, skipping enrichment
+2026-04-26 12:18:14 [INFO] src.enricher: Enriching [143/148]: UK-BIP82987676
+2026-04-26 12:18:15 [WARNING] src.enricher:   No fulltext for UK-BIP82987676, skipping enrichment
+2026-04-26 12:18:15 [INFO] src.enricher: Enriching [144/148]: UK-tender_340233/1221190
+2026-04-26 12:18:16 [WARNING] src.enricher:   No fulltext for UK-tender_340233/1221190, skipping enrichment
+2026-04-26 12:18:16 [INFO] src.enricher: Enriching [145/148]: UK-tender_340233/1200929
+2026-04-26 12:18:17 [WARNING] src.enricher:   No fulltext for UK-tender_340233/1200929, skipping enrichment
+2026-04-26 12:18:17 [INFO] src.enricher: Enriching [146/148]: UK-tender_344671/1186016
+2026-04-26 12:18:18 [WARNING] src.enricher:   No fulltext for UK-tender_344671/1186016, skipping enrichment
+2026-04-26 12:18:18 [INFO] src.enricher: Enriching [147/148]: UK-tender_336462/1140912
+2026-04-26 12:18:19 [WARNING] src.enricher:   No fulltext for UK-tender_336462/1140912, skipping enrichment
+2026-04-26 12:18:19 [INFO] src.enricher: Enriching [148/148]: UK-BIP77766607
+2026-04-26 12:18:20 [WARNING] src.enricher:   No fulltext for UK-BIP77766607, skipping enrichment
+2026-04-26 12:18:20 [INFO] src.enricher: Fulltext enrichment complete: 138 notices enriched
+2026-04-26 12:18:20 [INFO] src.exporter: Archived: 260426_TED_Tender Data_00.02.xlsx
+2026-04-26 12:18:20 [INFO] src.exporter: UK blacklist loaded: 5 IDs
+2026-04-26 12:18:20 [INFO] src.exporter: Excel exported: data\export\260426_TED_Tender Data_00.01.xlsx
+2026-04-26 12:18:20 [INFO] src.exporter:   Rows: 143
+2026-04-26 12:18:20 [INFO] src.exporter:   Columns: 23
+2026-04-26 12:18:20 [INFO] src.exporter: Latest copy: data\export\TED_Defence_Trailers_LATEST.xlsx
+
++==========================================================+
+|  TED Defence Trailer Scraper                             |
+|  Hybrid API + Filtering Pipeline                         |
++==========================================================+
+
+  Mode: ENRICH-ONLY (skipping phases 1-3b)
+
+============================================================
+  PHASE 3c: Fulltext Enrichment
+============================================================
+
+  [OK] Enrichment complete: 148 notices saved
+
+============================================================
+  PHASE 4: Excel Export
+============================================================
+
+  [OK] Excel exported: data\export\260426_TED_Tender Data_00.01.xlsx
+  Template: Vorlage.xlsx (Scraper Data)
+  Format: Defence-only, deduplicated, 14 columns, English

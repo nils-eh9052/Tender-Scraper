@@ -81487,5 +81487,589 @@
     },
     "timestamp": "2026-04-30 09:00:40",
     "title": ""
+  },
+  "459800-2023": {
+    "result": {
+      "relevant": false,
+      "reason": "No description provided and CPV 35000000 is too general to determine if trailers are the primary procurement subject"
+    },
+    "timestamp": "2026-04-30 11:20:23",
+    "title": "Belgium-Evere: Security, fire-fighting, police and defence equipment"
+  },
+  "33774-2018": {
+    "result": {
+      "relevant": false,
+      "reason": "Haiku pre-filter: not a defence trailer"
+    },
+    "timestamp": "2026-04-30 11:20:24",
+    "title": "Italy-Rome: Saloon cars"
+  },
+  "23333-2023": {
+    "result": {
+      "relevant": false,
+      "reason": "Primary procurement subject is fuel-tanker trucks, not trailers - trucks are the main platform, not trailer-based systems"
+    },
+    "timestamp": "2026-04-30 11:20:27",
+    "title": "Poland-Warsaw: Fuel-tanker trucks"
+  },
+  "781722-2023": {
+    "result": {
+      "relevant": false,
+      "reason": "Primary procurement subject is ammunition (CPV 35330000), not trailers"
+    },
+    "timestamp": "2026-04-30 11:20:30",
+    "title": "Austria-Vienna: Ammunition"
+  },
+  "542814-2024": {
+    "result": {
+      "relevant": false,
+      "reason": "Primary procurement subject is pick-up trucks (5-seat, 4x4, automatic transmission vehicles), not trailers"
+    },
+    "timestamp": "2026-04-30 11:20:34",
+    "title": "Poland – Military vehicles and associated parts – Dostawa Pojazdów operacyjnych WS grupy A i B z pod"
+  },
+  "521710-2017": {
+    "result": {
+      "relevant": false,
+      "reason": "Primary procurement subject is warship parts (CPV 35520000), not trailers"
+    },
+    "timestamp": "2026-04-30 11:20:37",
+    "title": "United Kingdom-Bristol: Parts for warships"
+  },
+  "665261-2021": {
+    "result": {
+      "relevant": false,
+      "reason": "Haiku pre-filter: not a defence trailer"
+    },
+    "timestamp": "2026-04-30 11:20:38",
+    "title": "Romania-București: Nuclear, biological, chemical and radiological protection equipment"
+  },
+  "772543-2023": {
+    "result": {
+      "relevant": false,
+      "reason": "Haiku pre-filter: not a defence trailer"
+    },
+    "timestamp": "2026-04-30 11:20:41",
+    "title": "Germany – Ammunition – Patronen 20mm x 102 TP"
+  },
+  "611106-2019": {
+    "result": {
+      "relevant": false,
+      "reason": "Haiku pre-filter: not a defence trailer"
+    },
+    "timestamp": "2026-04-30 11:20:42",
+    "title": "France-Brest: Parts for warships"
+  },
+  "563440-2021": {
+    "result": {
+      "relevant": false,
+      "reason": "Haiku pre-filter: not a defence trailer"
+    },
+    "timestamp": "2026-04-30 11:20:44",
+    "title": "France-Toulon: Repair and maintenance services of warships"
+  },
+  "733551-2024": {
+    "result": {
+      "relevant": false,
+      "reason": "Haiku pre-filter: not a defence trailer"
+    },
+    "timestamp": "2026-04-30 11:20:45",
+    "title": "Poland – Grenades – Dostawa środków bojowych"
+  },
+  "149701-2020": {
+    "result": {
+      "relevant": false,
+      "reason": "Haiku pre-filter: not a defence trailer"
+    },
+    "timestamp": "2026-04-30 11:20:46",
+    "title": "France-Brest: Parts for warships"
+  },
+  "403446-2021": {
+    "result": {
+      "relevant": false,
+      "reason": "Haiku pre-filter: not a defence trailer"
+    },
+    "timestamp": "2026-04-30 11:20:47",
+    "title": "Germany-Coblenz: Rifles"
+  },
+  "179622-2019": {
+    "result": {
+      "relevant": false,
+      "reason": "Primary procurement subject is engines and engine parts for military vehicles, not trailers"
+    },
+    "timestamp": "2026-04-30 11:20:50",
+    "title": "United Kingdom-Bristol: Engines and engine parts for military vehicles"
+  },
+  "368445-2019": {
+    "result": {
+      "relevant": false,
+      "reason": "Haiku pre-filter: not a defence trailer"
+    },
+    "timestamp": "2026-04-30 11:20:51",
+    "title": "United Kingdom-Bristol: Hire of buses and coaches with driver"
+  },
+  "462616-2017": {
+    "result": {
+      "relevant": false,
+      "reason": "Haiku pre-filter: not a defence trailer"
+    },
+    "timestamp": "2026-04-30 11:20:53",
+    "title": "Germany-Coblenz: Cartridges"
+  },
+  "544995-2018": {
+    "result": {
+      "relevant": false,
+      "reason": "Haiku pre-filter: not a defence trailer"
+    },
+    "timestamp": "2026-04-30 11:20:54",
+    "title": "Belgium-Evere: Weapons, ammunition and associated parts"
+  },
+  "581325-2020": {
+    "result": {
+      "relevant": false,
+      "reason": "Haiku pre-filter: not a defence trailer"
+    },
+    "timestamp": "2026-04-30 11:20:55",
+    "title": "Finland-Tampere: Bullet-proof vests"
+  },
+  "634036-2021": {
+    "result": {
+      "relevant": false,
+      "reason": "Primary procurement subject is intelligence, surveillance, target acquisition and reconnaissance systems (CPV 35720000), not trailers"
+    },
+    "timestamp": "2026-04-30 11:20:58",
+    "title": "Bulgaria-Sofia: Intelligence, surveillance, target acquisition and reconnaissance"
+  },
+  "384501-2020": {
+    "result": {
+      "relevant": false,
+      "reason": "Primary procurement subject is sensors (CPV 35125100), not trailers or trailer-based systems"
+    },
+    "timestamp": "2026-04-30 11:21:01",
+    "title": "Portugal-Lisbon: Sensors"
+  },
+  "CH-4308874b-1e8f-43e4-bfa3-bc914d69ea73": {
+    "result": {
+      "relevant": false,
+      "reason": "Haiku pre-filter: not a defence trailer"
+    },
+    "timestamp": "2026-04-30 11:21:04",
+    "title": ""
+  },
+  "CH-edebce7c-7a97-4dfe-8c3c-e12f806c59ea": {
+    "result": {
+      "relevant": false,
+      "reason": "Haiku pre-filter: not a defence trailer"
+    },
+    "timestamp": "2026-04-30 11:21:06",
+    "title": ""
+  },
+  "CH-e97f25ec-443b-4070-88a1-7305e8420fec": {
+    "result": {
+      "relevant": false,
+      "reason": "Haiku pre-filter: not a defence trailer"
+    },
+    "timestamp": "2026-04-30 11:21:07",
+    "title": ""
+  },
+  "CH-e7e8d529-2ffd-4f1d-a5b4-b528c343b8af": {
+    "result": {
+      "relevant": false,
+      "reason": "Haiku pre-filter: not a defence trailer"
+    },
+    "timestamp": "2026-04-30 11:21:09",
+    "title": ""
+  },
+  "CH-873c6df1-4052-4e0a-8529-db557b2f6629": {
+    "result": {
+      "relevant": false,
+      "reason": "Haiku pre-filter: not a defence trailer"
+    },
+    "timestamp": "2026-04-30 11:21:10",
+    "title": ""
+  },
+  "CH-75d7eca7-cf23-4305-b2f5-08a12fd49d82": {
+    "result": {
+      "relevant": false,
+      "reason": "Haiku pre-filter: not a defence trailer"
+    },
+    "timestamp": "2026-04-30 11:21:11",
+    "title": ""
+  },
+  "CH-1b4fd921-116d-4100-95fc-3d6fce9eb353": {
+    "result": {
+      "relevant": false,
+      "reason": "Haiku pre-filter: not a defence trailer"
+    },
+    "timestamp": "2026-04-30 11:21:13",
+    "title": ""
+  },
+  "CH-2cf832b3-3634-494f-8e4c-d4f3dc764103": {
+    "result": {
+      "relevant": false,
+      "reason": "Haiku pre-filter: not a defence trailer"
+    },
+    "timestamp": "2026-04-30 11:21:14",
+    "title": ""
+  },
+  "CH-463252de-b028-45b4-b504-c02cdcc34335": {
+    "result": {
+      "relevant": false,
+      "reason": "Haiku pre-filter: not a defence trailer"
+    },
+    "timestamp": "2026-04-30 11:21:15",
+    "title": ""
+  },
+  "CH-d5e39877-e9aa-441b-b943-fc5cde29a655": {
+    "result": {
+      "relevant": false,
+      "reason": "Haiku pre-filter: not a defence trailer"
+    },
+    "timestamp": "2026-04-30 11:21:16",
+    "title": ""
+  },
+  "CH-c383d55a-37d5-46fe-8f6d-d0b635decde0": {
+    "result": {
+      "relevant": false,
+      "reason": "Haiku pre-filter: not a defence trailer"
+    },
+    "timestamp": "2026-04-30 11:21:17",
+    "title": ""
+  },
+  "CH-760f3251-cb82-497a-a8f3-22624332eb72": {
+    "result": {
+      "relevant": false,
+      "reason": "Haiku pre-filter: not a defence trailer"
+    },
+    "timestamp": "2026-04-30 11:21:19",
+    "title": ""
+  },
+  "CH-d49058be-6584-4144-b37e-9d8d633bd1a8": {
+    "result": {
+      "relevant": false,
+      "reason": "Haiku pre-filter: not a defence trailer"
+    },
+    "timestamp": "2026-04-30 11:21:20",
+    "title": ""
+  },
+  "CH-7723d39a-8a2d-4e88-a9ff-84f4648fd607": {
+    "result": {
+      "relevant": false,
+      "reason": "Haiku pre-filter: not a defence trailer"
+    },
+    "timestamp": "2026-04-30 11:21:21",
+    "title": ""
+  },
+  "CH-e048810f-9a08-45cb-ab24-4dcf98e9e398": {
+    "result": {
+      "relevant": false,
+      "reason": "Haiku pre-filter: not a defence trailer"
+    },
+    "timestamp": "2026-04-30 11:21:22",
+    "title": ""
+  },
+  "CH-7579aacf-9e37-4f7d-b03f-48da681b61cf": {
+    "result": {
+      "relevant": false,
+      "reason": "Haiku pre-filter: not a defence trailer"
+    },
+    "timestamp": "2026-04-30 11:21:24",
+    "title": ""
+  },
+  "CH-bf34885d-326e-4b17-a541-f08fd6242de5": {
+    "result": {
+      "relevant": false,
+      "reason": "Haiku pre-filter: not a defence trailer"
+    },
+    "timestamp": "2026-04-30 11:21:25",
+    "title": ""
+  },
+  "CH-fda6106f-f18a-4e97-bbe5-d5168b672505": {
+    "result": {
+      "relevant": false,
+      "reason": "Haiku pre-filter: not a defence trailer"
+    },
+    "timestamp": "2026-04-30 11:21:26",
+    "title": ""
+  },
+  "CH-70315a43-6db2-4062-8729-488ac7b4a9d0": {
+    "result": {
+      "relevant": false,
+      "reason": "Haiku pre-filter: not a defence trailer"
+    },
+    "timestamp": "2026-04-30 11:21:28",
+    "title": ""
+  },
+  "CH-e4c15cae-bfb4-48a0-95d5-00715852ea8e": {
+    "result": {
+      "relevant": false,
+      "reason": "Haiku pre-filter: not a defence trailer"
+    },
+    "timestamp": "2026-04-30 11:21:29",
+    "title": ""
+  },
+  "CH-30f3ff3f-5390-4a96-b6da-c2bc003a4173": {
+    "result": {
+      "relevant": false,
+      "reason": "Haiku pre-filter: not a defence trailer"
+    },
+    "timestamp": "2026-04-30 11:21:30",
+    "title": ""
+  },
+  "CH-1040a6de-3694-43ff-99c3-2a124a738720": {
+    "result": {
+      "relevant": false,
+      "reason": "Haiku pre-filter: not a defence trailer"
+    },
+    "timestamp": "2026-04-30 11:21:31",
+    "title": ""
+  },
+  "CH-641f3d37-fa8d-4153-86c6-abad43fa1d12": {
+    "result": {
+      "relevant": false,
+      "reason": "Haiku pre-filter: not a defence trailer"
+    },
+    "timestamp": "2026-04-30 11:21:32",
+    "title": ""
+  },
+  "CH-aba69ae6-a12d-4b0a-93a8-7edb1e8d76c9": {
+    "result": {
+      "relevant": false,
+      "reason": "Haiku pre-filter: not a defence trailer"
+    },
+    "timestamp": "2026-04-30 11:21:33",
+    "title": ""
+  },
+  "CH-70c3c542-6644-46a5-85d9-eaf0c45fda46": {
+    "result": {
+      "relevant": false,
+      "reason": "Haiku pre-filter: not a defence trailer"
+    },
+    "timestamp": "2026-04-30 11:21:35",
+    "title": ""
+  },
+  "CH-05fb6103-b9c5-48fd-8cd5-75ed138df3e3": {
+    "result": {
+      "relevant": false,
+      "reason": "Haiku pre-filter: not a defence trailer"
+    },
+    "timestamp": "2026-04-30 11:21:36",
+    "title": ""
+  },
+  "CH-1c4e36e5-4c01-4826-8a57-d29986f19d58": {
+    "result": {
+      "relevant": false,
+      "reason": "Haiku pre-filter: not a defence trailer"
+    },
+    "timestamp": "2026-04-30 11:21:38",
+    "title": ""
+  },
+  "CH-668b2826-7ca7-49cd-9263-7ae8a471f7eb": {
+    "result": {
+      "relevant": false,
+      "reason": "Haiku pre-filter: not a defence trailer"
+    },
+    "timestamp": "2026-04-30 11:21:39",
+    "title": ""
+  },
+  "DE-EV-Z_41C-Z0282_0133": {
+    "result": {
+      "relevant": false,
+      "reason": "Haiku pre-filter: not a defence trailer"
+    },
+    "timestamp": "2026-04-30 11:21:40",
+    "title": ""
+  },
+  "DE-EV-15_1_30-KatS-303-26": {
+    "result": {
+      "relevant": false,
+      "reason": "Haiku pre-filter: not a defence trailer"
+    },
+    "timestamp": "2026-04-30 11:21:42",
+    "title": ""
+  },
+  "DE-EV-6003041911-VpflABw": {
+    "result": {
+      "relevant": false,
+      "reason": "Primary procurement subject is field kitchens (Feldküchen) - cooking equipment/kitchen installations, not trailers. CPV 39221000 confirms kitchen equipment classification."
+    },
+    "timestamp": "2026-04-30 11:21:45",
+    "title": ""
+  },
+  "DE-EV-VOEK-462-25": {
+    "result": {
+      "relevant": false,
+      "reason": "Haiku pre-filter: not a defence trailer"
+    },
+    "timestamp": "2026-04-30 11:21:48",
+    "title": ""
+  },
+  "DE-EV-6003020453-BAAINBw_U2_3E": {
+    "result": {
+      "relevant": false,
+      "reason": "Haiku pre-filter: not a defence trailer"
+    },
+    "timestamp": "2026-04-30 11:21:49",
+    "title": ""
+  },
+  "DE-EV-6003035638-BAAINBw_E2_2H": {
+    "result": {
+      "relevant": false,
+      "reason": "This procurement is for E2.2H-Sensor Navigation systems (electronic/sensor equipment), not trailers. CPV 31000000 indicates electrical machines and equipment, not vehicles or trailers."
+    },
+    "timestamp": "2026-04-30 11:21:52",
+    "title": ""
+  },
+  "DE-EV-6003038661-BAAINBwE2_5F_Rad__Vollgummireifen__Leo2": {
+    "result": {
+      "relevant": false,
+      "reason": "This procurement is for wheels/tires (Rad, Vollgummireifen) for Leopard 2 tanks, which are spare parts only, not trailers"
+    },
+    "timestamp": "2026-04-30 11:21:56",
+    "title": ""
+  },
+  "DE-EV-6003033816-BAAINBw_E2_3Y": {
+    "result": {
+      "relevant": false,
+      "reason": "Primary procurement subject is cooling system radiators/coolant components (KUEHLER, KUEHLFLUESSIGKEIT) for military vehicles, not trailers"
+    },
+    "timestamp": "2026-04-30 11:22:00",
+    "title": ""
+  },
+  "DE-EV-6003034044-BAAINBw_E2_1": {
+    "result": {
+      "relevant": false,
+      "reason": "This procurement is for ropes, cables, lines and cords (Drahtseilen, Seilen, Leinen und Schnüren) with CPV 39541100, not trailers"
+    },
+    "timestamp": "2026-04-30 11:22:03",
+    "title": ""
+  },
+  "DE-EV-6003028772-BAAINBw_E2_3U": {
+    "result": {
+      "relevant": false,
+      "reason": "This is about spare parts for military trucks (LKW UTF mil ZLK 5t-15t), not procurement of trailers as the primary subject"
+    },
+    "timestamp": "2026-04-30 11:22:06",
+    "title": ""
+  },
+  "DE-EV-6003019867-BAAINBw_E2_3K": {
+    "result": {
+      "relevant": false,
+      "reason": "Primary procurement is tent extension components (Zelterweiterungsbaugruppe), not trailers"
+    },
+    "timestamp": "2026-04-30 11:22:09",
+    "title": ""
+  },
+  "DE-EV-6003027496-BAAINBw_E2_3U": {
+    "result": {
+      "relevant": false,
+      "reason": "This is procurement of spare parts for military trucks (LKW), not primary procurement of trailers"
+    },
+    "timestamp": "2026-04-30 11:22:13",
+    "title": ""
+  },
+  "DE-EV-6003026425-BAAINBw_E2_3U": {
+    "result": {
+      "relevant": false,
+      "reason": "CPV 34000000 is too general (all transport equipment) and no specific description provided to confirm trailers are the primary procurement subject"
+    },
+    "timestamp": "2026-04-30 11:22:17",
+    "title": ""
+  },
+  "DE-EV-6002992697-BAAINBw_J4": {
+    "result": {
+      "relevant": false,
+      "reason": "This procurement is for administrative and process management services related to NH 90 helicopter equipment processing, not for buying trailers"
+    },
+    "timestamp": "2026-04-30 11:22:20",
+    "title": ""
+  },
+  "DE-EV-N-ÖA_2026-84": {
+    "result": {
+      "relevant": false,
+      "reason": "Haiku pre-filter: not a defence trailer"
+    },
+    "timestamp": "2026-04-30 11:22:21",
+    "title": ""
+  },
+  "DE-EV-6003045041-Team_I_1_5_2_3_Beschfg_BFD_ZAW": {
+    "result": {
+      "relevant": false,
+      "reason": "Haiku pre-filter: not a defence trailer"
+    },
+    "timestamp": "2026-04-30 11:22:23",
+    "title": ""
+  },
+  "DE-EV-6003044940-Team_I_1_5_2_3_Beschfg_BFD_ZAW": {
+    "result": {
+      "relevant": false,
+      "reason": "Haiku pre-filter: not a defence trailer"
+    },
+    "timestamp": "2026-04-30 11:22:24",
+    "title": ""
+  },
+  "DE-EV-6003046320-BwDLZ_Landsberg_Lech": {
+    "result": {
+      "relevant": false,
+      "reason": "Haiku pre-filter: not a defence trailer"
+    },
+    "timestamp": "2026-04-30 11:22:25",
+    "title": ""
+  },
+  "DE-EV-6003034955-BwDLZ_Zweibrücken": {
+    "result": {
+      "relevant": false,
+      "reason": "Haiku pre-filter: not a defence trailer"
+    },
+    "timestamp": "2026-04-30 11:22:27",
+    "title": ""
+  },
+  "DE-EV-6003045195-BwDLZ_München": {
+    "result": {
+      "relevant": false,
+      "reason": "This is a training/educational service procurement for military surgery training, not a trailer procurement"
+    },
+    "timestamp": "2026-04-30 11:22:30",
+    "title": ""
+  },
+  "DE-EV-B_E3BA_EA0004_EA0004": {
+    "result": {
+      "relevant": false,
+      "reason": "This is about logistics services and maintenance of ABC (nuclear/biological/chemical) defense materials, not about buying trailers. The CPV code 50117300 is for vehicle repair services, not trailer procurement."
+    },
+    "timestamp": "2026-04-30 11:22:34",
+    "title": ""
+  },
+  "DE-EV-6003043142-Team_I_1_5_2_3_Beschfg_BFD_ZAW": {
+    "result": {
+      "relevant": false,
+      "reason": "Haiku pre-filter: not a defence trailer"
+    },
+    "timestamp": "2026-04-30 11:22:35",
+    "title": ""
+  },
+  "DE-EV-6003044656-BAPersBw_I_3_5_2_2": {
+    "result": {
+      "relevant": false,
+      "reason": "This is procurement of sports bags with branding (Sporttasche mit Branding), not trailers"
+    },
+    "timestamp": "2026-04-30 11:22:39",
+    "title": ""
+  },
+  "DE-EV-6003041277-BAIUDBw_DL_II_5_2": {
+    "result": {
+      "relevant": false,
+      "reason": "Haiku pre-filter: not a defence trailer"
+    },
+    "timestamp": "2026-04-30 11:22:40",
+    "title": ""
+  },
+  "CZ-N006/26/V00011740": {
+    "result": {
+      "relevant": false,
+      "reason": "Haiku pre-filter: not a defence trailer"
+    },
+    "timestamp": "2026-04-30 11:22:41",
+    "title": ""
   }
 }

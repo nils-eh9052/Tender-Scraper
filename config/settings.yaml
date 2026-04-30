@@ -107,15 +107,37 @@ keywords:
     it: ["modulo missione", "shelter"]
   
   loading_system:
-    en: ["loading system", "load handling system", "hookloader", "hook-lift", "hook lift", "palletized load system", "PLS", "demountable rack", "DROPS", "MULTILIFT", "HIAB"]
-    de: ["beladesystem", "wechsellader", "hakenladegerät", "abrollkipper", "ladekran", "wechselaufbau-system", "hakenlift"]
-    fr: ["système de chargement", "bras de manutention", "ampliroll"]
+    en: ["loading system", "load handling system", "hookloader", "hook-lift", "hook lift", "palletized load system", "PLS", "DROPS", "EPLS", "enhanced palletized load system", "demountable rack", "MULTILIFT", "HIAB", "swap body system", "interchangeable body"]
+    de: ["beladesystem", "wechsellader", "hakenladegerät", "abrollkipper", "ladekran", "wechselaufbau-system", "hakenlift", "wechselladersystem", "EPLS", "palettiertes ladesystem"]
+    fr: ["système de chargement", "bras de manutention", "ampliroll", "système de caisse mobile"]
     it: ["sistema di carico"]
-  
+    pl: ["system załadunku", "DROPS", "EPLS"]
+    sv: ["lastvexlare", "växelflak"]
+    no: ["lasteveksler", "vekselflak"]
+
   special_purpose:
-    en: ["special purpose trailer", "recovery trailer", "bridging trailer", "engineer trailer", "flatbed trailer", "platform trailer", "special trailer"]
-    de: ["spezialanhänger", "bergeanhänger", "brückenanhänger", "pionieranhänger", "plattformanhänger", "mehrzweckanhänger"]
-    fr: ["remorque spéciale", "remorque de dépannage", "remorque plateforme"]
+    en: ["special purpose trailer", "recovery trailer", "bridging trailer", "engineer trailer", "flatbed trailer", "platform trailer", "special trailer", "tank transport trailer", "armoured vehicle trailer", "APC trailer", "equipment trailer"]
+    de: ["spezialanhänger", "bergeanhänger", "brückenanhänger", "pionieranhänger", "plattformanhänger", "mehrzweckanhänger", "panzertransportanhänger", "kettenfahrzeug-anhänger", "geräteanhänger"]
+    fr: ["remorque spéciale", "remorque de dépannage", "remorque plateforme", "remorque blindée"]
+    pl: ["przyczepa specjalna", "przyczepa transportera"]
+
+  ammunition_trailer:
+    en: ["ammunition trailer", "ammo trailer", "munitions trailer", "ammunition transport", "shell trailer"]
+    de: ["munitionsanhänger", "munitionstransportanhänger", "patronenanhänger"]
+    fr: ["remorque munitions", "remorque à munitions"]
+    pl: ["przyczepa amunicyjna"]
+    sv: ["ammunitionssläpvagn", "ammunitionsvagn"]
+    no: ["ammunisjonshengervogn", "ammunisjonsvogn"]
+    uk: ["ammunition trailer", "ammo trailer"]
+
+  field_kitchen:
+    en: ["field kitchen", "field kitchen trailer", "mobile kitchen", "catering trailer", "kitchen trailer"]
+    de: ["feldküche", "feldküchenanhänger", "küchenanhänger", "gulaschkanone"]
+    fr: ["cuisine de campagne", "cuisine mobile", "remorque cuisine"]
+    pl: ["kuchnia polowa", "kuchnia polowa przyczepa"]
+    sv: ["fältkök", "fältköksvagn"]
+    no: ["feltkjøkken", "feltkjøkkenvogn"]
+    uk: ["польова кухня"]
   
   # Generic trailer terms (boost score if combined with defence context)
   generic_trailer:
@@ -142,12 +164,16 @@ keywords:
 
   # Defence context words (used for relevance scoring, not standalone filtering)
   defence_context:
-    en: ["military", "defence", "defense", "armed forces", "NATO", "army", "navy", "air force", "MoD", "ministry of defence"]
-    de: ["militär", "verteidigung", "bundeswehr", "streitkräfte", "heer", "marine", "luftwaffe", "bwfuhrpark", "rüstung"]
-    fr: ["militaire", "défense", "armée", "forces armées", "DGA"]
+    en: ["military", "defence", "defense", "armed forces", "NATO", "army", "navy", "air force", "MoD", "ministry of defence", "DE&S", "defence equipment"]
+    de: ["militär", "verteidigung", "bundeswehr", "streitkräfte", "heer", "marine", "luftwaffe", "bwfuhrpark", "rüstung", "baainbw", "bwb"]
+    fr: ["militaire", "défense", "armée", "forces armées", "DGA", "SCORPION", "armement terrestre"]
     it: ["militare", "difesa", "forze armate", "esercito"]
     es: ["militar", "defensa", "fuerzas armadas", "ejército"]
-    pl: ["wojskowy", "obronny", "siły zbrojne"]
+    pl: ["wojskowy", "obronny", "siły zbrojne", "wojsko polskie"]
+    sv: ["militär", "försvarsmakten", "militär logistik"]
+    no: ["militær", "forsvaret", "hæren", "sjøforsvaret", "luftforsvaret"]
+    uk: ["military", "MOD", "armed forces", "defence procurement"]
+    ua: ["збройні сили", "зсу", "міноборони", "військовий", "армія"]
 
 # --- False Positive Blacklist (Opus QA Sprint 6, 2026-04-28) ---
 # Notices matching these terms where trailers are only accessories will be filtered

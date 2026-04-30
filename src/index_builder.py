@@ -139,6 +139,11 @@ class IndexBuilder:
             'FT~"hook-lift" OR FT~"Hakenladegerät"',
             'FT~"mission module" OR FT~"Missionsmodul"',
             'FT~"cargo trailer" OR FT~"Lastanhänger" OR FT~"off-road trailer"',
+            # Military-specific loading systems (Sprint 9b)
+            'FT~"DROPS" OR FT~"EPLS" OR FT~"Wechselladersystem" OR FT~"Palletized Load System"',
+            'FT~"Panzertransportanhänger" OR FT~"tank transport trailer" OR FT~"armoured vehicle trailer"',
+            'FT~"Munitionsanhänger" OR FT~"ammunition trailer" OR FT~"remorque munitions"',
+            'FT~"Feldküche" OR FT~"field kitchen" OR FT~"cuisine de campagne"',
         ]
         for i, term in enumerate(text_terms):
             queries.append({

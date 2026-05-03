@@ -148,9 +148,9 @@ Cargo Trailer | Other
 
 ---
 
-## 7. Nationale Adapter (13 Länder)
+## 7. Nationale Adapter (17 Länder + 4 Stubs)
 
-Alle in `src/national_scraper/adapters/`. Pattern: `BaseAdapter` + `BrowserCore` (Playwright).
+Alle in `src/national_scraper/adapters/`. Pattern: `BaseAdapter` + `BrowserCore` (Playwright). 21 total registriert in `main.py`.
 
 | Land | Adapter | Status | Strategie |
 |------|---------|--------|-----------|
@@ -167,6 +167,13 @@ Alle in `src/national_scraper/adapters/`. Pattern: `BaseAdapter` + `BrowserCore`
 | IT | `it_adapter.py` | ✅ | Appalti |
 | FR | `fr_adapter.py` | ✅ | BOAMP |
 | RO | `ro_adapter.py` | ✅ | SEAP |
+| CH | `ch_adapter.py` | ✅ | simap.ch REST API, historisch ab 2024-07-01 |
+| UK | `uk_fts_adapter.py` | ✅ | FTS OCDS API, monatliche Fenster 2021→heute |
+| UA | `ua_adapter.py` | ✅ | Prozorro REST API |
+| LV | `lv_adapter.py` | ✅ | IUB JSON API (infob.iub.gov.lv) |
+| EE | `ee_adapter.py` | Stub | Open Data XML monatlich; API 404 graceful |
+| LT | `lt_adapter.py` | Stub | REST 404; SPA-Browser Fallback (cvpp.eviesiejipirkimai.lt) |
+| GR | `gr_adapter.py` | Stub | Promitheus ADF — ViewState nötig (Sprint 12) |
 
 ---
 
@@ -192,36 +199,37 @@ scoring:
 
 ---
 
-## 9. Aktueller Stand (Sprint 11 Chat 1, 2026-04-30)
+## 9. Aktueller Stand (Sprint 11 Chat 2, 2026-05-03)
 
 **Branch:** `sprint11/fixes-new-countries`  
-**Letztes Excel:** `data/export/260430_TED_Tender Data_00.01.xlsx` (Sprint 10, 250 notices)
+**Letztes Excel:** `data/export/260503_TED_Tender Data_00.02.xlsx` (Sprint 11, 219 rows, 252 notices)
 
-### Sprint 11 Chat 1 Änderungen
+### Sprint 11 Änderungen (Chat 1 + Chat 2)
 | Komponente | Änderung |
 |------------|----------|
 | `uk_fts_adapter.py` | Monatliche Datumsfenster statt 365-Tage-Range; `_month_windows()` helper; 64 Monate seit Jan 2021 |
 | `ch_adapter.py` | Historisch ab 2024-07-01; CPV/Authority limit 200/300→500; 400-Fallback in `_api_search` |
 | `gr_adapter.py` | NEW Stub — Promitheus Homepage navigiert, Screenshots gemacht |
-| `ee_adapter.py` | NEW REST API Versuch + graceful 404 Fallback |
-| `lv_adapter.py` | NEW RSS+Browser Adapter + Session-First Navigation fix |
+| `ee_adapter.py` | NEW — Open Data XML monatlich download + Defence/Trailer-Filter; API 404 graceful |
+| `lv_adapter.py` | NEW — IUB JSON API (infob.iub.gov.lv); EIS session-error workaround |
 | `lt_adapter.py` | NEW REST API + SPA-aware Browser Fallback |
 | `main.py` | 4 neue Adapter registriert (gr, ee, lv, lt) → 21 Adapter total |
+| `relevant.json` | 3 EE-RP Phantom-Einträge gepatcht (authority, country, URL rekonstruiert) |
 
-### Adapter Status (Sprint 11 Discovery)
+### Adapter Status (Sprint 11)
 | Land | Adapter | Status | Discovery |
 |------|---------|--------|-----------|
-| GR | Promitheus | Stub | Homepage lädt, ADF-Form braucht ViewState — Sprint 12 |
-| EE | riigihanked | Stub | API 404 — Endpunkt geändert, XHR-Intercept nötig |
-| LV | eis.gov.lv | Stub | Session-Fehler — Browser-Fix: Homepage zuerst |
+| GR | Promitheus | Stub | Homepage lädt, Oracle ADF braucht ViewState — Sprint 12 |
+| EE | riigihanked | Stub | API 404 — Open Data XML Fallback implementiert, noch kein Run |
+| LV | IUB | Aktiv | infob.iub.gov.lv JSON API direkt; EIS Portal unbrauchbar |
 | LT | cvpp | Stub | React SPA — `/Notice/Search` 404, XHR-Intercept nötig |
 
 ### Bekannte offene Probleme
-1. **UK-FTS**: Fix deployed (monthly windows). Noch kein volles Ergebnis — Full-Run nötig
-2. **EE/LV/LT/GR**: Alle Stubs — echte APIs noch zu discovern (Sprint 12)
-3. **UA Prozorro**: nur 1/780 defence candidates als Anhänger — bessere kyrillische Keywords nötig
-4. **CZ Detail-Cap**: 150 von 216 Kandidaten geholt (zu langsam, ~28 min)
-5. **"Other"-Kategorie ~3.6%**: 9 schlecht klassifizierte Notices
+1. **UK-FTS**: Fix deployed (monthly windows). Full-Run (64 Monate) noch ausstehend — `--national gb`
+2. **EE Open Data**: XML-Monat-Download implementiert aber noch nicht getestet in Production
+3. **LT/GR**: APIs noch zu discovern (Sprint 12)
+4. **UA Prozorro**: nur 1/780 defence candidates als Anhänger — bessere kyrillische Keywords nötig
+5. **CZ Detail-Cap**: 150 von 216 Kandidaten geholt (zu langsam, ~28 min)
 
 ---
 

@@ -712,6 +712,90 @@ def run_canada(config: dict, test_mode: bool = False) -> list:
     return matches  # historical returned separately; active go through classifier
 
 
+def auto_apply_opus_findings(review: dict):
+    """Automatically apply safe Opus QA findings to blacklist + manual_overrides."""
+    bl_path = PROJECT_ROOT / "config" / "blacklist.json"
+    ov_path = PROJECT_ROOT / "config" / "manual_overrides.json"
+
+    # 1. False positives → blacklist
+    fps = review.get("false_positives", [])
+    if fps:
+        try:
+            bl = json.loads(bl_path.read_text(encoding="utf-8"))
+        except FileNotFoundError:
+            bl = {"false_positives": {"ids": []}, "known_duplicates": {"ids": []}}
+        fp_ids = set(bl.get("false_positives", {}).get("ids", []))
+        new_fps = 0
+        for fp in fps:
+            fid = fp.get("tender_id", "")
+            if fid and fid not in fp_ids:
+                fp_ids.add(fid)
+                new_fps += 1
+        bl["false_positives"]["ids"] = sorted(fp_ids)
+        bl_path.write_text(json.dumps(bl, ensure_ascii=False, indent=2), encoding="utf-8")
+        if new_fps:
+            print(f"    → {new_fps} new false positives added to blacklist")
+
+    # 2. Duplicates → blacklist (keep newer, remove older)
+    dupes = review.get("duplicates", [])
+    if dupes:
+        try:
+            bl = json.loads(bl_path.read_text(encoding="utf-8"))
+        except FileNotFoundError:
+            bl = {"false_positives": {"ids": []}, "known_duplicates": {"ids": []}}
+        dupe_ids = set(bl.get("known_duplicates", {}).get("ids", []))
+        new_dupes = 0
+        for d in dupes:
+            ids = d.get("tender_ids", [])
+            if len(ids) >= 2:
+                # Blacklist the older one (lower year suffix)
+                def year_key(tid: str) -> str:
+                    return tid.split("-")[-1] if "-" in tid else "0"
+                to_remove = min(ids, key=year_key)
+                if to_remove not in dupe_ids:
+                    dupe_ids.add(to_remove)
+                    new_dupes += 1
+        bl["known_duplicates"]["ids"] = sorted(dupe_ids)
+        bl_path.write_text(json.dumps(bl, ensure_ascii=False, indent=2), encoding="utf-8")
+        if new_dupes:
+            print(f"    → {new_dupes} duplicate IDs added to blacklist")
+
+    # 3. Category errors → manual_overrides
+    cat_errors = review.get("category_errors", [])
+    if cat_errors:
+        try:
+            overrides = json.loads(ov_path.read_text(encoding="utf-8"))
+        except FileNotFoundError:
+            overrides = {}
+        new_overrides = 0
+        for ce in cat_errors:
+            tid = ce.get("tender_id", "")
+            suggested = ce.get("should_be", "")
+            if tid and suggested and tid not in overrides:
+                overrides[tid] = {
+                    "trailer_category_1": suggested,
+                    "reason": f"Opus auto: {ce.get('reason', '')}",
+                }
+                new_overrides += 1
+        ov_path.write_text(json.dumps(overrides, ensure_ascii=False, indent=2), encoding="utf-8")
+        if new_overrides:
+            print(f"    → {new_overrides} category corrections added to overrides")
+
+    # 4. Log suggestions that need human review
+    buzzwords = review.get("blacklist_buzzwords", [])
+    if buzzwords:
+        print(f"    → Opus flags {len(buzzwords)} generic type-field entries (manual review needed)")
+
+    ops = review.get("extraction_opportunities", [])
+    if ops:
+        print(f"    → Opus flags {len(ops)} extraction opportunities (slot-2 candidates)")
+
+    # Save to named file for reference
+    out = PROJECT_ROOT / "data" / "opus_review_latest.json"
+    out.write_text(json.dumps(review, ensure_ascii=False, indent=2), encoding="utf-8")
+    print(f"    → Saved: data/opus_review_latest.json")
+
+
 def run_review(config: dict):
     """Optional: Opus-based post-run quality review of the latest Excel."""
     print("\n" + "="*60)
@@ -741,18 +825,23 @@ def run_review(config: dict):
     reviewer = QualityReviewer()
     if not reviewer.is_available:
         print("  [!] ANTHROPIC_API_KEY not set; skipping review.")
-        return
+        return None
 
     print(f"  Reviewing: {latest.name}")
     result = reviewer.review(latest)
     if not result:
         print("  [!] Quality review returned no result.")
-        return
+        return None
 
     summary = result.get("summary", {})
     print(f"  [OK] Reviewed {summary.get('total_rows', '?')} rows, "
           f"{summary.get('issues_found', '?')} issues flagged")
     print(f"  Saved: data/quality_review.json")
+
+    print("  Auto-applying safe findings...")
+    auto_apply_opus_findings(result)
+
+    return result
 
 
 def run_phase_export(config: dict, test_mode: bool = False,
@@ -1429,6 +1518,10 @@ def main():
         "--review", action="store_true",
         help="Run Opus quality review on latest Excel export"
     )
+    parser.add_argument(
+        "--no-review", action="store_true", dest="no_review",
+        help="Skip automatic Opus quality review after --all run"
+    )
     # Playwright-based national portal scraping
     parser.add_argument(
         "--national", nargs="*", metavar="COUNTRY",
@@ -1735,7 +1828,12 @@ def main():
         with Timer("Phase 4: Export"):
             run_phase_export(config, test_mode=args.test, canada_notices=canada_notices)
 
-        if args.review:
+        # Auto-run Opus review after --all (unless --no-review or test mode)
+        run_opus = (
+            args.review or
+            (args.all and not args.test and not getattr(args, "no_review", False))
+        )
+        if run_opus:
             with Timer("Phase 5: Quality Review"):
                 run_review(config)
 

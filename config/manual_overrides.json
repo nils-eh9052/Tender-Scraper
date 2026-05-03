@@ -2,5 +2,21 @@
   "782044-2025": {
     "_trailer_category_1_ai": "Semitrailer",
     "_reason": "Opus Sprint6: Title specifically states 'tanker semitrailer' not just tank trailer"
+  },
+  "326948-2025": {
+    "trailer_category_1": "Special Purpose",
+    "reason": "Opus auto: Medical trailers are Special Purpose not Mission Module"
+  },
+  "345761-2025": {
+    "trailer_category_1": "Cargo Trailer",
+    "reason": "Opus auto: Standard boat transport trailers should be Cargo not Special Purpose"
+  },
+  "255376-2025": {
+    "trailer_category_1": "Cargo Trailer",
+    "reason": "Opus auto: Description specifies these are standard cargo semi-trailers"
+  },
+  "583390-2025": {
+    "trailer_category_1": "Special Purpose",
+    "reason": "Opus auto: POSEIDON shelter is a special purpose system, not a deployable mission module"
   }
 }

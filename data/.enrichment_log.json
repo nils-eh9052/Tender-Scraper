@@ -82235,5 +82235,203 @@
     },
     "timestamp": "2026-04-30 12:54:51",
     "title": ""
+  },
+  "733298-2024": {
+    "result": {
+      "relevant": false,
+      "reason": "Haiku pre-filter: not a defence trailer"
+    },
+    "timestamp": "2026-04-30 16:47:43",
+    "title": "Poland – Grenades – Dostawa środków bojowych"
+  },
+  "449532-2018": {
+    "result": {
+      "relevant": false,
+      "reason": "Haiku pre-filter: not a defence trailer"
+    },
+    "timestamp": "2026-04-30 16:47:44",
+    "title": "United Kingdom-Bristol: Submarines"
+  },
+  "1148-2017": {
+    "result": {
+      "relevant": false,
+      "reason": "Primary procurement subject is ammunition (CPV 35330000), not trailers"
+    },
+    "timestamp": "2026-04-30 16:47:47",
+    "title": "Romania-Bucuresti: Ammunition"
+  },
+  "140452-2020": {
+    "result": {
+      "relevant": false,
+      "reason": "Haiku pre-filter: not a defence trailer"
+    },
+    "timestamp": "2026-04-30 16:47:48",
+    "title": "United Kingdom-Bristol: Electronic and electrical spare parts for warships"
+  },
+  "453322-2016": {
+    "result": {
+      "relevant": false,
+      "reason": "Haiku pre-filter: not a defence trailer"
+    },
+    "timestamp": "2026-04-30 16:47:50",
+    "title": "Netherlands-Noordwijk: Navigation satellites"
+  },
+  "634033-2021": {
+    "result": {
+      "relevant": false,
+      "reason": "CPV 35720000 is for intelligence/surveillance equipment, not trailers. No indication this procurement involves trailers as primary subject."
+    },
+    "timestamp": "2026-04-30 16:47:53",
+    "title": "Bulgaria-Sofia: Intelligence, surveillance, target acquisition and reconnaissance"
+  },
+  "94961-2017": {
+    "result": {
+      "relevant": false,
+      "reason": "Haiku pre-filter: not a defence trailer"
+    },
+    "timestamp": "2026-04-30 16:47:54",
+    "title": "Lithuania-Vilnius: Ammunition for firearms and warfare"
+  },
+  "EE-RP-e7bea398-bdab-48f6-aa92-7a15a091c98b": {
+    "result": {
+      "relevant": true,
+      "title_english": "Procurement of cargo platforms and container chassis with spare parts and maintenance services",
+      "description_english": "Procurement of cargo platforms and container underframes/chassis including spare parts and repair/maintenance services for military use",
+      "trailer_type_1": "Container chassis trailer",
+      "trailer_category_1": "Semitrailer",
+      "trailer_quantity_1": null,
+      "trailer_type_2": "Cargo platform trailer",
+      "trailer_category_2": "Cargo Trailer",
+      "trailer_quantity_2": null,
+      "additional_equipment": "Spare parts and maintenance/repair services",
+      "additional_qty": null,
+      "contract_duration": null
+    },
+    "timestamp": "2026-04-30 16:47:59",
+    "title": ""
+  },
+  "EE-RP-56bb148e-3a67-445c-9f37-efed40677d41": {
+    "result": {
+      "relevant": true,
+      "title_english": "CBRN Decontamination Trailers Purchase for Montenegro",
+      "description_english": "Procurement of CBRN (Chemical, Biological, Radiological, Nuclear) decontamination trailers for Montenegro by Estonian Defence Investment Centre",
+      "trailer_type_1": "CBRN decontamination trailer",
+      "trailer_category_1": "Special Purpose",
+      "trailer_quantity_1": null,
+      "trailer_type_2": null,
+      "trailer_category_2": null,
+      "trailer_quantity_2": null,
+      "additional_equipment": null,
+      "additional_qty": null,
+      "contract_duration": null
+    },
+    "timestamp": "2026-04-30 16:48:04",
+    "title": ""
+  },
+  "EE-RP-2b53b235-bd38-4e9b-b4c6-856377b20ead": {
+    "result": {
+      "relevant": false,
+      "reason": "Haiku pre-filter: not a defence trailer"
+    },
+    "timestamp": "2026-04-30 16:48:05",
+    "title": ""
+  },
+  "EE-RP-6eeb34bf-cdca-4ba5-ae7d-39c6071a2c04": {
+    "result": {
+      "relevant": false,
+      "reason": "Haiku pre-filter: not a defence trailer"
+    },
+    "timestamp": "2026-04-30 16:48:06",
+    "title": ""
+  },
+  "EE-RP-7825c9a9-5907-4b95-ac37-c178c560b1a9": {
+    "result": {
+      "relevant": true,
+      "title_english": "Procurement of Refrigerated Vehicles and Trailers for Moldova",
+      "description_english": "Procurement of refrigerated vehicles and trailers for Moldova",
+      "trailer_type_1": "Refrigerated trailer (type not specified in notice)",
+      "trailer_category_1": "Special Purpose",
+      "trailer_quantity_1": null,
+      "trailer_type_2": null,
+      "trailer_category_2": null,
+      "trailer_quantity_2": null,
+      "additional_equipment": "Refrigerated vehicles",
+      "additional_qty": null,
+      "contract_duration": null
+    },
+    "timestamp": "2026-04-30 16:48:10",
+    "title": ""
+  },
+  "LT-CV-66779": {
+    "result": {
+      "relevant": false,
+      "reason": "Haiku pre-filter: not a defence trailer"
+    },
+    "timestamp": "2026-04-30 16:48:12",
+    "title": ""
+  },
+  "IT-B1DEED969E": {
+    "result": {
+      "relevant": false,
+      "reason": "Haiku pre-filter: not a defence trailer"
+    },
+    "timestamp": "2026-04-30 16:48:13",
+    "title": ""
+  },
+  "IT-indicativo": {
+    "result": {
+      "relevant": false,
+      "reason": "Haiku pre-filter: not a defence trailer"
+    },
+    "timestamp": "2026-04-30 16:48:14",
+    "title": ""
+  },
+  "CZ-N006/26/V00008419": {
+    "result": {
+      "relevant": false,
+      "reason": "Haiku pre-filter: not a defence trailer"
+    },
+    "timestamp": "2026-04-30 16:48:17",
+    "title": ""
+  },
+  "377673-2018": {
+    "result": {
+      "relevant": false,
+      "reason": "Haiku pre-filter: not a defence trailer"
+    },
+    "timestamp": "2026-05-03 16:00:20",
+    "title": "France-Toulon: Inflatable craft"
+  },
+  "733878-2024": {
+    "result": {
+      "relevant": false,
+      "reason": "Haiku pre-filter: not a defence trailer"
+    },
+    "timestamp": "2026-05-03 16:00:21",
+    "title": "Poland – Grenades – Dostawa środków bojowych"
+  },
+  "450336-2016": {
+    "result": {
+      "relevant": false,
+      "reason": "Title indicates 'Parts of military vehicles' - this is about spare parts only, not purchasing complete trailers as primary procurement subject"
+    },
+    "timestamp": "2026-05-03 16:00:25",
+    "title": "United Kingdom-Telford: Parts of military vehicles"
+  },
+  "94954-2017": {
+    "result": {
+      "relevant": false,
+      "reason": "Haiku pre-filter: not a defence trailer"
+    },
+    "timestamp": "2026-05-03 16:00:27",
+    "title": "Finland-Tampere: Fighter aircrafts"
+  },
+  "1152-2017": {
+    "result": {
+      "relevant": false,
+      "reason": "Haiku pre-filter: not a defence trailer"
+    },
+    "timestamp": "2026-05-03 16:00:28",
+    "title": "Lithuania-Vilnius: Weapons, ammunition and associated parts"
   }
 }

@@ -199,37 +199,33 @@ scoring:
 
 ---
 
-## 9. Aktueller Stand (Sprint 11 Chat 2, 2026-05-03)
+## 9. Aktueller Stand (Sprint 13, 2026-05-03)
 
-**Branch:** `sprint11/fixes-new-countries`  
-**Letztes Excel:** `data/export/260503_TED_Tender Data_00.02.xlsx` (Sprint 11, 219 rows, 252 notices)
+**Branch:** `main`  
+**Letztes Excel:** `data/export/260503_TED_Tender Data_00.01.xlsx` (Sprint 13, 219 rows, 252 notices)
 
-### Sprint 11 Änderungen (Chat 1 + Chat 2)
+### Sprint 13 Änderungen
 | Komponente | Änderung |
 |------------|----------|
-| `uk_fts_adapter.py` | Monatliche Datumsfenster statt 365-Tage-Range; `_month_windows()` helper; 64 Monate seit Jan 2021 |
-| `ch_adapter.py` | Historisch ab 2024-07-01; CPV/Authority limit 200/300→500; 400-Fallback in `_api_search` |
-| `gr_adapter.py` | NEW Stub — Promitheus Homepage navigiert, Screenshots gemacht |
-| `ee_adapter.py` | NEW — Open Data XML monatlich download + Defence/Trailer-Filter; API 404 graceful |
-| `lv_adapter.py` | NEW — IUB JSON API (infob.iub.gov.lv); EIS session-error workaround |
-| `lt_adapter.py` | NEW REST API + SPA-aware Browser Fallback |
-| `main.py` | 4 neue Adapter registriert (gr, ee, lv, lt) → 21 Adapter total |
-| `relevant.json` | 3 EE-RP Phantom-Einträge gepatcht (authority, country, URL rekonstruiert) |
+| `src/exporter.py` | `normalize_country()` robuster: list-Typen, ISO-2 Codes, case-insensitive, Newline-Handling |
+| `relevant.json` | 50 phantom-Notices gepatcht: country/authority/URL/date aus Source-Code rekonstruiert |
+| `data/sprint13_summary.md` | Sprint-Summary mit Quality Gates |
 
-### Adapter Status (Sprint 11)
-| Land | Adapter | Status | Discovery |
-|------|---------|--------|-----------|
-| GR | Promitheus | Stub | Homepage lädt, Oracle ADF braucht ViewState — Sprint 12 |
-| EE | riigihanked | Stub | API 404 — Open Data XML Fallback implementiert, noch kein Run |
-| LV | IUB | Aktiv | infob.iub.gov.lv JSON API direkt; EIS Portal unbrauchbar |
-| LT | cvpp | Stub | React SPA — `/Notice/Search` 404, XHR-Intercept nötig |
+### Quality Gates (Sprint 13)
+| Metrik | Vorher | Nachher | Ziel |
+|--------|--------|---------|------|
+| Unknown Country | 50 | **0** | 0 ✅ |
+| Unknown Status | 21 | **4** | <5 ✅ |
+| No Date | 53 | **4** | <10 ✅ |
+| No Authority | 50 | **0** | <10 ✅ |
+| Duplicates | 0 | **0** | 0 ✅ |
 
 ### Bekannte offene Probleme
-1. **UK-FTS**: Fix deployed (monthly windows). Full-Run (64 Monate) noch ausstehend — `--national gb`
-2. **EE Open Data**: XML-Monat-Download implementiert aber noch nicht getestet in Production
-3. **LT/GR**: APIs noch zu discovern (Sprint 12)
-4. **UA Prozorro**: nur 1/780 defence candidates als Anhänger — bessere kyrillische Keywords nötig
-5. **CZ Detail-Cap**: 150 von 216 Kandidaten geholt (zu langsam, ~28 min)
+1. **4 Unknown Status/Date**: 3 EE-RP + 1 NL-TN Phantoms ohne Datum — nicht behebbar ohne Original-Scrape
+2. **UK-FTS Full-Run**: 64-Monate-Scan noch ausstehend — `--national gb`
+3. **EE/LT/GR**: Adapter-APIs noch zu discovern (Sprint 14)
+4. **UA Kyrillisch**: bessere Trailer-Keywords nötig
+5. **National URL 26%**: Nur ~57 von 219 Notices haben nationale Portal-URL
 
 ---
 

@@ -33,6 +33,7 @@ FX_RATES_TO_EUR = {
 
 # ── Country normalization ──
 COUNTRY_NORMALIZE = {
+    # ISO-3
     "DEU": "Germany", "FRA": "France", "POL": "Poland", "ROU": "Romania",
     "CZE": "Czech Republic", "DNK": "Denmark", "SWE": "Sweden",
     "NLD": "Netherlands", "IRL": "Ireland", "BEL": "Belgium",
@@ -42,15 +43,58 @@ COUNTRY_NORMALIZE = {
     "FIN": "Finland", "HRV": "Croatia", "LTU": "Lithuania",
     "EST": "Estonia", "BGR": "Bulgaria", "HUN": "Hungary",
     "PRT": "Portugal", "GRC": "Greece", "LVA": "Latvia",
-    "MLT": "Malta", "CYP": "Cyprus", "Czechia": "Czech Republic",
+    "MLT": "Malta", "CYP": "Cyprus", "UKR": "Ukraine", "TUR": "Turkey",
+    "CAN": "Canada", "USA": "United States",
+    # ISO-2
+    "DE": "Germany", "FR": "France", "PL": "Poland", "RO": "Romania",
+    "CZ": "Czech Republic", "DK": "Denmark", "SE": "Sweden",
+    "NL": "Netherlands", "IE": "Ireland", "BE": "Belgium",
+    "ES": "Spain", "IT": "Italy", "AT": "Austria", "CH": "Switzerland",
+    "LU": "Luxembourg", "SI": "Slovenia", "NO": "Norway",
+    "SK": "Slovakia", "GB": "United Kingdom", "UK": "United Kingdom",
+    "FI": "Finland", "HR": "Croatia", "LT": "Lithuania",
+    "EE": "Estonia", "BG": "Bulgaria", "HU": "Hungary",
+    "PT": "Portugal", "GR": "Greece", "LV": "Latvia",
+    "MT": "Malta", "CY": "Cyprus", "UA": "Ukraine", "TR": "Turkey",
+    "CA": "Canada",
+    # Aliases / common variants
+    "Czechia": "Czech Republic", "CZECHIA": "Czech Republic",
+    "CZECH REPUBLIC": "Czech Republic",
+    "UNITED KINGDOM": "United Kingdom",
+    "NETHERLANDS": "Netherlands",
 }
 
+# Canonical names that are already correct (pass-through after title-casing)
+_KNOWN_NAMES = set(COUNTRY_NORMALIZE.values())
 
-def normalize_country(raw: str) -> str:
+
+def normalize_country(raw) -> str:
     if not raw:
         return "Unknown"
-    raw = raw.strip()
-    return COUNTRY_NORMALIZE.get(raw, raw)
+    # Handle list-type country fields from TED bulk API (e.g. ['SWE'])
+    if isinstance(raw, list):
+        raw = raw[0] if raw else ""
+    raw = str(raw).strip()
+    if not raw:
+        return "Unknown"
+    # Handle TED XML artifact: "ROU\nROU\nROU"
+    if "\n" in raw:
+        raw = raw.split("\n")[0].strip()
+    # Direct map lookup (ISO-3, ISO-2, aliases)
+    result = COUNTRY_NORMALIZE.get(raw)
+    if result:
+        return result
+    # Case-insensitive map lookup
+    result = COUNTRY_NORMALIZE.get(raw.upper())
+    if result:
+        return result
+    # Already a known canonical name?
+    tc = raw.title()
+    if tc in _KNOWN_NAMES:
+        return tc
+    if raw in _KNOWN_NAMES:
+        return raw
+    return "Unknown"
 
 
 def clean_value(val) -> Optional[float]:

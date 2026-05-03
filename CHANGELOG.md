@@ -4,6 +4,53 @@ Alle relevanten Änderungen am TED Defence Trailer Scraper werden hier dokumenti
 
 ---
 
+## [1.5.0] - 2026-05-03
+
+### Added
+- **21 national portal adapters**: SE (Kommersannons), NO (Doffin), CZ (NEN),
+  FR (BOAMP), DK (Udbud.dk), NL (TenderNed), ES (PLACE), IT (ANAC),
+  CH (simap.ch), DE (evergabe-online + service.bund.de), BE (e-Procurement),
+  PL (BZP), RO (SEAP), FI (Hilma), UA (Prozorro), EE (riigihanked),
+  LV (IUB), LT (CVPP), GR (Promitheus stub)
+- **Country Adapter Pattern**: Universal Playwright-based scraper with
+  BaseAdapter, BrowserCore, and per-country adapters
+- **Parallel pipeline**: All data sources run concurrently (ThreadPoolExecutor)
+- **Opus quality review**: Automated post-run QA with `auto_apply_opus_findings`
+  (blacklists FPs, merges duplicates, applies category corrections); `--no-review` to skip
+- **Resilience layer**: Exponential backoff, rotating user agents, graceful degradation (`RetrySession`)
+- **Force-include mechanism**: National notices preserved across filter re-runs
+  (`config/national_force_include.json`)
+- **PDF extraction**: pdfplumber fallback when HTML fulltext unavailable
+- **CanadaBuys**: Active tenders + historical DND contracts via open.canada.ca CSV
+- **UK Find a Tender (FTS)**: OCDS API with monthly date windows (2021 → today)
+- **Filter cache**: 207x faster filtering (55 min → <20 sec warm, `data/.filter_cache.json`)
+- **`--no-enrich` / `--no-review`**: Flags to skip enrichment or Opus QA per run
+- **EE XML bulk export**: Monthly UBL eForms XML from riigihanked.riik.ee (no auth)
+- **LV IUB JSON API**: Direct REST calls to infob.iub.gov.lv (no Playwright required)
+
+### Changed
+- Fulltext enrichment now runs by default (`--no-enrich` to skip)
+- AI classification parallelized by default (5 workers, `ParallelClassifier`)
+- Status logic improved: 0 Unknown-Status notices for TED
+- Country normalization handles ISO-2, ISO-3, list types, and authority inference
+- `normalize_country()` in `exporter.py` hardened for all edge cases
+
+### Fixed
+- CZ notices stable across filter re-runs (force-include mechanism)
+- UK-FTS cursor bug (monthly windows instead of broken 365-day scan)
+- EE adapter `NameError: EE_SEARCH_URL` — constant added
+- LT adapter `_browser_search` returning 0 results (React SPA — uses `page.evaluate()`)
+- LV adapter rewritten from broken Playwright to working JSON API
+- Classify phase no longer overwrites enrichment data
+- Award-match writeback to `relevant.json`
+- 50 phantom notices patched: country/authority/URL/date reconstructed from source code
+
+### Removed
+- 17 duplicate notices identified by Opus review
+- 5 false positives (non-trailer defence items)
+
+---
+
 ## [1.4.0] - 2026-04-14
 
 ### Performance: Phase 1+2 Merged (~50x faster)

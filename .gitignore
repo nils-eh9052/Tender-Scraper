@@ -34,9 +34,24 @@ data/.enrichment_fulltext_log.json
 data/.award_match_log.json
 data/.last_run.json
 
-# Logs
+# Logs and sprint artifacts
 data/pipeline_*.log
+data/*.log
 data/root_cause_analysis.md
+data/sprint*_summary.md
+data/sprint*_run.log
+data/classify_run_*.log
+
+# Playwright debug screenshots (rebuilt by adapters; large, not needed in repo)
+data/raw/screenshots/*
+!data/raw/screenshots/.gitkeep
+
+# Adapter and review debug output
+data/adapter_status.json
+data/opus_review_latest.json
+
+# Historical status reports (superseded by CLAUDE.md)
+SYSTEM_STATUS_V3.md
 
 # Environment
 .env
@@ -56,11 +71,8 @@ Thumbs.db
 # Excel temp/lock files
 ~$*.xlsx
 
-# Legacy
-browser_scraper.py
-discover_api.py
+# Legacy (deleted)
 Vorlage.xlsx.bak
-templates/
 SYSTEM_STATUS_REPORT.md
 SYSTEM_STATUS_V2.md
 

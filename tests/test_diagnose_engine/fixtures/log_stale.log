@@ -1,0 +1,8 @@
+2026-05-19 14:03:10 [INFO] Pipeline started: run_id=20260519_140354
+2026-05-19 14:03:10 [INFO] argv: ['main.py', '--all', '--national', 'gb']
+2026-05-19 14:03:11 [INFO] [gb] Starting UK FTS adapter
+2026-05-19 14:03:12 [INFO] [gb] Fetching notices since 2026-03-20
+2026-05-19 14:03:14 [INFO] [gb] 6 notices retrieved from UK FTS
+2026-05-19 14:03:15 [INFO] [gb] newest_pub_date=2023-06-06
+2026-05-19 14:03:15 [INFO] [gb] pub_date_stale_60d check: newest=2023-06-06, cutoff=2026-03-20 — STALE
+2026-05-19 14:03:16 [INFO] [gb] Adapter complete. tender_count=6 newest_pub=2023-06-06

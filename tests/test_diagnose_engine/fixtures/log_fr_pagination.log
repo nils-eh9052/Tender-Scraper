@@ -1,0 +1,10 @@
+2026-05-19 14:03:10 [INFO] Pipeline started: run_id=20260519_140354
+2026-05-19 14:03:10 [INFO] argv: ['main.py', '--all', '--national', 'fr']
+2026-05-19 14:03:11 [INFO] [fr] Starting FR-BOAMP adapter
+2026-05-19 14:03:12 [INFO] [fr] Fetching page 1 of results
+2026-05-19 14:03:13 [INFO] [fr] Page 1: 13 results returned
+2026-05-19 14:03:14 [INFO] [fr] No next page link found — stopping pagination
+2026-05-19 14:03:14 [INFO] [fr] Total fetched: 13 tenders (expected ~40 based on 7d mean)
+2026-05-19 14:03:14 [WARN] [fr] tender_count=13 is below 50% of 7d mean (40.0)
+2026-05-19 14:03:15 [INFO] [fr] Adapter complete. tender_count=13 http_errors=0
+2026-05-19 14:03:30 [INFO] Pipeline complete. Total duration=80s

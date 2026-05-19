@@ -1,0 +1,13 @@
+2026-05-19 14:03:10 [INFO] Pipeline started: run_id=20260519_140354
+2026-05-19 14:03:10 [INFO] argv: ['main.py', '--phase', 'index']
+2026-05-19 14:03:11 [INFO] [ted] Starting TED API client
+2026-05-19 14:03:12 [INFO] [ted] GET https://api.ted.europa.eu/v3/notices/search
+2026-05-19 14:03:13 [WARN] [ted] HTTP 429: rate limit exceeded
+2026-05-19 14:03:21 [INFO] [ted] Retry 1/3 after 8s backoff
+2026-05-19 14:03:22 [WARN] [ted] HTTP 429: rate limit exceeded
+2026-05-19 14:03:34 [INFO] [ted] Retry 2/3 after 12s backoff
+2026-05-19 14:03:35 [WARN] [ted] HTTP 429: rate limit exceeded
+2026-05-19 14:03:47 [INFO] [ted] Retry 3/3 after 12s backoff
+2026-05-19 14:03:48 [WARN] [ted] HTTP 429: rate limit exceeded
+2026-05-19 14:03:49 [ERROR] [ted] Request failed after 5 retries: HTTP 429
+2026-05-19 14:03:50 [INFO] [ted] Adapter complete. tender_count=0 http_429=5

@@ -1,0 +1,10 @@
+{
+  "run_id": "20260519_140354",
+  "adapter": "gb",
+  "rule": "pub_date_stale_60d",
+  "severity": "info",
+  "value": "2023-06-06",
+  "baseline": "today - 60d = 2026-03-20",
+  "message": "newest_pub_date=2023-06-06 is older than 60 days",
+  "timestamp": "2026-05-19T14:03:54+00:00"
+}

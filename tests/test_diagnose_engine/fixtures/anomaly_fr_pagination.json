@@ -1,0 +1,10 @@
+{
+  "run_id": "20260519_140354",
+  "adapter": "fr",
+  "rule": "tender_count_drop_50pct",
+  "severity": "warn",
+  "value": "13",
+  "baseline": "7d_mean=40.0",
+  "message": "tender_count=13 is below 50% of 7d mean (40.0)",
+  "timestamp": "2026-05-19T14:03:54+00:00"
+}

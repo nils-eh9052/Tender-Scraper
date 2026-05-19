@@ -37,16 +37,9 @@ from typing import Any, Optional
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(PROJECT_ROOT))
 
-# Load .env so ANTHROPIC_API_KEY / SSL_VERIFY_DISABLE are picked up.
-_env = PROJECT_ROOT / ".env"
-if _env.exists():
-    for line in _env.read_text(encoding="utf-8").splitlines():
-        line = line.strip()
-        if line and not line.startswith("#") and "=" in line:
-            k, _, v = line.partition("=")
-            os.environ.setdefault(k.strip(), v.strip())
-if not os.environ.get("ANTHROPIC_API_KEY") and os.environ.get("LLM_ANTHROPIC_API_KEY"):
-    os.environ["ANTHROPIC_API_KEY"] = os.environ["LLM_ANTHROPIC_API_KEY"]
+# Workspace-aware .env loading (workspace-root .env.local + repo-local .env).
+from src.env_loader import load_env_chain  # noqa: E402
+load_env_chain()
 
 from src.classifier import AiClassifier  # noqa: E402
 
@@ -148,7 +141,7 @@ def main() -> int:
 
     classifier = AiClassifier()
     if not classifier.is_available:
-        print("[!] ANTHROPIC_API_KEY not set — aborting.")
+        print("[!] LLM_OPENROUTER_API_KEY not set — aborting.")
         return 1
 
     # ── enrichment log: load (we re-write entries for re-classified IDs) ──

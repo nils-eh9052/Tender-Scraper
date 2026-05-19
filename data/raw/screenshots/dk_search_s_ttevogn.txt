@@ -17,6 +17,18 @@ Din søgning: sættevogn
 Vis kun aktive bekendtgørelser
 Opret udbudsagent
 EU UDBUD
+Københavns Kommune - Økonomiforvaltningen
+Udbud af ekstern vognmandskørsel
+Ved nærværende udbud ønsker Ordregiver at indhente tilbud på ekstern vognmandskørsel fordelt på to delaftaler for henholdsvis kranvognskørsel og blokvognskørsel.Ordregivers krav til aftalevilkår fremg...
+CPV-kode
+Vejtransport [60100000]
+Offentliggørelsesdato
+07-05-2026
+Næste frist
+08-06-2026
+Anslået værdi
+11.500.000 DKK
+EU UDBUD
 Danmarks Fængsler
 Udbud vedr. leje af mobil udstillingstrailer
 Nærværende udbud vedrører leje af en mobil udstillingstrailer til brug for landsdækkende rekrutteringsaktiviteter. Den mobile udstillingstrailer består af en førervogn med tilkoblet trailer og skal an...
@@ -92,16 +104,6 @@ Forventet opstart
 26-02-2026
 Anslået værdi
 45.000.000 DKK
-TILDELING
-Frederikssund Kommune
-Offentligt udbud af køretøj med påmonteret kran og wirehejs
-Udbudsprocessen omfatter en kontrakt til Ordregiver omhandlende indkøb af køretøj med påmonteret kran og wirehejs. Ordregiver ønsker at indkøbe et specialopbygget køretøj til kommunal drift. Køretøje...
-CPV-kode
-Motorkøretøjer [34100000]
-Offentliggørelsesdato
-21-01-2026
-Anslået værdi
-1.800.000 DKK
 EU UDBUD
 Danish Ministry of Defence Acquisition and Logistics Organisation
 ÆNDRINGDynamic Purchasing System for Trailers over 3500 kg and services pertaining thereto

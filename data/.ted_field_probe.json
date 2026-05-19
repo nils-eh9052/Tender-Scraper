@@ -1,0 +1,693 @@
+{
+  "new_valid_fields": [
+    "buyer-internet-address",
+    "deadline-receipt-tender-time-lot",
+    "estimated-value-lot",
+    "internal-identifier-part",
+    "place-of-performance-city-part",
+    "place-of-performance-country-part",
+    "procedure-features",
+    "quantity-lot"
+  ],
+  "data": {
+    "212474-2026": {
+      "notice-identifier": "976398c5-e43e-4f6a-8f02-1cb8bc86457a",
+      "title-proc": {
+        "deu": "Beschaffungsrahmenvereinbarung über Herstellung und Lieferung bis zu 480 Anhänger 2 Rad 1t gl le"
+      },
+      "notice-type": "cn-standard",
+      "publication-number": "212474-2026",
+      "legal-basis-notice": "32009L0081",
+      "legal-basis": [
+        "32009L0081"
+      ],
+      "organisation-country-buyer": [
+        "DEU"
+      ],
+      "description-lot": {
+        "deu": [
+          "Die Rahmenvereinbarung soll eine Laufzeit von 7 Jahren haben und die Herstellung bzw. Erstellung und Lieferung folgender Bestellleistungen umfassen: - voraussichtlich bis zu 480 Anh 2 Rad 1t gl le einschließlich Zubehör und Ausstattung, - Ersatzteilerstbedarf, - mind. vier Sonderwerkzeugsätze, - eine handelsübliche Dokumentation, - Katalogisierungsdaten/- unterlagen, - eine Losteilliste, - eine Gefährdungsbeurteilung, - Fertigungs-Konstruktionsstandunterlagen (Zeichnungssatz, Dokumentation Transport und Verladung, Materialliste), - sonstigen Unterlagen (z. B. Erklärung zur Produktsicherheit, Obsoleszenzmanagementplan) sowie Erbringung von Dienstleistungen (z. B. Erstausbildung)"
+        ]
+      },
+      "procedure-type": "neg-w-call",
+      "classification-cpv": [
+        "34223300",
+        "34223300"
+      ],
+      "legal-basis-proc": [
+        "vsvgv"
+      ],
+      "publication-date": "2026-03-27+01:00",
+      "buyer-name": {
+        "deu": [
+          "Bundesamt für Ausrüstung, Informationstechnik und Nutzung der Bundeswehr"
+        ]
+      },
+      "links": {
+        "xml": {
+          "MUL": "https://ted.europa.eu/en/notice/212474-2026/xml"
+        },
+        "pdf": {
+          "BUL": "https://ted.europa.eu/bg/notice/212474-2026/pdf",
+          "SPA": "https://ted.europa.eu/es/notice/212474-2026/pdf",
+          "CES": "https://ted.europa.eu/cs/notice/212474-2026/pdf",
+          "DAN": "https://ted.europa.eu/da/notice/212474-2026/pdf",
+          "DEU": "https://ted.europa.eu/de/notice/212474-2026/pdf",
+          "EST": "https://ted.europa.eu/et/notice/212474-2026/pdf",
+          "ELL": "https://ted.europa.eu/el/notice/212474-2026/pdf",
+          "ENG": "https://ted.europa.eu/en/notice/212474-2026/pdf",
+          "FRA": "https://ted.europa.eu/fr/notice/212474-2026/pdf",
+          "GLE": "https://ted.europa.eu/ga/notice/212474-2026/pdf",
+          "HRV": "https://ted.europa.eu/hr/notice/212474-2026/pdf",
+          "ITA": "https://ted.europa.eu/it/notice/212474-2026/pdf",
+          "LAV": "https://ted.europa.eu/lv/notice/212474-2026/pdf",
+          "LIT": "https://ted.europa.eu/lt/notice/212474-2026/pdf",
+          "HUN": "https://ted.europa.eu/hu/notice/212474-2026/pdf",
+          "MLT": "https://ted.europa.eu/mt/notice/212474-2026/pdf",
+          "NLD": "https://ted.europa.eu/nl/notice/212474-2026/pdf",
+          "POL": "https://ted.europa.eu/pl/notice/212474-2026/pdf",
+          "POR": "https://ted.europa.eu/pt/notice/212474-2026/pdf",
+          "RON": "https://ted.europa.eu/ro/notice/212474-2026/pdf",
+          "SLK": "https://ted.europa.eu/sk/notice/212474-2026/pdf",
+          "SLV": "https://ted.europa.eu/sl/notice/212474-2026/pdf",
+          "FIN": "https://ted.europa.eu/fi/notice/212474-2026/pdf",
+          "SWE": "https://ted.europa.eu/sv/notice/212474-2026/pdf"
+        },
+        "pdfs": {
+          "DEU": "https://ted.europa.eu/de/notice/212474-2026/pdfs"
+        },
+        "html": {
+          "BUL": "https://ted.europa.eu/bg/notice/-/detail/212474-2026",
+          "SPA": "https://ted.europa.eu/es/notice/-/detail/212474-2026",
+          "CES": "https://ted.europa.eu/cs/notice/-/detail/212474-2026",
+          "DAN": "https://ted.europa.eu/da/notice/-/detail/212474-2026",
+          "DEU": "https://ted.europa.eu/de/notice/-/detail/212474-2026",
+          "EST": "https://ted.europa.eu/et/notice/-/detail/212474-2026",
+          "ELL": "https://ted.europa.eu/el/notice/-/detail/212474-2026",
+          "ENG": "https://ted.europa.eu/en/notice/-/detail/212474-2026",
+          "FRA": "https://ted.europa.eu/fr/notice/-/detail/212474-2026",
+          "GLE": "https://ted.europa.eu/ga/notice/-/detail/212474-2026",
+          "HRV": "https://ted.europa.eu/hr/notice/-/detail/212474-2026",
+          "ITA": "https://ted.europa.eu/it/notice/-/detail/212474-2026",
+          "LAV": "https://ted.europa.eu/lv/notice/-/detail/212474-2026",
+          "LIT": "https://ted.europa.eu/lt/notice/-/detail/212474-2026",
+          "HUN": "https://ted.europa.eu/hu/notice/-/detail/212474-2026",
+          "MLT": "https://ted.europa.eu/mt/notice/-/detail/212474-2026",
+          "NLD": "https://ted.europa.eu/nl/notice/-/detail/212474-2026",
+          "POL": "https://ted.europa.eu/pl/notice/-/detail/212474-2026",
+          "POR": "https://ted.europa.eu/pt/notice/-/detail/212474-2026",
+          "RON": "https://ted.europa.eu/ro/notice/-/detail/212474-2026",
+          "SLK": "https://ted.europa.eu/sk/notice/-/detail/212474-2026",
+          "SLV": "https://ted.europa.eu/sl/notice/-/detail/212474-2026",
+          "FIN": "https://ted.europa.eu/fi/notice/-/detail/212474-2026",
+          "SWE": "https://ted.europa.eu/sv/notice/-/detail/212474-2026"
+        },
+        "htmlDirect": {
+          "BUL": "https://ted.europa.eu/bg/notice/212474-2026/html",
+          "SPA": "https://ted.europa.eu/es/notice/212474-2026/html",
+          "CES": "https://ted.europa.eu/cs/notice/212474-2026/html",
+          "DAN": "https://ted.europa.eu/da/notice/212474-2026/html",
+          "DEU": "https://ted.europa.eu/de/notice/212474-2026/html",
+          "EST": "https://ted.europa.eu/et/notice/212474-2026/html",
+          "ELL": "https://ted.europa.eu/el/notice/212474-2026/html",
+          "ENG": "https://ted.europa.eu/en/notice/212474-2026/html",
+          "FRA": "https://ted.europa.eu/fr/notice/212474-2026/html",
+          "GLE": "https://ted.europa.eu/ga/notice/212474-2026/html",
+          "HRV": "https://ted.europa.eu/hr/notice/212474-2026/html",
+          "ITA": "https://ted.europa.eu/it/notice/212474-2026/html",
+          "LAV": "https://ted.europa.eu/lv/notice/212474-2026/html",
+          "LIT": "https://ted.europa.eu/lt/notice/212474-2026/html",
+          "HUN": "https://ted.europa.eu/hu/notice/212474-2026/html",
+          "MLT": "https://ted.europa.eu/mt/notice/212474-2026/html",
+          "NLD": "https://ted.europa.eu/nl/notice/212474-2026/html",
+          "POL": "https://ted.europa.eu/pl/notice/212474-2026/html",
+          "POR": "https://ted.europa.eu/pt/notice/212474-2026/html",
+          "RON": "https://ted.europa.eu/ro/notice/212474-2026/html",
+          "SLK": "https://ted.europa.eu/sk/notice/212474-2026/html",
+          "SLV": "https://ted.europa.eu/sl/notice/212474-2026/html",
+          "FIN": "https://ted.europa.eu/fi/notice/212474-2026/html",
+          "SWE": "https://ted.europa.eu/sv/notice/212474-2026/html"
+        }
+      },
+      "buyer-internet-address": [
+        "http://www.evergabe-online.de/"
+      ],
+      "notice-title": {
+        "hun": "Németország – Pótkocsik – Beschaffungsrahmenvereinbarung über Herstellung und Lieferung bis zu 480 Anhänger 2 Rad 1t gl le",
+        "lav": "Vācija – Piekabes – Beschaffungsrahmenvereinbarung über Herstellung und Lieferung bis zu 480 Anhänger 2 Rad 1t gl le",
+        "swe": "Tyskland – Släpvagnar – Beschaffungsrahmenvereinbarung über Herstellung und Lieferung bis zu 480 Anhänger 2 Rad 1t gl le",
+        "gle": "An Ghearmáin – Trailers – Beschaffungsrahmenvereinbarung über Herstellung und Lieferung bis zu 480 Anhänger 2 Rad 1t gl le",
+        "ell": "Γερμανία – Ρυμουλκούμενα οχήματα – Beschaffungsrahmenvereinbarung über Herstellung und Lieferung bis zu 480 Anhänger 2 Rad 1t gl le",
+        "spa": "Alemania – Remolques – Beschaffungsrahmenvereinbarung über Herstellung und Lieferung bis zu 480 Anhänger 2 Rad 1t gl le",
+        "est": "Saksamaa – Haagised – Beschaffungsrahmenvereinbarung über Herstellung und Lieferung bis zu 480 Anhänger 2 Rad 1t gl le",
+        "nld": "Duitsland – Aanhangwagens – Beschaffungsrahmenvereinbarung über Herstellung und Lieferung bis zu 480 Anhänger 2 Rad 1t gl le",
+        "fin": "Saksa – Perävaunut – Beschaffungsrahmenvereinbarung über Herstellung und Lieferung bis zu 480 Anhänger 2 Rad 1t gl le",
+        "pol": "Niemcy – Przyczepy – Beschaffungsrahmenvereinbarung über Herstellung und Lieferung bis zu 480 Anhänger 2 Rad 1t gl le",
+        "hrv": "Njemačka – Prikolice – Beschaffungsrahmenvereinbarung über Herstellung und Lieferung bis zu 480 Anhänger 2 Rad 1t gl le",
+        "ces": "Německo – Přívěsy – Beschaffungsrahmenvereinbarung über Herstellung und Lieferung bis zu 480 Anhänger 2 Rad 1t gl le",
+        "dan": "Tyskland – Påhængsvogne – Beschaffungsrahmenvereinbarung über Herstellung und Lieferung bis zu 480 Anhänger 2 Rad 1t gl le",
+        "ron": "Germania – Remorci – Beschaffungsrahmenvereinbarung über Herstellung und Lieferung bis zu 480 Anhänger 2 Rad 1t gl le",
+        "por": "Alemanha – Reboques – Beschaffungsrahmenvereinbarung über Herstellung und Lieferung bis zu 480 Anhänger 2 Rad 1t gl le",
+        "slk": "Nemecko – Prívesy – Beschaffungsrahmenvereinbarung über Herstellung und Lieferung bis zu 480 Anhänger 2 Rad 1t gl le",
+        "fra": "Allemagne – Remorques – Beschaffungsrahmenvereinbarung über Herstellung und Lieferung bis zu 480 Anhänger 2 Rad 1t gl le",
+        "mlt": "Il-Ġermanja – Karrijiet – Beschaffungsrahmenvereinbarung über Herstellung und Lieferung bis zu 480 Anhänger 2 Rad 1t gl le",
+        "deu": "Deutschland – Anhänger – Beschaffungsrahmenvereinbarung über Herstellung und Lieferung bis zu 480 Anhänger 2 Rad 1t gl le",
+        "lit": "Vokietija – Priekabos – Beschaffungsrahmenvereinbarung über Herstellung und Lieferung bis zu 480 Anhänger 2 Rad 1t gl le",
+        "ita": "Germania – Rimorchi – Beschaffungsrahmenvereinbarung über Herstellung und Lieferung bis zu 480 Anhänger 2 Rad 1t gl le",
+        "bul": "Гepмaния – Ремаркета – Beschaffungsrahmenvereinbarung über Herstellung und Lieferung bis zu 480 Anhänger 2 Rad 1t gl le",
+        "slv": "Nemčija – Priklopniki – Beschaffungsrahmenvereinbarung über Herstellung und Lieferung bis zu 480 Anhänger 2 Rad 1t gl le",
+        "eng": "Germany – Trailers – Beschaffungsrahmenvereinbarung über Herstellung und Lieferung bis zu 480 Anhänger 2 Rad 1t gl le"
+      },
+      "title-lot": {
+        "deu": [
+          "Beschaffungsrahmenvereinbarung über Herstellung und Lieferung bis zu 480 Anhänger 2 Rad 1t gl le"
+        ]
+      },
+      "form-type": "competition",
+      "description-proc": {
+        "deu": "Der Auftraggeber sieht vor, durch Abschluss einer Rahmenvereinbarung mit siebenjähriger Laufzeit die Bestellung der Herstellung und Lieferung von bis zu 480 Anhängern 2-Rad 1t gl le inklusive Zubehör, Ausstattung und Dokumentationen zu vereinbaren. Der Auftraggeber beabsichtigt, die bis zu 480 Anhänger ausschließlich als Bestellleistung im Vertrag aufzunehmen, da im Zeitpunkt der Bekanntmachung der Leistung die gegenständlichen Anhänger nicht durch Haushaltsmittel sicher bzw. ausreichend finanziert sind. Der Auftraggeber behält sich vor, die Stückzahl der zu liefernden Anhänger sowie die Lieferjahre entsprechend den zur Verfügung stehenden Haushaltsmitteln anzupassen. Zudem behält sich der Auftraggeber die Möglichkeit vor, den Auftrag auf Grundlage der Erstangebote zu vergeben, ohne in Verhandlungen einzutreten"
+      }
+    },
+    "77247-2026": {
+      "notice-identifier": "f806ffe4-736a-4f9c-a01c-6278d3ec845f",
+      "procedure-features": {
+        "fra": "La présente consultation est une procédure négociée avec publicité préalable et mise en concurrence, en application des articles R.2324-3 et R.2361-8 à R.2361-12 du code de la commande publique (CCP). La consultation se déroule en deux phases. Une première de sélection de candidats et une deuxième de sélection des offres. A l’issue de cette phase candidature, les candidats sélectionnés auront accès en phase offre au dossier de consultation des entreprises (DCE) complet de la consultation."
+      },
+      "title-proc": {
+        "fra": "Acquisition de motos tout terrain militarisées et de remorques au profit de l’armée de Terre."
+      },
+      "notice-type": "cn-standard",
+      "publication-number": "77247-2026",
+      "estimated-value-lot": [
+        "2332000",
+        "827000",
+        "857000",
+        "568000"
+      ],
+      "legal-basis-notice": "32009L0081",
+      "legal-basis": [
+        "32009L0081"
+      ],
+      "organisation-country-buyer": [
+        "FRA"
+      ],
+      "total-value-cur": [
+        "EUR"
+      ],
+      "total-value": 4584000,
+      "description-lot": {
+        "fra": [
+          "Acquisition de motos tout-terrain d’une cylindrée supérieure ou égale à 120 cm3 et inférieure ou égale à 125 cm3, militarisées et homologuées pour la route",
+          "Acquisition de motos tout-terrain d’une cylindrée supérieure ou égale à 245 cm3 et inférieure ou égale à 280 cm3, militarisées et homologuées pour la route",
+          "Acquisition de motos tout-terrain d’une cylindrée supérieure ou égale à 300 cm3 et inférieure ou égale à 380 cm3, militarisées et homologuées pour la route",
+          "Acquisition de remorques plateaux porte-motos, homologuées pour la route."
+        ]
+      },
+      "procedure-type": "neg-w-call",
+      "classification-cpv": [
+        "34410000",
+        "34223310",
+        "34410000",
+        "34410000",
+        "34410000",
+        "34223310"
+      ],
+      "publication-date": "2026-02-03+01:00",
+      "buyer-name": {
+        "fra": [
+          "MINARM/TERRE/SIMMT/DDC"
+        ]
+      },
+      "links": {
+        "xml": {
+          "MUL": "https://ted.europa.eu/en/notice/77247-2026/xml"
+        },
+        "pdf": {
+          "BUL": "https://ted.europa.eu/bg/notice/77247-2026/pdf",
+          "SPA": "https://ted.europa.eu/es/notice/77247-2026/pdf",
+          "CES": "https://ted.europa.eu/cs/notice/77247-2026/pdf",
+          "DAN": "https://ted.europa.eu/da/notice/77247-2026/pdf",
+          "DEU": "https://ted.europa.eu/de/notice/77247-2026/pdf",
+          "EST": "https://ted.europa.eu/et/notice/77247-2026/pdf",
+          "ELL": "https://ted.europa.eu/el/notice/77247-2026/pdf",
+          "ENG": "https://ted.europa.eu/en/notice/77247-2026/pdf",
+          "FRA": "https://ted.europa.eu/fr/notice/77247-2026/pdf",
+          "GLE": "https://ted.europa.eu/ga/notice/77247-2026/pdf",
+          "HRV": "https://ted.europa.eu/hr/notice/77247-2026/pdf",
+          "ITA": "https://ted.europa.eu/it/notice/77247-2026/pdf",
+          "LAV": "https://ted.europa.eu/lv/notice/77247-2026/pdf",
+          "LIT": "https://ted.europa.eu/lt/notice/77247-2026/pdf",
+          "HUN": "https://ted.europa.eu/hu/notice/77247-2026/pdf",
+          "MLT": "https://ted.europa.eu/mt/notice/77247-2026/pdf",
+          "NLD": "https://ted.europa.eu/nl/notice/77247-2026/pdf",
+          "POL": "https://ted.europa.eu/pl/notice/77247-2026/pdf",
+          "POR": "https://ted.europa.eu/pt/notice/77247-2026/pdf",
+          "RON": "https://ted.europa.eu/ro/notice/77247-2026/pdf",
+          "SLK": "https://ted.europa.eu/sk/notice/77247-2026/pdf",
+          "SLV": "https://ted.europa.eu/sl/notice/77247-2026/pdf",
+          "FIN": "https://ted.europa.eu/fi/notice/77247-2026/pdf",
+          "SWE": "https://ted.europa.eu/sv/notice/77247-2026/pdf"
+        },
+        "pdfs": {
+          "FRA": "https://ted.europa.eu/fr/notice/77247-2026/pdfs"
+        },
+        "html": {
+          "BUL": "https://ted.europa.eu/bg/notice/-/detail/77247-2026",
+          "SPA": "https://ted.europa.eu/es/notice/-/detail/77247-2026",
+          "CES": "https://ted.europa.eu/cs/notice/-/detail/77247-2026",
+          "DAN": "https://ted.europa.eu/da/notice/-/detail/77247-2026",
+          "DEU": "https://ted.europa.eu/de/notice/-/detail/77247-2026",
+          "EST": "https://ted.europa.eu/et/notice/-/detail/77247-2026",
+          "ELL": "https://ted.europa.eu/el/notice/-/detail/77247-2026",
+          "ENG": "https://ted.europa.eu/en/notice/-/detail/77247-2026",
+          "FRA": "https://ted.europa.eu/fr/notice/-/detail/77247-2026",
+          "GLE": "https://ted.europa.eu/ga/notice/-/detail/77247-2026",
+          "HRV": "https://ted.europa.eu/hr/notice/-/detail/77247-2026",
+          "ITA": "https://ted.europa.eu/it/notice/-/detail/77247-2026",
+          "LAV": "https://ted.europa.eu/lv/notice/-/detail/77247-2026",
+          "LIT": "https://ted.europa.eu/lt/notice/-/detail/77247-2026",
+          "HUN": "https://ted.europa.eu/hu/notice/-/detail/77247-2026",
+          "MLT": "https://ted.europa.eu/mt/notice/-/detail/77247-2026",
+          "NLD": "https://ted.europa.eu/nl/notice/-/detail/77247-2026",
+          "POL": "https://ted.europa.eu/pl/notice/-/detail/77247-2026",
+          "POR": "https://ted.europa.eu/pt/notice/-/detail/77247-2026",
+          "RON": "https://ted.europa.eu/ro/notice/-/detail/77247-2026",
+          "SLK": "https://ted.europa.eu/sk/notice/-/detail/77247-2026",
+          "SLV": "https://ted.europa.eu/sl/notice/-/detail/77247-2026",
+          "FIN": "https://ted.europa.eu/fi/notice/-/detail/77247-2026",
+          "SWE": "https://ted.europa.eu/sv/notice/-/detail/77247-2026"
+        },
+        "htmlDirect": {
+          "BUL": "https://ted.europa.eu/bg/notice/77247-2026/html",
+          "SPA": "https://ted.europa.eu/es/notice/77247-2026/html",
+          "CES": "https://ted.europa.eu/cs/notice/77247-2026/html",
+          "DAN": "https://ted.europa.eu/da/notice/77247-2026/html",
+          "DEU": "https://ted.europa.eu/de/notice/77247-2026/html",
+          "EST": "https://ted.europa.eu/et/notice/77247-2026/html",
+          "ELL": "https://ted.europa.eu/el/notice/77247-2026/html",
+          "ENG": "https://ted.europa.eu/en/notice/77247-2026/html",
+          "FRA": "https://ted.europa.eu/fr/notice/77247-2026/html",
+          "GLE": "https://ted.europa.eu/ga/notice/77247-2026/html",
+          "HRV": "https://ted.europa.eu/hr/notice/77247-2026/html",
+          "ITA": "https://ted.europa.eu/it/notice/77247-2026/html",
+          "LAV": "https://ted.europa.eu/lv/notice/77247-2026/html",
+          "LIT": "https://ted.europa.eu/lt/notice/77247-2026/html",
+          "HUN": "https://ted.europa.eu/hu/notice/77247-2026/html",
+          "MLT": "https://ted.europa.eu/mt/notice/77247-2026/html",
+          "NLD": "https://ted.europa.eu/nl/notice/77247-2026/html",
+          "POL": "https://ted.europa.eu/pl/notice/77247-2026/html",
+          "POR": "https://ted.europa.eu/pt/notice/77247-2026/html",
+          "RON": "https://ted.europa.eu/ro/notice/77247-2026/html",
+          "SLK": "https://ted.europa.eu/sk/notice/77247-2026/html",
+          "SLV": "https://ted.europa.eu/sl/notice/77247-2026/html",
+          "FIN": "https://ted.europa.eu/fi/notice/77247-2026/html",
+          "SWE": "https://ted.europa.eu/sv/notice/77247-2026/html"
+        }
+      },
+      "buyer-internet-address": [
+        "www.marches-publics.gouv.fr"
+      ],
+      "notice-title": {
+        "hun": "Franciaország – Motorkerékpárok – Acquisition de motos tout terrain militarisées et de remorques au profit de l’armée de Terre.",
+        "lav": "Francija – Motocikli – Acquisition de motos tout terrain militarisées et de remorques au profit de l’armée de Terre.",
+        "swe": "Frankrike – Motorcyklar – Acquisition de motos tout terrain militarisées et de remorques au profit de l’armée de Terre.",
+        "gle": "An Fhrainc – Motorcycles – Acquisition de motos tout terrain militarisées et de remorques au profit de l’armée de Terre.",
+        "ell": "Γαλλία – Μοτοσικλέτες – Acquisition de motos tout terrain militarisées et de remorques au profit de l’armée de Terre.",
+        "spa": "Francia – Motocicletas – Acquisition de motos tout terrain militarisées et de remorques au profit de l’armée de Terre.",
+        "est": "Prantsusmaa – Mootorrattad – Acquisition de motos tout terrain militarisées et de remorques au profit de l’armée de Terre.",
+        "nld": "Frankrijk – Motorfietsen – Acquisition de motos tout terrain militarisées et de remorques au profit de l’armée de Terre.",
+        "fin": "Ranska – Moottoripyörät – Acquisition de motos tout terrain militarisées et de remorques au profit de l’armée de Terre.",
+        "pol": "Francja – Motocykle – Acquisition de motos tout terrain militarisées et de remorques au profit de l’armée de Terre.",
+        "hrv": "Francuska – Motocikli – Acquisition de motos tout terrain militarisées et de remorques au profit de l’armée de Terre.",
+        "ces": "Francie – Motocykly – Acquisition de motos tout terrain militarisées et de remorques au profit de l’armée de Terre.",
+        "dan": "Frankrig – Motorcykler – Acquisition de motos tout terrain militarisées et de remorques au profit de l’armée de Terre.",
+        "ron": "Franţa – Motociclete – Acquisition de motos tout terrain militarisées et de remorques au profit de l’armée de Terre.",
+        "por": "França – Motociclos – Acquisition de motos tout terrain militarisées et de remorques au profit de l’armée de Terre.",
+        "slk": "Francúzsko – Motocykle – Acquisition de motos tout terrain militarisées et de remorques au profit de l’armée de Terre.",
+        "fra": "France – Motos – Acquisition de motos tout terrain militarisées et de remorques au profit de l’armée de Terre.",
+        "mlt": "Franza – Motoċikletti – Acquisition de motos tout terrain militarisées et de remorques au profit de l’armée de Terre.",
+        "deu": "Frankreich – Motorräder – Acquisition de motos tout terrain militarisées et de remorques au profit de l’armée de Terre.",
+        "lit": "Prancūzija – Motociklai – Acquisition de motos tout terrain militarisées et de remorques au profit de l’armée de Terre.",
+        "ita": "Francia – Motocicli – Acquisition de motos tout terrain militarisées et de remorques au profit de l’armée de Terre.",
+        "bul": "Фpaнция – Мотоциклети – Acquisition de motos tout terrain militarisées et de remorques au profit de l’armée de Terre.",
+        "slv": "Francija – Motorna kolesa – Acquisition de motos tout terrain militarisées et de remorques au profit de l’armée de Terre.",
+        "eng": "France – Motorcycles – Acquisition de motos tout terrain militarisées et de remorques au profit de l’armée de Terre."
+      },
+      "title-lot": {
+        "fra": [
+          "Motos tout-terrain du 120 à 125 cm3",
+          "Motos tout-terrain de 245 à 280 cm3",
+          "Motos tout-terrain de 300 à 380 cm3",
+          "Remorques"
+        ]
+      },
+      "form-type": "competition",
+      "description-proc": {
+        "fra": "Acquisition des véhicules à moteur thermique, à deux roues, avec des capacités tout-terrain, légers et robustes, militarisés et des remorques"
+      }
+    },
+    "798124-2025": {
+      "notice-identifier": "94e9668e-cfa5-43d6-915c-cfb2cca3dc44",
+      "title-proc": {
+        "ces": "Pořízení podvalníku pro přepravy těžké vojenské techniky"
+      },
+      "notice-type": "cn-standard",
+      "publication-number": "798124-2025",
+      "estimated-value-lot": [
+        "12000000"
+      ],
+      "legal-basis-notice": "32009L0081",
+      "legal-basis": [
+        "32009L0081"
+      ],
+      "organisation-country-buyer": [
+        "CZE"
+      ],
+      "total-value-cur": [
+        "CZK"
+      ],
+      "total-value": 12000000,
+      "description-lot": {
+        "ces": [
+          "Pořízení podvalníku pro přepravy těžké vojenské techniky"
+        ]
+      },
+      "procedure-type": "restricted",
+      "classification-cpv": [
+        "34223100",
+        "34223100"
+      ],
+      "publication-date": "2025-12-02+01:00",
+      "buyer-name": {
+        "ces": [
+          "VOP CZ, s.p."
+        ]
+      },
+      "links": {
+        "xml": {
+          "MUL": "https://ted.europa.eu/en/notice/798124-2025/xml"
+        },
+        "pdf": {
+          "BUL": "https://ted.europa.eu/bg/notice/798124-2025/pdf",
+          "SPA": "https://ted.europa.eu/es/notice/798124-2025/pdf",
+          "CES": "https://ted.europa.eu/cs/notice/798124-2025/pdf",
+          "DAN": "https://ted.europa.eu/da/notice/798124-2025/pdf",
+          "DEU": "https://ted.europa.eu/de/notice/798124-2025/pdf",
+          "EST": "https://ted.europa.eu/et/notice/798124-2025/pdf",
+          "ELL": "https://ted.europa.eu/el/notice/798124-2025/pdf",
+          "ENG": "https://ted.europa.eu/en/notice/798124-2025/pdf",
+          "FRA": "https://ted.europa.eu/fr/notice/798124-2025/pdf",
+          "GLE": "https://ted.europa.eu/ga/notice/798124-2025/pdf",
+          "HRV": "https://ted.europa.eu/hr/notice/798124-2025/pdf",
+          "ITA": "https://ted.europa.eu/it/notice/798124-2025/pdf",
+          "LAV": "https://ted.europa.eu/lv/notice/798124-2025/pdf",
+          "LIT": "https://ted.europa.eu/lt/notice/798124-2025/pdf",
+          "HUN": "https://ted.europa.eu/hu/notice/798124-2025/pdf",
+          "MLT": "https://ted.europa.eu/mt/notice/798124-2025/pdf",
+          "NLD": "https://ted.europa.eu/nl/notice/798124-2025/pdf",
+          "POL": "https://ted.europa.eu/pl/notice/798124-2025/pdf",
+          "POR": "https://ted.europa.eu/pt/notice/798124-2025/pdf",
+          "RON": "https://ted.europa.eu/ro/notice/798124-2025/pdf",
+          "SLK": "https://ted.europa.eu/sk/notice/798124-2025/pdf",
+          "SLV": "https://ted.europa.eu/sl/notice/798124-2025/pdf",
+          "FIN": "https://ted.europa.eu/fi/notice/798124-2025/pdf",
+          "SWE": "https://ted.europa.eu/sv/notice/798124-2025/pdf"
+        },
+        "pdfs": {
+          "CES": "https://ted.europa.eu/cs/notice/798124-2025/pdfs"
+        },
+        "html": {
+          "BUL": "https://ted.europa.eu/bg/notice/-/detail/798124-2025",
+          "SPA": "https://ted.europa.eu/es/notice/-/detail/798124-2025",
+          "CES": "https://ted.europa.eu/cs/notice/-/detail/798124-2025",
+          "DAN": "https://ted.europa.eu/da/notice/-/detail/798124-2025",
+          "DEU": "https://ted.europa.eu/de/notice/-/detail/798124-2025",
+          "EST": "https://ted.europa.eu/et/notice/-/detail/798124-2025",
+          "ELL": "https://ted.europa.eu/el/notice/-/detail/798124-2025",
+          "ENG": "https://ted.europa.eu/en/notice/-/detail/798124-2025",
+          "FRA": "https://ted.europa.eu/fr/notice/-/detail/798124-2025",
+          "GLE": "https://ted.europa.eu/ga/notice/-/detail/798124-2025",
+          "HRV": "https://ted.europa.eu/hr/notice/-/detail/798124-2025",
+          "ITA": "https://ted.europa.eu/it/notice/-/detail/798124-2025",
+          "LAV": "https://ted.europa.eu/lv/notice/-/detail/798124-2025",
+          "LIT": "https://ted.europa.eu/lt/notice/-/detail/798124-2025",
+          "HUN": "https://ted.europa.eu/hu/notice/-/detail/798124-2025",
+          "MLT": "https://ted.europa.eu/mt/notice/-/detail/798124-2025",
+          "NLD": "https://ted.europa.eu/nl/notice/-/detail/798124-2025",
+          "POL": "https://ted.europa.eu/pl/notice/-/detail/798124-2025",
+          "POR": "https://ted.europa.eu/pt/notice/-/detail/798124-2025",
+          "RON": "https://ted.europa.eu/ro/notice/-/detail/798124-2025",
+          "SLK": "https://ted.europa.eu/sk/notice/-/detail/798124-2025",
+          "SLV": "https://ted.europa.eu/sl/notice/-/detail/798124-2025",
+          "FIN": "https://ted.europa.eu/fi/notice/-/detail/798124-2025",
+          "SWE": "https://ted.europa.eu/sv/notice/-/detail/798124-2025"
+        },
+        "htmlDirect": {
+          "BUL": "https://ted.europa.eu/bg/notice/798124-2025/html",
+          "SPA": "https://ted.europa.eu/es/notice/798124-2025/html",
+          "CES": "https://ted.europa.eu/cs/notice/798124-2025/html",
+          "DAN": "https://ted.europa.eu/da/notice/798124-2025/html",
+          "DEU": "https://ted.europa.eu/de/notice/798124-2025/html",
+          "EST": "https://ted.europa.eu/et/notice/798124-2025/html",
+          "ELL": "https://ted.europa.eu/el/notice/798124-2025/html",
+          "ENG": "https://ted.europa.eu/en/notice/798124-2025/html",
+          "FRA": "https://ted.europa.eu/fr/notice/798124-2025/html",
+          "GLE": "https://ted.europa.eu/ga/notice/798124-2025/html",
+          "HRV": "https://ted.europa.eu/hr/notice/798124-2025/html",
+          "ITA": "https://ted.europa.eu/it/notice/798124-2025/html",
+          "LAV": "https://ted.europa.eu/lv/notice/798124-2025/html",
+          "LIT": "https://ted.europa.eu/lt/notice/798124-2025/html",
+          "HUN": "https://ted.europa.eu/hu/notice/798124-2025/html",
+          "MLT": "https://ted.europa.eu/mt/notice/798124-2025/html",
+          "NLD": "https://ted.europa.eu/nl/notice/798124-2025/html",
+          "POL": "https://ted.europa.eu/pl/notice/798124-2025/html",
+          "POR": "https://ted.europa.eu/pt/notice/798124-2025/html",
+          "RON": "https://ted.europa.eu/ro/notice/798124-2025/html",
+          "SLK": "https://ted.europa.eu/sk/notice/798124-2025/html",
+          "SLV": "https://ted.europa.eu/sl/notice/798124-2025/html",
+          "FIN": "https://ted.europa.eu/fi/notice/798124-2025/html",
+          "SWE": "https://ted.europa.eu/sv/notice/798124-2025/html"
+        }
+      },
+      "notice-title": {
+        "hun": "Csehország – Félpótkocsi (nyerges vontató) – Pořízení podvalníku pro přepravy těžké vojenské techniky",
+        "lav": "Čehija – Puspiekabes – Pořízení podvalníku pro přepravy těžké vojenské techniky",
+        "swe": "Tjeckien – Påhängsvagnar – Pořízení podvalníku pro přepravy těžké vojenské techniky",
+        "gle": "An tSeicia – Semi-trailers – Pořízení podvalníku pro přepravy těžké vojenské techniky",
+        "ell": "Τσεχία – Ημιρυμουλκούμενα – Pořízení podvalníku pro přepravy těžké vojenské techniky",
+        "spa": "Chequia – Semirremolques – Pořízení podvalníku pro přepravy těžké vojenské techniky",
+        "est": "Tšehhi – Poolhaagised – Pořízení podvalníku pro přepravy těžké vojenské techniky",
+        "nld": "Tsjechië – Opleggers – Pořízení podvalníku pro přepravy těžké vojenské techniky",
+        "fin": "Tšekki – Puoliperävaunut – Pořízení podvalníku pro přepravy těžké vojenské techniky",
+        "pol": "Czechy – Naczepy – Pořízení podvalníku pro přepravy těžké vojenské techniky",
+        "hrv": "Češka – Poluprikolice – Pořízení podvalníku pro přepravy těžké vojenské techniky",
+        "ces": "Česko – Návěsy – Pořízení podvalníku pro přepravy těžké vojenské techniky",
+        "dan": "Tjekkiet – Sættevogne – Pořízení podvalníku pro přepravy těžké vojenské techniky",
+        "ron": "Cehia – Semiremorci – Pořízení podvalníku pro přepravy těžké vojenské techniky",
+        "por": "Chéquia – Semi-reboques – Pořízení podvalníku pro přepravy těžké vojenské techniky",
+        "slk": "Česko – Návesy – Pořízení podvalníku pro přepravy těžké vojenské techniky",
+        "fra": "Tchéquie – Semi-remorques – Pořízení podvalníku pro přepravy těžké vojenské techniky",
+        "mlt": "Iċ-Ċekja – Nofs-karrijiet – Pořízení podvalníku pro přepravy těžké vojenské techniky",
+        "deu": "Tschechien – Sattelanhänger – Pořízení podvalníku pro přepravy těžké vojenské techniky",
+        "lit": "Čekija – Puspriekabės – Pořízení podvalníku pro přepravy těžké vojenské techniky",
+        "ita": "Cechia – Semirimorchi – Pořízení podvalníku pro přepravy těžké vojenské techniky",
+        "bul": "Чехия – Полуремаркета – Pořízení podvalníku pro přepravy těžké vojenské techniky",
+        "slv": "Češka – Polpriklopniki – Pořízení podvalníku pro přepravy těžké vojenské techniky",
+        "eng": "Czechia – Semi-trailers – Pořízení podvalníku pro přepravy těžké vojenské techniky"
+      },
+      "title-lot": {
+        "ces": [
+          "Pořízení podvalníku pro přepravy těžké vojenské techniky"
+        ]
+      },
+      "form-type": "competition",
+      "description-proc": {
+        "ces": "Pořízení podvalníku pro přepravy těžké vojenské techniky"
+      }
+    },
+    "261427-2025": {
+      "notice-type": "can-standard",
+      "publication-number": "261427-2025",
+      "legal-basis-notice": "32014L0024",
+      "winner-country": [
+        "POL"
+      ],
+      "total-value": 1530000,
+      "winner-identifier": [
+        "5512518659"
+      ],
+      "publication-date": "2025-04-23+02:00",
+      "winner-decision-date": [
+        "2025-04-02+02:00"
+      ],
+      "links": {
+        "xml": {
+          "MUL": "https://ted.europa.eu/en/notice/261427-2025/xml"
+        },
+        "pdf": {
+          "BUL": "https://ted.europa.eu/bg/notice/261427-2025/pdf",
+          "SPA": "https://ted.europa.eu/es/notice/261427-2025/pdf",
+          "CES": "https://ted.europa.eu/cs/notice/261427-2025/pdf",
+          "DAN": "https://ted.europa.eu/da/notice/261427-2025/pdf",
+          "DEU": "https://ted.europa.eu/de/notice/261427-2025/pdf",
+          "EST": "https://ted.europa.eu/et/notice/261427-2025/pdf",
+          "ELL": "https://ted.europa.eu/el/notice/261427-2025/pdf",
+          "ENG": "https://ted.europa.eu/en/notice/261427-2025/pdf",
+          "FRA": "https://ted.europa.eu/fr/notice/261427-2025/pdf",
+          "GLE": "https://ted.europa.eu/ga/notice/261427-2025/pdf",
+          "HRV": "https://ted.europa.eu/hr/notice/261427-2025/pdf",
+          "ITA": "https://ted.europa.eu/it/notice/261427-2025/pdf",
+          "LAV": "https://ted.europa.eu/lv/notice/261427-2025/pdf",
+          "LIT": "https://ted.europa.eu/lt/notice/261427-2025/pdf",
+          "HUN": "https://ted.europa.eu/hu/notice/261427-2025/pdf",
+          "MLT": "https://ted.europa.eu/mt/notice/261427-2025/pdf",
+          "NLD": "https://ted.europa.eu/nl/notice/261427-2025/pdf",
+          "POL": "https://ted.europa.eu/pl/notice/261427-2025/pdf",
+          "POR": "https://ted.europa.eu/pt/notice/261427-2025/pdf",
+          "RON": "https://ted.europa.eu/ro/notice/261427-2025/pdf",
+          "SLK": "https://ted.europa.eu/sk/notice/261427-2025/pdf",
+          "SLV": "https://ted.europa.eu/sl/notice/261427-2025/pdf",
+          "FIN": "https://ted.europa.eu/fi/notice/261427-2025/pdf",
+          "SWE": "https://ted.europa.eu/sv/notice/261427-2025/pdf"
+        },
+        "pdfs": {
+          "POL": "https://ted.europa.eu/pl/notice/261427-2025/pdfs"
+        },
+        "html": {
+          "BUL": "https://ted.europa.eu/bg/notice/-/detail/261427-2025",
+          "SPA": "https://ted.europa.eu/es/notice/-/detail/261427-2025",
+          "CES": "https://ted.europa.eu/cs/notice/-/detail/261427-2025",
+          "DAN": "https://ted.europa.eu/da/notice/-/detail/261427-2025",
+          "DEU": "https://ted.europa.eu/de/notice/-/detail/261427-2025",
+          "EST": "https://ted.europa.eu/et/notice/-/detail/261427-2025",
+          "ELL": "https://ted.europa.eu/el/notice/-/detail/261427-2025",
+          "ENG": "https://ted.europa.eu/en/notice/-/detail/261427-2025",
+          "FRA": "https://ted.europa.eu/fr/notice/-/detail/261427-2025",
+          "GLE": "https://ted.europa.eu/ga/notice/-/detail/261427-2025",
+          "HRV": "https://ted.europa.eu/hr/notice/-/detail/261427-2025",
+          "ITA": "https://ted.europa.eu/it/notice/-/detail/261427-2025",
+          "LAV": "https://ted.europa.eu/lv/notice/-/detail/261427-2025",
+          "LIT": "https://ted.europa.eu/lt/notice/-/detail/261427-2025",
+          "HUN": "https://ted.europa.eu/hu/notice/-/detail/261427-2025",
+          "MLT": "https://ted.europa.eu/mt/notice/-/detail/261427-2025",
+          "NLD": "https://ted.europa.eu/nl/notice/-/detail/261427-2025",
+          "POL": "https://ted.europa.eu/pl/notice/-/detail/261427-2025",
+          "POR": "https://ted.europa.eu/pt/notice/-/detail/261427-2025",
+          "RON": "https://ted.europa.eu/ro/notice/-/detail/261427-2025",
+          "SLK": "https://ted.europa.eu/sk/notice/-/detail/261427-2025",
+          "SLV": "https://ted.europa.eu/sl/notice/-/detail/261427-2025",
+          "FIN": "https://ted.europa.eu/fi/notice/-/detail/261427-2025",
+          "SWE": "https://ted.europa.eu/sv/notice/-/detail/261427-2025"
+        },
+        "htmlDirect": {
+          "BUL": "https://ted.europa.eu/bg/notice/261427-2025/html",
+          "SPA": "https://ted.europa.eu/es/notice/261427-2025/html",
+          "CES": "https://ted.europa.eu/cs/notice/261427-2025/html",
+          "DAN": "https://ted.europa.eu/da/notice/261427-2025/html",
+          "DEU": "https://ted.europa.eu/de/notice/261427-2025/html",
+          "EST": "https://ted.europa.eu/et/notice/261427-2025/html",
+          "ELL": "https://ted.europa.eu/el/notice/261427-2025/html",
+          "ENG": "https://ted.europa.eu/en/notice/261427-2025/html",
+          "FRA": "https://ted.europa.eu/fr/notice/261427-2025/html",
+          "GLE": "https://ted.europa.eu/ga/notice/261427-2025/html",
+          "HRV": "https://ted.europa.eu/hr/notice/261427-2025/html",
+          "ITA": "https://ted.europa.eu/it/notice/261427-2025/html",
+          "LAV": "https://ted.europa.eu/lv/notice/261427-2025/html",
+          "LIT": "https://ted.europa.eu/lt/notice/261427-2025/html",
+          "HUN": "https://ted.europa.eu/hu/notice/261427-2025/html",
+          "MLT": "https://ted.europa.eu/mt/notice/261427-2025/html",
+          "NLD": "https://ted.europa.eu/nl/notice/261427-2025/html",
+          "POL": "https://ted.europa.eu/pl/notice/261427-2025/html",
+          "POR": "https://ted.europa.eu/pt/notice/261427-2025/html",
+          "RON": "https://ted.europa.eu/ro/notice/261427-2025/html",
+          "SLK": "https://ted.europa.eu/sk/notice/261427-2025/html",
+          "SLV": "https://ted.europa.eu/sl/notice/261427-2025/html",
+          "FIN": "https://ted.europa.eu/fi/notice/261427-2025/html",
+          "SWE": "https://ted.europa.eu/sv/notice/261427-2025/html"
+        }
+      },
+      "notice-identifier": "68b0e8af-4e2e-4ad1-be1f-ca15655a7e04",
+      "title-proc": {
+        "pol": "DOSTAWA PRZYCZEP TRANSPORTOWYCH DUŻEJ ŁADOWNOŚCI"
+      },
+      "legal-basis": [
+        "32014L0024"
+      ],
+      "organisation-country-buyer": [
+        "POL"
+      ],
+      "total-value-cur": [
+        "PLN"
+      ],
+      "winner-size": [
+        "medium"
+      ],
+      "contract-title": {
+        "pol": [
+          "Dostawa przyczep transportowych dużej ładowności"
+        ]
+      },
+      "description-lot": {
+        "pol": [
+          "DOSTAWA PRZYCZEP TRANSPORTOWYCH DUŻEJ ŁADOWNOŚCI, w ilości 4 sztuk w zakresie podstawowym oraz maksymalnie w ilości 8 sztuk wynikającej z prawa opcji."
+        ]
+      },
+      "procedure-type": "open",
+      "classification-cpv": [
+        "34223310",
+        "34223310"
+      ],
+      "legal-basis-proc": [
+        "art. 132 ustawy PZP"
+      ],
+      "buyer-name": {
+        "pol": [
+          "12 WOJSKOWY ODDZIAŁ GOSPODARCZY"
+        ]
+      },
+      "buyer-internet-address": [
+        "https://12wog.wp.mil.pl/"
+      ],
+      "winner-name": {
+        "pol": [
+          "Zasław Spółka z ograniczoną odpowiedzialnością"
+        ]
+      },
+      "notice-title": {
+        "hun": "Lengyelország – Általános célú pótkocsik – DOSTAWA PRZYCZEP TRANSPORTOWYCH DUŻEJ ŁADOWNOŚCI",
+        "lav": "Polija – Vispārēja lietojuma piekabes – DOSTAWA PRZYCZEP TRANSPORTOWYCH DUŻEJ ŁADOWNOŚCI",
+        "swe": "Polen – Universalsläpvagnar – DOSTAWA PRZYCZEP TRANSPORTOWYCH DUŻEJ ŁADOWNOŚCI",
+        "gle": "An Pholainn – General-purpose trailers – DOSTAWA PRZYCZEP TRANSPORTOWYCH DUŻEJ ŁADOWNOŚCI",
+        "ell": "Πολωνία – Ρυμουλκούμενα οχήματα γενικής χρήσης – DOSTAWA PRZYCZEP TRANSPORTOWYCH DUŻEJ ŁADOWNOŚCI",
+        "spa": "Polonia – Remolques de uso general – DOSTAWA PRZYCZEP TRANSPORTOWYCH DUŻEJ ŁADOWNOŚCI",
+        "est": "Poola – Üldotstarbelised haagised – DOSTAWA PRZYCZEP TRANSPORTOWYCH DUŻEJ ŁADOWNOŚCI",
+        "nld": "Polen – Aanhangwagens geschikt voor diverse doeleinden – DOSTAWA PRZYCZEP TRANSPORTOWYCH DUŻEJ ŁADOWNOŚCI",
+        "fin": "Puola – Yleiskäyttöiset perävaunut – DOSTAWA PRZYCZEP TRANSPORTOWYCH DUŻEJ ŁADOWNOŚCI",
+        "pol": "Polska – Przyczepy ogólnego zastosowania – DOSTAWA PRZYCZEP TRANSPORTOWYCH DUŻEJ ŁADOWNOŚCI",
+        "hrv": "Poljska – Prikolice opće namjene – DOSTAWA PRZYCZEP TRANSPORTOWYCH DUŻEJ ŁADOWNOŚCI",
+        "ces": "Polsko – Přívěsy pro obecné účely – DOSTAWA PRZYCZEP TRANSPORTOWYCH DUŻEJ ŁADOWNOŚCI",
+        "dan": "Polen – Universalpåhængsvogne – DOSTAWA PRZYCZEP TRANSPORTOWYCH DUŻEJ ŁADOWNOŚCI",
+        "ron": "Polonia – Remorci de uz general – DOSTAWA PRZYCZEP TRANSPORTOWYCH DUŻEJ ŁADOWNOŚCI",
+        "por": "Polónia – Reboques polivalentes – DOSTAWA PRZYCZEP TRANSPORTOWYCH DUŻEJ ŁADOWNOŚCI",
+        "slk": "Poľsko – Univerzálne prívesy – DOSTAWA PRZYCZEP TRANSPORTOWYCH DUŻEJ ŁADOWNOŚCI",
+        "fra": "Pologne – Remorques à usage général – DOSTAWA PRZYCZEP TRANSPORTOWYCH DUŻEJ ŁADOWNOŚCI",
+        "mlt": "Il-Polonja – Karrijiet għal skop ġenerali – DOSTAWA PRZYCZEP TRANSPORTOWYCH DUŻEJ ŁADOWNOŚCI",
+        "deu": "Polen – Anhänger für allgemeine Zwecke – DOSTAWA PRZYCZEP TRANSPORTOWYCH DUŻEJ ŁADOWNOŚCI",
+        "lit": "Lenkija – Bendros paskirties priekabos – DOSTAWA PRZYCZEP TRANSPORTOWYCH DUŻEJ ŁADOWNOŚCI",
+        "ita": "Polonia – Rimorchi per uso generale – DOSTAWA PRZYCZEP TRANSPORTOWYCH DUŻEJ ŁADOWNOŚCI",
+        "bul": "Полша – Ремаркета с обща употреба – DOSTAWA PRZYCZEP TRANSPORTOWYCH DUŻEJ ŁADOWNOŚCI",
+        "slv": "Poljska – Priklopniki za splošno uporabo – DOSTAWA PRZYCZEP TRANSPORTOWYCH DUŻEJ ŁADOWNOŚCI",
+        "eng": "Poland – General-purpose trailers – DOSTAWA PRZYCZEP TRANSPORTOWYCH DUŻEJ ŁADOWNOŚCI"
+      },
+      "title-lot": {
+        "pol": [
+          "DOSTAWA PRZYCZEP TRANSPORTOWYCH DUŻEJ ŁADOWNOŚCI"
+        ]
+      },
+      "form-type": "result",
+      "description-proc": {
+        "pol": "Przedmiotem zamówienia jest: DOSTAWA PRZYCZEP TRANSPORTWOWYCH DUŻEJ ŁADOWNOŚCI, w ilości 4 sztuk w zakresie podstawowym oraz maksymalnie w ilości 8 sztuk wynikającej z prawa opcji."
+      }
+    }
+  }
+}

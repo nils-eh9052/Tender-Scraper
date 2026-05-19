@@ -12,10 +12,52 @@ Tidsfrist
 SMV-venlig
 Indkøbsproces
 Anslået værdi
-Resultater (55)
+Resultater (52)
 Din søgning: FMI Forsvaret
 Vis kun aktive bekendtgørelser
 Opret udbudsagent
+EU UDBUD
+Forsvarsministeriets Materiel- og Indkøbsstyrelse
+Kontrakt om anskaffelse og etablering af et kasselagersystem, samt efterfølgende support, servicevedligehold og reparation heraf
+Forsvarsministeriets Materiel- og Indkøbsstyrelse (FMI) udbyder en kontrakt vedrørende anskaffelse ogetablering af kasselagersystem (kasselager og operativsystem), anskaffelse af relevante kasser til ...
+CPV-kode
+Oplagring [63121100]
+Offentliggørelsesdato
+12-05-2026
+Næste frist
+15-06-2026
+Anslået værdi
+85.000.000 DKK
+TILDELING
+Forsvarsministeriets Materiel- og Indkøbsstyrelse
+Kontrakt om anskaffelse og etablering af et kasselagersystem, samt efterfølgende support, servicevedligehold og reparation heraf
+Forsvarsministeriets Materiel- og Indkøbsstyrelse (FMI) har udbudt en kontrakt vedrørende anskaffelse og etablering af kasselagersystem (kasselager og operativsystem), anskaffelse af relevante kasser ...
+CPV-kode
+Oplagring [63121100]
+Offentliggørelsesdato
+11-05-2026
+Anslået værdi
+110.000.000 DKK
+FORHÅNDSMEDDELELSE
+Forsvarsministeriets Materiel- og Indkøbsstyrelse
+Markedsundersøgelse vedr. anskaffelsen af deployeringsbure
+Forsvarsministeriets Materiel- og Indkøbsstyrelse (FMI), Kapacitetscenter Driftsunderstøttelse, Øvrig Drift, Lagermateriel og Emballage, ønsker at undersøge markedets kapacitet og kompetencer i relati...
+CPV-kode
+Tanke, beholdere, containere og trykbeholdere [44610000]
+Offentliggørelsesdato
+06-05-2026
+Forventet opstart
+24-08-2026
+Anslået værdi
+7.000.000 DKK
+DIREKTE TILDELING
+Danish Ministry of Defence Acquisition and Logistics Organisation
+Anskaffelse af undervandstelefoner til Søværnet
+FMI har til hensigt at indgå aftale med ELAC SONAR GmbH vedr. køb af 10 undervandstelefoner af typen UT3000 2nd Generation til Søværnet. Den estimerede maksimale værdi af anskaffelsen er op til EUR 12...
+CPV-kode
+Sikkerheds-, brandbekæmpelses, politi- og forsvarsudstyr [35000000]
+Offentliggørelsesdato
+04-05-2026
 DIREKTE TILDELING
 Danish Ministry of Defence Acquisition and Logistics Organisation
 Transportudstyr og transporthjælpemidler
@@ -24,16 +66,6 @@ CPV-kode
 Transportudstyr og transporthjælpemidler [34000000]
 Offentliggørelsesdato
 29-04-2026
-TILDELING
-Forsvarsministeriets Materiel- og Indkøbsstyrelse
-Udbud vedr. produktion af faner og tilknyttede reparationsydelser
-Aftalen omfatter den løbende produktion og reparation af Forsvarets, Hjemmeværnets og Ministeriet for samfundssikkerhed og beredskabets faner i en længere kontraktperiode på 12 år. Formålet med Aftale...
-CPV-kode
-Flag [35821000]
-Offentliggørelsesdato
-27-04-2026
-Anslået værdi
-40.000.000 DKK
 FORHÅNDSMEDDELELSE
 Danish Ministry of Defence Acquisition and Logistics Organisation
 Indhentelse af oplysninger i forbindelse med anskaffelse af valsetog til Forsvaret
@@ -52,6 +84,16 @@ CPV-kode
 Sikkerheds-, brandbekæmpelses, politi- og forsvarsudstyr [35000000]
 Offentliggørelsesdato
 27-04-2026
+TILDELING
+Forsvarsministeriets Materiel- og Indkøbsstyrelse
+Udbud vedr. produktion af faner og tilknyttede reparationsydelser
+Aftalen omfatter den løbende produktion og reparation af Forsvarets, Hjemmeværnets og Ministeriet for samfundssikkerhed og beredskabets faner i en længere kontraktperiode på 12 år. Formålet med Aftale...
+CPV-kode
+Flag [35821000]
+Offentliggørelsesdato
+27-04-2026
+Anslået værdi
+40.000.000 DKK
 EU UDBUD
 Danish Ministry of Defence Acquisition and Logistics Organisation
 Rammeaftale vedrørende levering, vedligeholdelse og reparation af lagerreoler og tilbehør hertil
@@ -146,24 +188,12 @@ Offentliggørelsesdato
 01-04-2026
 Anslået værdi
 987.915 DKK
-EU UDBUD
-Forsvarsministeriets Materiel- og Indkøbsstyrelse
-ÆNDRINGUdbud vedr. produktion af faner og tilknyttede reparationsydelser
-Aftalen omfatter den løbende produktion og reparation af Forsvarets, Hjemmeværnets og Ministeriet for samfundssikkerhed og beredskabets faner i en længere kontraktperiode på 12 år. Formålet med Aftale...
+FORHÅNDSMEDDELELSE
+Danish Ministry of Defence Acquisition and Logistics Organisation
+Markedsdialog i forbindelse med anskaffelse af nyt fartøj til Marinehjemmeværnet
+Forsvarsministeriets Materiel- og Indkøbsstyrelse (FMI) skal anskaffe nyt fartøj til Marinehjemmeværnet, som erstatning for de nuværende fartøjer af 800- og 850-klassen. Anskaffelsen omfatter i alt 21...
 CPV-kode
-Flag [35821000]
-Offentliggørelsesdato
-30-03-2026
-Næste frist
-14-05-2026
-Anslået værdi
-40.000.000 DKK
-DIREKTE TILDELING
-Forsvarsministeriets Materiel- og Indkøbsstyrelse
-Anskaffelse af sigtevinger til forsvarets TMG
-Forsvarets Materiel- og Indkøbsstyrelse (FMI) har behov for at gennemføre en hasteanskaffelse af sigteanordninger (benævnt sigtevinger) til brug med forsvarets tunge maskingevær (TMG), primært når det...
-CPV-kode
-Sikkerheds-, brandbekæmpelses, politi- og forsvarsudstyr [35000000]
+Skibe og både [34500000]
 Offentliggørelsesdato
 30-03-2026
 DIREKTE TILDELING
@@ -175,19 +205,19 @@ Vedligeholdelse af systemer [50324100]
 Offentliggørelsesdato
 30-03-2026
 DIREKTE TILDELING
+Forsvarsministeriets Materiel- og Indkøbsstyrelse
+Anskaffelse af sigtevinger til forsvarets TMG
+Forsvarets Materiel- og Indkøbsstyrelse (FMI) har behov for at gennemføre en hasteanskaffelse af sigteanordninger (benævnt sigtevinger) til brug med forsvarets tunge maskingevær (TMG), primært når det...
+CPV-kode
+Sikkerheds-, brandbekæmpelses, politi- og forsvarsudstyr [35000000]
+Offentliggørelsesdato
+30-03-2026
+DIREKTE TILDELING
 Danish Ministry of Defence Acquisition and Logistics Organisation
 Mobile generatoranlæg
 Forsvarsministeriets Materiel- og Indkøbsstyrelse (FMI) indgik i 2021 en 7-årig rammeaftale med leverandøren vedr. levering af specialbyggede mobile generatorer. Generatorerne anvendes som støtte ved ...
 CPV-kode
 Transportudstyr og transporthjælpemidler [34000000]
-Offentliggørelsesdato
-30-03-2026
-FORHÅNDSMEDDELELSE
-Danish Ministry of Defence Acquisition and Logistics Organisation
-Markedsdialog i forbindelse med anskaffelse af nyt fartøj til Marinehjemmeværnet
-Forsvarsministeriets Materiel- og Indkøbsstyrelse (FMI) skal anskaffe nyt fartøj til Marinehjemmeværnet, som erstatning for de nuværende fartøjer af 800- og 850-klassen. Anskaffelsen omfatter i alt 21...
-CPV-kode
-Skibe og både [34500000]
 Offentliggørelsesdato
 30-03-2026
 FORHÅNDSMEDDELELSE
@@ -201,16 +231,6 @@ Offentliggørelsesdato
 Forventet opstart
 01-07-2026
 TILDELING
-Forsvarsministeriets Materiel- og Indkøbsstyrelse (FMI)
-Udbud af rammeaftale vedrørende levering, servicering og vedligeholdelse af højtryksåndedrætsluftkompressorer
-Udbud af rammeaftale vedrørende levering, servicering og vedligeholdelse af højtryksåndedrætsluftkompressorer til brug for bl.a. påfyldning af luftflasker til røgdykkere og dykkere.
-CPV-kode
-Sikkerheds-, brandbekæmpelses, politi- og forsvarsudstyr [35000000]
-Offentliggørelsesdato
-24-03-2026
-Anslået værdi
-15.000.000 DKK
-TILDELING
 Danish Ministry of Defence Acquisition and Logistics Organisation
 Indkøb af Heavy Machine gun - .50 Caliber
 Aftalen omhandler indkøb af varen, Heavy Machine gun - .50 Caliber der skal bruges til opbygning af Forsvarets kapaciteter.
@@ -221,31 +241,15 @@ Offentliggørelsesdato
 Anslået værdi
 1.400.000 EUR
 TILDELING
-Forsvarsministeriets Materiel- og Indkøbsstyrelse
-Demilitarisering af Ammunition
-Demilitarisering af Ammunition
+Forsvarsministeriets Materiel- og Indkøbsstyrelse (FMI)
+Udbud af rammeaftale vedrørende levering, servicering og vedligeholdelse af højtryksåndedrætsluftkompressorer
+Udbud af rammeaftale vedrørende levering, servicering og vedligeholdelse af højtryksåndedrætsluftkompressorer til brug for bl.a. påfyldning af luftflasker til røgdykkere og dykkere.
 CPV-kode
-Tjenesteydelser i forbindelse med spildevand, affald, rengøring og miljøbeskyttelse [90000000]
+Sikkerheds-, brandbekæmpelses, politi- og forsvarsudstyr [35000000]
 Offentliggørelsesdato
-23-03-2026
-TILDELING
-Danish Ministry of Defence Acquisition and Logistics Organisation
-Bælter til Leopard 2 familiekøretøjer
-Forsvarsministeriets Materiel- og Indkøbsstyrelse (FMI) indgik i 2020 en 15-årig rammeaftale med leverandøren vedr. levering af bælter til Leopard 2 familiekøretøjer. FMI har nu haft behov for at forø...
-CPV-kode
-Militærkøretøjer og dele til militærkøretøjer [35400000]
-Offentliggørelsesdato
-20-03-2026
-TILDELING
-Danish Ministry of Defence Acquisition and Logistics Organisation
-Rammeaftale vedrørende levering, vedligeholdelse og reparation af lagerreoler og tilbehør hertil
-Dette udbud angår tildeling af rammeaftale om levering, vedligeholdelse og reparation af lagerreoler og tilbehør hertil (herefter Aftalen) og alle bilag til Aftalen (herefter Bilag). Aftalen skal dæk...
-CPV-kode
-Inventar (inkl. kontorinventar), boligudstyr, husholdningsapparater (ekskl. belysning) og rengøringsmidler [39000000]
-Offentliggørelsesdato
-18-03-2026
+24-03-2026
 Anslået værdi
-28.000.000 DKK
+15.000.000 DKK
 1
 2
 3

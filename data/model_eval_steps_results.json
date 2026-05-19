@@ -1,0 +1,3876 @@
+{
+  "ts": "2026-05-10 13:59:40 UTC",
+  "models": [
+    "anthropic/claude-sonnet-4-6",
+    "anthropic/claude-opus-4-7",
+    "openrouter/openai/gpt-4o",
+    "openrouter/google/gemini-2.5-pro",
+    "openrouter/anthropic/claude-haiku-4-5",
+    "openrouter/mistralai/mistral-large"
+  ],
+  "total_cost_usd": 0.8752,
+  "results": {
+    "classifier": {
+      "anthropic/claude-sonnet-4-6": [
+        {
+          "model_id": "anthropic/claude-sonnet-4-6",
+          "step": "classifier",
+          "raw": "{\n  \"is_defence_relevant\": true,\n  \"trailer_type\": \"Military cargo trailer (3.5t 2-wheel and 12.5t 4-wheel variants)\",\n  \"trailer_quantity\": 9700\n}",
+          "parsed": {
+            "is_defence_relevant": true,
+            "trailer_type": "Military cargo trailer (3.5t 2-wheel and 12.5t 4-wheel variants)",
+            "trailer_quantity": 9700
+          },
+          "error": null,
+          "latency_s": 2.56,
+          "input_tokens": 371,
+          "output_tokens": 59,
+          "cost_usd": 0.002,
+          "sample_id": "C1",
+          "label": "DE-BAAINBw-CargoTrailers",
+          "scores": {
+            "is_defence_relevant": 1.0,
+            "trailer_type": 1.0,
+            "trailer_quantity": 0.0
+          },
+          "avg_score": 0.6666666666666666
+        },
+        {
+          "model_id": "anthropic/claude-sonnet-4-6",
+          "step": "classifier",
+          "raw": "{\n  \"is_defence_relevant\": true,\n  \"trailer_type\": \"2-wheel 1-tonne general-purpose light military trailer\",\n  \"trailer_quantity\": 480\n}",
+          "parsed": {
+            "is_defence_relevant": true,
+            "trailer_type": "2-wheel 1-tonne general-purpose light military trailer",
+            "trailer_quantity": 480
+          },
+          "error": null,
+          "latency_s": 2.22,
+          "input_tokens": 408,
+          "output_tokens": 49,
+          "cost_usd": 0.002,
+          "sample_id": "C2",
+          "label": "DE-BAAINBw-2WheelTrailers",
+          "scores": {
+            "is_defence_relevant": 1.0,
+            "trailer_type": 1.0,
+            "trailer_quantity": 1.0
+          },
+          "avg_score": 1.0
+        },
+        {
+          "model_id": "anthropic/claude-sonnet-4-6",
+          "step": "classifier",
+          "raw": "{\n  \"is_defence_relevant\": true,\n  \"trailer_type\": \"Commando Raiding Craft Trailer\",\n  \"trailer_quantity\": null\n}",
+          "parsed": {
+            "is_defence_relevant": true,
+            "trailer_type": "Commando Raiding Craft Trailer",
+            "trailer_quantity": null
+          },
+          "error": null,
+          "latency_s": 1.28,
+          "input_tokens": 278,
+          "output_tokens": 44,
+          "cost_usd": 0.0015,
+          "sample_id": "C3",
+          "label": "UK-CommandoCraftTrailers",
+          "scores": {
+            "is_defence_relevant": 1.0,
+            "trailer_type": 1.0,
+            "trailer_quantity": 1.0
+          },
+          "avg_score": 1.0
+        },
+        {
+          "model_id": "anthropic/claude-sonnet-4-6",
+          "step": "classifier",
+          "raw": "{\n  \"is_defence_relevant\": true,\n  \"trailer_type\": \"Heavy duty flat-bed trailer with ISO container twist-lock\",\n  \"trailer_quantity\": 1\n}",
+          "parsed": {
+            "is_defence_relevant": true,
+            "trailer_type": "Heavy duty flat-bed trailer with ISO container twist-lock",
+            "trailer_quantity": 1
+          },
+          "error": null,
+          "latency_s": 1.95,
+          "input_tokens": 407,
+          "output_tokens": 47,
+          "cost_usd": 0.0019,
+          "sample_id": "C4",
+          "label": "UK-RTO-TractorTrailer",
+          "scores": {
+            "is_defence_relevant": 1.0,
+            "trailer_type": 1.0,
+            "trailer_quantity": 1.0
+          },
+          "avg_score": 1.0
+        },
+        {
+          "model_id": "anthropic/claude-sonnet-4-6",
+          "step": "classifier",
+          "raw": "{\n  \"is_defence_relevant\": true,\n  \"trailer_type\": \"Transport trailers (high, medium, and small capacity)\",\n  \"trailer_quantity\": null\n}",
+          "parsed": {
+            "is_defence_relevant": true,
+            "trailer_type": "Transport trailers (high, medium, and small capacity)",
+            "trailer_quantity": null
+          },
+          "error": null,
+          "latency_s": 1.79,
+          "input_tokens": 342,
+          "output_tokens": 45,
+          "cost_usd": 0.0017,
+          "sample_id": "C5",
+          "label": "PL-MOD-TransportTrailers",
+          "scores": {
+            "is_defence_relevant": 1.0,
+            "trailer_type": 0.5,
+            "trailer_quantity": 1.0
+          },
+          "avg_score": 0.8333333333333334
+        },
+        {
+          "model_id": "anthropic/claude-sonnet-4-6",
+          "step": "classifier",
+          "raw": "{\n  \"is_defence_relevant\": true,\n  \"trailer_type\": \"High-capacity transport trailer\",\n  \"trailer_quantity\": 4\n}",
+          "parsed": {
+            "is_defence_relevant": true,
+            "trailer_type": "High-capacity transport trailer",
+            "trailer_quantity": 4
+          },
+          "error": null,
+          "latency_s": 1.63,
+          "input_tokens": 308,
+          "output_tokens": 40,
+          "cost_usd": 0.0015,
+          "sample_id": "C6",
+          "label": "PL-12WOG-HighCapTrailers",
+          "scores": {
+            "is_defence_relevant": 1.0,
+            "trailer_type": 1.0,
+            "trailer_quantity": 1.0
+          },
+          "avg_score": 1.0
+        },
+        {
+          "model_id": "anthropic/claude-sonnet-4-6",
+          "step": "classifier",
+          "raw": "{\n  \"is_defence_relevant\": true,\n  \"trailer_type\": \"Car trailer\",\n  \"trailer_quantity\": 16\n}",
+          "parsed": {
+            "is_defence_relevant": true,
+            "trailer_type": "Car trailer",
+            "trailer_quantity": 16
+          },
+          "error": null,
+          "latency_s": 1.71,
+          "input_tokens": 326,
+          "output_tokens": 37,
+          "cost_usd": 0.0015,
+          "sample_id": "C7",
+          "label": "UA-CarTrailers",
+          "scores": {
+            "is_defence_relevant": 1.0,
+            "trailer_type": 1.0,
+            "trailer_quantity": 1.0
+          },
+          "avg_score": 1.0
+        },
+        {
+          "model_id": "anthropic/claude-sonnet-4-6",
+          "step": "classifier",
+          "raw": "{\"is_defence_relevant\": false, \"trailer_type\": null, \"trailer_quantity\": null}",
+          "parsed": {
+            "is_defence_relevant": false,
+            "trailer_type": null,
+            "trailer_quantity": null
+          },
+          "error": null,
+          "latency_s": 1.75,
+          "input_tokens": 373,
+          "output_tokens": 26,
+          "cost_usd": 0.0015,
+          "sample_id": "C8",
+          "label": "UA-DumpTruck-NEGATIVE",
+          "scores": {
+            "is_defence_relevant": 1.0,
+            "trailer_type": 1.0,
+            "trailer_quantity": 1.0
+          },
+          "avg_score": 1.0
+        },
+        {
+          "model_id": "anthropic/claude-sonnet-4-6",
+          "step": "classifier",
+          "raw": "{\n  \"is_defence_relevant\": true,\n  \"trailer_type\": \"Light passenger vehicle trailer\",\n  \"trailer_quantity\": null\n}",
+          "parsed": {
+            "is_defence_relevant": true,
+            "trailer_type": "Light passenger vehicle trailer",
+            "trailer_quantity": null
+          },
+          "error": null,
+          "latency_s": 1.43,
+          "input_tokens": 338,
+          "output_tokens": 38,
+          "cost_usd": 0.0016,
+          "sample_id": "C9",
+          "label": "CZ-MOD-SmallScaleTrailers",
+          "scores": {
+            "is_defence_relevant": 1.0,
+            "trailer_type": 1.0,
+            "trailer_quantity": 1.0
+          },
+          "avg_score": 1.0
+        },
+        {
+          "model_id": "anthropic/claude-sonnet-4-6",
+          "step": "classifier",
+          "raw": "{\n  \"is_defence_relevant\": true,\n  \"trailer_type\": \"Low-bed semi-trailer\",\n  \"trailer_quantity\": null\n}",
+          "parsed": {
+            "is_defence_relevant": true,
+            "trailer_type": "Low-bed semi-trailer",
+            "trailer_quantity": null
+          },
+          "error": null,
+          "latency_s": 1.53,
+          "input_tokens": 365,
+          "output_tokens": 40,
+          "cost_usd": 0.0017,
+          "sample_id": "C10",
+          "label": "CZ-VOPCZ-LowBedSemi",
+          "scores": {
+            "is_defence_relevant": 1.0,
+            "trailer_type": 0.5,
+            "trailer_quantity": 1.0
+          },
+          "avg_score": 0.8333333333333334
+        }
+      ],
+      "anthropic/claude-opus-4-7": [
+        {
+          "model_id": "anthropic/claude-opus-4-7",
+          "step": "classifier",
+          "raw": "{\"is_defence_relevant\": true, \"trailer_type\": \"Military cargo trailer (3.5t 2-wheel and 12.5t 4-wheel)\", \"trailer_quantity\": 9700}",
+          "parsed": {
+            "is_defence_relevant": true,
+            "trailer_type": "Military cargo trailer (3.5t 2-wheel and 12.5t 4-wheel)",
+            "trailer_quantity": 9700
+          },
+          "error": null,
+          "latency_s": 2.86,
+          "input_tokens": 554,
+          "output_tokens": 71,
+          "cost_usd": 0.0136,
+          "sample_id": "C1",
+          "label": "DE-BAAINBw-CargoTrailers",
+          "scores": {
+            "is_defence_relevant": 1.0,
+            "trailer_type": 1.0,
+            "trailer_quantity": 0.0
+          },
+          "avg_score": 0.6666666666666666
+        },
+        {
+          "model_id": "anthropic/claude-opus-4-7",
+          "step": "classifier",
+          "raw": "{\"is_defence_relevant\": true, \"trailer_type\": \"2-wheel 1t general-purpose light military trailer\", \"trailer_quantity\": 480}",
+          "parsed": {
+            "is_defence_relevant": true,
+            "trailer_type": "2-wheel 1t general-purpose light military trailer",
+            "trailer_quantity": 480
+          },
+          "error": null,
+          "latency_s": 1.93,
+          "input_tokens": 628,
+          "output_tokens": 56,
+          "cost_usd": 0.0136,
+          "sample_id": "C2",
+          "label": "DE-BAAINBw-2WheelTrailers",
+          "scores": {
+            "is_defence_relevant": 1.0,
+            "trailer_type": 1.0,
+            "trailer_quantity": 1.0
+          },
+          "avg_score": 1.0
+        },
+        {
+          "model_id": "anthropic/claude-opus-4-7",
+          "step": "classifier",
+          "raw": "{\"is_defence_relevant\": true, \"trailer_type\": \"Commando Raiding Craft trailer\", \"trailer_quantity\": null}",
+          "parsed": {
+            "is_defence_relevant": true,
+            "trailer_type": "Commando Raiding Craft trailer",
+            "trailer_quantity": null
+          },
+          "error": null,
+          "latency_s": 2.0,
+          "input_tokens": 420,
+          "output_tokens": 50,
+          "cost_usd": 0.01,
+          "sample_id": "C3",
+          "label": "UK-CommandoCraftTrailers",
+          "scores": {
+            "is_defence_relevant": 1.0,
+            "trailer_type": 1.0,
+            "trailer_quantity": 1.0
+          },
+          "avg_score": 1.0
+        },
+        {
+          "model_id": "anthropic/claude-opus-4-7",
+          "step": "classifier",
+          "raw": "{\n  \"is_defence_relevant\": true,\n  \"trailer_type\": \"Heavy duty flat-bed trailer with integrated ISO container twist-lock\",\n  \"trailer_quantity\": 1\n}",
+          "parsed": {
+            "is_defence_relevant": true,
+            "trailer_type": "Heavy duty flat-bed trailer with integrated ISO container twist-lock",
+            "trailer_quantity": 1
+          },
+          "error": null,
+          "latency_s": 1.81,
+          "input_tokens": 619,
+          "output_tokens": 72,
+          "cost_usd": 0.0147,
+          "sample_id": "C4",
+          "label": "UK-RTO-TractorTrailer",
+          "scores": {
+            "is_defence_relevant": 1.0,
+            "trailer_type": 1.0,
+            "trailer_quantity": 1.0
+          },
+          "avg_score": 1.0
+        },
+        {
+          "model_id": "anthropic/claude-opus-4-7",
+          "step": "classifier",
+          "raw": "{\"is_defence_relevant\": true, \"trailer_type\": \"Transport trailers (high, medium, small capacity)\", \"trailer_quantity\": null}",
+          "parsed": {
+            "is_defence_relevant": true,
+            "trailer_type": "Transport trailers (high, medium, small capacity)",
+            "trailer_quantity": null
+          },
+          "error": null,
+          "latency_s": 1.89,
+          "input_tokens": 542,
+          "output_tokens": 54,
+          "cost_usd": 0.0122,
+          "sample_id": "C5",
+          "label": "PL-MOD-TransportTrailers",
+          "scores": {
+            "is_defence_relevant": 1.0,
+            "trailer_type": 0.5,
+            "trailer_quantity": 1.0
+          },
+          "avg_score": 0.8333333333333334
+        },
+        {
+          "model_id": "anthropic/claude-opus-4-7",
+          "step": "classifier",
+          "raw": "{\"is_defence_relevant\": false, \"trailer_type\": \"High-capacity transport trailer\", \"trailer_quantity\": 4}",
+          "parsed": {
+            "is_defence_relevant": false,
+            "trailer_type": "High-capacity transport trailer",
+            "trailer_quantity": 4
+          },
+          "error": null,
+          "latency_s": 1.73,
+          "input_tokens": 460,
+          "output_tokens": 48,
+          "cost_usd": 0.0105,
+          "sample_id": "C6",
+          "label": "PL-12WOG-HighCapTrailers",
+          "scores": {
+            "is_defence_relevant": 0.0,
+            "trailer_type": 1.0,
+            "trailer_quantity": 1.0
+          },
+          "avg_score": 0.6666666666666666
+        },
+        {
+          "model_id": "anthropic/claude-opus-4-7",
+          "step": "classifier",
+          "raw": "{\"is_defence_relevant\": false, \"trailer_type\": \"Car trailer\", \"trailer_quantity\": 16}",
+          "parsed": {
+            "is_defence_relevant": false,
+            "trailer_type": "Car trailer",
+            "trailer_quantity": 16
+          },
+          "error": null,
+          "latency_s": 1.87,
+          "input_tokens": 497,
+          "output_tokens": 43,
+          "cost_usd": 0.0107,
+          "sample_id": "C7",
+          "label": "UA-CarTrailers",
+          "scores": {
+            "is_defence_relevant": 0.0,
+            "trailer_type": 1.0,
+            "trailer_quantity": 1.0
+          },
+          "avg_score": 0.6666666666666666
+        },
+        {
+          "model_id": "anthropic/claude-opus-4-7",
+          "step": "classifier",
+          "raw": "{\"is_defence_relevant\": false, \"trailer_type\": null, \"trailer_quantity\": null}",
+          "parsed": {
+            "is_defence_relevant": false,
+            "trailer_type": null,
+            "trailer_quantity": null
+          },
+          "error": null,
+          "latency_s": 1.7,
+          "input_tokens": 579,
+          "output_tokens": 37,
+          "cost_usd": 0.0115,
+          "sample_id": "C8",
+          "label": "UA-DumpTruck-NEGATIVE",
+          "scores": {
+            "is_defence_relevant": 1.0,
+            "trailer_type": 1.0,
+            "trailer_quantity": 1.0
+          },
+          "avg_score": 1.0
+        },
+        {
+          "model_id": "anthropic/claude-opus-4-7",
+          "step": "classifier",
+          "raw": "{\"is_defence_relevant\": true, \"trailer_type\": \"Trailer for passenger vehicle\", \"trailer_quantity\": null}",
+          "parsed": {
+            "is_defence_relevant": true,
+            "trailer_type": "Trailer for passenger vehicle",
+            "trailer_quantity": null
+          },
+          "error": null,
+          "latency_s": 1.78,
+          "input_tokens": 508,
+          "output_tokens": 49,
+          "cost_usd": 0.0113,
+          "sample_id": "C9",
+          "label": "CZ-MOD-SmallScaleTrailers",
+          "scores": {
+            "is_defence_relevant": 1.0,
+            "trailer_type": 1.0,
+            "trailer_quantity": 1.0
+          },
+          "avg_score": 1.0
+        },
+        {
+          "model_id": "anthropic/claude-opus-4-7",
+          "step": "classifier",
+          "raw": "{\"is_defence_relevant\": true, \"trailer_type\": \"Low-bed semi-trailer\", \"trailer_quantity\": null}",
+          "parsed": {
+            "is_defence_relevant": true,
+            "trailer_type": "Low-bed semi-trailer",
+            "trailer_quantity": null
+          },
+          "error": null,
+          "latency_s": 2.41,
+          "input_tokens": 593,
+          "output_tokens": 48,
+          "cost_usd": 0.0125,
+          "sample_id": "C10",
+          "label": "CZ-VOPCZ-LowBedSemi",
+          "scores": {
+            "is_defence_relevant": 1.0,
+            "trailer_type": 0.5,
+            "trailer_quantity": 1.0
+          },
+          "avg_score": 0.8333333333333334
+        }
+      ],
+      "openrouter/openai/gpt-4o": [
+        {
+          "model_id": "openrouter/openai/gpt-4o",
+          "step": "classifier",
+          "raw": "{\n  \"is_defence_relevant\": true,\n  \"trailer_type\": \"Military cargo trailer\",\n  \"trailer_quantity\": 4600\n}",
+          "parsed": {
+            "is_defence_relevant": true,
+            "trailer_type": "Military cargo trailer",
+            "trailer_quantity": 4600
+          },
+          "error": null,
+          "latency_s": 0.86,
+          "input_tokens": 336,
+          "output_tokens": 33,
+          "cost_usd": 0.0012,
+          "sample_id": "C1",
+          "label": "DE-BAAINBw-CargoTrailers",
+          "scores": {
+            "is_defence_relevant": 1.0,
+            "trailer_type": 1.0,
+            "trailer_quantity": 1.0
+          },
+          "avg_score": 1.0
+        },
+        {
+          "model_id": "openrouter/openai/gpt-4o",
+          "step": "classifier",
+          "raw": "{\n  \"is_defence_relevant\": true,\n  \"trailer_type\": \"2-wheel 1t military trailer\",\n  \"trailer_quantity\": 480\n}",
+          "parsed": {
+            "is_defence_relevant": true,
+            "trailer_type": "2-wheel 1t military trailer",
+            "trailer_quantity": 480
+          },
+          "error": null,
+          "latency_s": 0.93,
+          "input_tokens": 373,
+          "output_tokens": 37,
+          "cost_usd": 0.0013,
+          "sample_id": "C2",
+          "label": "DE-BAAINBw-2WheelTrailers",
+          "scores": {
+            "is_defence_relevant": 1.0,
+            "trailer_type": 1.0,
+            "trailer_quantity": 1.0
+          },
+          "avg_score": 1.0
+        },
+        {
+          "model_id": "openrouter/openai/gpt-4o",
+          "step": "classifier",
+          "raw": "{\n  \"is_defence_relevant\": true,\n  \"trailer_type\": \"Commando Raiding Craft Trailer\",\n  \"trailer_quantity\": null\n}",
+          "parsed": {
+            "is_defence_relevant": true,
+            "trailer_type": "Commando Raiding Craft Trailer",
+            "trailer_quantity": null
+          },
+          "error": null,
+          "latency_s": 0.75,
+          "input_tokens": 248,
+          "output_tokens": 34,
+          "cost_usd": 0.001,
+          "sample_id": "C3",
+          "label": "UK-CommandoCraftTrailers",
+          "scores": {
+            "is_defence_relevant": 1.0,
+            "trailer_type": 1.0,
+            "trailer_quantity": 1.0
+          },
+          "avg_score": 1.0
+        },
+        {
+          "model_id": "openrouter/openai/gpt-4o",
+          "step": "classifier",
+          "raw": "{\n  \"is_defence_relevant\": true,\n  \"trailer_type\": \"Heavy duty flat-bed trailer\",\n  \"trailer_quantity\": null\n}",
+          "parsed": {
+            "is_defence_relevant": true,
+            "trailer_type": "Heavy duty flat-bed trailer",
+            "trailer_quantity": null
+          },
+          "error": null,
+          "latency_s": 1.02,
+          "input_tokens": 360,
+          "output_tokens": 34,
+          "cost_usd": 0.0012,
+          "sample_id": "C4",
+          "label": "UK-RTO-TractorTrailer",
+          "scores": {
+            "is_defence_relevant": 1.0,
+            "trailer_type": 0.5,
+            "trailer_quantity": 0.0
+          },
+          "avg_score": 0.5
+        },
+        {
+          "model_id": "openrouter/openai/gpt-4o",
+          "step": "classifier",
+          "raw": "{\n  \"is_defence_relevant\": true,\n  \"trailer_type\": \"Transport trailers\",\n  \"trailer_quantity\": null\n}",
+          "parsed": {
+            "is_defence_relevant": true,
+            "trailer_type": "Transport trailers",
+            "trailer_quantity": null
+          },
+          "error": null,
+          "latency_s": 1.06,
+          "input_tokens": 312,
+          "output_tokens": 31,
+          "cost_usd": 0.0011,
+          "sample_id": "C5",
+          "label": "PL-MOD-TransportTrailers",
+          "scores": {
+            "is_defence_relevant": 1.0,
+            "trailer_type": 0.5,
+            "trailer_quantity": 1.0
+          },
+          "avg_score": 0.8333333333333334
+        },
+        {
+          "model_id": "openrouter/openai/gpt-4o",
+          "step": "classifier",
+          "raw": "{\n  \"is_defence_relevant\": false,\n  \"trailer_type\": \"High-capacity transport trailers\",\n  \"trailer_quantity\": 4\n}",
+          "parsed": {
+            "is_defence_relevant": false,
+            "trailer_type": "High-capacity transport trailers",
+            "trailer_quantity": 4
+          },
+          "error": null,
+          "latency_s": 0.81,
+          "input_tokens": 279,
+          "output_tokens": 34,
+          "cost_usd": 0.001,
+          "sample_id": "C6",
+          "label": "PL-12WOG-HighCapTrailers",
+          "scores": {
+            "is_defence_relevant": 0.0,
+            "trailer_type": 1.0,
+            "trailer_quantity": 1.0
+          },
+          "avg_score": 0.6666666666666666
+        },
+        {
+          "model_id": "openrouter/openai/gpt-4o",
+          "step": "classifier",
+          "raw": "{\n  \"is_defence_relevant\": false,\n  \"trailer_type\": \"Car trailer\",\n  \"trailer_quantity\": 16\n}",
+          "parsed": {
+            "is_defence_relevant": false,
+            "trailer_type": "Car trailer",
+            "trailer_quantity": 16
+          },
+          "error": null,
+          "latency_s": 0.91,
+          "input_tokens": 290,
+          "output_tokens": 32,
+          "cost_usd": 0.001,
+          "sample_id": "C7",
+          "label": "UA-CarTrailers",
+          "scores": {
+            "is_defence_relevant": 0.0,
+            "trailer_type": 1.0,
+            "trailer_quantity": 1.0
+          },
+          "avg_score": 0.6666666666666666
+        },
+        {
+          "model_id": "openrouter/openai/gpt-4o",
+          "step": "classifier",
+          "raw": "{\n  \"is_defence_relevant\": false,\n  \"trailer_type\": null,\n  \"trailer_quantity\": null\n}",
+          "parsed": {
+            "is_defence_relevant": false,
+            "trailer_type": null,
+            "trailer_quantity": null
+          },
+          "error": null,
+          "latency_s": 0.72,
+          "input_tokens": 337,
+          "output_tokens": 29,
+          "cost_usd": 0.0011,
+          "sample_id": "C8",
+          "label": "UA-DumpTruck-NEGATIVE",
+          "scores": {
+            "is_defence_relevant": 1.0,
+            "trailer_type": 1.0,
+            "trailer_quantity": 1.0
+          },
+          "avg_score": 1.0
+        },
+        {
+          "model_id": "openrouter/openai/gpt-4o",
+          "step": "classifier",
+          "raw": "{\n  \"is_defence_relevant\": true,\n  \"trailer_type\": \"Trailers for Armed Forces\",\n  \"trailer_quantity\": null\n}",
+          "parsed": {
+            "is_defence_relevant": true,
+            "trailer_type": "Trailers for Armed Forces",
+            "trailer_quantity": null
+          },
+          "error": null,
+          "latency_s": 1.34,
+          "input_tokens": 304,
+          "output_tokens": 33,
+          "cost_usd": 0.0011,
+          "sample_id": "C9",
+          "label": "CZ-MOD-SmallScaleTrailers",
+          "scores": {
+            "is_defence_relevant": 1.0,
+            "trailer_type": 0.0,
+            "trailer_quantity": 1.0
+          },
+          "avg_score": 0.6666666666666666
+        },
+        {
+          "model_id": "openrouter/openai/gpt-4o",
+          "step": "classifier",
+          "raw": "{\n  \"is_defence_relevant\": true,\n  \"trailer_type\": \"Low-bed semi-trailer\",\n  \"trailer_quantity\": null\n}",
+          "parsed": {
+            "is_defence_relevant": true,
+            "trailer_type": "Low-bed semi-trailer",
+            "trailer_quantity": null
+          },
+          "error": null,
+          "latency_s": 1.5,
+          "input_tokens": 336,
+          "output_tokens": 34,
+          "cost_usd": 0.0012,
+          "sample_id": "C10",
+          "label": "CZ-VOPCZ-LowBedSemi",
+          "scores": {
+            "is_defence_relevant": 1.0,
+            "trailer_type": 0.5,
+            "trailer_quantity": 1.0
+          },
+          "avg_score": 0.8333333333333334
+        }
+      ],
+      "openrouter/google/gemini-2.5-pro": [
+        {
+          "model_id": "openrouter/google/gemini-2.5-pro",
+          "step": "classifier",
+          "raw": "```json\n{\n  \"is_defence_relevant\": true,\n  \"trailer_type\": \"Military cargo trailer\",\n  \"trailer_",
+          "parsed": null,
+          "error": "parse_failed",
+          "latency_s": 8.6,
+          "input_tokens": 353,
+          "output_tokens": 796,
+          "cost_usd": 0.0084,
+          "sample_id": "C1",
+          "label": "DE-BAAINBw-CargoTrailers",
+          "scores": {
+            "is_defence_relevant": 0.0,
+            "trailer_type": 0.0,
+            "trailer_quantity": 0.0
+          },
+          "avg_score": 0.0
+        },
+        {
+          "model_id": "openrouter/google/gemini-2.5-pro",
+          "step": "classifier",
+          "raw": "```json\n{\n  \"is_defence_relevant\": true,\n  \"trailer_type\": \"2-wheel 1t military trailer\",",
+          "parsed": null,
+          "error": "parse_failed",
+          "latency_s": 9.16,
+          "input_tokens": 385,
+          "output_tokens": 796,
+          "cost_usd": 0.0084,
+          "sample_id": "C2",
+          "label": "DE-BAAINBw-2WheelTrailers",
+          "scores": {
+            "is_defence_relevant": 0.0,
+            "trailer_type": 0.0,
+            "trailer_quantity": 0.0
+          },
+          "avg_score": 0.0
+        },
+        {
+          "model_id": "openrouter/google/gemini-2.5-pro",
+          "step": "classifier",
+          "raw": "```json\n{\n  \"is_defence_relevant\": true,\n  \"trailer_type\": \"Commando raiding craft trailer\",\n  \"",
+          "parsed": null,
+          "error": "parse_failed",
+          "latency_s": 8.67,
+          "input_tokens": 253,
+          "output_tokens": 796,
+          "cost_usd": 0.0083,
+          "sample_id": "C3",
+          "label": "UK-CommandoCraftTrailers",
+          "scores": {
+            "is_defence_relevant": 0.0,
+            "trailer_type": 0.0,
+            "trailer_quantity": 0.0
+          },
+          "avg_score": 0.0
+        },
+        {
+          "model_id": "openrouter/google/gemini-2.5-pro",
+          "step": "classifier",
+          "raw": "```json\n{\n  \"is_defence_relevant\": true,\n  \"trailer_type\": \"Heavy-duty flat-bed trailer",
+          "parsed": null,
+          "error": "parse_failed",
+          "latency_s": 9.07,
+          "input_tokens": 389,
+          "output_tokens": 796,
+          "cost_usd": 0.0084,
+          "sample_id": "C4",
+          "label": "UK-RTO-TractorTrailer",
+          "scores": {
+            "is_defence_relevant": 0.0,
+            "trailer_type": 0.0,
+            "trailer_quantity": 0.0
+          },
+          "avg_score": 0.0
+        },
+        {
+          "model_id": "openrouter/google/gemini-2.5-pro",
+          "step": "classifier",
+          "raw": "```json\n{\n  \"is_defence_relevant\": true,\n  \"trailer_type\": \"Transport trailers\",\n  \"trailer_",
+          "parsed": null,
+          "error": "parse_failed",
+          "latency_s": 7.88,
+          "input_tokens": 319,
+          "output_tokens": 796,
+          "cost_usd": 0.0084,
+          "sample_id": "C5",
+          "label": "PL-MOD-TransportTrailers",
+          "scores": {
+            "is_defence_relevant": 0.0,
+            "trailer_type": 0.0,
+            "trailer_quantity": 0.0
+          },
+          "avg_score": 0.0
+        },
+        {
+          "model_id": "openrouter/google/gemini-2.5-pro",
+          "step": "classifier",
+          "raw": "```json\n{\n  \"is_defence_relevant\": false,\n  \"trailer_type\": null,\n  \"trailer_quantity",
+          "parsed": null,
+          "error": "parse_failed",
+          "latency_s": 9.18,
+          "input_tokens": 288,
+          "output_tokens": 796,
+          "cost_usd": 0.0083,
+          "sample_id": "C6",
+          "label": "PL-12WOG-HighCapTrailers",
+          "scores": {
+            "is_defence_relevant": 0.0,
+            "trailer_type": 0.0,
+            "trailer_quantity": 0.0
+          },
+          "avg_score": 0.0
+        },
+        {
+          "model_id": "openrouter/google/gemini-2.5-pro",
+          "step": "classifier",
+          "raw": "```json\n{\n  \"is_defence_relevant\": true,\n  \"trailer_type\": \"Car trailer\",\n  \"trailer",
+          "parsed": null,
+          "error": "parse_failed",
+          "latency_s": 8.94,
+          "input_tokens": 299,
+          "output_tokens": 796,
+          "cost_usd": 0.0083,
+          "sample_id": "C7",
+          "label": "UA-CarTrailers",
+          "scores": {
+            "is_defence_relevant": 0.0,
+            "trailer_type": 0.0,
+            "trailer_quantity": 0.0
+          },
+          "avg_score": 0.0
+        },
+        {
+          "model_id": "openrouter/google/gemini-2.5-pro",
+          "step": "classifier",
+          "raw": "{\"is_defence_relevant\": false, \"trailer_type\": null, \"trailer_quantity\": null}",
+          "parsed": {
+            "is_defence_relevant": false,
+            "trailer_type": null,
+            "trailer_quantity": null
+          },
+          "error": null,
+          "latency_s": 8.87,
+          "input_tokens": 347,
+          "output_tokens": 789,
+          "cost_usd": 0.0083,
+          "sample_id": "C8",
+          "label": "UA-DumpTruck-NEGATIVE",
+          "scores": {
+            "is_defence_relevant": 1.0,
+            "trailer_type": 1.0,
+            "trailer_quantity": 1.0
+          },
+          "avg_score": 1.0
+        },
+        {
+          "model_id": "openrouter/google/gemini-2.5-pro",
+          "step": "classifier",
+          "raw": "```json\n{\n  \"is_defence_relevant\": true,\n  \"trailer_type\": \"Passenger car trailer\",\n  \"trailer_",
+          "parsed": null,
+          "error": "parse_failed",
+          "latency_s": 8.28,
+          "input_tokens": 322,
+          "output_tokens": 797,
+          "cost_usd": 0.0084,
+          "sample_id": "C9",
+          "label": "CZ-MOD-SmallScaleTrailers",
+          "scores": {
+            "is_defence_relevant": 0.0,
+            "trailer_type": 0.0,
+            "trailer_quantity": 0.0
+          },
+          "avg_score": 0.0
+        },
+        {
+          "model_id": "openrouter/google/gemini-2.5-pro",
+          "step": "classifier",
+          "raw": "{\n  \"is_defence_relevant\": true,\n  \"trailer_type\": \"Low-bed semi-trailer\",\n  \"trailer_",
+          "parsed": null,
+          "error": "parse_failed",
+          "latency_s": 8.41,
+          "input_tokens": 347,
+          "output_tokens": 796,
+          "cost_usd": 0.0084,
+          "sample_id": "C10",
+          "label": "CZ-VOPCZ-LowBedSemi",
+          "scores": {
+            "is_defence_relevant": 0.0,
+            "trailer_type": 0.0,
+            "trailer_quantity": 0.0
+          },
+          "avg_score": 0.0
+        }
+      ],
+      "openrouter/anthropic/claude-haiku-4-5": [
+        {
+          "model_id": "openrouter/anthropic/claude-haiku-4-5",
+          "step": "classifier",
+          "raw": "```json\n{\n  \"is_defence_relevant\": true,\n  \"trailer_type\": \"Military cargo trailer\",\n  \"trailer_quantity\": 9700\n}\n```",
+          "parsed": {
+            "is_defence_relevant": true,
+            "trailer_type": "Military cargo trailer",
+            "trailer_quantity": 9700
+          },
+          "error": null,
+          "latency_s": 1.09,
+          "input_tokens": 370,
+          "output_tokens": 44,
+          "cost_usd": 0.0027,
+          "sample_id": "C1",
+          "label": "DE-BAAINBw-CargoTrailers",
+          "scores": {
+            "is_defence_relevant": 1.0,
+            "trailer_type": 1.0,
+            "trailer_quantity": 0.0
+          },
+          "avg_score": 0.6666666666666666
+        },
+        {
+          "model_id": "openrouter/anthropic/claude-haiku-4-5",
+          "step": "classifier",
+          "raw": "```json\n{\n  \"is_defence_relevant\": true,\n  \"trailer_type\": \"2-wheel 1-tonne military trailer\",\n  \"trailer_quantity\": 480\n}\n```",
+          "parsed": {
+            "is_defence_relevant": true,
+            "trailer_type": "2-wheel 1-tonne military trailer",
+            "trailer_quantity": 480
+          },
+          "error": null,
+          "latency_s": 1.07,
+          "input_tokens": 407,
+          "output_tokens": 50,
+          "cost_usd": 0.003,
+          "sample_id": "C2",
+          "label": "DE-BAAINBw-2WheelTrailers",
+          "scores": {
+            "is_defence_relevant": 1.0,
+            "trailer_type": 1.0,
+            "trailer_quantity": 1.0
+          },
+          "avg_score": 1.0
+        },
+        {
+          "model_id": "openrouter/anthropic/claude-haiku-4-5",
+          "step": "classifier",
+          "raw": "```json\n{\n  \"is_defence_relevant\": true,\n  \"trailer_type\": \"Commando Raiding Craft Trailer\",\n  \"trailer_quantity\": null\n}\n```",
+          "parsed": {
+            "is_defence_relevant": true,
+            "trailer_type": "Commando Raiding Craft Trailer",
+            "trailer_quantity": null
+          },
+          "error": null,
+          "latency_s": 1.08,
+          "input_tokens": 277,
+          "output_tokens": 49,
+          "cost_usd": 0.0024,
+          "sample_id": "C3",
+          "label": "UK-CommandoCraftTrailers",
+          "scores": {
+            "is_defence_relevant": 1.0,
+            "trailer_type": 1.0,
+            "trailer_quantity": 1.0
+          },
+          "avg_score": 1.0
+        },
+        {
+          "model_id": "openrouter/anthropic/claude-haiku-4-5",
+          "step": "classifier",
+          "raw": "```json\n{\n  \"is_defence_relevant\": true,\n  \"trailer_type\": \"Heavy duty flat-bed trailer with ISO container twist-lock\",\n  \"trailer_quantity\": 1\n}\n```",
+          "parsed": {
+            "is_defence_relevant": true,
+            "trailer_type": "Heavy duty flat-bed trailer with ISO container twist-lock",
+            "trailer_quantity": 1
+          },
+          "error": null,
+          "latency_s": 0.96,
+          "input_tokens": 406,
+          "output_tokens": 52,
+          "cost_usd": 0.0031,
+          "sample_id": "C4",
+          "label": "UK-RTO-TractorTrailer",
+          "scores": {
+            "is_defence_relevant": 1.0,
+            "trailer_type": 1.0,
+            "trailer_quantity": 1.0
+          },
+          "avg_score": 1.0
+        },
+        {
+          "model_id": "openrouter/anthropic/claude-haiku-4-5",
+          "step": "classifier",
+          "raw": "```json\n{\n  \"is_defence_relevant\": true,\n  \"trailer_type\": \"Transport trailers (high, medium, small capacity)\",\n  \"trailer_quantity\": null\n}\n```",
+          "parsed": {
+            "is_defence_relevant": true,
+            "trailer_type": "Transport trailers (high, medium, small capacity)",
+            "trailer_quantity": null
+          },
+          "error": null,
+          "latency_s": 1.25,
+          "input_tokens": 341,
+          "output_tokens": 49,
+          "cost_usd": 0.0027,
+          "sample_id": "C5",
+          "label": "PL-MOD-TransportTrailers",
+          "scores": {
+            "is_defence_relevant": 1.0,
+            "trailer_type": 0.5,
+            "trailer_quantity": 1.0
+          },
+          "avg_score": 0.8333333333333334
+        },
+        {
+          "model_id": "openrouter/anthropic/claude-haiku-4-5",
+          "step": "classifier",
+          "raw": "```json\n{\n  \"is_defence_relevant\": true,\n  \"trailer_type\": \"High-capacity transport trailer\",\n  \"trailer_quantity\": 4\n}\n```",
+          "parsed": {
+            "is_defence_relevant": true,
+            "trailer_type": "High-capacity transport trailer",
+            "trailer_quantity": 4
+          },
+          "error": null,
+          "latency_s": 1.07,
+          "input_tokens": 307,
+          "output_tokens": 45,
+          "cost_usd": 0.0024,
+          "sample_id": "C6",
+          "label": "PL-12WOG-HighCapTrailers",
+          "scores": {
+            "is_defence_relevant": 1.0,
+            "trailer_type": 1.0,
+            "trailer_quantity": 1.0
+          },
+          "avg_score": 1.0
+        },
+        {
+          "model_id": "openrouter/anthropic/claude-haiku-4-5",
+          "step": "classifier",
+          "raw": "```json\n{\n  \"is_defence_relevant\": true,\n  \"trailer_type\": \"Car trailer\",\n  \"trailer_quantity\": 16\n}\n```",
+          "parsed": {
+            "is_defence_relevant": true,
+            "trailer_type": "Car trailer",
+            "trailer_quantity": 16
+          },
+          "error": null,
+          "latency_s": 0.94,
+          "input_tokens": 325,
+          "output_tokens": 42,
+          "cost_usd": 0.0025,
+          "sample_id": "C7",
+          "label": "UA-CarTrailers",
+          "scores": {
+            "is_defence_relevant": 1.0,
+            "trailer_type": 1.0,
+            "trailer_quantity": 1.0
+          },
+          "avg_score": 1.0
+        },
+        {
+          "model_id": "openrouter/anthropic/claude-haiku-4-5",
+          "step": "classifier",
+          "raw": "```json\n{\n  \"is_defence_relevant\": false,\n  \"trailer_type\": null,\n  \"trailer_quantity\": null\n}\n```",
+          "parsed": {
+            "is_defence_relevant": false,
+            "trailer_type": null,
+            "trailer_quantity": null
+          },
+          "error": null,
+          "latency_s": 1.18,
+          "input_tokens": 372,
+          "output_tokens": 39,
+          "cost_usd": 0.0026,
+          "sample_id": "C8",
+          "label": "UA-DumpTruck-NEGATIVE",
+          "scores": {
+            "is_defence_relevant": 1.0,
+            "trailer_type": 1.0,
+            "trailer_quantity": 1.0
+          },
+          "avg_score": 1.0
+        },
+        {
+          "model_id": "openrouter/anthropic/claude-haiku-4-5",
+          "step": "classifier",
+          "raw": "```json\n{\n  \"is_defence_relevant\": true,\n  \"trailer_type\": \"General-purpose trailers\",\n  \"trailer_quantity\": 3\n}\n```",
+          "parsed": {
+            "is_defence_relevant": true,
+            "trailer_type": "General-purpose trailers",
+            "trailer_quantity": 3
+          },
+          "error": null,
+          "latency_s": 1.15,
+          "input_tokens": 337,
+          "output_tokens": 45,
+          "cost_usd": 0.0026,
+          "sample_id": "C9",
+          "label": "CZ-MOD-SmallScaleTrailers",
+          "scores": {
+            "is_defence_relevant": 1.0,
+            "trailer_type": 0.0,
+            "trailer_quantity": 0.5
+          },
+          "avg_score": 0.5
+        },
+        {
+          "model_id": "openrouter/anthropic/claude-haiku-4-5",
+          "step": "classifier",
+          "raw": "```json\n{\n  \"is_defence_relevant\": true,\n  \"trailer_type\": \"Low-bed semi-trailer\",\n  \"trailer_quantity\": null\n}\n```",
+          "parsed": {
+            "is_defence_relevant": true,
+            "trailer_type": "Low-bed semi-trailer",
+            "trailer_quantity": null
+          },
+          "error": null,
+          "latency_s": 1.09,
+          "input_tokens": 364,
+          "output_tokens": 45,
+          "cost_usd": 0.0027,
+          "sample_id": "C10",
+          "label": "CZ-VOPCZ-LowBedSemi",
+          "scores": {
+            "is_defence_relevant": 1.0,
+            "trailer_type": 0.5,
+            "trailer_quantity": 1.0
+          },
+          "avg_score": 0.8333333333333334
+        }
+      ],
+      "openrouter/mistralai/mistral-large": [
+        {
+          "model_id": "openrouter/mistralai/mistral-large",
+          "step": "classifier",
+          "raw": "```json\n{\n  \"is_defence_relevant\": true,\n  \"trailer_type\": \"Military cargo trailer (2-wheel, 3.5t capacity); Military cargo trailer (4-wheel, 12.5t capacity)\",\n  \"trailer_quantity\": 9700\n}\n```",
+          "parsed": {
+            "is_defence_relevant": true,
+            "trailer_type": "Military cargo trailer (2-wheel, 3.5t capacity); Military cargo trailer (4-wheel, 12.5t capacity)",
+            "trailer_quantity": 9700
+          },
+          "error": null,
+          "latency_s": 1.32,
+          "input_tokens": 345,
+          "output_tokens": 66,
+          "cost_usd": 0.0011,
+          "sample_id": "C1",
+          "label": "DE-BAAINBw-CargoTrailers",
+          "scores": {
+            "is_defence_relevant": 1.0,
+            "trailer_type": 1.0,
+            "trailer_quantity": 0.0
+          },
+          "avg_score": 0.6666666666666666
+        },
+        {
+          "model_id": "openrouter/mistralai/mistral-large",
+          "step": "classifier",
+          "raw": "```json\n{\n  \"is_defence_relevant\": true,\n  \"trailer_type\": \"2-wheel 1t general-purpose light military trailer\",\n  \"trailer_quantity\": 480\n}\n```",
+          "parsed": {
+            "is_defence_relevant": true,
+            "trailer_type": "2-wheel 1t general-purpose light military trailer",
+            "trailer_quantity": 480
+          },
+          "error": null,
+          "latency_s": 1.29,
+          "input_tokens": 376,
+          "output_tokens": 46,
+          "cost_usd": 0.001,
+          "sample_id": "C2",
+          "label": "DE-BAAINBw-2WheelTrailers",
+          "scores": {
+            "is_defence_relevant": 1.0,
+            "trailer_type": 1.0,
+            "trailer_quantity": 1.0
+          },
+          "avg_score": 1.0
+        },
+        {
+          "model_id": "openrouter/mistralai/mistral-large",
+          "step": "classifier",
+          "raw": "```json\n{\n  \"is_defence_relevant\": true,\n  \"trailer_type\": \"Commando Raiding Craft Trailer\",\n  \"trailer_quantity\": null\n}\n```",
+          "parsed": {
+            "is_defence_relevant": true,
+            "trailer_type": "Commando Raiding Craft Trailer",
+            "trailer_quantity": null
+          },
+          "error": null,
+          "latency_s": 0.88,
+          "input_tokens": 246,
+          "output_tokens": 40,
+          "cost_usd": 0.0007,
+          "sample_id": "C3",
+          "label": "UK-CommandoCraftTrailers",
+          "scores": {
+            "is_defence_relevant": 1.0,
+            "trailer_type": 1.0,
+            "trailer_quantity": 1.0
+          },
+          "avg_score": 1.0
+        },
+        {
+          "model_id": "openrouter/mistralai/mistral-large",
+          "step": "classifier",
+          "raw": "```json\n{\n  \"is_defence_relevant\": true,\n  \"trailer_type\": \"Heavy duty flat-bed trailer with integrated ISO container twist-lock\",\n  \"trailer_quantity\": 1\n}\n```",
+          "parsed": {
+            "is_defence_relevant": true,
+            "trailer_type": "Heavy duty flat-bed trailer with integrated ISO container twist-lock",
+            "trailer_quantity": 1
+          },
+          "error": null,
+          "latency_s": 1.06,
+          "input_tokens": 377,
+          "output_tokens": 45,
+          "cost_usd": 0.001,
+          "sample_id": "C4",
+          "label": "UK-RTO-TractorTrailer",
+          "scores": {
+            "is_defence_relevant": 1.0,
+            "trailer_type": 1.0,
+            "trailer_quantity": 1.0
+          },
+          "avg_score": 1.0
+        },
+        {
+          "model_id": "openrouter/mistralai/mistral-large",
+          "step": "classifier",
+          "raw": "```json\n{\n  \"is_defence_relevant\": true,\n  \"trailer_type\": \"High/medium/small-capacity transport trailers\",\n  \"trailer_quantity\": null\n}\n```",
+          "parsed": {
+            "is_defence_relevant": true,
+            "trailer_type": "High/medium/small-capacity transport trailers",
+            "trailer_quantity": null
+          },
+          "error": null,
+          "latency_s": 1.54,
+          "input_tokens": 314,
+          "output_tokens": 43,
+          "cost_usd": 0.0009,
+          "sample_id": "C5",
+          "label": "PL-MOD-TransportTrailers",
+          "scores": {
+            "is_defence_relevant": 1.0,
+            "trailer_type": 0.5,
+            "trailer_quantity": 1.0
+          },
+          "avg_score": 0.8333333333333334
+        },
+        {
+          "model_id": "openrouter/mistralai/mistral-large",
+          "step": "classifier",
+          "raw": "```json\n{\n  \"is_defence_relevant\": true,\n  \"trailer_type\": \"High-capacity transport trailer\",\n  \"trailer_quantity\": 4\n}\n```",
+          "parsed": {
+            "is_defence_relevant": true,
+            "trailer_type": "High-capacity transport trailer",
+            "trailer_quantity": 4
+          },
+          "error": null,
+          "latency_s": 0.88,
+          "input_tokens": 280,
+          "output_tokens": 39,
+          "cost_usd": 0.0008,
+          "sample_id": "C6",
+          "label": "PL-12WOG-HighCapTrailers",
+          "scores": {
+            "is_defence_relevant": 1.0,
+            "trailer_type": 1.0,
+            "trailer_quantity": 1.0
+          },
+          "avg_score": 1.0
+        },
+        {
+          "model_id": "openrouter/mistralai/mistral-large",
+          "step": "classifier",
+          "raw": "{\n  \"is_defence_relevant\": true,\n  \"trailer_type\": \"Car trailer\",\n  \"trailer_quantity\": 16\n}",
+          "parsed": {
+            "is_defence_relevant": true,
+            "trailer_type": "Car trailer",
+            "trailer_quantity": 16
+          },
+          "error": null,
+          "latency_s": 1.03,
+          "input_tokens": 292,
+          "output_tokens": 33,
+          "cost_usd": 0.0008,
+          "sample_id": "C7",
+          "label": "UA-CarTrailers",
+          "scores": {
+            "is_defence_relevant": 1.0,
+            "trailer_type": 1.0,
+            "trailer_quantity": 1.0
+          },
+          "avg_score": 1.0
+        },
+        {
+          "model_id": "openrouter/mistralai/mistral-large",
+          "step": "classifier",
+          "raw": "```json\n{\n  \"is_defence_relevant\": false,\n  \"trailer_type\": null,\n  \"trailer_quantity\": null\n}\n```",
+          "parsed": {
+            "is_defence_relevant": false,
+            "trailer_type": null,
+            "trailer_quantity": null
+          },
+          "error": null,
+          "latency_s": 0.85,
+          "input_tokens": 343,
+          "output_tokens": 33,
+          "cost_usd": 0.0009,
+          "sample_id": "C8",
+          "label": "UA-DumpTruck-NEGATIVE",
+          "scores": {
+            "is_defence_relevant": 1.0,
+            "trailer_type": 1.0,
+            "trailer_quantity": 1.0
+          },
+          "avg_score": 1.0
+        },
+        {
+          "model_id": "openrouter/mistralai/mistral-large",
+          "step": "classifier",
+          "raw": "```json\n{\n  \"is_defence_relevant\": true,\n  \"trailer_type\": \"Trailer for Armed Forces\",\n  \"trailer_quantity\": null\n}\n```",
+          "parsed": {
+            "is_defence_relevant": true,
+            "trailer_type": "Trailer for Armed Forces",
+            "trailer_quantity": null
+          },
+          "error": null,
+          "latency_s": 1.04,
+          "input_tokens": 316,
+          "output_tokens": 38,
+          "cost_usd": 0.0009,
+          "sample_id": "C9",
+          "label": "CZ-MOD-SmallScaleTrailers",
+          "scores": {
+            "is_defence_relevant": 1.0,
+            "trailer_type": 1.0,
+            "trailer_quantity": 1.0
+          },
+          "avg_score": 1.0
+        },
+        {
+          "model_id": "openrouter/mistralai/mistral-large",
+          "step": "classifier",
+          "raw": "```json\n{\n  \"is_defence_relevant\": true,\n  \"trailer_type\": \"Low-bed semi-trailer for heavy military equipment\",\n  \"trailer_quantity\": null\n}\n```",
+          "parsed": {
+            "is_defence_relevant": true,
+            "trailer_type": "Low-bed semi-trailer for heavy military equipment",
+            "trailer_quantity": null
+          },
+          "error": null,
+          "latency_s": 1.4,
+          "input_tokens": 336,
+          "output_tokens": 43,
+          "cost_usd": 0.0009,
+          "sample_id": "C10",
+          "label": "CZ-VOPCZ-LowBedSemi",
+          "scores": {
+            "is_defence_relevant": 1.0,
+            "trailer_type": 1.0,
+            "trailer_quantity": 1.0
+          },
+          "avg_score": 1.0
+        }
+      ]
+    },
+    "translator": {
+      "anthropic/claude-sonnet-4-6": [
+        {
+          "model_id": "anthropic/claude-sonnet-4-6",
+          "step": "translator",
+          "raw": "Supply of High-Capacity, Medium-Capacity and Small-Capacity Transport Trailers",
+          "parsed": null,
+          "error": null,
+          "latency_s": 2.09,
+          "input_tokens": 148,
+          "output_tokens": 23,
+          "cost_usd": 0.0008,
+          "sample_id": "T1",
+          "label": "PL-MOD-TransportTrailers",
+          "translated": "Supply of High-Capacity, Medium-Capacity and Small-Capacity Transport Trailers",
+          "scores": {
+            "contains_forbidden": 1.0,
+            "contains_required": 1.0,
+            "token_overlap": 1.0
+          },
+          "avg_score": 1.0
+        },
+        {
+          "model_id": "anthropic/claude-sonnet-4-6",
+          "step": "translator",
+          "raw": "Supply of High-Capacity Transport Trailers",
+          "parsed": null,
+          "error": null,
+          "latency_s": 1.29,
+          "input_tokens": 157,
+          "output_tokens": 13,
+          "cost_usd": 0.0007,
+          "sample_id": "T2",
+          "label": "PL-12WOG-HighCapTrailers",
+          "translated": "Supply of High-Capacity Transport Trailers",
+          "scores": {
+            "contains_forbidden": 1.0,
+            "contains_required": 1.0,
+            "token_overlap": 1.0
+          },
+          "avg_score": 1.0
+        },
+        {
+          "model_id": "anthropic/claude-sonnet-4-6",
+          "step": "translator",
+          "raw": "Acquisition of a Low-Bed Semi-Trailer for Heavy Military Equipment Transport",
+          "parsed": null,
+          "error": null,
+          "latency_s": 2.15,
+          "input_tokens": 146,
+          "output_tokens": 20,
+          "cost_usd": 0.0007,
+          "sample_id": "T3",
+          "label": "CZ-VOPCZ-LowBedSemi",
+          "translated": "Acquisition of a Low-Bed Semi-Trailer for Heavy Military Equipment Transport",
+          "scores": {
+            "contains_forbidden": 1.0,
+            "contains_required": 1.0,
+            "token_overlap": 1.0
+          },
+          "avg_score": 1.0
+        },
+        {
+          "model_id": "anthropic/claude-sonnet-4-6",
+          "step": "translator",
+          "raw": "Field Kitchen - Trailer - Purchase",
+          "parsed": null,
+          "error": null,
+          "latency_s": 1.64,
+          "input_tokens": 126,
+          "output_tokens": 10,
+          "cost_usd": 0.0005,
+          "sample_id": "T4",
+          "label": "CZ-FieldKitchen",
+          "translated": "Field Kitchen - Trailer - Purchase",
+          "scores": {
+            "contains_forbidden": 1.0,
+            "contains_required": 1.0,
+            "token_overlap": 0.75
+          },
+          "avg_score": 0.9166666666666666
+        },
+        {
+          "model_id": "anthropic/claude-sonnet-4-6",
+          "step": "translator",
+          "raw": "Car trailer",
+          "parsed": null,
+          "error": null,
+          "latency_s": 1.02,
+          "input_tokens": 112,
+          "output_tokens": 5,
+          "cost_usd": 0.0004,
+          "sample_id": "T5",
+          "label": "UA-CarTrailer",
+          "translated": "Car trailer",
+          "scores": {
+            "contains_forbidden": 1.0,
+            "contains_required": 1.0,
+            "token_overlap": 1.0
+          },
+          "avg_score": 1.0
+        },
+        {
+          "model_id": "anthropic/claude-sonnet-4-6",
+          "step": "translator",
+          "raw": "Trailer platform for transportation of automobiles",
+          "parsed": null,
+          "error": null,
+          "latency_s": 1.86,
+          "input_tokens": 119,
+          "output_tokens": 11,
+          "cost_usd": 0.0005,
+          "sample_id": "T6",
+          "label": "UA-VehiclePlatform",
+          "translated": "Trailer platform for transportation of automobiles",
+          "scores": {
+            "contains_forbidden": 1.0,
+            "contains_required": 1.0,
+            "token_overlap": 0.75
+          },
+          "avg_score": 0.9166666666666666
+        },
+        {
+          "model_id": "anthropic/claude-sonnet-4-6",
+          "step": "translator",
+          "raw": "Romania – Trailers – Framework Agreement for the Supply of Refrigerated Trailers",
+          "parsed": null,
+          "error": null,
+          "latency_s": 1.41,
+          "input_tokens": 123,
+          "output_tokens": 21,
+          "cost_usd": 0.0007,
+          "sample_id": "T7",
+          "label": "RO-RefrigeratedTrailers",
+          "translated": "Romania – Trailers – Framework Agreement for the Supply of Refrigerated Trailers",
+          "scores": {
+            "contains_forbidden": 1.0,
+            "contains_required": 1.0,
+            "token_overlap": 1.0
+          },
+          "avg_score": 1.0
+        },
+        {
+          "model_id": "anthropic/claude-sonnet-4-6",
+          "step": "translator",
+          "raw": "Romania – Field kitchens – Acquisition of kitchen assembly (containers and tent)",
+          "parsed": null,
+          "error": null,
+          "latency_s": 1.21,
+          "input_tokens": 113,
+          "output_tokens": 20,
+          "cost_usd": 0.0006,
+          "sample_id": "T8",
+          "label": "RO-FieldKitchen",
+          "translated": "Romania – Field kitchens – Acquisition of kitchen assembly (containers and tent)",
+          "scores": {
+            "contains_forbidden": 1.0,
+            "contains_required": 1.0,
+            "token_overlap": 0.8
+          },
+          "avg_score": 0.9333333333333332
+        },
+        {
+          "model_id": "anthropic/claude-sonnet-4-6",
+          "step": "translator",
+          "raw": "Italy – Mobile units on trailers – Supply of Multifunctional Engineer Equipment and Twin-Axle Trailer-Mounted Lighting Towers",
+          "parsed": null,
+          "error": null,
+          "latency_s": 2.7,
+          "input_tokens": 144,
+          "output_tokens": 35,
+          "cost_usd": 0.001,
+          "sample_id": "T9",
+          "label": "IT-MultifunctionalEquipment",
+          "translated": "Italy – Mobile units on trailers – Supply of Multifunctional Engineer Equipment and Twin-Axle Trailer-Mounted Lighting Towers",
+          "scores": {
+            "contains_forbidden": 1.0,
+            "contains_required": 1.0,
+            "token_overlap": 0.88
+          },
+          "avg_score": 0.96
+        },
+        {
+          "model_id": "anthropic/claude-sonnet-4-6",
+          "step": "translator",
+          "raw": "Acquisition of militarised all-terrain motorcycles and trailers",
+          "parsed": null,
+          "error": null,
+          "latency_s": 5.79,
+          "input_tokens": 132,
+          "output_tokens": 17,
+          "cost_usd": 0.0007,
+          "sample_id": "T10",
+          "label": "FR-MotorcyclesTrailers",
+          "translated": "Acquisition of militarised all-terrain motorcycles and trailers",
+          "scores": {
+            "contains_forbidden": 1.0,
+            "contains_required": 0.0,
+            "token_overlap": 0.8
+          },
+          "avg_score": 0.6
+        }
+      ],
+      "anthropic/claude-opus-4-7": [
+        {
+          "model_id": "anthropic/claude-opus-4-7",
+          "step": "translator",
+          "raw": "Poland – Trailers and semi-trailers – Supply of high-, medium- and small-capacity transport trailers",
+          "parsed": null,
+          "error": null,
+          "latency_s": 2.76,
+          "input_tokens": 260,
+          "output_tokens": 41,
+          "cost_usd": 0.007,
+          "sample_id": "T1",
+          "label": "PL-MOD-TransportTrailers",
+          "translated": "Poland – Trailers and semi-trailers – Supply of high-, medium- and small-capacity transport trailers",
+          "scores": {
+            "contains_forbidden": 1.0,
+            "contains_required": 1.0,
+            "token_overlap": 1.0
+          },
+          "avg_score": 1.0
+        },
+        {
+          "model_id": "anthropic/claude-opus-4-7",
+          "step": "translator",
+          "raw": "Poland – General-purpose trailers – Supply of High-Capacity Transport Trailers",
+          "parsed": null,
+          "error": null,
+          "latency_s": 1.59,
+          "input_tokens": 270,
+          "output_tokens": 34,
+          "cost_usd": 0.0066,
+          "sample_id": "T2",
+          "label": "PL-12WOG-HighCapTrailers",
+          "translated": "Poland – General-purpose trailers – Supply of High-Capacity Transport Trailers",
+          "scores": {
+            "contains_forbidden": 1.0,
+            "contains_required": 1.0,
+            "token_overlap": 1.0
+          },
+          "avg_score": 1.0
+        },
+        {
+          "model_id": "anthropic/claude-opus-4-7",
+          "step": "translator",
+          "raw": "Czechia – Semi-trailers – Acquisition of a Low-bed Semi-trailer for Heavy Military Equipment Transport",
+          "parsed": null,
+          "error": null,
+          "latency_s": 1.79,
+          "input_tokens": 224,
+          "output_tokens": 50,
+          "cost_usd": 0.0071,
+          "sample_id": "T3",
+          "label": "CZ-VOPCZ-LowBedSemi",
+          "translated": "Czechia – Semi-trailers – Acquisition of a Low-bed Semi-trailer for Heavy Military Equipment Transport",
+          "scores": {
+            "contains_forbidden": 1.0,
+            "contains_required": 1.0,
+            "token_overlap": 1.0
+          },
+          "avg_score": 1.0
+        },
+        {
+          "model_id": "anthropic/claude-opus-4-7",
+          "step": "translator",
+          "raw": "Czechia – Trailers – Field Kitchen – Trailer Cart – Purchase",
+          "parsed": null,
+          "error": null,
+          "latency_s": 2.1,
+          "input_tokens": 188,
+          "output_tokens": 34,
+          "cost_usd": 0.0054,
+          "sample_id": "T4",
+          "label": "CZ-FieldKitchen",
+          "translated": "Czechia – Trailers – Field Kitchen – Trailer Cart – Purchase",
+          "scores": {
+            "contains_forbidden": 1.0,
+            "contains_required": 1.0,
+            "token_overlap": 0.75
+          },
+          "avg_score": 0.9166666666666666
+        },
+        {
+          "model_id": "anthropic/claude-opus-4-7",
+          "step": "translator",
+          "raw": "Car trailer",
+          "parsed": null,
+          "error": null,
+          "latency_s": 1.54,
+          "input_tokens": 176,
+          "output_tokens": 9,
+          "cost_usd": 0.0033,
+          "sample_id": "T5",
+          "label": "UA-CarTrailer",
+          "translated": "Car trailer",
+          "scores": {
+            "contains_forbidden": 1.0,
+            "contains_required": 1.0,
+            "token_overlap": 1.0
+          },
+          "avg_score": 1.0
+        },
+        {
+          "model_id": "anthropic/claude-opus-4-7",
+          "step": "translator",
+          "raw": "Trailer platform for vehicle transportation",
+          "parsed": null,
+          "error": null,
+          "latency_s": 1.87,
+          "input_tokens": 188,
+          "output_tokens": 18,
+          "cost_usd": 0.0042,
+          "sample_id": "T6",
+          "label": "UA-VehiclePlatform",
+          "translated": "Trailer platform for vehicle transportation",
+          "scores": {
+            "contains_forbidden": 1.0,
+            "contains_required": 0.0,
+            "token_overlap": 0.5
+          },
+          "avg_score": 0.5
+        },
+        {
+          "model_id": "anthropic/claude-opus-4-7",
+          "step": "translator",
+          "raw": "Romania – Trailers – Framework Agreement for the Supply of Refrigerated Trailers",
+          "parsed": null,
+          "error": null,
+          "latency_s": 1.62,
+          "input_tokens": 190,
+          "output_tokens": 36,
+          "cost_usd": 0.0056,
+          "sample_id": "T7",
+          "label": "RO-RefrigeratedTrailers",
+          "translated": "Romania – Trailers – Framework Agreement for the Supply of Refrigerated Trailers",
+          "scores": {
+            "contains_forbidden": 1.0,
+            "contains_required": 1.0,
+            "token_overlap": 1.0
+          },
+          "avg_score": 1.0
+        },
+        {
+          "model_id": "anthropic/claude-opus-4-7",
+          "step": "translator",
+          "raw": "Romania – Field kitchens – Procurement of kitchen assembly (containers and tent)",
+          "parsed": null,
+          "error": null,
+          "latency_s": 1.64,
+          "input_tokens": 184,
+          "output_tokens": 34,
+          "cost_usd": 0.0053,
+          "sample_id": "T8",
+          "label": "RO-FieldKitchen",
+          "translated": "Romania – Field kitchens – Procurement of kitchen assembly (containers and tent)",
+          "scores": {
+            "contains_forbidden": 1.0,
+            "contains_required": 1.0,
+            "token_overlap": 1.0
+          },
+          "avg_score": 1.0
+        },
+        {
+          "model_id": "anthropic/claude-opus-4-7",
+          "step": "translator",
+          "raw": "Italy – Mobile units on trailers – Supply of multifunctional engineer equipment and two-axle trailer-mounted lighting towers",
+          "parsed": null,
+          "error": null,
+          "latency_s": 2.97,
+          "input_tokens": 228,
+          "output_tokens": 50,
+          "cost_usd": 0.0072,
+          "sample_id": "T9",
+          "label": "IT-MultifunctionalEquipment",
+          "translated": "Italy – Mobile units on trailers – Supply of multifunctional engineer equipment and two-axle trailer-mounted lighting towers",
+          "scores": {
+            "contains_forbidden": 1.0,
+            "contains_required": 1.0,
+            "token_overlap": 0.88
+          },
+          "avg_score": 0.96
+        },
+        {
+          "model_id": "anthropic/claude-opus-4-7",
+          "step": "translator",
+          "raw": "France – Motorcycles – Acquisition of militarised off-road motorcycles and trailers",
+          "parsed": null,
+          "error": null,
+          "latency_s": 1.58,
+          "input_tokens": 198,
+          "output_tokens": 34,
+          "cost_usd": 0.0055,
+          "sample_id": "T10",
+          "label": "FR-MotorcyclesTrailers",
+          "translated": "France – Motorcycles – Acquisition of militarised off-road motorcycles and trailers",
+          "scores": {
+            "contains_forbidden": 1.0,
+            "contains_required": 1.0,
+            "token_overlap": 1.0
+          },
+          "avg_score": 1.0
+        }
+      ],
+      "openrouter/openai/gpt-4o": [
+        {
+          "model_id": "openrouter/openai/gpt-4o",
+          "step": "translator",
+          "raw": "Poland - Trailers and Semi-trailers - SUPPLY OF HIGH, MEDIUM, AND SMALL CAPACITY TRANSPORT TRAILERS",
+          "parsed": null,
+          "error": null,
+          "latency_s": 1.18,
+          "input_tokens": 150,
+          "output_tokens": 29,
+          "cost_usd": 0.0007,
+          "sample_id": "T1",
+          "label": "PL-MOD-TransportTrailers",
+          "translated": "Poland - Trailers and Semi-trailers - SUPPLY OF HIGH, MEDIUM, AND SMALL CAPACITY TRANSPORT TRAILERS",
+          "scores": {
+            "contains_forbidden": 1.0,
+            "contains_required": 1.0,
+            "token_overlap": 1.0
+          },
+          "avg_score": 1.0
+        },
+        {
+          "model_id": "openrouter/openai/gpt-4o",
+          "step": "translator",
+          "raw": "Supply of High-Capacity Transport Trailers",
+          "parsed": null,
+          "error": null,
+          "latency_s": 1.23,
+          "input_tokens": 157,
+          "output_tokens": 10,
+          "cost_usd": 0.0005,
+          "sample_id": "T2",
+          "label": "PL-12WOG-HighCapTrailers",
+          "translated": "Supply of High-Capacity Transport Trailers",
+          "scores": {
+            "contains_forbidden": 1.0,
+            "contains_required": 1.0,
+            "token_overlap": 1.0
+          },
+          "avg_score": 1.0
+        },
+        {
+          "model_id": "openrouter/openai/gpt-4o",
+          "step": "translator",
+          "raw": "Czechia - Semi-trailers - Procurement of a low-bed semi-trailer for transport of heavy military equipment",
+          "parsed": null,
+          "error": null,
+          "latency_s": 0.92,
+          "input_tokens": 135,
+          "output_tokens": 23,
+          "cost_usd": 0.0006,
+          "sample_id": "T3",
+          "label": "CZ-VOPCZ-LowBedSemi",
+          "translated": "Czechia - Semi-trailers - Procurement of a low-bed semi-trailer for transport of heavy military equipment",
+          "scores": {
+            "contains_forbidden": 1.0,
+            "contains_required": 1.0,
+            "token_overlap": 0.86
+          },
+          "avg_score": 0.9533333333333333
+        },
+        {
+          "model_id": "openrouter/openai/gpt-4o",
+          "step": "translator",
+          "raw": "Czechia - Trailers - Field kitchen - Trailer - Purchase",
+          "parsed": null,
+          "error": null,
+          "latency_s": 1.21,
+          "input_tokens": 114,
+          "output_tokens": 14,
+          "cost_usd": 0.0004,
+          "sample_id": "T4",
+          "label": "CZ-FieldKitchen",
+          "translated": "Czechia - Trailers - Field kitchen - Trailer - Purchase",
+          "scores": {
+            "contains_forbidden": 1.0,
+            "contains_required": 1.0,
+            "token_overlap": 0.75
+          },
+          "avg_score": 0.9166666666666666
+        },
+        {
+          "model_id": "openrouter/openai/gpt-4o",
+          "step": "translator",
+          "raw": "Automobile Trailer",
+          "parsed": null,
+          "error": null,
+          "latency_s": 0.74,
+          "input_tokens": 101,
+          "output_tokens": 4,
+          "cost_usd": 0.0003,
+          "sample_id": "T5",
+          "label": "UA-CarTrailer",
+          "translated": "Automobile Trailer",
+          "scores": {
+            "contains_forbidden": 1.0,
+            "contains_required": 0.0,
+            "token_overlap": 1.0
+          },
+          "avg_score": 0.6666666666666666
+        },
+        {
+          "model_id": "openrouter/openai/gpt-4o",
+          "step": "translator",
+          "raw": "Trailer platform for car transportation",
+          "parsed": null,
+          "error": null,
+          "latency_s": 0.82,
+          "input_tokens": 108,
+          "output_tokens": 5,
+          "cost_usd": 0.0003,
+          "sample_id": "T6",
+          "label": "UA-VehiclePlatform",
+          "translated": "Trailer platform for car transportation",
+          "scores": {
+            "contains_forbidden": 1.0,
+            "contains_required": 0.0,
+            "token_overlap": 0.5
+          },
+          "avg_score": 0.5
+        },
+        {
+          "model_id": "openrouter/openai/gpt-4o",
+          "step": "translator",
+          "raw": "Romania - Trailers - Framework Agreement for the Supply of Refrigerated Trailers",
+          "parsed": null,
+          "error": null,
+          "latency_s": 1.47,
+          "input_tokens": 109,
+          "output_tokens": 17,
+          "cost_usd": 0.0004,
+          "sample_id": "T7",
+          "label": "RO-RefrigeratedTrailers",
+          "translated": "Romania - Trailers - Framework Agreement for the Supply of Refrigerated Trailers",
+          "scores": {
+            "contains_forbidden": 1.0,
+            "contains_required": 1.0,
+            "token_overlap": 1.0
+          },
+          "avg_score": 1.0
+        },
+        {
+          "model_id": "openrouter/openai/gpt-4o",
+          "step": "translator",
+          "raw": "Romania – Field kitchens – Procurement of complete kitchen assembly (containers and tent)",
+          "parsed": null,
+          "error": null,
+          "latency_s": 0.64,
+          "input_tokens": 104,
+          "output_tokens": 16,
+          "cost_usd": 0.0004,
+          "sample_id": "T8",
+          "label": "RO-FieldKitchen",
+          "translated": "Romania – Field kitchens – Procurement of complete kitchen assembly (containers and tent)",
+          "scores": {
+            "contains_forbidden": 1.0,
+            "contains_required": 1.0,
+            "token_overlap": 1.0
+          },
+          "avg_score": 1.0
+        },
+        {
+          "model_id": "openrouter/openai/gpt-4o",
+          "step": "translator",
+          "raw": "Italy – Mobile units on trailers – SUPPLY OF MULTIFUNCTIONAL ENGINEER EQUIPMENT AND BIAXIAL LIGHTING TOWERS ON TRAILERS",
+          "parsed": null,
+          "error": null,
+          "latency_s": 0.82,
+          "input_tokens": 130,
+          "output_tokens": 31,
+          "cost_usd": 0.0006,
+          "sample_id": "T9",
+          "label": "IT-MultifunctionalEquipment",
+          "translated": "Italy – Mobile units on trailers – SUPPLY OF MULTIFUNCTIONAL ENGINEER EQUIPMENT AND BIAXIAL LIGHTING TOWERS ON TRAILERS",
+          "scores": {
+            "contains_forbidden": 1.0,
+            "contains_required": 1.0,
+            "token_overlap": 0.88
+          },
+          "avg_score": 0.96
+        },
+        {
+          "model_id": "openrouter/openai/gpt-4o",
+          "step": "translator",
+          "raw": "France - Motorcycles - Acquisition of Militarised Off-Road Motorcycles and Trailers",
+          "parsed": null,
+          "error": null,
+          "latency_s": 1.2,
+          "input_tokens": 116,
+          "output_tokens": 18,
+          "cost_usd": 0.0005,
+          "sample_id": "T10",
+          "label": "FR-MotorcyclesTrailers",
+          "translated": "France - Motorcycles - Acquisition of Militarised Off-Road Motorcycles and Trailers",
+          "scores": {
+            "contains_forbidden": 1.0,
+            "contains_required": 1.0,
+            "token_overlap": 1.0
+          },
+          "avg_score": 1.0
+        }
+      ],
+      "openrouter/google/gemini-2.5-pro": [
+        {
+          "model_id": "openrouter/google/gemini-2.5-pro",
+          "step": "translator",
+          "raw": "Supply of large, medium and small capacity transport trailers",
+          "parsed": null,
+          "error": null,
+          "latency_s": 8.78,
+          "input_tokens": 134,
+          "output_tokens": 776,
+          "cost_usd": 0.0079,
+          "sample_id": "T1",
+          "label": "PL-MOD-TransportTrailers",
+          "translated": "Supply of large, medium and small capacity transport trailers",
+          "scores": {
+            "contains_forbidden": 1.0,
+            "contains_required": 1.0,
+            "token_overlap": 0.86
+          },
+          "avg_score": 0.9533333333333333
+        },
+        {
+          "model_id": "openrouter/google/gemini-2.5-pro",
+          "step": "translator",
+          "raw": "Supply of high-capacity transport trailers",
+          "parsed": null,
+          "error": null,
+          "latency_s": 8.85,
+          "input_tokens": 145,
+          "output_tokens": 771,
+          "cost_usd": 0.0079,
+          "sample_id": "T2",
+          "label": "PL-12WOG-HighCapTrailers",
+          "translated": "Supply of high-capacity transport trailers",
+          "scores": {
+            "contains_forbidden": 1.0,
+            "contains_required": 1.0,
+            "token_overlap": 1.0
+          },
+          "avg_score": 1.0
+        },
+        {
+          "model_id": "openrouter/google/gemini-2.5-pro",
+          "step": "translator",
+          "raw": "Acquisition of a low-bed semi-trailer for the transport of heavy military equipment",
+          "parsed": null,
+          "error": null,
+          "latency_s": 8.98,
+          "input_tokens": 123,
+          "output_tokens": 781,
+          "cost_usd": 0.008,
+          "sample_id": "T3",
+          "label": "CZ-VOPCZ-LowBedSemi",
+          "translated": "Acquisition of a low-bed semi-trailer for the transport of heavy military equipment",
+          "scores": {
+            "contains_forbidden": 1.0,
+            "contains_required": 1.0,
+            "token_overlap": 1.0
+          },
+          "avg_score": 1.0
+        },
+        {
+          "model_id": "openrouter/google/gemini-2.5-pro",
+          "step": "translator",
+          "raw": "Czechia - Field kitchen trailers - Purchase",
+          "parsed": null,
+          "error": null,
+          "latency_s": 8.99,
+          "input_tokens": 105,
+          "output_tokens": 773,
+          "cost_usd": 0.0079,
+          "sample_id": "T4",
+          "label": "CZ-FieldKitchen",
+          "translated": "Czechia - Field kitchen trailers - Purchase",
+          "scores": {
+            "contains_forbidden": 1.0,
+            "contains_required": 1.0,
+            "token_overlap": 0.5
+          },
+          "avg_score": 0.8333333333333334
+        },
+        {
+          "model_id": "openrouter/google/gemini-2.5-pro",
+          "step": "translator",
+          "raw": "Car trailer",
+          "parsed": null,
+          "error": null,
+          "latency_s": 5.73,
+          "input_tokens": 93,
+          "output_tokens": 430,
+          "cost_usd": 0.0044,
+          "sample_id": "T5",
+          "label": "UA-CarTrailer",
+          "translated": "Car trailer",
+          "scores": {
+            "contains_forbidden": 1.0,
+            "contains_required": 1.0,
+            "token_overlap": 1.0
+          },
+          "avg_score": 1.0
+        },
+        {
+          "model_id": "openrouter/google/gemini-2.5-pro",
+          "step": "translator",
+          "raw": "Trailer platform for automobile transportation",
+          "parsed": null,
+          "error": null,
+          "latency_s": 7.99,
+          "input_tokens": 98,
+          "output_tokens": 771,
+          "cost_usd": 0.0078,
+          "sample_id": "T6",
+          "label": "UA-VehiclePlatform",
+          "translated": "Trailer platform for automobile transportation",
+          "scores": {
+            "contains_forbidden": 1.0,
+            "contains_required": 1.0,
+            "token_overlap": 0.5
+          },
+          "avg_score": 0.8333333333333334
+        },
+        {
+          "model_id": "openrouter/google/gemini-2.5-pro",
+          "step": "translator",
+          "raw": "Framework agreement for the supply of refrigerated trailers",
+          "parsed": null,
+          "error": null,
+          "latency_s": 8.83,
+          "input_tokens": 99,
+          "output_tokens": 772,
+          "cost_usd": 0.0078,
+          "sample_id": "T7",
+          "label": "RO-RefrigeratedTrailers",
+          "translated": "Framework agreement for the supply of refrigerated trailers",
+          "scores": {
+            "contains_forbidden": 1.0,
+            "contains_required": 1.0,
+            "token_overlap": 1.0
+          },
+          "avg_score": 1.0
+        },
+        {
+          "model_id": "openrouter/google/gemini-2.5-pro",
+          "step": "translator",
+          "raw": "Procurement of a kitchen assembly (containers and tent)",
+          "parsed": null,
+          "error": null,
+          "latency_s": 8.77,
+          "input_tokens": 95,
+          "output_tokens": 776,
+          "cost_usd": 0.0079,
+          "sample_id": "T8",
+          "label": "RO-FieldKitchen",
+          "translated": "Procurement of a kitchen assembly (containers and tent)",
+          "scores": {
+            "contains_forbidden": 1.0,
+            "contains_required": 1.0,
+            "token_overlap": 1.0
+          },
+          "avg_score": 1.0
+        },
+        {
+          "model_id": "openrouter/google/gemini-2.5-pro",
+          "step": "translator",
+          "raw": "Supply of multifunctional engineer equipment and lighting towers on two-axle trailers",
+          "parsed": null,
+          "error": null,
+          "latency_s": 8.19,
+          "input_tokens": 117,
+          "output_tokens": 778,
+          "cost_usd": 0.0079,
+          "sample_id": "T9",
+          "label": "IT-MultifunctionalEquipment",
+          "translated": "Supply of multifunctional engineer equipment and lighting towers on two-axle trailers",
+          "scores": {
+            "contains_forbidden": 1.0,
+            "contains_required": 1.0,
+            "token_overlap": 0.88
+          },
+          "avg_score": 0.96
+        },
+        {
+          "model_id": "openrouter/google/gemini-2.5-pro",
+          "step": "translator",
+          "raw": "Acquisition of militarised off-road motorcycles and trailers",
+          "parsed": null,
+          "error": null,
+          "latency_s": 7.9,
+          "input_tokens": 108,
+          "output_tokens": 773,
+          "cost_usd": 0.0079,
+          "sample_id": "T10",
+          "label": "FR-MotorcyclesTrailers",
+          "translated": "Acquisition of militarised off-road motorcycles and trailers",
+          "scores": {
+            "contains_forbidden": 1.0,
+            "contains_required": 1.0,
+            "token_overlap": 1.0
+          },
+          "avg_score": 1.0
+        }
+      ],
+      "openrouter/anthropic/claude-haiku-4-5": [
+        {
+          "model_id": "openrouter/anthropic/claude-haiku-4-5",
+          "step": "translator",
+          "raw": "Supply of transport trailers of large, medium and small load capacity",
+          "parsed": null,
+          "error": null,
+          "latency_s": 1.15,
+          "input_tokens": 147,
+          "output_tokens": 16,
+          "cost_usd": 0.0011,
+          "sample_id": "T1",
+          "label": "PL-MOD-TransportTrailers",
+          "translated": "Supply of transport trailers of large, medium and small load capacity",
+          "scores": {
+            "contains_forbidden": 1.0,
+            "contains_required": 1.0,
+            "token_overlap": 0.86
+          },
+          "avg_score": 0.9533333333333333
+        },
+        {
+          "model_id": "openrouter/anthropic/claude-haiku-4-5",
+          "step": "translator",
+          "raw": "Supply of high-capacity transport trailers",
+          "parsed": null,
+          "error": null,
+          "latency_s": 0.88,
+          "input_tokens": 156,
+          "output_tokens": 11,
+          "cost_usd": 0.001,
+          "sample_id": "T2",
+          "label": "PL-12WOG-HighCapTrailers",
+          "translated": "Supply of high-capacity transport trailers",
+          "scores": {
+            "contains_forbidden": 1.0,
+            "contains_required": 1.0,
+            "token_overlap": 1.0
+          },
+          "avg_score": 1.0
+        },
+        {
+          "model_id": "openrouter/anthropic/claude-haiku-4-5",
+          "step": "translator",
+          "raw": "Czechia – Semi-trailers – Acquisition of low-bed semi-trailers for transport of heavy military equipment",
+          "parsed": null,
+          "error": null,
+          "latency_s": 1.17,
+          "input_tokens": 145,
+          "output_tokens": 28,
+          "cost_usd": 0.0013,
+          "sample_id": "T3",
+          "label": "CZ-VOPCZ-LowBedSemi",
+          "translated": "Czechia – Semi-trailers – Acquisition of low-bed semi-trailers for transport of heavy military equipment",
+          "scores": {
+            "contains_forbidden": 1.0,
+            "contains_required": 1.0,
+            "token_overlap": 0.86
+          },
+          "avg_score": 0.9533333333333333
+        },
+        {
+          "model_id": "openrouter/anthropic/claude-haiku-4-5",
+          "step": "translator",
+          "raw": "Czechia – Trailers – Field Kitchen Trailers - Trailer Vehicle - Purchase",
+          "parsed": null,
+          "error": null,
+          "latency_s": 1.07,
+          "input_tokens": 125,
+          "output_tokens": 22,
+          "cost_usd": 0.0011,
+          "sample_id": "T4",
+          "label": "CZ-FieldKitchen",
+          "translated": "Czechia – Trailers – Field Kitchen Trailers - Trailer Vehicle - Purchase",
+          "scores": {
+            "contains_forbidden": 1.0,
+            "contains_required": 1.0,
+            "token_overlap": 0.75
+          },
+          "avg_score": 0.9166666666666666
+        },
+        {
+          "model_id": "openrouter/anthropic/claude-haiku-4-5",
+          "step": "translator",
+          "raw": "Car trailer",
+          "parsed": null,
+          "error": null,
+          "latency_s": 1.06,
+          "input_tokens": 111,
+          "output_tokens": 5,
+          "cost_usd": 0.0007,
+          "sample_id": "T5",
+          "label": "UA-CarTrailer",
+          "translated": "Car trailer",
+          "scores": {
+            "contains_forbidden": 1.0,
+            "contains_required": 1.0,
+            "token_overlap": 1.0
+          },
+          "avg_score": 1.0
+        },
+        {
+          "model_id": "openrouter/anthropic/claude-haiku-4-5",
+          "step": "translator",
+          "raw": "Trailer platform for automobile transportation",
+          "parsed": null,
+          "error": null,
+          "latency_s": 1.07,
+          "input_tokens": 118,
+          "output_tokens": 9,
+          "cost_usd": 0.0008,
+          "sample_id": "T6",
+          "label": "UA-VehiclePlatform",
+          "translated": "Trailer platform for automobile transportation",
+          "scores": {
+            "contains_forbidden": 1.0,
+            "contains_required": 1.0,
+            "token_overlap": 0.5
+          },
+          "avg_score": 0.8333333333333334
+        },
+        {
+          "model_id": "openrouter/anthropic/claude-haiku-4-5",
+          "step": "translator",
+          "raw": "Romania – Trailers – Framework agreement for the supply of refrigerated trailers",
+          "parsed": null,
+          "error": null,
+          "latency_s": 0.9,
+          "input_tokens": 122,
+          "output_tokens": 19,
+          "cost_usd": 0.001,
+          "sample_id": "T7",
+          "label": "RO-RefrigeratedTrailers",
+          "translated": "Romania – Trailers – Framework agreement for the supply of refrigerated trailers",
+          "scores": {
+            "contains_forbidden": 1.0,
+            "contains_required": 1.0,
+            "token_overlap": 1.0
+          },
+          "avg_score": 1.0
+        },
+        {
+          "model_id": "openrouter/anthropic/claude-haiku-4-5",
+          "step": "translator",
+          "raw": "Romania – Field kitchens – Procurement of complete kitchen assembly (containers and tent)",
+          "parsed": null,
+          "error": null,
+          "latency_s": 0.89,
+          "input_tokens": 112,
+          "output_tokens": 21,
+          "cost_usd": 0.001,
+          "sample_id": "T8",
+          "label": "RO-FieldKitchen",
+          "translated": "Romania – Field kitchens – Procurement of complete kitchen assembly (containers and tent)",
+          "scores": {
+            "contains_forbidden": 1.0,
+            "contains_required": 1.0,
+            "token_overlap": 1.0
+          },
+          "avg_score": 1.0
+        },
+        {
+          "model_id": "openrouter/anthropic/claude-haiku-4-5",
+          "step": "translator",
+          "raw": "Italy – Mobile units on trailers – Supply of multifunctional engineer equipment and field lighting towers on two-axle trailers",
+          "parsed": null,
+          "error": null,
+          "latency_s": 1.45,
+          "input_tokens": 143,
+          "output_tokens": 30,
+          "cost_usd": 0.0013,
+          "sample_id": "T9",
+          "label": "IT-MultifunctionalEquipment",
+          "translated": "Italy – Mobile units on trailers – Supply of multifunctional engineer equipment and field lighting towers on two-axle trailers",
+          "scores": {
+            "contains_forbidden": 1.0,
+            "contains_required": 1.0,
+            "token_overlap": 1.0
+          },
+          "avg_score": 1.0
+        },
+        {
+          "model_id": "openrouter/anthropic/claude-haiku-4-5",
+          "step": "translator",
+          "raw": "France – Motorcycles – Acquisition of militarised off-road motorcycles and trailers",
+          "parsed": null,
+          "error": null,
+          "latency_s": 1.07,
+          "input_tokens": 131,
+          "output_tokens": 23,
+          "cost_usd": 0.0011,
+          "sample_id": "T10",
+          "label": "FR-MotorcyclesTrailers",
+          "translated": "France – Motorcycles – Acquisition of militarised off-road motorcycles and trailers",
+          "scores": {
+            "contains_forbidden": 1.0,
+            "contains_required": 1.0,
+            "token_overlap": 1.0
+          },
+          "avg_score": 1.0
+        }
+      ],
+      "openrouter/mistralai/mistral-large": [
+        {
+          "model_id": "openrouter/mistralai/mistral-large",
+          "step": "translator",
+          "raw": "Supply of high, medium and small capacity transport trailers for the Polish Armed Forces",
+          "parsed": null,
+          "error": null,
+          "latency_s": 0.86,
+          "input_tokens": 152,
+          "output_tokens": 18,
+          "cost_usd": 0.0004,
+          "sample_id": "T1",
+          "label": "PL-MOD-TransportTrailers",
+          "translated": "Supply of high, medium and small capacity transport trailers for the Polish Armed Forces",
+          "scores": {
+            "contains_forbidden": 1.0,
+            "contains_required": 1.0,
+            "token_overlap": 1.0
+          },
+          "avg_score": 1.0
+        },
+        {
+          "model_id": "openrouter/mistralai/mistral-large",
+          "step": "translator",
+          "raw": "Supply of high-capacity general-purpose transport trailers (Lot 4 units, option up to 8) – Polish Armed Forces",
+          "parsed": null,
+          "error": null,
+          "latency_s": 0.97,
+          "input_tokens": 164,
+          "output_tokens": 28,
+          "cost_usd": 0.0005,
+          "sample_id": "T2",
+          "label": "PL-12WOG-HighCapTrailers",
+          "translated": "Supply of high-capacity general-purpose transport trailers (Lot 4 units, option up to 8) – Polish Armed Forces",
+          "scores": {
+            "contains_forbidden": 1.0,
+            "contains_required": 1.0,
+            "token_overlap": 1.0
+          },
+          "avg_score": 1.0
+        },
+        {
+          "model_id": "openrouter/mistralai/mistral-large",
+          "step": "translator",
+          "raw": "Czech Republic – Acquisition of Low-Bed Semi-Trailer for Heavy Military Equipment Transport",
+          "parsed": null,
+          "error": null,
+          "latency_s": 0.77,
+          "input_tokens": 130,
+          "output_tokens": 19,
+          "cost_usd": 0.0004,
+          "sample_id": "T3",
+          "label": "CZ-VOPCZ-LowBedSemi",
+          "translated": "Czech Republic – Acquisition of Low-Bed Semi-Trailer for Heavy Military Equipment Transport",
+          "scores": {
+            "contains_forbidden": 1.0,
+            "contains_required": 1.0,
+            "token_overlap": 1.0
+          },
+          "avg_score": 1.0
+        },
+        {
+          "model_id": "openrouter/mistralai/mistral-large",
+          "step": "translator",
+          "raw": "Czech Republic – Procurement of PK-4ARMY modular field kitchen trailers on single-axle off-road chassis",
+          "parsed": null,
+          "error": null,
+          "latency_s": 1.24,
+          "input_tokens": 113,
+          "output_tokens": 28,
+          "cost_usd": 0.0004,
+          "sample_id": "T4",
+          "label": "CZ-FieldKitchen",
+          "translated": "Czech Republic – Procurement of PK-4ARMY modular field kitchen trailers on single-axle off-road chassis",
+          "scores": {
+            "contains_forbidden": 1.0,
+            "contains_required": 1.0,
+            "token_overlap": 0.75
+          },
+          "avg_score": 0.9166666666666666
+        },
+        {
+          "model_id": "openrouter/mistralai/mistral-large",
+          "step": "translator",
+          "raw": "Car trailers procurement",
+          "parsed": null,
+          "error": null,
+          "latency_s": 0.58,
+          "input_tokens": 100,
+          "output_tokens": 5,
+          "cost_usd": 0.0002,
+          "sample_id": "T5",
+          "label": "UA-CarTrailer",
+          "translated": "Car trailers procurement",
+          "scores": {
+            "contains_forbidden": 1.0,
+            "contains_required": 1.0,
+            "token_overlap": 0.0
+          },
+          "avg_score": 0.6666666666666666
+        },
+        {
+          "model_id": "openrouter/mistralai/mistral-large",
+          "step": "translator",
+          "raw": "Automobile transport trailer platforms",
+          "parsed": null,
+          "error": null,
+          "latency_s": 0.64,
+          "input_tokens": 105,
+          "output_tokens": 7,
+          "cost_usd": 0.0003,
+          "sample_id": "T6",
+          "label": "UA-VehiclePlatform",
+          "translated": "Automobile transport trailer platforms",
+          "scores": {
+            "contains_forbidden": 1.0,
+            "contains_required": 1.0,
+            "token_overlap": 0.25
+          },
+          "avg_score": 0.75
+        },
+        {
+          "model_id": "openrouter/mistralai/mistral-large",
+          "step": "translator",
+          "raw": "Framework Agreement for the Supply of Refrigerated Trailers for the Romanian Armed Forces",
+          "parsed": null,
+          "error": null,
+          "latency_s": 0.81,
+          "input_tokens": 108,
+          "output_tokens": 18,
+          "cost_usd": 0.0003,
+          "sample_id": "T7",
+          "label": "RO-RefrigeratedTrailers",
+          "translated": "Framework Agreement for the Supply of Refrigerated Trailers for the Romanian Armed Forces",
+          "scores": {
+            "contains_forbidden": 1.0,
+            "contains_required": 1.0,
+            "token_overlap": 1.0
+          },
+          "avg_score": 1.0
+        },
+        {
+          "model_id": "openrouter/mistralai/mistral-large",
+          "step": "translator",
+          "raw": "Romania – Field Kitchens – Procurement of Container and Tent Kitchen Assembly for Armed Forces",
+          "parsed": null,
+          "error": null,
+          "latency_s": 1.04,
+          "input_tokens": 103,
+          "output_tokens": 21,
+          "cost_usd": 0.0003,
+          "sample_id": "T8",
+          "label": "RO-FieldKitchen",
+          "translated": "Romania – Field Kitchens – Procurement of Container and Tent Kitchen Assembly for Armed Forces",
+          "scores": {
+            "contains_forbidden": 1.0,
+            "contains_required": 1.0,
+            "token_overlap": 0.8
+          },
+          "avg_score": 0.9333333333333332
+        },
+        {
+          "model_id": "openrouter/mistralai/mistral-large",
+          "step": "translator",
+          "raw": "Supply of Multifunctional Engineer Equipment and Bi-Axle Trailer-Mounted Lighting Towers for the Italian Army",
+          "parsed": null,
+          "error": null,
+          "latency_s": 0.9,
+          "input_tokens": 135,
+          "output_tokens": 25,
+          "cost_usd": 0.0004,
+          "sample_id": "T9",
+          "label": "IT-MultifunctionalEquipment",
+          "translated": "Supply of Multifunctional Engineer Equipment and Bi-Axle Trailer-Mounted Lighting Towers for the Italian Army",
+          "scores": {
+            "contains_forbidden": 1.0,
+            "contains_required": 1.0,
+            "token_overlap": 0.75
+          },
+          "avg_score": 0.9166666666666666
+        },
+        {
+          "model_id": "openrouter/mistralai/mistral-large",
+          "step": "translator",
+          "raw": "France – Military Off-Road Motorcycles and Trailers – Procurement in 4 Lots",
+          "parsed": null,
+          "error": null,
+          "latency_s": 1.25,
+          "input_tokens": 114,
+          "output_tokens": 21,
+          "cost_usd": 0.0004,
+          "sample_id": "T10",
+          "label": "FR-MotorcyclesTrailers",
+          "translated": "France – Military Off-Road Motorcycles and Trailers – Procurement in 4 Lots",
+          "scores": {
+            "contains_forbidden": 1.0,
+            "contains_required": 1.0,
+            "token_overlap": 0.6
+          },
+          "avg_score": 0.8666666666666667
+        }
+      ]
+    },
+    "award_match": {
+      "anthropic/claude-sonnet-4-6": [
+        {
+          "model_id": "anthropic/claude-sonnet-4-6",
+          "step": "award_match",
+          "raw": "```json\n{\n  \"match_id\": \"326948-2025\",\n  \"confidence\": 90,\n  \"reasoning\": \"Candidate 1 matches the closed tender on subject matter (Military Medical Trailers Role 1 & 2), buyer (Ministry of Defense NL), overlapping CPV codes (34220000), and publication date ~8 months after the closed tender, which is a plausible award notice timeline.\"\n}\n```",
+          "parsed": {
+            "match_id": "326948-2025",
+            "confidence": 90,
+            "reasoning": "Candidate 1 matches the closed tender on subject matter (Military Medical Trailers Role 1 & 2), buyer (Ministry of Defense NL), overlapping CPV codes (34220000), and publication date ~8 months after the closed tender, which is a plausible award notice timeline."
+          },
+          "error": null,
+          "latency_s": 3.54,
+          "input_tokens": 718,
+          "output_tokens": 105,
+          "cost_usd": 0.0037,
+          "sample_id": "A1",
+          "label": "NL-MedicalTrailers-MATCH",
+          "scores": {
+            "match_id": 1.0,
+            "confidence_calibration": 1.0
+          },
+          "avg_score": 1.0
+        },
+        {
+          "model_id": "anthropic/claude-sonnet-4-6",
+          "step": "award_match",
+          "raw": "```json\n{\n  \"match_id\": \"30130-2025\",\n  \"confidence\": 99,\n  \"reasoning\": \"Candidate 1 is an exact title match ('Helium Bottle Rack Structure for Trailer 16'), same authority (armasuisse), same CPV code (34223000), and published ~2 months after the closed tender — a perfectly plausible award-notice timeline.\"\n}\n```",
+          "parsed": {
+            "match_id": "30130-2025",
+            "confidence": 99,
+            "reasoning": "Candidate 1 is an exact title match ('Helium Bottle Rack Structure for Trailer 16'), same authority (armasuisse), same CPV code (34223000), and published ~2 months after the closed tender — a perfectly plausible award-notice timeline."
+          },
+          "error": null,
+          "latency_s": 2.55,
+          "input_tokens": 721,
+          "output_tokens": 102,
+          "cost_usd": 0.0037,
+          "sample_id": "A2",
+          "label": "CH-HeliumBottle-MATCH",
+          "scores": {
+            "match_id": 1.0,
+            "confidence_calibration": 1.0
+          },
+          "avg_score": 1.0
+        },
+        {
+          "model_id": "anthropic/claude-sonnet-4-6",
+          "step": "award_match",
+          "raw": "```json\n{\n  \"match_id\": \"254420-2025\",\n  \"confidence\": 95,\n  \"reasoning\": \"Candidate 1 matches the closed tender on all key dimensions: identical subject matter (multifunctional engineering equipment and field lighting towers on trailers), same contracting authority (Direzione Armamenti Terrestri), same country (Italy), overlapping CPV code (34220000), and publication date ~8 months after the closed tender—well within the typical award-notice window.\"\n}\n```",
+          "parsed": {
+            "match_id": "254420-2025",
+            "confidence": 95,
+            "reasoning": "Candidate 1 matches the closed tender on all key dimensions: identical subject matter (multifunctional engineering equipment and field lighting towers on trailers), same contracting authority (Direzione Armamenti Terrestri), same country (Italy), overlapping CPV code (34220000), and publication date ~8 months after the closed tender—well within the typical award-notice window."
+          },
+          "error": null,
+          "latency_s": 2.74,
+          "input_tokens": 696,
+          "output_tokens": 122,
+          "cost_usd": 0.0039,
+          "sample_id": "A3",
+          "label": "IT-MultifunctionalEng-MATCH",
+          "scores": {
+            "match_id": 1.0,
+            "confidence_calibration": 1.0
+          },
+          "avg_score": 1.0
+        },
+        {
+          "model_id": "anthropic/claude-sonnet-4-6",
+          "step": "award_match",
+          "raw": "```json\n{\n  \"match_id\": \"119311-2025\",\n  \"confidence\": 92,\n  \"reasoning\": \"Candidate 1 matches the closed tender on all key criteria: identical subject matter (Heavy Platform/Cargo Trailers O4-PN-V for T-815), same contracting authority (Ministerstvo obrany / CZ MOD), same CPV code (34223000), and publication date approximately 8 months after the closed tender's date—well within the typical award notice window. It also has a named winner (PANAV, a.s.), confirming it is an award notice.\"\n}\n```",
+          "parsed": {
+            "match_id": "119311-2025",
+            "confidence": 92,
+            "reasoning": "Candidate 1 matches the closed tender on all key criteria: identical subject matter (Heavy Platform/Cargo Trailers O4-PN-V for T-815), same contracting authority (Ministerstvo obrany / CZ MOD), same CPV code (34223000), and publication date approximately 8 months after the closed tender's date—well within the typical award notice window. It also has a named winner (PANAV, a.s.), confirming it is an award notice."
+          },
+          "error": null,
+          "latency_s": 3.75,
+          "input_tokens": 708,
+          "output_tokens": 149,
+          "cost_usd": 0.0044,
+          "sample_id": "A4",
+          "label": "CZ-HeavyPlatform-MATCH",
+          "scores": {
+            "match_id": 1.0,
+            "confidence_calibration": 1.0
+          },
+          "avg_score": 1.0
+        },
+        {
+          "model_id": "anthropic/claude-sonnet-4-6",
+          "step": "award_match",
+          "raw": "```json\n{\n  \"match_id\": \"18389-2020\",\n  \"confidence\": 97,\n  \"reasoning\": \"Candidate 1 has an identical title ('Bridge Transport Semi-trailers KB8'), the same authority (FMV/Försvarets materielverk), the same CPV code (34223000), and was published approximately 6.5 months after the closed tender — well within the typical award notice window. It also includes a named winner (Hallinden Trailer AB), confirming it is the award notice.\"\n}\n```",
+          "parsed": {
+            "match_id": "18389-2020",
+            "confidence": 97,
+            "reasoning": "Candidate 1 has an identical title ('Bridge Transport Semi-trailers KB8'), the same authority (FMV/Försvarets materielverk), the same CPV code (34223000), and was published approximately 6.5 months after the closed tender — well within the typical award notice window. It also includes a named winner (Hallinden Trailer AB), confirming it is the award notice."
+          },
+          "error": null,
+          "latency_s": 2.92,
+          "input_tokens": 671,
+          "output_tokens": 129,
+          "cost_usd": 0.0039,
+          "sample_id": "A5",
+          "label": "SE-BridgeKB8-MATCH",
+          "scores": {
+            "match_id": 1.0,
+            "confidence_calibration": 1.0
+          },
+          "avg_score": 1.0
+        },
+        {
+          "model_id": "anthropic/claude-sonnet-4-6",
+          "step": "award_match",
+          "raw": "Looking at this problem:\n\nThe closed tender (212474-2026) is for \"2-wheel 1t military trailers framework agreement\" published 2026-03-27 by BAAINBw.\n\nI need to find an award notice that:\n1. Matches the same subject matter (2-wheel 1t military trailers, framework agreement)\n2. Same buyer (BAAINBw)\n3. Published 0-18 months AFTER 2026-03-27\n\nAnalyzing candidates:\n- **Candidate 1** (682847-2024): Different tonnage (3.5t and 12.5t), published BEFORE the closed tender (2024). Not a match.\n- **Candidate 2** (719142-2025): Frame Agreement for Trailers, BAAINBw, but published BEFORE the closed tender (2025-10-30 vs 2026-03-27). Cannot be the award notice of a tender published later.\n- **Candidate 3** (161258-2025): Container Trailer, different authority (BAIUDBw), published before. Not a match.\n- **Candidate 4** (813306-2025): Different authority (BAIUDBw), different subject matter, published before. Not a match.\n- **Candidate 5** (283775-2022): Different authority, published years before. Not a match.\n\nNone of the candidates are published AFTER the closed tender's date (2026-03-27), and none specifically match \"2-wheel 1t military trailers\" with an award winner and a plausible post-publication date.\n\n```json\n{\n  \"match_id\": null,\n  \"confidence\": 90,\n  \"reasoning\": \"No candidate",
+          "parsed": null,
+          "error": "parse_failed",
+          "latency_s": 7.42,
+          "input_tokens": 694,
+          "output_tokens": 400,
+          "cost_usd": 0.0081,
+          "sample_id": "A6",
+          "label": "DE-MOD-CONFOUNDER-NoMatch",
+          "scores": {
+            "match_id": 0.0,
+            "confidence_calibration": 0.0
+          },
+          "avg_score": 0.0
+        },
+        {
+          "model_id": "anthropic/claude-sonnet-4-6",
+          "step": "award_match",
+          "raw": "```json\n{\n  \"match_id\": \"261427-2025\",\n  \"confidence\": 88,\n  \"reasoning\": \"Candidate 1 is from the same authority (12 WOJSKOWY ODDZIAŁ GOSPODARCZY), covers the same subject matter (high-capacity transport trailers, CPV 34220000), and was published approximately 9 months after the closed tender — well within the typical award notice window. It also has a named winner, consistent with an award notice.\"\n}\n```",
+          "parsed": {
+            "match_id": "261427-2025",
+            "confidence": 88,
+            "reasoning": "Candidate 1 is from the same authority (12 WOJSKOWY ODDZIAŁ GOSPODARCZY), covers the same subject matter (high-capacity transport trailers, CPV 34220000), and was published approximately 9 months after the closed tender — well within the typical award notice window. It also has a named winner, consistent with an award notice."
+          },
+          "error": null,
+          "latency_s": 3.95,
+          "input_tokens": 712,
+          "output_tokens": 117,
+          "cost_usd": 0.0039,
+          "sample_id": "A7",
+          "label": "PL-12WOG-CONFOUNDER",
+          "scores": {
+            "match_id": 1.0,
+            "confidence_calibration": 1.0
+          },
+          "avg_score": 1.0
+        },
+        {
+          "model_id": "anthropic/claude-sonnet-4-6",
+          "step": "award_match",
+          "raw": "```json\n{\n  \"match_id\": null,\n  \"confidence\": 95,\n  \"reasoning\": \"None of the candidates match the closed tender's subject matter (militarised off-road motorcycles, CPV 34410000/34220000) or the same authority (MINARM/TERRE/SIMMT/DDC). Additionally, all candidates predate the closed tender's publication date of 2026-02-03, making them implausible as award notices for this procurement.\"\n}\n```",
+          "parsed": {
+            "match_id": null,
+            "confidence": 95,
+            "reasoning": "None of the candidates match the closed tender's subject matter (militarised off-road motorcycles, CPV 34410000/34220000) or the same authority (MINARM/TERRE/SIMMT/DDC). Additionally, all candidates predate the closed tender's publication date of 2026-02-03, making them implausible as award notices for this procurement."
+          },
+          "error": null,
+          "latency_s": 2.62,
+          "input_tokens": 706,
+          "output_tokens": 118,
+          "cost_usd": 0.0039,
+          "sample_id": "A8",
+          "label": "FR-Motorcycles-CONFOUNDER",
+          "scores": {
+            "match_id": 1.0,
+            "confidence_calibration": 0.5
+          },
+          "avg_score": 0.75
+        },
+        {
+          "model_id": "anthropic/claude-sonnet-4-6",
+          "step": "award_match",
+          "raw": "```json\n{\n  \"match_id\": null,\n  \"confidence\": 85,\n  \"reasoning\": \"None of the candidates match the closed tender for 99 tractors and 94 territorial semitrailers (CPV 34220000, 16700000). Candidate 1 shares the same buyer and CPV but concerns 780 military trailers of 6 types, which is a different procurement scope. The remaining candidates are from different countries or cover unrelated subject matter (fuel tanks, cleaning equipment, aircraft refuelling).\"\n}\n```",
+          "parsed": {
+            "match_id": null,
+            "confidence": 85,
+            "reasoning": "None of the candidates match the closed tender for 99 tractors and 94 territorial semitrailers (CPV 34220000, 16700000). Candidate 1 shares the same buyer and CPV but concerns 780 military trailers of 6 types, which is a different procurement scope. The remaining candidates are from different countries or cover unrelated subject matter (fuel tanks, cleaning equipment, aircraft refuelling)."
+          },
+          "error": null,
+          "latency_s": 3.38,
+          "input_tokens": 694,
+          "output_tokens": 129,
+          "cost_usd": 0.004,
+          "sample_id": "A9",
+          "label": "BE-99Tractors-NOMATCH",
+          "scores": {
+            "match_id": 1.0,
+            "confidence_calibration": 0.5
+          },
+          "avg_score": 0.75
+        },
+        {
+          "model_id": "anthropic/claude-sonnet-4-6",
+          "step": "award_match",
+          "raw": "```json\n{\n  \"match_id\": null,\n  \"confidence\": 85,\n  \"reasoning\": \"None of the candidates specifically reference 'Commando Raiding Craft Trailers' or Royal Marines watercraft trailer procurement. The closest candidates (2, 3, 4) are general military trailer procurements with different CPV codes (34223300 vs 34220000), and none of them carry winner data, making a definitive match implausible.\"\n}\n```",
+          "parsed": {
+            "match_id": null,
+            "confidence": 85,
+            "reasoning": "None of the candidates specifically reference 'Commando Raiding Craft Trailers' or Royal Marines watercraft trailer procurement. The closest candidates (2, 3, 4) are general military trailer procurements with different CPV codes (34223300 vs 34220000), and none of them carry winner data, making a definitive match implausible."
+          },
+          "error": null,
+          "latency_s": 3.01,
+          "input_tokens": 680,
+          "output_tokens": 114,
+          "cost_usd": 0.0037,
+          "sample_id": "A10",
+          "label": "UK-CommandoCraft-NOMATCH",
+          "scores": {
+            "match_id": 1.0,
+            "confidence_calibration": 0.5
+          },
+          "avg_score": 0.75
+        }
+      ],
+      "anthropic/claude-opus-4-7": [
+        {
+          "model_id": "anthropic/claude-opus-4-7",
+          "step": "award_match",
+          "raw": "{\"match_id\": \"326948-2025\", \"confidence\": 90, \"reasoning\": \"Candidate 1 has matching subject (Military Medical Trailers Role 1 & 2), same buyer (NL MoD), and publication 8 months after the closed tender — a typical award-notice timeframe.\"}",
+          "parsed": {
+            "match_id": "326948-2025",
+            "confidence": 90,
+            "reasoning": "Candidate 1 has matching subject (Military Medical Trailers Role 1 & 2), same buyer (NL MoD), and publication 8 months after the closed tender — a typical award-notice timeframe."
+          },
+          "error": null,
+          "latency_s": 2.83,
+          "input_tokens": 1002,
+          "output_tokens": 101,
+          "cost_usd": 0.0226,
+          "sample_id": "A1",
+          "label": "NL-MedicalTrailers-MATCH",
+          "scores": {
+            "match_id": 1.0,
+            "confidence_calibration": 1.0
+          },
+          "avg_score": 1.0
+        },
+        {
+          "model_id": "anthropic/claude-opus-4-7",
+          "step": "award_match",
+          "raw": "{\"match_id\":\"30130-2025\",\"confidence\":98,\"reasoning\":\"Identical title, authority, and CPV code; award notice published ~2 months after the closed tender.\"}",
+          "parsed": {
+            "match_id": "30130-2025",
+            "confidence": 98,
+            "reasoning": "Identical title, authority, and CPV code; award notice published ~2 months after the closed tender."
+          },
+          "error": null,
+          "latency_s": 2.76,
+          "input_tokens": 979,
+          "output_tokens": 61,
+          "cost_usd": 0.0193,
+          "sample_id": "A2",
+          "label": "CH-HeliumBottle-MATCH",
+          "scores": {
+            "match_id": 1.0,
+            "confidence_calibration": 1.0
+          },
+          "avg_score": 1.0
+        },
+        {
+          "model_id": "anthropic/claude-opus-4-7",
+          "step": "award_match",
+          "raw": "{\"match_id\":\"254420-2025\",\"confidence\":95,\"reasoning\":\"Same authority (Direzione Armamenti Terrestri), nearly identical title about multifunctional engineering equipment and field lighting towers on trailers, and award published 8 months after the closed tender.\"}",
+          "parsed": {
+            "match_id": "254420-2025",
+            "confidence": 95,
+            "reasoning": "Same authority (Direzione Armamenti Terrestri), nearly identical title about multifunctional engineering equipment and field lighting towers on trailers, and award published 8 months after the closed tender."
+          },
+          "error": null,
+          "latency_s": 2.64,
+          "input_tokens": 962,
+          "output_tokens": 95,
+          "cost_usd": 0.0216,
+          "sample_id": "A3",
+          "label": "IT-MultifunctionalEng-MATCH",
+          "scores": {
+            "match_id": 1.0,
+            "confidence_calibration": 1.0
+          },
+          "avg_score": 1.0
+        },
+        {
+          "model_id": "anthropic/claude-opus-4-7",
+          "step": "award_match",
+          "raw": "{\"match_id\":\"119311-2025\",\"confidence\":95,\"reasoning\":\"Candidate 1 matches the same subject (Heavy Trailers O4-PN-V for T-815), same buyer (CZ MOD), same CPV, and was published ~8 months after the closed tender with an awarded winner.\"}",
+          "parsed": {
+            "match_id": "119311-2025",
+            "confidence": 95,
+            "reasoning": "Candidate 1 matches the same subject (Heavy Trailers O4-PN-V for T-815), same buyer (CZ MOD), same CPV, and was published ~8 months after the closed tender with an awarded winner."
+          },
+          "error": null,
+          "latency_s": 2.48,
+          "input_tokens": 965,
+          "output_tokens": 104,
+          "cost_usd": 0.0223,
+          "sample_id": "A4",
+          "label": "CZ-HeavyPlatform-MATCH",
+          "scores": {
+            "match_id": 1.0,
+            "confidence_calibration": 1.0
+          },
+          "avg_score": 1.0
+        },
+        {
+          "model_id": "anthropic/claude-opus-4-7",
+          "step": "award_match",
+          "raw": "{\n  \"match_id\": \"18389-2020\",\n  \"confidence\": 98,\n  \"reasoning\": \"Identical title 'Bridge Transport Semi-trailers KB8' and same buyer (FMV), with award publication ~7 months after the closed tender — a textbook contract award notice.\"\n}",
+          "parsed": {
+            "match_id": "18389-2020",
+            "confidence": 98,
+            "reasoning": "Identical title 'Bridge Transport Semi-trailers KB8' and same buyer (FMV), with award publication ~7 months after the closed tender — a textbook contract award notice."
+          },
+          "error": null,
+          "latency_s": 3.48,
+          "input_tokens": 932,
+          "output_tokens": 100,
+          "cost_usd": 0.0215,
+          "sample_id": "A5",
+          "label": "SE-BridgeKB8-MATCH",
+          "scores": {
+            "match_id": 1.0,
+            "confidence_calibration": 1.0
+          },
+          "avg_score": 1.0
+        },
+        {
+          "model_id": "anthropic/claude-opus-4-7",
+          "step": "award_match",
+          "raw": "{\"match_id\": null, \"confidence\": 5, \"reasoning\": \"The closed tender was published in March 2026; an award notice must come AFTER that date. All candidates predate the closed tender, so none can be its award notice.\"}",
+          "parsed": {
+            "match_id": null,
+            "confidence": 5,
+            "reasoning": "The closed tender was published in March 2026; an award notice must come AFTER that date. All candidates predate the closed tender, so none can be its award notice."
+          },
+          "error": null,
+          "latency_s": 2.46,
+          "input_tokens": 927,
+          "output_tokens": 75,
+          "cost_usd": 0.0195,
+          "sample_id": "A6",
+          "label": "DE-MOD-CONFOUNDER-NoMatch",
+          "scores": {
+            "match_id": 1.0,
+            "confidence_calibration": 1.0
+          },
+          "avg_score": 1.0
+        },
+        {
+          "model_id": "anthropic/claude-opus-4-7",
+          "step": "award_match",
+          "raw": "{\"match_id\":\"261427-2025\",\"confidence\":90,\"reasoning\":\"Same authority (12 WOJSKOWY ODDZIAŁ GOSPODARCZY), same CPV (34220000), matching subject matter (high-capacity transport trailers), and publication date 9 months after the closed tender.\"}",
+          "parsed": {
+            "match_id": "261427-2025",
+            "confidence": 90,
+            "reasoning": "Same authority (12 WOJSKOWY ODDZIAŁ GOSPODARCZY), same CPV (34220000), matching subject matter (high-capacity transport trailers), and publication date 9 months after the closed tender."
+          },
+          "error": null,
+          "latency_s": 3.27,
+          "input_tokens": 985,
+          "output_tokens": 107,
+          "cost_usd": 0.0228,
+          "sample_id": "A7",
+          "label": "PL-12WOG-CONFOUNDER",
+          "scores": {
+            "match_id": 1.0,
+            "confidence_calibration": 1.0
+          },
+          "avg_score": 1.0
+        },
+        {
+          "model_id": "anthropic/claude-opus-4-7",
+          "step": "award_match",
+          "raw": "{\"match_id\": null, \"confidence\": 95, \"reasoning\": \"None of the candidates concern militarised off-road motorcycles, and their publication dates predate the closed tender, making them implausible award notices.\"}",
+          "parsed": {
+            "match_id": null,
+            "confidence": 95,
+            "reasoning": "None of the candidates concern militarised off-road motorcycles, and their publication dates predate the closed tender, making them implausible award notices."
+          },
+          "error": null,
+          "latency_s": 2.45,
+          "input_tokens": 927,
+          "output_tokens": 71,
+          "cost_usd": 0.0192,
+          "sample_id": "A8",
+          "label": "FR-Motorcycles-CONFOUNDER",
+          "scores": {
+            "match_id": 1.0,
+            "confidence_calibration": 0.5
+          },
+          "avg_score": 0.75
+        },
+        {
+          "model_id": "anthropic/claude-opus-4-7",
+          "step": "award_match",
+          "raw": "{\"match_id\": null, \"confidence\": 10, \"reasoning\": \"No candidate clearly matches the acquisition of 99 tractors and 94 territorial semitrailers. Candidate 1 is from the same Belgian MoD but covers 780 military trailers across 6 types, which appears to be a different procurement, not an award notice for the closed tender.\"}",
+          "parsed": {
+            "match_id": null,
+            "confidence": 10,
+            "reasoning": "No candidate clearly matches the acquisition of 99 tractors and 94 territorial semitrailers. Candidate 1 is from the same Belgian MoD but covers 780 military trailers across 6 types, which appears to be a different procurement, not an award notice for the closed tender."
+          },
+          "error": null,
+          "latency_s": 5.62,
+          "input_tokens": 941,
+          "output_tokens": 119,
+          "cost_usd": 0.023,
+          "sample_id": "A9",
+          "label": "BE-99Tractors-NOMATCH",
+          "scores": {
+            "match_id": 1.0,
+            "confidence_calibration": 1.0
+          },
+          "avg_score": 1.0
+        },
+        {
+          "model_id": "anthropic/claude-opus-4-7",
+          "step": "award_match",
+          "raw": "{\"match_id\": null, \"confidence\": 5, \"reasoning\": \"None of the candidates specifically match Commando Raiding Craft Trailers for the Royal Marines; the trailer-related candidates concern different trailer types (heavy technical, tractor, box trailers) and none have winner/award data.\"}",
+          "parsed": {
+            "match_id": null,
+            "confidence": 5,
+            "reasoning": "None of the candidates specifically match Commando Raiding Craft Trailers for the Royal Marines; the trailer-related candidates concern different trailer types (heavy technical, tractor, box trailers) and none have winner/award data."
+          },
+          "error": null,
+          "latency_s": 3.41,
+          "input_tokens": 924,
+          "output_tokens": 102,
+          "cost_usd": 0.0215,
+          "sample_id": "A10",
+          "label": "UK-CommandoCraft-NOMATCH",
+          "scores": {
+            "match_id": 1.0,
+            "confidence_calibration": 1.0
+          },
+          "avg_score": 1.0
+        }
+      ],
+      "openrouter/openai/gpt-4o": [
+        {
+          "model_id": "openrouter/openai/gpt-4o",
+          "step": "award_match",
+          "raw": "```json\n{\n  \"match_id\": \"326948-2025\",\n  \"confidence\": 95,\n  \"reasoning\": \"The title and CPV codes of Candidate 1 closely match the closed tender's focus on military medical trailers, and both notices are from the Dutch Ministry of Defence, making it the most plausible match. The publication date of the candidate falls within a plausible time window after the closed tender's publication date.\"\n}\n```",
+          "parsed": {
+            "match_id": "326948-2025",
+            "confidence": 95,
+            "reasoning": "The title and CPV codes of Candidate 1 closely match the closed tender's focus on military medical trailers, and both notices are from the Dutch Ministry of Defence, making it the most plausible match. The publication date of the candidate falls within a plausible time window after the closed tender's publication date."
+          },
+          "error": null,
+          "latency_s": 1.53,
+          "input_tokens": 665,
+          "output_tokens": 91,
+          "cost_usd": 0.0026,
+          "sample_id": "A1",
+          "label": "NL-MedicalTrailers-MATCH",
+          "scores": {
+            "match_id": 1.0,
+            "confidence_calibration": 1.0
+          },
+          "avg_score": 1.0
+        },
+        {
+          "model_id": "openrouter/openai/gpt-4o",
+          "step": "award_match",
+          "raw": "```json\n{\n  \"match_id\": \"30130-2025\",\n  \"confidence\": 95,\n  \"reasoning\": \"Candidate 1 has the exact same title, authority, and CPV code as the closed tender. The publication date is plausible for an award notice following the tender publication by about two months. The same authority is involved, making it a strong match.\"\n}\n```",
+          "parsed": {
+            "match_id": "30130-2025",
+            "confidence": 95,
+            "reasoning": "Candidate 1 has the exact same title, authority, and CPV code as the closed tender. The publication date is plausible for an award notice following the tender publication by about two months. The same authority is involved, making it a strong match."
+          },
+          "error": null,
+          "latency_s": 1.06,
+          "input_tokens": 648,
+          "output_tokens": 81,
+          "cost_usd": 0.0024,
+          "sample_id": "A2",
+          "label": "CH-HeliumBottle-MATCH",
+          "scores": {
+            "match_id": 1.0,
+            "confidence_calibration": 1.0
+          },
+          "avg_score": 1.0
+        },
+        {
+          "model_id": "openrouter/openai/gpt-4o",
+          "step": "award_match",
+          "raw": "```json\n{\n  \"match_id\": \"254420-2025\",\n  \"confidence\": 90,\n  \"reasoning\": \"Candidate 1 matches the subject matter closely with similar title and CPV, the same authority, and a plausible publication date 8 months after the closed tender date.\"\n}\n```",
+          "parsed": {
+            "match_id": "254420-2025",
+            "confidence": 90,
+            "reasoning": "Candidate 1 matches the subject matter closely with similar title and CPV, the same authority, and a plausible publication date 8 months after the closed tender date."
+          },
+          "error": null,
+          "latency_s": 1.19,
+          "input_tokens": 651,
+          "output_tokens": 65,
+          "cost_usd": 0.0023,
+          "sample_id": "A3",
+          "label": "IT-MultifunctionalEng-MATCH",
+          "scores": {
+            "match_id": 1.0,
+            "confidence_calibration": 1.0
+          },
+          "avg_score": 1.0
+        },
+        {
+          "model_id": "openrouter/openai/gpt-4o",
+          "step": "award_match",
+          "raw": "```json\n{\n  \"match_id\": \"119311-2025\",\n  \"confidence\": 90,\n  \"reasoning\": \"Candidate 1 matches the subject matter closely, referring to heavy trailers for T-815 trucks, which is consistent with the closed tender. Both tenders are issued by the same authority, and the publication date of the award notice is plausible, approximately eight months after the tender publication date.\"\n}\n```",
+          "parsed": {
+            "match_id": "119311-2025",
+            "confidence": 90,
+            "reasoning": "Candidate 1 matches the subject matter closely, referring to heavy trailers for T-815 trucks, which is consistent with the closed tender. Both tenders are issued by the same authority, and the publication date of the award notice is plausible, approximately eight months after the tender publication date."
+          },
+          "error": null,
+          "latency_s": 1.29,
+          "input_tokens": 649,
+          "output_tokens": 89,
+          "cost_usd": 0.0025,
+          "sample_id": "A4",
+          "label": "CZ-HeavyPlatform-MATCH",
+          "scores": {
+            "match_id": 1.0,
+            "confidence_calibration": 1.0
+          },
+          "avg_score": 1.0
+        },
+        {
+          "model_id": "openrouter/openai/gpt-4o",
+          "step": "award_match",
+          "raw": "```json\n{\n  \"match_id\": \"18389-2020\",\n  \"confidence\": 100,\n  \"reasoning\": \"Candidate 1 has the same title, authority, country, CPV code, and a plausible publication date that is after the closed tender. The winner's information is provided, indicating this is the award notice for the same procurement.\"\n}\n```",
+          "parsed": {
+            "match_id": "18389-2020",
+            "confidence": 100,
+            "reasoning": "Candidate 1 has the same title, authority, country, CPV code, and a plausible publication date that is after the closed tender. The winner's information is provided, indicating this is the award notice for the same procurement."
+          },
+          "error": null,
+          "latency_s": 1.68,
+          "input_tokens": 633,
+          "output_tokens": 77,
+          "cost_usd": 0.0024,
+          "sample_id": "A5",
+          "label": "SE-BridgeKB8-MATCH",
+          "scores": {
+            "match_id": 1.0,
+            "confidence_calibration": 1.0
+          },
+          "avg_score": 1.0
+        },
+        {
+          "model_id": "openrouter/openai/gpt-4o",
+          "step": "award_match",
+          "raw": "```json\n{\n  \"match_id\": null,\n  \"confidence\": 90,\n  \"reasoning\": \"None of the candidates match the subject of the closed tender specifically, which focuses on 2-wheel 1t military trailers. Additionally, all candidates have publication dates before the closed tender. Even though the authority in Candidate 2 matches BAAINBw, the publication date of 2025-10-30 is inconsistent with an award for a tender published in 2026.\"\n}\n```",
+          "parsed": {
+            "match_id": null,
+            "confidence": 90,
+            "reasoning": "None of the candidates match the subject of the closed tender specifically, which focuses on 2-wheel 1t military trailers. Additionally, all candidates have publication dates before the closed tender. Even though the authority in Candidate 2 matches BAAINBw, the publication date of 2025-10-30 is inconsistent with an award for a tender published in 2026."
+          },
+          "error": null,
+          "latency_s": 1.54,
+          "input_tokens": 647,
+          "output_tokens": 103,
+          "cost_usd": 0.0026,
+          "sample_id": "A6",
+          "label": "DE-MOD-CONFOUNDER-NoMatch",
+          "scores": {
+            "match_id": 1.0,
+            "confidence_calibration": 0.5
+          },
+          "avg_score": 0.75
+        },
+        {
+          "model_id": "openrouter/openai/gpt-4o",
+          "step": "award_match",
+          "raw": "```json\n{\n  \"match_id\": \"261427-2025\",\n  \"confidence\": 90,\n  \"reasoning\": \"Candidate 1 matches the procurement title for transport trailers and is by the same authority, 12 WOJSKOWY ODDZIAŁ GOSPODARCZY. The publication date is plausible and within the typical timeframe after the closed tender's publication date.\"\n}\n```",
+          "parsed": {
+            "match_id": "261427-2025",
+            "confidence": 90,
+            "reasoning": "Candidate 1 matches the procurement title for transport trailers and is by the same authority, 12 WOJSKOWY ODDZIAŁ GOSPODARCZY. The publication date is plausible and within the typical timeframe after the closed tender's publication date."
+          },
+          "error": null,
+          "latency_s": 1.8,
+          "input_tokens": 669,
+          "output_tokens": 85,
+          "cost_usd": 0.0025,
+          "sample_id": "A7",
+          "label": "PL-12WOG-CONFOUNDER",
+          "scores": {
+            "match_id": 1.0,
+            "confidence_calibration": 1.0
+          },
+          "avg_score": 1.0
+        },
+        {
+          "model_id": "openrouter/openai/gpt-4o",
+          "step": "award_match",
+          "raw": "```json\n{\n  \"match_id\": null,\n  \"confidence\": 100,\n  \"reasoning\": \"None of the candidates match the subject matter of militarised off-road motorcycles. Additionally, all candidates are published either too early or their authority does not match adequately with the closed tender authority MINARM/TERRE/SIMMT/DDC.\"\n}\n```",
+          "parsed": {
+            "match_id": null,
+            "confidence": 100,
+            "reasoning": "None of the candidates match the subject matter of militarised off-road motorcycles. Additionally, all candidates are published either too early or their authority does not match adequately with the closed tender authority MINARM/TERRE/SIMMT/DDC."
+          },
+          "error": null,
+          "latency_s": 0.96,
+          "input_tokens": 657,
+          "output_tokens": 73,
+          "cost_usd": 0.0024,
+          "sample_id": "A8",
+          "label": "FR-Motorcycles-CONFOUNDER",
+          "scores": {
+            "match_id": 1.0,
+            "confidence_calibration": 0.5
+          },
+          "avg_score": 0.75
+        },
+        {
+          "model_id": "openrouter/openai/gpt-4o",
+          "step": "award_match",
+          "raw": "```json\n{\n  \"match_id\": null,\n  \"confidence\": 95,\n  \"reasoning\": \"None of the candidates match the closed tender's specific subject matter of acquiring tractors and territorial semitrailers for Belgium's Ministry of Defence. The closed tender is for Belgium, whereas some candidates are from other countries or pertain to different types of equipment not related to tractors or territorial semitrailers.\"\n}\n```",
+          "parsed": {
+            "match_id": null,
+            "confidence": 95,
+            "reasoning": "None of the candidates match the closed tender's specific subject matter of acquiring tractors and territorial semitrailers for Belgium's Ministry of Defence. The closed tender is for Belgium, whereas some candidates are from other countries or pertain to different types of equipment not related to tractors or territorial semitrailers."
+          },
+          "error": null,
+          "latency_s": 1.75,
+          "input_tokens": 647,
+          "output_tokens": 86,
+          "cost_usd": 0.0025,
+          "sample_id": "A9",
+          "label": "BE-99Tractors-NOMATCH",
+          "scores": {
+            "match_id": 1.0,
+            "confidence_calibration": 0.5
+          },
+          "avg_score": 0.75
+        },
+        {
+          "model_id": "openrouter/openai/gpt-4o",
+          "step": "award_match",
+          "raw": "```json\n{\n  \"match_id\": null,\n  \"confidence\": 90,\n  \"reasoning\": \"None of the candidates match the subject matter and CPV code of 'Commando Raiding Craft Trailers' for the Royal Marines. All candidates either have a different focus or are under a different subgroup of the Ministry of Defence without specific mention of Royal Marines. Additionally, publication dates for some candidates are too early or too late compared to the typical 0-18 months range from the closed tender's date, with CPV codes not aligning with the required equipment.\"\n}\n```",
+          "parsed": {
+            "match_id": null,
+            "confidence": 90,
+            "reasoning": "None of the candidates match the subject matter and CPV code of 'Commando Raiding Craft Trailers' for the Royal Marines. All candidates either have a different focus or are under a different subgroup of the Ministry of Defence without specific mention of Royal Marines. Additionally, publication dates for some candidates are too early or too late compared to the typical 0-18 months range from the closed tender's date, with CPV codes not aligning with the required equipment."
+          },
+          "error": null,
+          "latency_s": 1.63,
+          "input_tokens": 634,
+          "output_tokens": 120,
+          "cost_usd": 0.0028,
+          "sample_id": "A10",
+          "label": "UK-CommandoCraft-NOMATCH",
+          "scores": {
+            "match_id": 1.0,
+            "confidence_calibration": 0.5
+          },
+          "avg_score": 0.75
+        }
+      ],
+      "openrouter/google/gemini-2.5-pro": [
+        {
+          "model_id": "openrouter/google/gemini-2.5-pro",
+          "step": "award_match",
+          "raw": "```json\n{\n  \"match_id\": \"326948-2025\",\n  \"confidence\": 10",
+          "parsed": null,
+          "error": "parse_failed",
+          "latency_s": 8.29,
+          "input_tokens": 780,
+          "output_tokens": 796,
+          "cost_usd": 0.0089,
+          "sample_id": "A1",
+          "label": "NL-MedicalTrailers-MATCH",
+          "scores": {
+            "match_id": 0.0,
+            "confidence_calibration": 0.0
+          },
+          "avg_score": 0.0
+        },
+        {
+          "model_id": "openrouter/google/gemini-2.5-pro",
+          "step": "award_match",
+          "raw": "```json\n{\n  \"match_id\": \"30130-2025\",\n  \"confidence\": 100",
+          "parsed": null,
+          "error": "parse_failed",
+          "latency_s": 7.77,
+          "input_tokens": 776,
+          "output_tokens": 796,
+          "cost_usd": 0.0089,
+          "sample_id": "A2",
+          "label": "CH-HeliumBottle-MATCH",
+          "scores": {
+            "match_id": 0.0,
+            "confidence_calibration": 0.0
+          },
+          "avg_score": 0.0
+        },
+        {
+          "model_id": "openrouter/google/gemini-2.5-pro",
+          "step": "award_match",
+          "raw": "```json\n{\n  \"match_id\": \"254420-2025\",\n  \"confidence\": ",
+          "parsed": null,
+          "error": "parse_failed",
+          "latency_s": 7.62,
+          "input_tokens": 767,
+          "output_tokens": 796,
+          "cost_usd": 0.0089,
+          "sample_id": "A3",
+          "label": "IT-MultifunctionalEng-MATCH",
+          "scores": {
+            "match_id": 0.0,
+            "confidence_calibration": 0.0
+          },
+          "avg_score": 0.0
+        },
+        {
+          "model_id": "openrouter/google/gemini-2.5-pro",
+          "step": "award_match",
+          "raw": "```json\n{\n  \"match_id\": \"119311-2025\",\n  \"confidence\": ",
+          "parsed": null,
+          "error": "parse_failed",
+          "latency_s": 8.26,
+          "input_tokens": 766,
+          "output_tokens": 796,
+          "cost_usd": 0.0089,
+          "sample_id": "A4",
+          "label": "CZ-HeavyPlatform-MATCH",
+          "scores": {
+            "match_id": 0.0,
+            "confidence_calibration": 0.0
+          },
+          "avg_score": 0.0
+        },
+        {
+          "model_id": "openrouter/google/gemini-2.5-pro",
+          "step": "award_match",
+          "raw": "```json\n{\n  \"match_id\": \"18389-2020\",\n  \"confidence\": ",
+          "parsed": null,
+          "error": "parse_failed",
+          "latency_s": 8.0,
+          "input_tokens": 743,
+          "output_tokens": 796,
+          "cost_usd": 0.0089,
+          "sample_id": "A5",
+          "label": "SE-BridgeKB8-MATCH",
+          "scores": {
+            "match_id": 0.0,
+            "confidence_calibration": 0.0
+          },
+          "avg_score": 0.0
+        },
+        {
+          "model_id": "openrouter/google/gemini-2.5-pro",
+          "step": "award_match",
+          "raw": "```json\n{\n  \"match_id\": null,\n  \"confidence\": 100,\n  \"reasoning\": \"None of",
+          "parsed": null,
+          "error": "parse_failed",
+          "latency_s": 8.8,
+          "input_tokens": 763,
+          "output_tokens": 796,
+          "cost_usd": 0.0089,
+          "sample_id": "A6",
+          "label": "DE-MOD-CONFOUNDER-NoMatch",
+          "scores": {
+            "match_id": 0.0,
+            "confidence_calibration": 0.0
+          },
+          "avg_score": 0.0
+        },
+        {
+          "model_id": "openrouter/google/gemini-2.5-pro",
+          "step": "award_match",
+          "raw": "```json\n{\n  \"match_id\": \"261427-2025\",\n  \"confidence\": 9",
+          "parsed": null,
+          "error": "parse_failed",
+          "latency_s": 7.78,
+          "input_tokens": 785,
+          "output_tokens": 796,
+          "cost_usd": 0.0089,
+          "sample_id": "A7",
+          "label": "PL-12WOG-CONFOUNDER",
+          "scores": {
+            "match_id": 0.0,
+            "confidence_calibration": 0.0
+          },
+          "avg_score": 0.0
+        },
+        {
+          "model_id": "openrouter/google/gemini-2.5-pro",
+          "step": "award_match",
+          "raw": "```json\n{\n  \"match_id\": null,\n  \"confidence\": 100,\n  \"reasoning\":",
+          "parsed": null,
+          "error": "parse_failed",
+          "latency_s": 7.38,
+          "input_tokens": 773,
+          "output_tokens": 796,
+          "cost_usd": 0.0089,
+          "sample_id": "A8",
+          "label": "FR-Motorcycles-CONFOUNDER",
+          "scores": {
+            "match_id": 0.0,
+            "confidence_calibration": 0.0
+          },
+          "avg_score": 0.0
+        },
+        {
+          "model_id": "openrouter/google/gemini-2.5-pro",
+          "step": "award_match",
+          "raw": "```json\n{\n  \"match_id\": null,\n  \"confidence\": 0,\n  \"reasoning\": \"None of",
+          "parsed": null,
+          "error": "parse_failed",
+          "latency_s": 7.64,
+          "input_tokens": 769,
+          "output_tokens": 797,
+          "cost_usd": 0.0089,
+          "sample_id": "A9",
+          "label": "BE-99Tractors-NOMATCH",
+          "scores": {
+            "match_id": 0.0,
+            "confidence_calibration": 0.0
+          },
+          "avg_score": 0.0
+        },
+        {
+          "model_id": "openrouter/google/gemini-2.5-pro",
+          "step": "award_match",
+          "raw": "```json\n{\n  \"match_id\": null,\n  \"confidence\": 0,\n  \"reasoning\": \"None of the candidates",
+          "parsed": null,
+          "error": "parse_failed",
+          "latency_s": 7.11,
+          "input_tokens": 757,
+          "output_tokens": 796,
+          "cost_usd": 0.0089,
+          "sample_id": "A10",
+          "label": "UK-CommandoCraft-NOMATCH",
+          "scores": {
+            "match_id": 0.0,
+            "confidence_calibration": 0.0
+          },
+          "avg_score": 0.0
+        }
+      ],
+      "openrouter/anthropic/claude-haiku-4-5": [
+        {
+          "model_id": "openrouter/anthropic/claude-haiku-4-5",
+          "step": "award_match",
+          "raw": "```json\n{\n  \"match_id\": \"326948-2025\",\n  \"confidence\": 92,\n  \"reasoning\": \"Candidate 1 matches the closed tender on subject matter (Military Medical Trailers), buyer (Ministry of Defense NL), CPV codes (34220000 is shared), and publication timing (8 months after tender closure, within typical 0-18 month award notice window). The specificity of 'Role 1 & 2' medical trailers aligns with the medical focus of the tender.\"\n}\n```",
+          "parsed": {
+            "match_id": "326948-2025",
+            "confidence": 92,
+            "reasoning": "Candidate 1 matches the closed tender on subject matter (Military Medical Trailers), buyer (Ministry of Defense NL), CPV codes (34220000 is shared), and publication timing (8 months after tender closure, within typical 0-18 month award notice window). The specificity of 'Role 1 & 2' medical trailers aligns with the medical focus of the tender."
+          },
+          "error": null,
+          "latency_s": 2.17,
+          "input_tokens": 717,
+          "output_tokens": 127,
+          "cost_usd": 0.0061,
+          "sample_id": "A1",
+          "label": "NL-MedicalTrailers-MATCH",
+          "scores": {
+            "match_id": 1.0,
+            "confidence_calibration": 1.0
+          },
+          "avg_score": 1.0
+        },
+        {
+          "model_id": "openrouter/anthropic/claude-haiku-4-5",
+          "step": "award_match",
+          "raw": "```json\n{\n  \"match_id\": \"30130-2025\",\n  \"confidence\": 95,\n  \"reasoning\": \"Candidate 1 has identical title, authority, country, and CPV code as the closed tender. Its publication date (2025-01-16) is 70 days after the tender closure (2024-11-07), which falls within the typical 0–18 month award notice publication window, and it contains award winner information.\"\n}\n```",
+          "parsed": {
+            "match_id": "30130-2025",
+            "confidence": 95,
+            "reasoning": "Candidate 1 has identical title, authority, country, and CPV code as the closed tender. Its publication date (2025-01-16) is 70 days after the tender closure (2024-11-07), which falls within the typical 0–18 month award notice publication window, and it contains award winner information."
+          },
+          "error": null,
+          "latency_s": 1.93,
+          "input_tokens": 720,
+          "output_tokens": 112,
+          "cost_usd": 0.0058,
+          "sample_id": "A2",
+          "label": "CH-HeliumBottle-MATCH",
+          "scores": {
+            "match_id": 1.0,
+            "confidence_calibration": 1.0
+          },
+          "avg_score": 1.0
+        },
+        {
+          "model_id": "openrouter/anthropic/claude-haiku-4-5",
+          "step": "award_match",
+          "raw": "```json\n{\n  \"match_id\": \"254420-2025\",\n  \"confidence\": 85,\n  \"reasoning\": \"Candidate 1 matches the closed tender on subject matter (multifunctional engineering equipment and field lighting towers on trailers), same authority (Direzione Armamenti Terrestri), same country, overlapping CPV codes (34220000 primary), and plausible publication timing (8 months after tender closure). Minor title variation ('engineering' vs 'engineer') is typical between tender and award notices.\"\n}\n```",
+          "parsed": {
+            "match_id": "254420-2025",
+            "confidence": 85,
+            "reasoning": "Candidate 1 matches the closed tender on subject matter (multifunctional engineering equipment and field lighting towers on trailers), same authority (Direzione Armamenti Terrestri), same country, overlapping CPV codes (34220000 primary), and plausible publication timing (8 months after tender closure). Minor title variation ('engineering' vs 'engineer') is typical between tender and award notices."
+          },
+          "error": null,
+          "latency_s": 2.09,
+          "input_tokens": 695,
+          "output_tokens": 127,
+          "cost_usd": 0.006,
+          "sample_id": "A3",
+          "label": "IT-MultifunctionalEng-MATCH",
+          "scores": {
+            "match_id": 1.0,
+            "confidence_calibration": 1.0
+          },
+          "avg_score": 1.0
+        },
+        {
+          "model_id": "openrouter/anthropic/claude-haiku-4-5",
+          "step": "award_match",
+          "raw": "```json\n{\n  \"match_id\": \"119311-2025\",\n  \"confidence\": 85,\n  \"reasoning\": \"Candidate 1 matches the closed tender on subject matter (Heavy Platform/Cargo Trailers O4-PN-V for T-815), buyer (Czech MOD), CPV code (34223000), and publication timeline (7.5 months after tender closure). The title variation and award of PANAV, a.s. are consistent with an award notice for the same procurement.\"\n}\n```",
+          "parsed": {
+            "match_id": "119311-2025",
+            "confidence": 85,
+            "reasoning": "Candidate 1 matches the closed tender on subject matter (Heavy Platform/Cargo Trailers O4-PN-V for T-815), buyer (Czech MOD), CPV code (34223000), and publication timeline (7.5 months after tender closure). The title variation and award of PANAV, a.s. are consistent with an award notice for the same procurement."
+          },
+          "error": null,
+          "latency_s": 2.09,
+          "input_tokens": 707,
+          "output_tokens": 124,
+          "cost_usd": 0.006,
+          "sample_id": "A4",
+          "label": "CZ-HeavyPlatform-MATCH",
+          "scores": {
+            "match_id": 1.0,
+            "confidence_calibration": 1.0
+          },
+          "avg_score": 1.0
+        },
+        {
+          "model_id": "openrouter/anthropic/claude-haiku-4-5",
+          "step": "award_match",
+          "raw": "```json\n{\n  \"match_id\": \"18389-2020\",\n  \"confidence\": 92,\n  \"reasoning\": \"Candidate 1 has identical title and CPV code, same buyer (FMV/Försvarets materielverk), and publication date of 2020-01-14 is plausible 6.5 months after the closed tender's 2019-06-27 date. The winner (Hallinden Trailer AB) is documented, matching the expected award notice pattern.\"\n}\n```",
+          "parsed": {
+            "match_id": "18389-2020",
+            "confidence": 92,
+            "reasoning": "Candidate 1 has identical title and CPV code, same buyer (FMV/Försvarets materielverk), and publication date of 2020-01-14 is plausible 6.5 months after the closed tender's 2019-06-27 date. The winner (Hallinden Trailer AB) is documented, matching the expected award notice pattern."
+          },
+          "error": null,
+          "latency_s": 2.15,
+          "input_tokens": 670,
+          "output_tokens": 124,
+          "cost_usd": 0.0058,
+          "sample_id": "A5",
+          "label": "SE-BridgeKB8-MATCH",
+          "scores": {
+            "match_id": 1.0,
+            "confidence_calibration": 1.0
+          },
+          "avg_score": 1.0
+        },
+        {
+          "model_id": "openrouter/anthropic/claude-haiku-4-5",
+          "step": "award_match",
+          "raw": "```json\n{\n  \"match_id\": null,\n  \"confidence\": 15,\n  \"reasoning\": \"No candidate matches convincingly. Candidate 2 has the correct authority (BAAINBw), country, CPV, and timeframe, but its title references generic frame agreement for trailers without specifying '2-wheel 1t' as the target does. Candidates 1, 3, 4, and 5 have different weight classes or authorities that don't align with the specific '2-wheel 1t' military trailer procurement.\"\n}\n```",
+          "parsed": {
+            "match_id": null,
+            "confidence": 15,
+            "reasoning": "No candidate matches convincingly. Candidate 2 has the correct authority (BAAINBw), country, CPV, and timeframe, but its title references generic frame agreement for trailers without specifying '2-wheel 1t' as the target does. Candidates 1, 3, 4, and 5 have different weight classes or authorities that don't align with the specific '2-wheel 1t' military trailer procurement."
+          },
+          "error": null,
+          "latency_s": 2.15,
+          "input_tokens": 693,
+          "output_tokens": 131,
+          "cost_usd": 0.0061,
+          "sample_id": "A6",
+          "label": "DE-MOD-CONFOUNDER-NoMatch",
+          "scores": {
+            "match_id": 1.0,
+            "confidence_calibration": 1.0
+          },
+          "avg_score": 1.0
+        },
+        {
+          "model_id": "openrouter/anthropic/claude-haiku-4-5",
+          "step": "award_match",
+          "raw": "```json\n{\n  \"match_id\": \"261427-2025\",\n  \"confidence\": 92,\n  \"reasoning\": \"Candidate 1 matches the closed tender: identical buyer (12 WOJSKOWY ODDZIAŁ GOSPODARCZY), same CPV code (34220000), matching subject matter (transport trailers), and publication date of 2025-04-23 is 9 months after the tender closure (2024-07-18), which is a plausible award notice timeframe.\"\n}\n```",
+          "parsed": {
+            "match_id": "261427-2025",
+            "confidence": 92,
+            "reasoning": "Candidate 1 matches the closed tender: identical buyer (12 WOJSKOWY ODDZIAŁ GOSPODARCZY), same CPV code (34220000), matching subject matter (transport trailers), and publication date of 2025-04-23 is 9 months after the tender closure (2024-07-18), which is a plausible award notice timeframe."
+          },
+          "error": null,
+          "latency_s": 1.84,
+          "input_tokens": 711,
+          "output_tokens": 122,
+          "cost_usd": 0.006,
+          "sample_id": "A7",
+          "label": "PL-12WOG-CONFOUNDER",
+          "scores": {
+            "match_id": 1.0,
+            "confidence_calibration": 1.0
+          },
+          "avg_score": 1.0
+        },
+        {
+          "model_id": "openrouter/anthropic/claude-haiku-4-5",
+          "step": "award_match",
+          "raw": "```json\n{\n  \"match_id\": null,\n  \"confidence\": 5,\n  \"reasoning\": \"None of the candidates match the target procurement. The target seeks militarised off-road motorcycles (CPV 34410000, 34220000) from MINARM/TERRE/SIMMT/DDC. All candidates concern trailers, shelters, or other equipment, with different authorities and procurement dates that are either too early or temporally implausible relative to the February 2026 tender publication.\"\n}\n```",
+          "parsed": {
+            "match_id": null,
+            "confidence": 5,
+            "reasoning": "None of the candidates match the target procurement. The target seeks militarised off-road motorcycles (CPV 34410000, 34220000) from MINARM/TERRE/SIMMT/DDC. All candidates concern trailers, shelters, or other equipment, with different authorities and procurement dates that are either too early or temporally implausible relative to the February 2026 tender publication."
+          },
+          "error": null,
+          "latency_s": 2.15,
+          "input_tokens": 705,
+          "output_tokens": 123,
+          "cost_usd": 0.006,
+          "sample_id": "A8",
+          "label": "FR-Motorcycles-CONFOUNDER",
+          "scores": {
+            "match_id": 1.0,
+            "confidence_calibration": 1.0
+          },
+          "avg_score": 1.0
+        },
+        {
+          "model_id": "openrouter/anthropic/claude-haiku-4-5",
+          "step": "award_match",
+          "raw": "```json\n{\n  \"match_id\": null,\n  \"confidence\": 5,\n  \"reasoning\": \"No candidate matches the closed tender. Candidate 1 involves 780 military trailers (different quantity and scope than 99 tractors + 94 semitrailers). Candidates 2–5 involve fuel tanks/aircraft refuelling systems, which do not align with the tractor and territorial semitrailer procurement described in the target.\"\n}\n```",
+          "parsed": {
+            "match_id": null,
+            "confidence": 5,
+            "reasoning": "No candidate matches the closed tender. Candidate 1 involves 780 military trailers (different quantity and scope than 99 tractors + 94 semitrailers). Candidates 2–5 involve fuel tanks/aircraft refuelling systems, which do not align with the tractor and territorial semitrailer procurement described in the target."
+          },
+          "error": null,
+          "latency_s": 1.89,
+          "input_tokens": 693,
+          "output_tokens": 110,
+          "cost_usd": 0.0057,
+          "sample_id": "A9",
+          "label": "BE-99Tractors-NOMATCH",
+          "scores": {
+            "match_id": 1.0,
+            "confidence_calibration": 1.0
+          },
+          "avg_score": 1.0
+        },
+        {
+          "model_id": "openrouter/anthropic/claude-haiku-4-5",
+          "step": "award_match",
+          "raw": "```json\n{\n  \"match_id\": null,\n  \"confidence\": 5,\n  \"reasoning\": \"No candidate matches the closed tender. The target concerns 'Commando Raiding Craft Trailers' for Royal Marines (specific operational purpose, Feb 2024), while all candidates refer to generic trailers (Box, Heavy Technical, Tractor) published 6-18 months after the target with no Royal Marines authority specified. Subject matter is fundamentally different.\"\n}\n```",
+          "parsed": {
+            "match_id": null,
+            "confidence": 5,
+            "reasoning": "No candidate matches the closed tender. The target concerns 'Commando Raiding Craft Trailers' for Royal Marines (specific operational purpose, Feb 2024), while all candidates refer to generic trailers (Box, Heavy Technical, Tractor) published 6-18 months after the target with no Royal Marines authority specified. Subject matter is fundamentally different."
+          },
+          "error": null,
+          "latency_s": 2.0,
+          "input_tokens": 679,
+          "output_tokens": 113,
+          "cost_usd": 0.0057,
+          "sample_id": "A10",
+          "label": "UK-CommandoCraft-NOMATCH",
+          "scores": {
+            "match_id": 1.0,
+            "confidence_calibration": 1.0
+          },
+          "avg_score": 1.0
+        }
+      ],
+      "openrouter/mistralai/mistral-large": [
+        {
+          "model_id": "openrouter/mistralai/mistral-large",
+          "step": "award_match",
+          "raw": "```json\n{\n  \"match_id\": \"326948-2025\",\n  \"confidence\": 95,\n  \"reasoning\": \"Identical subject matter (Military Medical Trailers), same authority (Ministry of Defence/Defense NL), and plausible publication date (8 months after closed tender).\"\n}\n```",
+          "parsed": {
+            "match_id": "326948-2025",
+            "confidence": 95,
+            "reasoning": "Identical subject matter (Military Medical Trailers), same authority (Ministry of Defence/Defense NL), and plausible publication date (8 months after closed tender)."
+          },
+          "error": null,
+          "latency_s": 1.61,
+          "input_tokens": 774,
+          "output_tokens": 75,
+          "cost_usd": 0.002,
+          "sample_id": "A1",
+          "label": "NL-MedicalTrailers-MATCH",
+          "scores": {
+            "match_id": 1.0,
+            "confidence_calibration": 1.0
+          },
+          "avg_score": 1.0
+        },
+        {
+          "model_id": "openrouter/mistralai/mistral-large",
+          "step": "award_match",
+          "raw": "```json\n{\n  \"match_id\": \"30130-2025\",\n  \"confidence\": 98,\n  \"reasoning\": \"Identical title, authority, CPV code, and a plausible publication date (2 months after the closed tender).\"\n}\n```",
+          "parsed": {
+            "match_id": "30130-2025",
+            "confidence": 98,
+            "reasoning": "Identical title, authority, CPV code, and a plausible publication date (2 months after the closed tender)."
+          },
+          "error": null,
+          "latency_s": 1.56,
+          "input_tokens": 772,
+          "output_tokens": 63,
+          "cost_usd": 0.0019,
+          "sample_id": "A2",
+          "label": "CH-HeliumBottle-MATCH",
+          "scores": {
+            "match_id": 1.0,
+            "confidence_calibration": 1.0
+          },
+          "avg_score": 1.0
+        },
+        {
+          "model_id": "openrouter/mistralai/mistral-large",
+          "step": "award_match",
+          "raw": "```json\n{\n  \"match_id\": \"254420-2025\",\n  \"confidence\": 95,\n  \"reasoning\": \"Identical subject matter (multifunctional engineer equipment and field lighting towers on trailers), same authority (Direzione Armamenti Terrestri), and plausible publication date (8 months after the closed tender).\"\n}\n```",
+          "parsed": {
+            "match_id": "254420-2025",
+            "confidence": 95,
+            "reasoning": "Identical subject matter (multifunctional engineer equipment and field lighting towers on trailers), same authority (Direzione Armamenti Terrestri), and plausible publication date (8 months after the closed tender)."
+          },
+          "error": null,
+          "latency_s": 2.15,
+          "input_tokens": 762,
+          "output_tokens": 82,
+          "cost_usd": 0.002,
+          "sample_id": "A3",
+          "label": "IT-MultifunctionalEng-MATCH",
+          "scores": {
+            "match_id": 1.0,
+            "confidence_calibration": 1.0
+          },
+          "avg_score": 1.0
+        },
+        {
+          "model_id": "openrouter/mistralai/mistral-large",
+          "step": "award_match",
+          "raw": "```json\n{\n  \"match_id\": \"119311-2025\",\n  \"confidence\": 95,\n  \"reasoning\": \"Identical subject matter (Heavy Platform Trailers O4-PN-V for T-815), same authority, and plausible publication date (8 months after closed tender).\"\n}\n```",
+          "parsed": {
+            "match_id": "119311-2025",
+            "confidence": 95,
+            "reasoning": "Identical subject matter (Heavy Platform Trailers O4-PN-V for T-815), same authority, and plausible publication date (8 months after closed tender)."
+          },
+          "error": null,
+          "latency_s": 1.53,
+          "input_tokens": 759,
+          "output_tokens": 76,
+          "cost_usd": 0.002,
+          "sample_id": "A4",
+          "label": "CZ-HeavyPlatform-MATCH",
+          "scores": {
+            "match_id": 1.0,
+            "confidence_calibration": 1.0
+          },
+          "avg_score": 1.0
+        },
+        {
+          "model_id": "openrouter/mistralai/mistral-large",
+          "step": "award_match",
+          "raw": "```json\n{\n  \"match_id\": \"18389-2020\",\n  \"confidence\": 95,\n  \"reasoning\": \"Identical subject matter (Bridge Transport Semi-trailers KB8), same authority (FMV), and plausible publication date (6 months after the closed tender).\"\n}\n```",
+          "parsed": {
+            "match_id": "18389-2020",
+            "confidence": 95,
+            "reasoning": "Identical subject matter (Bridge Transport Semi-trailers KB8), same authority (FMV), and plausible publication date (6 months after the closed tender)."
+          },
+          "error": null,
+          "latency_s": 1.82,
+          "input_tokens": 738,
+          "output_tokens": 72,
+          "cost_usd": 0.0019,
+          "sample_id": "A5",
+          "label": "SE-BridgeKB8-MATCH",
+          "scores": {
+            "match_id": 1.0,
+            "confidence_calibration": 1.0
+          },
+          "avg_score": 1.0
+        },
+        {
+          "model_id": "openrouter/mistralai/mistral-large",
+          "step": "award_match",
+          "raw": "```json\n{\n  \"match_id\": \"719142-2025\",\n  \"confidence\": 90,\n  \"reasoning\": \"Same authority (BAAINBw), matching CPV, and title explicitly mentions 'Frame Agreement' and 'Trailers', aligning with the closed tender's subject matter and timing.\"\n}\n```",
+          "parsed": {
+            "match_id": "719142-2025",
+            "confidence": 90,
+            "reasoning": "Same authority (BAAINBw), matching CPV, and title explicitly mentions 'Frame Agreement' and 'Trailers', aligning with the closed tender's subject matter and timing."
+          },
+          "error": null,
+          "latency_s": 1.88,
+          "input_tokens": 761,
+          "output_tokens": 77,
+          "cost_usd": 0.002,
+          "sample_id": "A6",
+          "label": "DE-MOD-CONFOUNDER-NoMatch",
+          "scores": {
+            "match_id": 0.0,
+            "confidence_calibration": 0.0
+          },
+          "avg_score": 0.0
+        },
+        {
+          "model_id": "openrouter/mistralai/mistral-large",
+          "step": "award_match",
+          "raw": "```json\n{\n  \"match_id\": \"261427-2025\",\n  \"confidence\": 95,\n  \"reasoning\": \"Identical subject matter (transport trailers), same authority, and plausible publication date (9 months after the closed tender).\"\n}\n```",
+          "parsed": {
+            "match_id": "261427-2025",
+            "confidence": 95,
+            "reasoning": "Identical subject matter (transport trailers), same authority, and plausible publication date (9 months after the closed tender)."
+          },
+          "error": null,
+          "latency_s": 1.53,
+          "input_tokens": 782,
+          "output_tokens": 65,
+          "cost_usd": 0.002,
+          "sample_id": "A7",
+          "label": "PL-12WOG-CONFOUNDER",
+          "scores": {
+            "match_id": 1.0,
+            "confidence_calibration": 1.0
+          },
+          "avg_score": 1.0
+        },
+        {
+          "model_id": "openrouter/mistralai/mistral-large",
+          "step": "award_match",
+          "raw": "```json\n{\n  \"match_id\": null,\n  \"confidence\": 20,\n  \"reasoning\": \"No candidate matches the subject matter (militarised off-road motorcycles) or the specific authority (MINARM/TERRE/SIMMT/DDC), and none align well on CPV codes or timeline.\"\n}\n```",
+          "parsed": {
+            "match_id": null,
+            "confidence": 20,
+            "reasoning": "No candidate matches the subject matter (militarised off-road motorcycles) or the specific authority (MINARM/TERRE/SIMMT/DDC), and none align well on CPV codes or timeline."
+          },
+          "error": null,
+          "latency_s": 1.94,
+          "input_tokens": 769,
+          "output_tokens": 72,
+          "cost_usd": 0.002,
+          "sample_id": "A8",
+          "label": "FR-Motorcycles-CONFOUNDER",
+          "scores": {
+            "match_id": 1.0,
+            "confidence_calibration": 1.0
+          },
+          "avg_score": 1.0
+        },
+        {
+          "model_id": "openrouter/mistralai/mistral-large",
+          "step": "award_match",
+          "raw": "```json\n{\n  \"match_id\": \"245184-2024\",\n  \"confidence\": 90,\n  \"reasoning\": \"Same authority (Ministerie van Landsverdediging), overlapping CPV (34220000), and plausible timeline (2 months after closed tender). Subject matter aligns with semitrailers.\"\n}\n```",
+          "parsed": {
+            "match_id": "245184-2024",
+            "confidence": 90,
+            "reasoning": "Same authority (Ministerie van Landsverdediging), overlapping CPV (34220000), and plausible timeline (2 months after closed tender). Subject matter aligns with semitrailers."
+          },
+          "error": null,
+          "latency_s": 1.85,
+          "input_tokens": 765,
+          "output_tokens": 85,
+          "cost_usd": 0.002,
+          "sample_id": "A9",
+          "label": "BE-99Tractors-NOMATCH",
+          "scores": {
+            "match_id": 0.0,
+            "confidence_calibration": 0.0
+          },
+          "avg_score": 0.0
+        },
+        {
+          "model_id": "openrouter/mistralai/mistral-large",
+          "step": "award_match",
+          "raw": "```json\n{\n  \"match_id\": null,\n  \"confidence\": 70,\n  \"reasoning\": \"No candidate matches the specific subject matter (Commando Raiding Craft Trailers) or aligns closely with the Royal Marines' procurement context.\"\n}\n```",
+          "parsed": {
+            "match_id": null,
+            "confidence": 70,
+            "reasoning": "No candidate matches the specific subject matter (Commando Raiding Craft Trailers) or aligns closely with the Royal Marines' procurement context."
+          },
+          "error": null,
+          "latency_s": 1.63,
+          "input_tokens": 752,
+          "output_tokens": 57,
+          "cost_usd": 0.0018,
+          "sample_id": "A10",
+          "label": "UK-CommandoCraft-NOMATCH",
+          "scores": {
+            "match_id": 1.0,
+            "confidence_calibration": 0.5
+          },
+          "avg_score": 0.75
+        }
+      ]
+    }
+  }
+}

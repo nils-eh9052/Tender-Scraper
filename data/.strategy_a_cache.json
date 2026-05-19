@@ -1,0 +1,69 @@
+{
+  "432811-2024:gpt-4o": {
+    "specs": {
+      "trailer_types": [],
+      "fuel_type": null,
+      "drive_type": null,
+      "coupling_type": null,
+      "additional_equipment": [],
+      "standards": [],
+      "confidence": 0,
+      "source_doc_title": "Poland – Trailers and semi-trailers – DOSTAWA PRZYCZEP TRANSPORTOWYCH DUŻEJ, ŚREDNIEJ I MAŁEJ ŁADOWNOŚCI",
+      "notes": "The document text did not provide specific information about trailer specifications. It appears to be focused on procurement of construction materials rather than trailers and vehicles."
+    },
+    "source_url": "https://ezamowienia.gov.pl/mo-client-board/bzp/notice-details/id/08deb285-d565-96cb-5fad-9500011ffe69"
+  },
+  "261427-2025:gpt-4o": {
+    "specs": {
+      "trailer_types": [
+        {
+          "type": "General-purpose trailer",
+          "qty": null,
+          "mass_t": null,
+          "length_mm": null,
+          "width_mm": null,
+          "height_mm": null,
+          "axle_load_t": null,
+          "payload_t": null
+        }
+      ],
+      "fuel_type": null,
+      "drive_type": null,
+      "coupling_type": null,
+      "additional_equipment": [],
+      "standards": [],
+      "confidence": 0,
+      "source_doc_title": "2026/BZP 00135097/01_bzp_notice.txt",
+      "notes": "The document does not provide any detailed specifications about the trailers. It is focused on transportation services, not equipment procurement."
+    },
+    "source_url": "https://ezamowienia.gov.pl/mo-client-board/bzp/notice-details/id/08de7858-93e5-d930-056e-e50001ac0d18"
+  },
+  "736943-2024:gpt-4o": {
+    "specs": {
+      "trailer_types": [
+        {
+          "type": "trailer integrated with mobility for tracking radar system",
+          "qty": null,
+          "mass_t": null,
+          "length_mm": null,
+          "width_mm": null,
+          "height_mm": null,
+          "axle_load_t": null,
+          "payload_t": null
+        }
+      ],
+      "fuel_type": null,
+      "drive_type": null,
+      "coupling_type": "other",
+      "additional_equipment": [
+        "Doppler radar system",
+        "training for personnel"
+      ],
+      "standards": [],
+      "confidence": 30,
+      "source_doc_title": "Polska – Radar – Śledzący radarowy system pomiarowy",
+      "notes": "The document provides limited information on the trailer specifications aside from its use for radar system mobility. Coupling type inferred as 'other' based on 'hak samochodowy'."
+    },
+    "source_url": "https://ezamowienia.gov.pl/mo-client-board/bzp/notice-details/id/08de4f1d-3cb5-56d9-d6d3-f500016a11b1"
+  }
+}

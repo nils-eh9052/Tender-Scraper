@@ -39,25 +39,15 @@ ROOT = Path(__file__).parent.parent
 sys.path.insert(0, str(ROOT))
 
 
-def _load_env() -> None:
-    p = ROOT / ".env"
-    if not p.exists():
-        return
-    for line in p.read_text(encoding="utf-8").splitlines():
-        line = line.strip()
-        if not line or line.startswith("#") or "=" not in line:
-            continue
-        k, _, v = line.partition("=")
-        k, v = k.strip(), v.strip().strip('"').strip("'")
-        if v and not os.environ.get(k):
-            os.environ[k] = v
-    if not os.environ.get("ANTHROPIC_API_KEY") and os.environ.get("LLM_ANTHROPIC_API_KEY"):
-        os.environ["ANTHROPIC_API_KEY"] = os.environ["LLM_ANTHROPIC_API_KEY"]
-    if not os.environ.get("OPENROUTER_API_KEY") and os.environ.get("LLM_OPENROUTER_API_KEY"):
-        os.environ["OPENROUTER_API_KEY"] = os.environ["LLM_OPENROUTER_API_KEY"]
+# Workspace-aware .env loading (workspace-root .env.local + repo-local .env).
+from src.env_loader import load_env_chain  # noqa: E402
+load_env_chain(repo_root=ROOT)
 
+# llm_router reads OPENROUTER_API_KEY or LLM_OPENROUTER_API_KEY — alias here
+# for compatibility with callers that only set the legacy name.
+if not os.environ.get("OPENROUTER_API_KEY") and os.environ.get("LLM_OPENROUTER_API_KEY"):
+    os.environ["OPENROUTER_API_KEY"] = os.environ["LLM_OPENROUTER_API_KEY"]
 
-_load_env()
 from src.llm_router import call_with_usage, estimate_cost_usd  # noqa: E402
 
 logging.basicConfig(level=logging.INFO, format="%(levelname)s %(message)s")

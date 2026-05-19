@@ -1,0 +1,1898 @@
+{
+  "https://ted.europa.eu/en/notice/-/detail/182178-2026": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:19+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/572650-2024": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:20+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/326948-2025": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:20+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/726774-2024": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:20+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/245184-2024": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:21+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/530666-2024": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:21+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/537199-2024": {
+    "status": "dead",
+    "http_code": 429,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:21+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/345761-2025": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:21+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/749251-2025": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:21+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/432811-2024": {
+    "status": "dead",
+    "http_code": 429,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:21+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/488694-2022": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:22+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/95616-2026": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:22+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/83387-2024": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:22+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/255376-2025": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:22+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/118630-2024": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:23+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/283775-2022": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:23+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/207812-2024": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:23+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/553507-2023": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:23+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/798124-2025": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:24+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/465260-2025": {
+    "status": "dead",
+    "http_code": 429,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:24+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/711549-2022": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:24+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/682847-2024": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:24+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/188150-2024": {
+    "status": "dead",
+    "http_code": 429,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:24+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/775798-2024": {
+    "status": "dead",
+    "http_code": 429,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:24+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/212474-2026": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:25+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/231675-2021": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:25+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/719142-2025": {
+    "status": "dead",
+    "http_code": 429,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:25+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/18174-2025": {
+    "status": "dead",
+    "http_code": 429,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:25+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/3730-2025": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:25+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/734326-2023": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:26+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/77247-2026": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:26+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/13179-2023": {
+    "status": "dead",
+    "http_code": 429,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:27+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/813306-2025": {
+    "status": "dead",
+    "http_code": 429,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:27+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/309470-2022": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:27+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/467088-2025": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:27+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/751810-2024": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:27+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/119311-2025": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:27+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/751287-2024": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:28+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/385446-2024": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:28+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/132540-2025": {
+    "status": "dead",
+    "http_code": 429,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:28+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/678662-2024": {
+    "status": "dead",
+    "http_code": 429,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:28+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/129915-2025": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:28+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/582377-2025": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:29+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/493986-2024": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:29+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/386007-2024": {
+    "status": "dead",
+    "http_code": 429,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:29+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/30130-2025": {
+    "status": "dead",
+    "http_code": 429,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:29+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/254420-2025": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:29+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/590889-2025": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:29+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/620674-2024": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:30+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/152406-2025": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:30+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/466852-2018": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:30+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/299270-2019": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:30+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/18389-2020": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:31+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/655783-2024": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:31+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/147849-2021": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:31+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/158253-2020": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:31+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/161385-2021": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:32+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/510836-2017": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:32+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/129337-2017": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:32+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/583390-2025": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:32+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/607291-2021": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:33+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/660912-2024": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:33+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/261427-2025": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:33+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/23089-2024": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:33+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/782671-2023": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:34+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/140259-2025": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:34+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/449529-2018": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:34+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/567897-2019": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:34+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/485935-2022": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:35+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/467733-2020": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:35+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/425325-2019": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:35+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/416123-2016": {
+    "status": "dead",
+    "http_code": 429,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:35+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/25210-2020": {
+    "status": "dead",
+    "http_code": 429,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:35+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/343264-2018": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:35+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/168172-2018": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:36+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/504718-2017": {
+    "status": "dead",
+    "http_code": 429,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:36+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/309374-2017": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:36+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/98678-2017": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:36+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/280104-2023": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:36+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/172885-2022": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:37+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/520851-2023": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:37+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/150584-2017": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:37+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/222647-2022": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:37+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/174181-2019": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:38+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/476399-2023": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:38+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/433510-2022": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:38+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/586629-2020": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:38+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/236275-2019": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:39+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/533765-2019": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:39+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/437702-2018": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:39+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/109414-2018": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:39+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/302549-2020": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:39+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/140710-2026": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:40+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/236276-2019": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:40+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/143718-2018": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:40+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/320781-2017": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:41+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/561333-2024": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:41+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/796372-2025": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:41+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/351531-2025": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:41+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/40574-2017": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:41+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/224545-2026": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:42+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/158377-2020": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:42+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/602000-2024": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:42+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/185625-2018": {
+    "status": "dead",
+    "http_code": 429,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:43+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/287015-2018": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:43+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/218375-2020": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:43+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/444390-2018": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:43+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/72106-2017": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:43+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/222221-2019": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:44+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/29224-2021": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:44+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/66554-2018": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:44+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/550168-2018": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:44+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/287476-2018": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:45+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/517828-2017": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:45+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/335687-2017": {
+    "status": "dead",
+    "http_code": 429,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:45+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/451829-2023": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:45+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/442117-2023": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:45+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/204192-2016": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:46+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/278489-2016": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:46+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/129023-2016": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:46+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/453347-2020": {
+    "status": "dead",
+    "http_code": 429,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:47+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/49638-2019": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:47+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/665246-2021": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:47+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/504725-2018": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:47+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/61174-2019": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:47+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/300549-2017": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:48+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/290522-2018": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:48+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/103251-2026": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:48+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/282269-2023": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:49+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/245779-2019": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:49+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/462506-2021": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:49+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/438372-2024": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:49+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/153265-2024": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:49+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/151800-2025": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:50+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/748301-2024": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:50+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/726196-2024": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:50+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/472604-2022": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:50+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/377722-2023": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:51+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/303464-2022": {
+    "status": "dead",
+    "http_code": 429,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:51+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/602563-2023": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:51+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/72803-2022": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:51+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/192334-2020": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:51+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/619861-2019": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:52+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/648482-2021": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:52+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/344292-2025": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:52+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/544760-2024": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:52+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/538598-2019": {
+    "status": "dead",
+    "http_code": 429,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:53+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/568054-2023": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:53+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/381122-2019": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:53+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/252675-2024": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:53+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/126999-2021": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:54+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/502486-2022": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:54+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/156274-2020": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:54+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/473074-2022": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:55+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/44748-2019": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:55+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/437386-2019": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:55+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/272850-2020": {
+    "status": "dead",
+    "http_code": 429,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:55+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/580921-2021": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:55+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/140196-2020": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:56+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/433505-2022": {
+    "status": "dead",
+    "http_code": 429,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:56+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/285082-2017": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:56+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/477775-2024": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:56+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/93778-2018": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:56+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/698416-2024": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:56+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/736943-2024": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:57+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/288875-2024": {
+    "status": "dead",
+    "http_code": 429,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:57+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/207385-2026": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:57+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/268303-2016": {
+    "status": "dead",
+    "http_code": 429,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:57+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/21951-2023": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:57+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/53033-2024": {
+    "status": "dead",
+    "http_code": 429,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:57+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/431698-2023": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:58+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/529820-2020": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:58+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/664066-2022": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:58+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/108413-2022": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:58+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/283527-2018": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:58+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/53287-2024": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:59+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/62507-2024": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:59+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/623704-2021": {
+    "status": "dead",
+    "http_code": 429,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:59+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/790433-2023": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:32:59+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/479229-2017": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:33:00+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/384070-2017": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:33:00+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/444456-2025": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:33:00+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/265191-2018": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:33:00+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/176779-2019": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:33:01+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/433838-2023": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:33:01+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/312763-2020": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:33:01+00:00"
+  },
+  "https://ted.europa.eu/en/notice/-/detail/4819-2021": {
+    "status": "dead",
+    "http_code": 429,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:33:01+00:00"
+  },
+  "https://www.contractsfinder.service.gov.uk/Notice/a56e62c1-b5d0-4ab4-a903-3ca87ef1c3ab": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:33:02+00:00"
+  },
+  "https://www.contractsfinder.service.gov.uk/Notice/4b5d7b73-b431-4bc0-aa0c-f6678bd6e161": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:33:02+00:00"
+  },
+  "https://www.contractsfinder.service.gov.uk/Notice/112fb8e4-cae9-4162-82ba-a6968286b34d": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:33:02+00:00"
+  },
+  "https://www.contractsfinder.service.gov.uk/Notice/32d1d651-dcfa-4711-a2e6-355ab82d08df": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:33:03+00:00"
+  },
+  "https://www.contractsfinder.service.gov.uk/Notice/9b5c88a9-9898-4215-8ea4-0d92e521c23b": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:33:03+00:00"
+  },
+  "https://www.contractsfinder.service.gov.uk/Notice/9903aa21-d0bd-4a15-ad84-628277e80ab1": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:33:03+00:00"
+  },
+  "https://www.boamp.fr/pages/avis/?q=idweb:21-163372": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:33:04+00:00"
+  },
+  "https://www.boamp.fr/pages/avis/?q=idweb:21-76485": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:33:04+00:00"
+  },
+  "https://www.boamp.fr/pages/avis/?q=idweb:21-38939": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:33:04+00:00"
+  },
+  "https://www.boamp.fr/pages/avis/?q=idweb:19-90275": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:33:04+00:00"
+  },
+  "https://www.boamp.fr/pages/avis/?q=idweb:17-20328": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:33:04+00:00"
+  },
+  "https://www.boamp.fr/pages/avis/?q=idweb:17-11123": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:33:05+00:00"
+  },
+  "https://www.boamp.fr/pages/avis/?q=idweb:16-11519": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:33:06+00:00"
+  },
+  "https://www.boamp.fr/pages/avis/?q=idweb:15-186837": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:33:06+00:00"
+  },
+  "https://www.boamp.fr/pages/avis/?q=idweb:15-46366": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:33:06+00:00"
+  },
+  "https://www.boamp.fr/pages/avis/?q=idweb:19-11984": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:33:07+00:00"
+  },
+  "https://www.boamp.fr/pages/avis/?q=idweb:18-127112": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:33:07+00:00"
+  },
+  "https://www.boamp.fr/pages/avis/?q=idweb:17-95354": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:33:07+00:00"
+  },
+  "https://www.boamp.fr/pages/avis/?q=idweb:17-125671": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:33:07+00:00"
+  },
+  "https://doffin.no/notices/2023-312913": {
+    "status": "alive",
+    "http_code": 206,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:33:08+00:00"
+  },
+  "https://doffin.no/notices/2021-338906": {
+    "status": "alive",
+    "http_code": 206,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:33:09+00:00"
+  },
+  "https://doffin.no/notices/2021-307144": {
+    "status": "alive",
+    "http_code": 206,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:33:09+00:00"
+  },
+  "https://riigihanked.riik.ee/rhr-web/#/procurement/e7bea398-bdab-48f6-aa92-7a15a091c98b": {
+    "status": "alive",
+    "http_code": 206,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:33:09+00:00"
+  },
+  "https://riigihanked.riik.ee/rhr-web/#/procurement/56bb148e-3a67-445c-9f37-efed40677d41": {
+    "status": "alive",
+    "http_code": 206,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:33:09+00:00"
+  },
+  "https://riigihanked.riik.ee/rhr-web/#/procurement/7825c9a9-5907-4b95-ac37-c178c560b1a9": {
+    "status": "alive",
+    "http_code": 206,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:33:09+00:00"
+  },
+  "https://canadabuys.canada.ca/en/tender-opportunities/tender-notice/W6399-25-LS78/B": {
+    "status": "dead",
+    "http_code": 404,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:33:10+00:00"
+  },
+  "https://canadabuys.canada.ca/en/tender-opportunities/tender-notice/W8476-267037/A": {
+    "status": "auth_walled",
+    "http_code": 403,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:33:11+00:00"
+  },
+  "https://canadabuys.canada.ca/en/tender-opportunities/tender-notice/W8476-267046/A": {
+    "status": "auth_walled",
+    "http_code": 403,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:33:11+00:00"
+  },
+  "https://canadabuys.canada.ca/en/tender-opportunities/tender-notice/W8476-256950/B": {
+    "status": "dead",
+    "http_code": 404,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:33:12+00:00"
+  },
+  "https://canadabuys.canada.ca/en/tender-opportunities/tender-notice/W8476-267032/A": {
+    "status": "auth_walled",
+    "http_code": 403,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:33:13+00:00"
+  },
+  "https://canadabuys.canada.ca/en/tender-opportunities/tender-notice/W8476-267028/A": {
+    "status": "auth_walled",
+    "http_code": 403,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:33:13+00:00"
+  },
+  "https://canadabuys.canada.ca/en/tender-opportunities/tender-notice/W8476-256981/B": {
+    "status": "dead",
+    "http_code": 404,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:33:14+00:00"
+  },
+  "https://canadabuys.canada.ca/en/tender-opportunities/tender-notice/W8476-267047/A": {
+    "status": "auth_walled",
+    "http_code": 403,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:33:14+00:00"
+  },
+  "https://canadabuys.canada.ca/en/tender-opportunities/tender-notice/W8485-258574/A": {
+    "status": "auth_walled",
+    "http_code": 403,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:33:15+00:00"
+  },
+  "https://canadabuys.canada.ca/en/tender-opportunities/tender-notice/W8476-267045/A": {
+    "status": "dead",
+    "http_code": 404,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:33:16+00:00"
+  },
+  "https://canadabuys.canada.ca/en/tender-opportunities/tender-notice/W8476-267094/A": {
+    "status": "dead",
+    "http_code": 404,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:33:16+00:00"
+  },
+  "https://canadabuys.canada.ca/en/tender-opportunities/tender-notice/W6399-26-LW25/A": {
+    "status": "auth_walled",
+    "http_code": 403,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:33:17+00:00"
+  },
+  "https://canadabuys.canada.ca/en/tender-opportunities/tender-notice/W8476-267092/A": {
+    "status": "dead",
+    "http_code": 404,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:33:18+00:00"
+  },
+  "https://canadabuys.canada.ca/en/tender-opportunities/tender-notice/W8476-256981/C": {
+    "status": "dead",
+    "http_code": 404,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:33:19+00:00"
+  },
+  "https://canadabuys.canada.ca/en/tender-opportunities/tender-notice/W8476-267141": {
+    "status": "dead",
+    "http_code": 404,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:33:19+00:00"
+  },
+  "https://canadabuys.canada.ca/en/tender-opportunities/tender-notice/W8476-267138/A": {
+    "status": "dead",
+    "http_code": 404,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:33:20+00:00"
+  },
+  "https://canadabuys.canada.ca/en/tender-opportunities/tender-notice/W8485-258574/B": {
+    "status": "dead",
+    "http_code": 404,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:33:21+00:00"
+  },
+  "https://canadabuys.canada.ca/en/tender-opportunities/tender-notice/W8476-267147/A": {
+    "status": "auth_walled",
+    "http_code": 403,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:33:22+00:00"
+  },
+  "https://canadabuys.canada.ca/en/tender-opportunities/tender-notice/W8476-26M292/A": {
+    "status": "auth_walled",
+    "http_code": 403,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:33:22+00:00"
+  },
+  "https://nen.nipez.cz/en/verejne-zakazky/p:vz:query=p%C5%99%C3%ADv%C4%9Bs/detail-zakazky/N006-26-V00010428": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:33:25+00:00"
+  },
+  "https://nen.nipez.cz/en/verejne-zakazky/p:vz:query=p%C5%99%C3%ADv%C4%9Bs/detail-zakazky/N006-22-V00026975": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:33:27+00:00"
+  },
+  "https://nen.nipez.cz/en/verejne-zakazky/p:vz:query=p%C5%99%C3%ADv%C4%9Bs/detail-zakazky/N006-26-V00008881": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:33:28+00:00"
+  },
+  "https://nen.nipez.cz/en/verejne-zakazky/p:vz:query=p%C5%99%C3%ADv%C4%9Bs/detail-zakazky/N006-26-V00005076": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:33:30+00:00"
+  },
+  "https://nen.nipez.cz/en/verejne-zakazky/p:vz:query=n%C3%A1v%C4%9Bs/detail-zakazky/N006-26-V00000758": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:33:32+00:00"
+  },
+  "https://nen.nipez.cz/en/verejne-zakazky/p:vz:query=n%C3%A1v%C4%9Bs/detail-zakazky/N006-24-V00015605": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:33:33+00:00"
+  },
+  "https://nen.nipez.cz/en/verejne-zakazky/p:vz:query=n%C3%A1v%C4%9Bs/detail-zakazky/N006-25-V00014955": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:33:35+00:00"
+  },
+  "https://nen.nipez.cz/en/verejne-zakazky/p:vz:query=n%C3%A1v%C4%9Bs/detail-zakazky/N006-25-V00006089": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:33:37+00:00"
+  },
+  "https://nen.nipez.cz/en/verejne-zakazky/p:vz:query=n%C3%A1v%C4%9Bs/detail-zakazky/N006-23-V00001906": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:33:39+00:00"
+  },
+  "https://nen.nipez.cz/en/verejne-zakazky/p:vz:query=podvaln%C3%ADk/detail-zakazky/N006-25-V00015642": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:33:41+00:00"
+  },
+  "https://nen.nipez.cz/en/verejne-zakazky/p:vz:query=podvaln%C3%ADk/detail-zakazky/N006-23-V00000559": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:33:43+00:00"
+  },
+  "https://nen.nipez.cz/en/verejne-zakazky/p:vz:query=podvaln%C3%ADk/detail-zakazky/N006-24-V00016218": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:33:44+00:00"
+  },
+  "https://nen.nipez.cz/en/verejne-zakazky/p:vz:query=podvaln%C3%ADk/detail-zakazky/N006-23-V00017787": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:33:46+00:00"
+  },
+  "https://nen.nipez.cz/en/verejne-zakazky/p:vz:query=podvaln%C3%ADk/detail-zakazky/N006-22-V00016712": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:33:48+00:00"
+  },
+  "https://nen.nipez.cz/en/verejne-zakazky/p:vz:query=poln%C3%AD%20kuchyn%C4%9B/detail-zakazky/N006-22-V00026992": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:33:49+00:00"
+  },
+  "https://nen.nipez.cz/en/verejne-zakazky/p:vz:query=poln%C3%AD%20kuchyn%C4%9B/detail-zakazky/N006-22-V00027001": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:33:51+00:00"
+  },
+  "https://nen.nipez.cz/en/verejne-zakazky/p:vz:query=poln%C3%AD%20kuchyn%C4%9B/detail-zakazky/N006-25-V00002312": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:33:53+00:00"
+  },
+  "https://nen.nipez.cz/en/verejne-zakazky/p:vz:query=poln%C3%AD%20kuchyn%C4%9B/detail-zakazky/N006-25-V00002308": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:33:55+00:00"
+  },
+  "https://nen.nipez.cz/en/verejne-zakazky/p:vz:query=poln%C3%AD%20kuchyn%C4%9B/detail-zakazky/N006-24-V00040322": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:33:57+00:00"
+  },
+  "https://nen.nipez.cz/en/verejne-zakazky/p:vz:query=poln%C3%AD%20kuchyn%C4%9B/detail-zakazky/N006-24-V00040319": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:33:59+00:00"
+  },
+  "https://nen.nipez.cz/en/verejne-zakazky/p:vz:query=poln%C3%AD%20kuchyn%C4%9B/detail-zakazky/N006-24-V00040316": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:34:01+00:00"
+  },
+  "https://nen.nipez.cz/en/verejne-zakazky/p:vz:query=poln%C3%AD%20kuchyn%C4%9B/detail-zakazky/N006-19-V00008087": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:34:03+00:00"
+  },
+  "https://nen.nipez.cz/en/verejne-zakazky/p:vz:query=poln%C3%AD%20kuchyn%C4%9B/detail-zakazky/N006-24-V00039486": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:34:05+00:00"
+  },
+  "https://nen.nipez.cz/en/verejne-zakazky/p:vz:query=poln%C3%AD%20kuchyn%C4%9B/detail-zakazky/N006-24-V00038682": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:34:07+00:00"
+  },
+  "https://nen.nipez.cz/en/verejne-zakazky/p:vz:query=poln%C3%AD%20kuchyn%C4%9B/detail-zakazky/N006-24-V00038677": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:34:08+00:00"
+  },
+  "https://nen.nipez.cz/en/verejne-zakazky/p:vz:query=poln%C3%AD%20kuchyn%C4%9B/detail-zakazky/N006-24-V00032766": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:34:10+00:00"
+  },
+  "https://nen.nipez.cz/en/verejne-zakazky/p:vz:query=poln%C3%AD%20kuchyn%C4%9B/detail-zakazky/N006-24-V00032762": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:34:12+00:00"
+  },
+  "https://nen.nipez.cz/en/verejne-zakazky/p:vz:query=poln%C3%AD%20kuchyn%C4%9B/detail-zakazky/N006-24-V00032757": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:34:13+00:00"
+  },
+  "https://nen.nipez.cz/en/verejne-zakazky/p:vz:query=poln%C3%AD%20kuchyn%C4%9B/detail-zakazky/N006-18-V00011770": {
+    "status": "alive",
+    "http_code": 200,
+    "final_url": null,
+    "checked_at": "2026-05-18T07:34:15+00:00"
+  },
+  "https://www.tenders.gov.au/cn/Show/CN4114917": {
+    "status": "alive",
+    "http_code": 206,
+    "final_url": "https://www.tenders.gov.au/System/NotFound?objectType=Cn",
+    "checked_at": "2026-05-18T07:34:18+00:00"
+  },
+  "https://www.tenders.gov.au/cn/Show/CN4048671": {
+    "status": "alive",
+    "http_code": 206,
+    "final_url": "https://www.tenders.gov.au/System/NotFound?objectType=Cn",
+    "checked_at": "2026-05-18T07:34:20+00:00"
+  },
+  "https://www.tenders.gov.au/cn/Show/CN4037407": {
+    "status": "alive",
+    "http_code": 206,
+    "final_url": "https://www.tenders.gov.au/System/NotFound?objectType=Cn",
+    "checked_at": "2026-05-18T07:34:21+00:00"
+  },
+  "https://www.tenders.gov.au/cn/Show/CN4231607": {
+    "status": "alive",
+    "http_code": 206,
+    "final_url": "https://www.tenders.gov.au/System/NotFound?objectType=Cn",
+    "checked_at": "2026-05-18T07:34:24+00:00"
+  },
+  "https://www.tenders.gov.au/cn/Show/CN4229566": {
+    "status": "alive",
+    "http_code": 206,
+    "final_url": "https://www.tenders.gov.au/System/NotFound?objectType=Cn",
+    "checked_at": "2026-05-18T07:34:25+00:00"
+  },
+  "https://www.tenders.gov.au/cn/Show/CN4226088": {
+    "status": "alive",
+    "http_code": 206,
+    "final_url": "https://www.tenders.gov.au/System/NotFound?objectType=Cn",
+    "checked_at": "2026-05-18T07:34:27+00:00"
+  },
+  "https://www.tenders.gov.au/cn/Show/CN4212288": {
+    "status": "alive",
+    "http_code": 206,
+    "final_url": "https://www.tenders.gov.au/System/NotFound?objectType=Cn",
+    "checked_at": "2026-05-18T07:34:29+00:00"
+  },
+  "https://www.tenders.gov.au/cn/Show/CN4212054": {
+    "status": "alive",
+    "http_code": 206,
+    "final_url": "https://www.tenders.gov.au/System/NotFound?objectType=Cn",
+    "checked_at": "2026-05-18T07:34:30+00:00"
+  },
+  "https://www.tenders.gov.au/cn/Show/CN4191005": {
+    "status": "alive",
+    "http_code": 206,
+    "final_url": "https://www.tenders.gov.au/System/NotFound?objectType=Cn",
+    "checked_at": "2026-05-18T07:34:32+00:00"
+  },
+  "https://www.tenders.gov.au/cn/Show/CN4191001": {
+    "status": "alive",
+    "http_code": 206,
+    "final_url": "https://www.tenders.gov.au/System/NotFound?objectType=Cn",
+    "checked_at": "2026-05-18T07:34:34+00:00"
+  },
+  "https://www.tenders.gov.au/cn/Show/CN4187816": {
+    "status": "alive",
+    "http_code": 206,
+    "final_url": "https://www.tenders.gov.au/System/NotFound?objectType=Cn",
+    "checked_at": "2026-05-18T07:34:36+00:00"
+  },
+  "https://www.tenders.gov.au/cn/Show/CN4181381": {
+    "status": "alive",
+    "http_code": 206,
+    "final_url": "https://www.tenders.gov.au/System/NotFound?objectType=Cn",
+    "checked_at": "2026-05-18T07:34:38+00:00"
+  },
+  "https://www.tenders.gov.au/cn/Show/CN4151342": {
+    "status": "alive",
+    "http_code": 206,
+    "final_url": "https://www.tenders.gov.au/System/NotFound?objectType=Cn",
+    "checked_at": "2026-05-18T07:34:40+00:00"
+  },
+  "https://www.tenders.gov.au/cn/Show/CN4134564": {
+    "status": "alive",
+    "http_code": 206,
+    "final_url": "https://www.tenders.gov.au/System/NotFound?objectType=Cn",
+    "checked_at": "2026-05-18T07:34:42+00:00"
+  },
+  "https://www.tenders.gov.au/cn/Show/CN4124177": {
+    "status": "alive",
+    "http_code": 206,
+    "final_url": "https://www.tenders.gov.au/System/NotFound?objectType=Cn",
+    "checked_at": "2026-05-18T07:34:44+00:00"
+  },
+  "https://www.tenders.gov.au/cn/Show/CN4121372": {
+    "status": "alive",
+    "http_code": 206,
+    "final_url": "https://www.tenders.gov.au/System/NotFound?objectType=Cn",
+    "checked_at": "2026-05-18T07:34:46+00:00"
+  },
+  "https://www.tenders.gov.au/cn/Show/CN4111301": {
+    "status": "alive",
+    "http_code": 206,
+    "final_url": "https://www.tenders.gov.au/System/NotFound?objectType=Cn",
+    "checked_at": "2026-05-18T07:34:48+00:00"
+  },
+  "https://www.tenders.gov.au/cn/Show/CN4109618": {
+    "status": "alive",
+    "http_code": 206,
+    "final_url": "https://www.tenders.gov.au/System/NotFound?objectType=Cn",
+    "checked_at": "2026-05-18T07:34:49+00:00"
+  },
+  "https://www.tenders.gov.au/cn/Show/CN4107517": {
+    "status": "alive",
+    "http_code": 206,
+    "final_url": "https://www.tenders.gov.au/System/NotFound?objectType=Cn",
+    "checked_at": "2026-05-18T07:34:50+00:00"
+  },
+  "https://www.tenders.gov.au/cn/Show/CN4097231": {
+    "status": "alive",
+    "http_code": 206,
+    "final_url": "https://www.tenders.gov.au/System/NotFound?objectType=Cn",
+    "checked_at": "2026-05-18T07:34:52+00:00"
+  },
+  "https://www.tenders.gov.au/cn/Show/CN4096858": {
+    "status": "alive",
+    "http_code": 206,
+    "final_url": "https://www.tenders.gov.au/System/NotFound?objectType=Cn",
+    "checked_at": "2026-05-18T07:34:53+00:00"
+  },
+  "https://www.tenders.gov.au/cn/Show/CN4075812": {
+    "status": "alive",
+    "http_code": 206,
+    "final_url": "https://www.tenders.gov.au/System/NotFound?objectType=Cn",
+    "checked_at": "2026-05-18T07:34:54+00:00"
+  },
+  "https://www.tenders.gov.au/cn/Show/CN4067630": {
+    "status": "alive",
+    "http_code": 206,
+    "final_url": "https://www.tenders.gov.au/System/NotFound?objectType=Cn",
+    "checked_at": "2026-05-18T07:34:55+00:00"
+  },
+  "https://www.tenders.gov.au/cn/Show/CN4065679": {
+    "status": "alive",
+    "http_code": 206,
+    "final_url": "https://www.tenders.gov.au/System/NotFound?objectType=Cn",
+    "checked_at": "2026-05-18T07:34:57+00:00"
+  },
+  "https://www.tenders.gov.au/cn/Show/CN4065676": {
+    "status": "alive",
+    "http_code": 206,
+    "final_url": "https://www.tenders.gov.au/System/NotFound?objectType=Cn",
+    "checked_at": "2026-05-18T07:34:59+00:00"
+  },
+  "https://www.tenders.gov.au/cn/Show/CN4054379": {
+    "status": "alive",
+    "http_code": 206,
+    "final_url": "https://www.tenders.gov.au/System/NotFound?objectType=Cn",
+    "checked_at": "2026-05-18T07:35:00+00:00"
+  },
+  "https://www.tenders.gov.au/cn/Show/CN4053775": {
+    "status": "alive",
+    "http_code": 206,
+    "final_url": "https://www.tenders.gov.au/System/NotFound?objectType=Cn",
+    "checked_at": "2026-05-18T07:35:02+00:00"
+  },
+  "https://www.tenders.gov.au/cn/Show/CN4053139": {
+    "status": "alive",
+    "http_code": 206,
+    "final_url": "https://www.tenders.gov.au/System/NotFound?objectType=Cn",
+    "checked_at": "2026-05-18T07:35:04+00:00"
+  },
+  "https://www.tenders.gov.au/cn/Show/CN4050938": {
+    "status": "alive",
+    "http_code": 206,
+    "final_url": "https://www.tenders.gov.au/System/NotFound?objectType=Cn",
+    "checked_at": "2026-05-18T07:35:07+00:00"
+  },
+  "https://www.tenders.gov.au/cn/Show/CN4044940": {
+    "status": "alive",
+    "http_code": 206,
+    "final_url": "https://www.tenders.gov.au/System/NotFound?objectType=Cn",
+    "checked_at": "2026-05-18T07:35:08+00:00"
+  },
+  "https://www.tenders.gov.au/cn/Show/CN4044916": {
+    "status": "alive",
+    "http_code": 206,
+    "final_url": "https://www.tenders.gov.au/System/NotFound?objectType=Cn",
+    "checked_at": "2026-05-18T07:35:09+00:00"
+  },
+  "https://www.tenders.gov.au/cn/Show/CN4041207": {
+    "status": "alive",
+    "http_code": 206,
+    "final_url": "https://www.tenders.gov.au/System/NotFound?objectType=Cn",
+    "checked_at": "2026-05-18T07:35:11+00:00"
+  },
+  "https://www.tenders.gov.au/cn/Show/CN4237513": {
+    "status": "alive",
+    "http_code": 206,
+    "final_url": "https://www.tenders.gov.au/System/NotFound?objectType=Cn",
+    "checked_at": "2026-05-18T07:35:13+00:00"
+  },
+  "https://www.tenders.gov.au/cn/Show/CN4058691": {
+    "status": "alive",
+    "http_code": 206,
+    "final_url": "https://www.tenders.gov.au/System/NotFound?objectType=Cn",
+    "checked_at": "2026-05-18T07:35:15+00:00"
+  },
+  "https://www.tenders.gov.au/cn/Show/CN4235234": {
+    "status": "alive",
+    "http_code": 206,
+    "final_url": "https://www.tenders.gov.au/System/NotFound?objectType=Cn",
+    "checked_at": "2026-05-18T07:35:17+00:00"
+  },
+  "https://www.tenders.gov.au/cn/Show/CN4232906": {
+    "status": "alive",
+    "http_code": 206,
+    "final_url": "https://www.tenders.gov.au/System/NotFound?objectType=Cn",
+    "checked_at": "2026-05-18T07:35:18+00:00"
+  },
+  "https://www.tenders.gov.au/cn/Show/CN4194772": {
+    "status": "alive",
+    "http_code": 206,
+    "final_url": "https://www.tenders.gov.au/System/NotFound?objectType=Cn",
+    "checked_at": "2026-05-18T07:35:20+00:00"
+  },
+  "https://www.tenders.gov.au/cn/Show/CN4151972": {
+    "status": "alive",
+    "http_code": 206,
+    "final_url": "https://www.tenders.gov.au/System/NotFound?objectType=Cn",
+    "checked_at": "2026-05-18T07:35:22+00:00"
+  },
+  "https://www.tenders.gov.au/cn/Show/CN4151969": {
+    "status": "alive",
+    "http_code": 206,
+    "final_url": "https://www.tenders.gov.au/System/NotFound?objectType=Cn",
+    "checked_at": "2026-05-18T07:35:24+00:00"
+  },
+  "https://www.tenders.gov.au/cn/Show/CN4151956": {
+    "status": "alive",
+    "http_code": 206,
+    "final_url": "https://www.tenders.gov.au/System/NotFound?objectType=Cn",
+    "checked_at": "2026-05-18T07:35:27+00:00"
+  },
+  "https://www.tenders.gov.au/cn/Show/CN4151955": {
+    "status": "alive",
+    "http_code": 206,
+    "final_url": "https://www.tenders.gov.au/System/NotFound?objectType=Cn",
+    "checked_at": "2026-05-18T07:35:28+00:00"
+  },
+  "https://www.tenders.gov.au/cn/Show/CN4075656": {
+    "status": "alive",
+    "http_code": 206,
+    "final_url": "https://www.tenders.gov.au/System/NotFound?objectType=Cn",
+    "checked_at": "2026-05-18T07:35:29+00:00"
+  },
+  "https://www.tenders.gov.au/cn/Show/CN4208760": {
+    "status": "alive",
+    "http_code": 206,
+    "final_url": "https://www.tenders.gov.au/System/NotFound?objectType=Cn",
+    "checked_at": "2026-05-18T07:35:31+00:00"
+  },
+  "https://www.tenders.gov.au/cn/Show/CN4235227": {
+    "status": "alive",
+    "http_code": 206,
+    "final_url": "https://www.tenders.gov.au/System/NotFound?objectType=Cn",
+    "checked_at": "2026-05-18T07:35:33+00:00"
+  },
+  "https://www.tenders.gov.au/cn/Show/CN4226103": {
+    "status": "alive",
+    "http_code": 206,
+    "final_url": "https://www.tenders.gov.au/System/NotFound?objectType=Cn",
+    "checked_at": "2026-05-18T07:35:35+00:00"
+  },
+  "https://www.tenders.gov.au/cn/Show/CN4223014": {
+    "status": "alive",
+    "http_code": 206,
+    "final_url": "https://www.tenders.gov.au/System/NotFound?objectType=Cn",
+    "checked_at": "2026-05-18T07:35:36+00:00"
+  },
+  "https://www.tenders.gov.au/cn/Show/CN4223015": {
+    "status": "alive",
+    "http_code": 206,
+    "final_url": "https://www.tenders.gov.au/System/NotFound?objectType=Cn",
+    "checked_at": "2026-05-18T07:35:38+00:00"
+  },
+  "https://www.tenders.gov.au/cn/Show/CN4222399": {
+    "status": "alive",
+    "http_code": 206,
+    "final_url": "https://www.tenders.gov.au/System/NotFound?objectType=Cn",
+    "checked_at": "2026-05-18T07:35:40+00:00"
+  },
+  "https://www.tenders.gov.au/cn/Show/CN4220407": {
+    "status": "alive",
+    "http_code": 206,
+    "final_url": "https://www.tenders.gov.au/System/NotFound?objectType=Cn",
+    "checked_at": "2026-05-18T07:35:42+00:00"
+  },
+  "https://www.tenders.gov.au/cn/Show/CN4176159": {
+    "status": "alive",
+    "http_code": 206,
+    "final_url": "https://www.tenders.gov.au/System/NotFound?objectType=Cn",
+    "checked_at": "2026-05-18T07:35:44+00:00"
+  },
+  "https://www.tenders.gov.au/cn/Show/CN4155073": {
+    "status": "alive",
+    "http_code": 206,
+    "final_url": "https://www.tenders.gov.au/System/NotFound?objectType=Cn",
+    "checked_at": "2026-05-18T07:35:46+00:00"
+  },
+  "https://www.tenders.gov.au/cn/Show/CN4140069": {
+    "status": "alive",
+    "http_code": 206,
+    "final_url": "https://www.tenders.gov.au/System/NotFound?objectType=Cn",
+    "checked_at": "2026-05-18T07:35:47+00:00"
+  },
+  "https://www.tenders.gov.au/cn/Show/CN4132068": {
+    "status": "alive",
+    "http_code": 206,
+    "final_url": "https://www.tenders.gov.au/System/NotFound?objectType=Cn",
+    "checked_at": "2026-05-18T07:35:48+00:00"
+  },
+  "https://www.tenders.gov.au/cn/Show/CN4124867": {
+    "status": "alive",
+    "http_code": 206,
+    "final_url": "https://www.tenders.gov.au/System/NotFound?objectType=Cn",
+    "checked_at": "2026-05-18T07:35:50+00:00"
+  },
+  "https://www.tenders.gov.au/cn/Show/CN4101820": {
+    "status": "alive",
+    "http_code": 206,
+    "final_url": "https://www.tenders.gov.au/System/NotFound?objectType=Cn",
+    "checked_at": "2026-05-18T07:35:53+00:00"
+  },
+  "https://www.tenders.gov.au/cn/Show/CN4040506": {
+    "status": "alive",
+    "http_code": 206,
+    "final_url": "https://www.tenders.gov.au/System/NotFound?objectType=Cn",
+    "checked_at": "2026-05-18T07:35:54+00:00"
+  }
+}

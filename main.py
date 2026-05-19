@@ -34,27 +34,21 @@ from datetime import datetime, date
 from threading import Lock
 from typing import Optional
 
-# Load .env file (API keys etc.)
-_env_path = Path(__file__).parent / ".env"
-if _env_path.exists():
-    with open(_env_path, encoding="utf-8") as _f:
-        for _line in _f:
-            _line = _line.strip()
-            if _line and not _line.startswith("#") and "=" in _line:
-                _key, _, _val = _line.partition("=")
-                _key, _val = _key.strip(), _val.strip()
-                if _val and not os.environ.get(_key):  # Set if missing or empty
-                    os.environ[_key] = _val
-
 # Fix Windows terminal encoding so print() works with all characters
 if sys.platform == "win32":
     import io
     sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8", errors="replace")
     sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding="utf-8", errors="replace")
 
-# Add project root to path
+# Add project root to path so ``src.env_loader`` is importable.
 PROJECT_ROOT = Path(__file__).parent
 sys.path.insert(0, str(PROJECT_ROOT))
+
+# Workspace-wide .env loading. See src/env_loader.py for the lookup chain;
+# in short: shell exports > repo-local .env > workspace-root .env.local.
+from src.env_loader import load_env_chain  # noqa: E402
+
+_loaded_envs = load_env_chain()
 
 from src.api_client import TedApiClient
 from src.index_builder import IndexBuilder

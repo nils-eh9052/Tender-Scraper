@@ -35,26 +35,14 @@ logging.basicConfig(level=logging.INFO, format="%(levelname)s %(message)s")
 logger = logging.getLogger(__name__)
 
 
-def _load_env() -> None:
-    env_path = ROOT / ".env"
-    if not env_path.exists():
-        return
-    for line in env_path.read_text(encoding="utf-8").splitlines():
-        line = line.strip()
-        if not line or line.startswith("#") or "=" not in line:
-            continue
-        key, _, val = line.partition("=")
-        key, val = key.strip(), val.strip().strip('"').strip("'")
-        if val and not os.environ.get(key):
-            os.environ[key] = val
-    # Map project-specific key aliases
-    if not os.environ.get("ANTHROPIC_API_KEY") and os.environ.get("LLM_ANTHROPIC_API_KEY"):
-        os.environ["ANTHROPIC_API_KEY"] = os.environ["LLM_ANTHROPIC_API_KEY"]
-    if not os.environ.get("OPENROUTER_API_KEY") and os.environ.get("LLM_OPENROUTER_API_KEY"):
-        os.environ["OPENROUTER_API_KEY"] = os.environ["LLM_OPENROUTER_API_KEY"]
+# Workspace-aware .env loading (workspace-root .env.local + repo-local .env).
+from src.env_loader import load_env_chain  # noqa: E402
+load_env_chain(repo_root=ROOT)
 
-
-_load_env()
+# llm_router accepts either OPENROUTER_API_KEY or LLM_OPENROUTER_API_KEY,
+# but some callers only export the LLM_ prefix — alias here.
+if not os.environ.get("OPENROUTER_API_KEY") and os.environ.get("LLM_OPENROUTER_API_KEY"):
+    os.environ["OPENROUTER_API_KEY"] = os.environ["LLM_OPENROUTER_API_KEY"]
 
 # ── Config ──────────────────────────────────────────────────────────────────
 

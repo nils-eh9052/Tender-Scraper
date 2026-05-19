@@ -1,0 +1,266 @@
+[
+  {
+    "tender_id": "212474-2026",
+    "country_iso3": "DEU",
+    "buyer": "Bundesamt für Ausrüstung, Informationstechnik und Nutzung der Bundeswehr",
+    "buyer_short": "Bundesamt für Ausrüstung, Informationstechnik und Nutzung der Bundeswehr",
+    "pub_date": "2026-03-27",
+    "title": "Germany - 2-wheel 1t military trailers framework agreement",
+    "ted_url": "https://ted.europa.eu/en/notice/-/detail/212474-2026",
+    "cpv_codes": [
+      "34223300",
+      "34223300"
+    ],
+    "estimated_value": null,
+    "winner": null
+  },
+  {
+    "tender_id": "813306-2025",
+    "country_iso3": "DEU",
+    "buyer": "Bundesamt für Infrastruktur, Umweltschutz und Dienstleistungen der Bundeswehr",
+    "buyer_short": "Bundesamt für Infrastruktur, Umweltschutz und Dienstleistungen der Bundeswehr",
+    "pub_date": "2025-12-08",
+    "title": "Hook-lift trucks with crane, trailers, flatbeds and containers",
+    "ted_url": "https://ted.europa.eu/en/notice/-/detail/813306-2025",
+    "cpv_codes": [
+      "34142100",
+      "34223100",
+      "34224100"
+    ],
+    "estimated_value": null,
+    "winner": null
+  },
+  {
+    "tender_id": "719142-2025",
+    "country_iso3": "DEU",
+    "buyer": "Bundesamt für Ausrüstung, Informationstechnik und Nutzung der Bundeswehr",
+    "buyer_short": "Bundesamt für Ausrüstung, Informationstechnik und Nutzung der Bundeswehr",
+    "pub_date": "2025-10-30",
+    "title": "Germany - Framework Agreement for Manufacturing and Delivery of up to 480 Two-Wheel 1t Trailers",
+    "ted_url": "https://ted.europa.eu/en/notice/-/detail/719142-2025",
+    "cpv_codes": [
+      "34223300",
+      "34223300"
+    ],
+    "estimated_value": null,
+    "winner": null
+  },
+  {
+    "tender_id": "161258-2025",
+    "country_iso3": "DEU",
+    "buyer": "Bundesamt für Infrastruktur, Umweltschutz und Dienstleistungen der Bundeswehr",
+    "buyer_short": "Bundesamt für Infrastruktur, Umweltschutz und Dienstleistungen der Bundeswehr",
+    "pub_date": "2025-03-12",
+    "title": "Container Trailer with Roll-off Containers",
+    "ted_url": "https://ted.europa.eu/en/notice/-/detail/161258-2025",
+    "cpv_codes": [
+      "34223000",
+      "34220000",
+      "34223000"
+    ],
+    "estimated_value": {
+      "amount": 0.01,
+      "currency": "EUR"
+    },
+    "winner": "Raiffeisen Technik Ostküste GmbH"
+  },
+  {
+    "tender_id": "682847-2024",
+    "country_iso3": "DEU",
+    "buyer": "Bundesamt für Ausrüstung, Informationstechnik und Nutzung der Bundeswehr",
+    "buyer_short": "Bundesamt für Ausrüstung, Informationstechnik und Nutzung der Bundeswehr",
+    "pub_date": "2024-11-08",
+    "title": "Germany - Military Cargo Trailers 3.5t and 12.5t",
+    "ted_url": "https://ted.europa.eu/en/notice/-/detail/682847-2024",
+    "cpv_codes": [
+      "34223300",
+      "34223300",
+      "34223300"
+    ],
+    "estimated_value": null,
+    "winner": "Schmitz Cargobull AG\nSchmitz Cargobull AG"
+  },
+  {
+    "tender_id": "77247-2026",
+    "country_iso3": "FRA",
+    "buyer": "MINARM/TERRE/SIMMT/DDC",
+    "buyer_short": "MINARM/TERRE/SIMMT/DDC",
+    "pub_date": "2026-02-03",
+    "title": "France - Motorcycles and Trailers - Acquisition of militarized off-road motorcycles and trailers for Army",
+    "ted_url": "https://ted.europa.eu/en/notice/-/detail/77247-2026",
+    "cpv_codes": [
+      "34410000",
+      "34223310",
+      "34410000"
+    ],
+    "estimated_value": {
+      "amount": 4584000,
+      "currency": "EUR"
+    },
+    "winner": null
+  },
+  {
+    "tender_id": "583390-2025",
+    "country_iso3": "FRA",
+    "buyer": "Direction Générale de l'Armement / DOMN / Service des Achats d'Armement",
+    "buyer_short": "Direction Générale de l'Armement / DOMN / Service des Achats d'Armement",
+    "pub_date": "2025-09-08",
+    "title": "France - POSEIDON Shelter with associated services and technical support",
+    "ted_url": "https://ted.europa.eu/en/notice/-/detail/583390-2025",
+    "cpv_codes": [
+      "34220000",
+      "34220000"
+    ],
+    "estimated_value": {
+      "amount": 544127.5,
+      "currency": "EUR"
+    },
+    "winner": "ENTREPRISE BORAINE DE MECANIQUE"
+  },
+  {
+    "tender_id": "261427-2025",
+    "country_iso3": "POL",
+    "buyer": "12 WOJSKOWY ODDZIAŁ GOSPODARCZY",
+    "buyer_short": "12 WOJSKOWY ODDZIAŁ GOSPODARCZY",
+    "pub_date": "2025-04-23",
+    "title": "Poland - High-capacity transport trailers",
+    "ted_url": "https://ted.europa.eu/en/notice/-/detail/261427-2025",
+    "cpv_codes": [
+      "34223310",
+      "34223310"
+    ],
+    "estimated_value": {
+      "amount": 1530000,
+      "currency": "PLN"
+    },
+    "winner": "Zasław Spółka z ograniczoną odpowiedzialnością"
+  },
+  {
+    "tender_id": "736943-2024",
+    "country_iso3": "POL",
+    "buyer": "Wojskowy Instytut Techniczny Uzbrojenia",
+    "buyer_short": "Wojskowy Instytut Techniczny Uzbrojenia",
+    "pub_date": "2024-12-03",
+    "title": "Poland - Mobile Doppler Radar Tracking System on Trailer",
+    "ted_url": "https://ted.europa.eu/en/notice/-/detail/736943-2024",
+    "cpv_codes": [
+      "35722000",
+      "35722000"
+    ],
+    "estimated_value": {
+      "amount": 452307.2,
+      "currency": "EUR",
+      "_from_award_match": true
+    },
+    "winner": "PROYECTOS INTEGRALES DE BALIZAMIENTO, S.L"
+  },
+  {
+    "tender_id": "432811-2024",
+    "country_iso3": "POL",
+    "buyer": "12 WOJSKOWY ODDZIAŁ GOSPODARCZY",
+    "buyer_short": "12 WOJSKOWY ODDZIAŁ GOSPODARCZY",
+    "pub_date": "2024-07-18",
+    "title": "Supply of High, Medium and Small Capacity Transport Trailers",
+    "ted_url": "https://ted.europa.eu/en/notice/-/detail/432811-2024",
+    "cpv_codes": [
+      "34223000",
+      "34223000",
+      "34223000"
+    ],
+    "estimated_value": {
+      "amount": 9987500,
+      "currency": "PLN"
+    },
+    "winner": "ZASŁAW SPÓŁKA Z OGRANICZONĄ ODPOWIEDZIALNOŚCIĄ\nZASŁAW SPÓŁKA Z OGRANICZONĄ ODPOWIEDZIALNOŚCIĄ\nZASŁAW SPÓŁKA Z OGRANICZONĄ ODPOWIEDZIALNOŚCIĄ"
+  },
+  {
+    "tender_id": "798124-2025",
+    "country_iso3": "CZE",
+    "buyer": "VOP CZ, s.p.",
+    "buyer_short": "VOP CZ, s.p",
+    "pub_date": "2025-12-02",
+    "title": "Semi-trailers - Acquisition of low-bed trailer for heavy military equipment transport",
+    "ted_url": "https://ted.europa.eu/en/notice/-/detail/798124-2025",
+    "cpv_codes": [
+      "34223100",
+      "34223100"
+    ],
+    "estimated_value": {
+      "amount": 12000000,
+      "currency": "CZK"
+    },
+    "winner": null
+  },
+  {
+    "tender_id": "467088-2025",
+    "country_iso3": "CZE",
+    "buyer": "Ministerstvo obrany",
+    "buyer_short": "Ministerstvo obrany",
+    "pub_date": "2025-07-17",
+    "title": "Container Transport Trailers KTN ISO 1C",
+    "ted_url": "https://ted.europa.eu/en/notice/-/detail/467088-2025",
+    "cpv_codes": [
+      "34223300",
+      "34223300"
+    ],
+    "estimated_value": {
+      "amount": 151330600,
+      "currency": "CZK"
+    },
+    "winner": "AGADOS, spol. s r.o."
+  },
+  {
+    "tender_id": "465260-2025",
+    "country_iso3": "CZE",
+    "buyer": "VOP CZ, s.p.",
+    "buyer_short": "VOP CZ, s.p",
+    "pub_date": "2025-07-16",
+    "title": "Semi-trailers for Heavy Military Equipment Transport",
+    "ted_url": "https://ted.europa.eu/en/notice/-/detail/465260-2025",
+    "cpv_codes": [
+      "34223100",
+      "34223100"
+    ],
+    "estimated_value": {
+      "amount": 15000000,
+      "currency": "CZK"
+    },
+    "winner": null
+  },
+  {
+    "tender_id": "132540-2025",
+    "country_iso3": "CZE",
+    "buyer": "Ministerstvo obrany",
+    "buyer_short": "Ministerstvo obrany",
+    "pub_date": "2025-02-27",
+    "title": "Water Tank Trailers - Field Kitchen Water Storage",
+    "ted_url": "https://ted.europa.eu/en/notice/-/detail/132540-2025",
+    "cpv_codes": [
+      "34223300",
+      "34223300"
+    ],
+    "estimated_value": {
+      "amount": 31154200,
+      "currency": "CZK"
+    },
+    "winner": "AGADOS, spol. s r.o."
+  },
+  {
+    "tender_id": "129915-2025",
+    "country_iso3": "CZE",
+    "buyer": "Ministerstvo obrany",
+    "buyer_short": "Ministerstvo obrany",
+    "pub_date": "2025-02-27",
+    "title": "Field Kitchen - Cooling Freezing Trailers - Purchase",
+    "ted_url": "https://ted.europa.eu/en/notice/-/detail/129915-2025",
+    "cpv_codes": [
+      "34223300",
+      "34223300"
+    ],
+    "estimated_value": {
+      "amount": 50854650,
+      "currency": "CZK"
+    },
+    "winner": "AGADOS spol. s r.o."
+  }
+]

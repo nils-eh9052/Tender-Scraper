@@ -1,0 +1,3879 @@
+{
+  "572650-2024": {
+    "match": "326948-2025",
+    "confidence": 92,
+    "reasoning": "Candidate 1 shares the same subject matter (Military Medical Trailers Role 1 & 2), the same buyer (Ministry of Defense, Netherlands), and nearly identical CPV codes. The award publication date of 2025-05-21 is approximately 8 months after the closed tender's publication date of 2024-09-24, which is well within the plausible 0–18 month window.",
+    "candidate_ids": [
+      "326948-2025",
+      "673480-2024",
+      "345761-2025"
+    ],
+    "applied": true,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 08:44:08"
+  },
+  "749251-2025": {
+    "match": null,
+    "confidence": 30,
+    "reasoning": "Candidate 2 (582377-2025) was published before the closed tender (2025-09-08 vs 2025-11-12), so it cannot be its award notice. Candidate 1 (182178-2026) is for 'Aircraft Maintenance Trailers', a clearly different subject matter from 'Boat Transport Trailers', despite sharing the same buyer and overlapping CPV codes. No candidate satisfactorily matches the closed tender.",
+    "candidate_ids": [
+      "182178-2026",
+      "582377-2025"
+    ],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 08:44:11"
+  },
+  "798124-2025": {
+    "match": null,
+    "confidence": 5,
+    "reasoning": "The closed tender is for a low-bed semi-trailer (CPV 34223100) issued by VOP CZ, s.p., while all five candidates are for different trailer types (field kitchens, container transport, heavy cargo) under CPV 34223300 and issued by Ministerstvo obrany. None of the candidates match the subject matter or the contracting authority.",
+    "candidate_ids": [
+      "119311-2025",
+      "467088-2025",
+      "3730-2025",
+      "775798-2024",
+      "129915-2025"
+    ],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 08:44:14"
+  },
+  "465260-2025": {
+    "match": null,
+    "confidence": 10,
+    "reasoning": "The closed tender (465260-2025) is from VOP CZ, s.p. for semi-trailers for heavy military equipment transport (CPV 34223100), published 2025-07-16. None of the five candidates match: all are from Ministerstvo obrany (a different contracting authority), use CPV 34223300, and cover unrelated subject matter (cargo trailers, container trailers, field kitchen trailers). No candidate is a plausible award notice for this procurement.",
+    "candidate_ids": [
+      "119311-2025",
+      "467088-2025",
+      "3730-2025",
+      "775798-2024",
+      "129915-2025"
+    ],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 08:44:18"
+  },
+  "719142-2025": {
+    "match": null,
+    "confidence": 15,
+    "reasoning": "The closed tender (719142-2025) covers 1-tonne two-wheel trailers under a framework agreement published 2025-10-30; none of the three candidates match both the subject matter (1t two-wheel trailers) and the buyer (BAAINBw). Candidate 1 is the closest buyer match but covers 3.5t/12.5t cargo trailers and was published before the closed tender, making it a prior separate procurement rather than an award notice for this one.",
+    "candidate_ids": [
+      "682847-2024",
+      "161258-2025",
+      "660912-2024"
+    ],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 08:44:22"
+  },
+  "245184-2024": {
+    "match": null,
+    "confidence": 30,
+    "reasoning": "The closed tender covers 780 military trailers across 6 types, while candidate 1 concerns tractors and semi-trailers (a different vehicle mix including CPV 34130000 for tractors). Although the buyer and country match, the subject matter is sufficiently different (trailers-only vs. tractor/semi-trailer combination) to rule out a confident match.",
+    "candidate_ids": [
+      "255376-2025"
+    ],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 08:45:20"
+  },
+  "488694-2022": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 08:45:20"
+  },
+  "95616-2026": {
+    "match": null,
+    "confidence": 5,
+    "reasoning": "Candidate 1 covers military tractors and semi-trailers (CPV 34223000/34130000), which is a completely different subject matter from mobile fuel tanks and storage systems (CPV 09130000/34221000). Additionally, Candidate 1 was published in April 2025, before the closed tender's February 2026 publication date, making it implausible as an award notice for this procurement.",
+    "candidate_ids": [
+      "255376-2025"
+    ],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 08:45:24"
+  },
+  "83387-2024": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 08:45:24"
+  },
+  "283775-2022": {
+    "match": null,
+    "confidence": 35,
+    "reasoning": "The candidate is from BAAINBw, a different authority than the closed tender's BwFuhrparkService GmbH, and covers only semi-trailers (CPV 34223100) rather than the broader mix of car/van, truck, and forklift trailers. Despite the overlapping CPV code and close publication date, the buyer mismatch and narrower scope make this an unlikely match.",
+    "candidate_ids": [
+      "309470-2022"
+    ],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 08:45:27"
+  },
+  "207812-2024": {
+    "match": null,
+    "confidence": 15,
+    "reasoning": "The candidate concerns heavy haulage trucks and low-bed trailers (CPV 34140000/34220000), while the closed tender is specifically for aircraft refuelling trailers (CPV 34223360). Despite the same authority and country, the subject matter is clearly different procurement.",
+    "candidate_ids": [
+      "152406-2025"
+    ],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 08:45:30"
+  },
+  "711549-2022": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 08:45:30"
+  },
+  "553507-2023": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 08:45:30"
+  },
+  "212474-2026": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 08:45:30"
+  },
+  "231675-2021": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 08:45:30"
+  },
+  "77247-2026": {
+    "match": null,
+    "confidence": 98,
+    "reasoning": "The only candidate concerns POSEIDON shelters (CPV 34220000) from a different authority, which has no relation to the closed tender's subject of militarized off-road motorcycles and trailers (CPV 34410000/34223310). No matching award notice exists among the candidates.",
+    "candidate_ids": [
+      "583390-2025"
+    ],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 08:45:32"
+  },
+  "813306-2025": {
+    "match": null,
+    "confidence": 20,
+    "reasoning": "Candidate 1 was published in March 2025, roughly 9 months BEFORE the closed tender (December 2025), making it implausible as an award notice for that tender. Additionally, the subject matter (container trailers only) and CPV codes differ sufficiently from the closed tender's broader scope (hook-lift trucks with crane, trailers, flatbeds and containers).",
+    "candidate_ids": [
+      "161258-2025"
+    ],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 08:45:36"
+  },
+  "678662-2024": {
+    "match": "30130-2025",
+    "confidence": 97,
+    "reasoning": "Identical title, same authority (armasuisse), same CPV codes, and publication date is ~10 weeks after the closed tender — fully consistent with an award notice following a completed procurement.",
+    "candidate_ids": [
+      "30130-2025"
+    ],
+    "applied": true,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 08:45:38"
+  },
+  "493986-2024": {
+    "match": "254420-2025",
+    "confidence": 97,
+    "reasoning": "Identical subject matter (multifunctional engineer equipment and field lighting towers on trailers), same contracting authority (Direzione Armamenti Terrestri), identical CPV codes, and publication date is ~8 months after the closed tender, well within the expected award-notice window.",
+    "candidate_ids": [
+      "254420-2025"
+    ],
+    "applied": true,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 08:45:42"
+  },
+  "386007-2024": {
+    "match": null,
+    "confidence": 85,
+    "reasoning": "The closed tender specifically concerns 'Container Transport Trailers KTN ISO 1C', while all five candidates relate to field kitchen trailers (cooking, cooling/freezing, or water storage) — a clearly different subject matter. Despite sharing the same buyer, country, CPV code, and plausible date window, none of the candidates describe the same procurement.",
+    "candidate_ids": [
+      "3730-2025",
+      "775798-2024",
+      "129915-2025",
+      "751287-2024",
+      "132540-2025"
+    ],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 08:45:44"
+  },
+  "385446-2024": {
+    "match": "119311-2025",
+    "confidence": 92,
+    "reasoning": "Candidate 1 matches on subject matter (Heavy Platform/Cargo Trailers O4-PN-V for T-815), same buyer (Ministerstvo obrany, CZE), same CPV codes, and publication date (2025-02-21) is ~8 months after the closed tender (2024-06-28), well within the plausible window. All other candidates concern Field Kitchen trailers, a different subject matter.",
+    "candidate_ids": [
+      "119311-2025",
+      "3730-2025",
+      "775798-2024",
+      "129915-2025",
+      "751287-2024"
+    ],
+    "applied": true,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 08:45:47"
+  },
+  "466852-2018": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 08:45:47"
+  },
+  "299270-2019": {
+    "match": "18389-2020",
+    "confidence": 97,
+    "reasoning": "Identical title ('Bridge Transport Semi-trailers KB8'), same authority (Försvarets materielverk), same CPV code (34223000), and publication date is approximately 6.5 months after the closed tender, well within the plausible 0–18 month window. All indicators confirm this is the award notice for the same procurement.",
+    "candidate_ids": [
+      "18389-2020"
+    ],
+    "applied": true,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 08:45:51"
+  },
+  "129337-2017": {
+    "match": "510836-2017",
+    "confidence": 97,
+    "reasoning": "Identical subject matter (climate-controlled road trailers for pyrotechnic specimen temperature conditioning), same CPV code (34220000), same contracting authority (Mindef/DGA/DO/S2A = Minarm/DGA/DO/S2A, same organ), and publication date is ~8.5 months after the closed tender, well within the plausible window.",
+    "candidate_ids": [
+      "510836-2017"
+    ],
+    "applied": true,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 08:45:54"
+  },
+  "147850-2021": {
+    "match": "607291-2021",
+    "confidence": 72,
+    "reasoning": "Candidate 2 shares the same authority (Ministero della Difesa – SGD-DNA / Direzione Armamenti Terrestri), the same CPV code (34220000), and covers mobile containers/shelters consistent with the closed tender's subject matter; its publication date (2021-11-26) is ~8 months after the tender (2021-03-24), which is plausible. Candidate 1 is published on the same day as the closed tender and likely represents a different lot, while Candidates 3 and 4 use a different CPV (34221000) and/or a different contracting authority.",
+    "candidate_ids": [
+      "147849-2021",
+      "607291-2021",
+      "29224-2021",
+      "648482-2021"
+    ],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 08:45:59"
+  },
+  "158253-2020": {
+    "match": "29224-2021",
+    "confidence": 62,
+    "reasoning": "Same buyer (Italian MoD/SGD-DNA/Direzione Armamenti Terrestri), publication date ~9.5 months after the closed tender (within plausible window), and subject matter (special-purpose mobile containers) is broadly aligned with dual-role trailers/containers for emergency response. However, the CPV differs (34221000 vs 34220000) and the title description is not an exact match, leaving meaningful uncertainty.",
+    "candidate_ids": [
+      "147849-2021",
+      "567897-2019",
+      "29224-2021"
+    ],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 08:46:02"
+  },
+  "161385-2021": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 08:46:02"
+  },
+  "782671-2023": {
+    "match": null,
+    "confidence": 10,
+    "reasoning": "The only candidate (537199-2024) concerns a mobile fuel distribution and storage system with entirely different CPV codes, and its subject matter bears no relation to the closed tender's purchase and maintenance of trailers. No matching award notice is present among the candidates.",
+    "candidate_ids": [
+      "537199-2024"
+    ],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 08:46:05"
+  },
+  "25210-2020": {
+    "match": null,
+    "confidence": 20,
+    "reasoning": "The candidate covers special-purpose mobile containers (CPV 34221000) under a specific OIP programme, while the closed tender covers a broad range of vehicle bodies, trailers and semi-trailers for military use (CPVs 34200000, 34223300, 35400000, etc.). The subject matter and CPV codes do not align closely enough to confirm this as the award notice for the closed tender.",
+    "candidate_ids": [
+      "158377-2020"
+    ],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 08:46:07"
+  },
+  "504718-2017": {
+    "match": null,
+    "confidence": 15,
+    "reasoning": "Although the buyer and CPV code match, the candidate award notice concerns 'Mobile Communication Station Shelters' — a completely different subject matter from 'Fuel Distribution and Storage Equipment - Tank Trailers'. No other candidates are provided that better fit the closed tender.",
+    "candidate_ids": [
+      "343264-2018"
+    ],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 08:46:10"
+  },
+  "416123-2016": {
+    "match": "98678-2017",
+    "confidence": 97,
+    "reasoning": "Identical title, CPV code, buyer (Unitatea Militara 02574 under Ministerul Apararii), and country; publication date is ~4 months after the closed tender, well within the plausible award window.",
+    "candidate_ids": [
+      "98678-2017"
+    ],
+    "applied": true,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 08:46:13"
+  },
+  "520851-2023": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 08:46:13"
+  },
+  "425325-2019": {
+    "match": "156274-2020",
+    "confidence": 72,
+    "reasoning": "Candidate 1 shares the same authority (Česká republika - Ministerstvo obrany), closely related subject matter (special-purpose mobile containers with military/ballistic context), and a publication date ~7 months after the closed tender, which is plausible for an award notice. The CPV shift from 34220000 to 34221000 is minor (trailers/semi-trailers vs. special-purpose vehicles, both within the same group), reducing confidence slightly. Candidates 2 and 3 are from a different authority and predate the closed tender.",
+    "candidate_ids": [
+      "156274-2020",
+      "202710-2019",
+      "208162-2019"
+    ],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 08:46:16"
+  },
+  "172885-2022": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 08:46:16"
+  },
+  "309374-2017": {
+    "match": "510836-2017",
+    "confidence": 72,
+    "reasoning": "Same authority (Minarm/DGA/DO/S2A is the same body as Mindef/DGA/DO/S2A), same country, and publication date is ~4.5 months later which is plausible. The subject matter (climate-controlled trailers for pyrotechnic conditioning) is related to mobile units on trailers (CPV 34223330 vs 34220000 parent category), suggesting this is the award notice, though the CPV and specific description differ enough to introduce some uncertainty.",
+    "candidate_ids": [
+      "510836-2017"
+    ],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 08:46:20"
+  },
+  "449529-2018": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 08:46:20"
+  },
+  "280104-2023": {
+    "match": null,
+    "confidence": 10,
+    "reasoning": "Neither candidate matches the closed tender: Candidate 1 is about armament trailers (pub date before the tender) and Candidate 2 is about baggage/pallet/air freight trailers — neither corresponds to the POSEIDON Mobile Shelter procurement. No plausible award notice is present among the candidates.",
+    "candidate_ids": [
+      "433510-2022",
+      "13179-2023"
+    ],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 08:46:23"
+  },
+  "168172-2018": {
+    "match": null,
+    "confidence": 15,
+    "reasoning": "The candidate was published in December 2017, approximately 4 months BEFORE the closed tender (April 2018), making it implausible as an award notice for that procurement. Additionally, the subject matter differs: the candidate concerns climate-controlled trailers for pyrotechnic temperature conditioning, while the closed tender is for ADR trailers (dangerous goods transport) ≥3 tonnes GVWR.",
+    "candidate_ids": [
+      "510836-2017"
+    ],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 08:46:27"
+  },
+  "388865-2024": {
+    "match": null,
+    "confidence": 95,
+    "reasoning": "The only candidate is for fuel-tanker trucks (CPV 34133110/34223340) published in December 2023, which is both before the closed tender's July 2024 publication date and covers entirely different subject matter (fuel transport equipment vs. snowmobile sleds). No matching award notice is present among the candidates.",
+    "candidate_ids": [
+      "734326-2023"
+    ],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 08:46:32"
+  },
+  "174181-2019": {
+    "match": null,
+    "confidence": 30,
+    "reasoning": "Candidate 2 is a different buyer (Vojenský technický ústav, not Ministerstvo obrany) and covers ISO 1C containers rather than transport trailers. Candidate 1 has the correct buyer but a different CPV (34221000 vs 34223300), a different subject (mobile containers vs ISO container transport trailers), and a 12-month gap with no strong subject-matter link. Neither candidate is a plausible award notice for this tender.",
+    "candidate_ids": [
+      "156274-2020",
+      "208162-2019"
+    ],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 08:46:37"
+  },
+  "437702-2018": {
+    "match": null,
+    "confidence": 30,
+    "reasoning": "Although the buyer is the same (Czech MoD), the candidate covers special-purpose mobile containers (CPV 34221000) rather than ISO container transport trailers (CPV 34223300), indicating a different procurement subject. No other candidate more closely matches the closed tender.",
+    "candidate_ids": [
+      "44748-2019"
+    ],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 08:46:39"
+  },
+  "222647-2022": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 08:46:39"
+  },
+  "302549-2020": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 08:46:39"
+  },
+  "109414-2018": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 08:46:39"
+  },
+  "140710-2026": {
+    "match": null,
+    "confidence": 2,
+    "reasoning": "The candidate concerns multifunctional engineering equipment and field lighting towers (CPV 34223330/34990000) awarded in April 2025, whereas the closed tender is for a CBRN laboratory container and military tactical transport vehicle for Lebanon (CPV 34220000) published in February 2026. The subject matter, buyer, and dates do not align.",
+    "candidate_ids": [
+      "254420-2025"
+    ],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 08:46:42"
+  },
+  "320781-2017": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 08:46:42"
+  },
+  "561333-2024": {
+    "match": null,
+    "confidence": 10,
+    "reasoning": "The closed tender is a Request for Information for Mobile Climate Chambers, while the only candidate concerns a Mobile Fuel Distribution and Storage System with a different subject matter and an earlier publication date. No matching award notice is present among the candidates.",
+    "candidate_ids": [
+      "537199-2024"
+    ],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 08:46:45"
+  },
+  "143718-2018": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 08:46:45"
+  },
+  "351531-2025": {
+    "match": "796372-2025",
+    "confidence": 97,
+    "reasoning": "Candidate 1 has an identical title ('Acquisition of light trailers and multiplatform trailers'), the same contracting authority, the same country, the same CPV code (34200000), and its publication date (2025-12-01) is approximately 6 months after the closed tender (2025-06-02), which is a plausible award notice timeline. No other candidate matches on subject matter or CPV.",
+    "candidate_ids": [
+      "796372-2025",
+      "620674-2024",
+      "590889-2025",
+      "790962-2024"
+    ],
+    "applied": true,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 08:46:48"
+  },
+  "218375-2020": {
+    "match": "29224-2021",
+    "confidence": 95,
+    "reasoning": "Candidate 2 shares the identical title ('Special-purpose mobile containers'), the same CPV code (34221000), and the same contracting authority (SGD-DNA/Direzione degli armamenti terrestri), with a publication date of January 2021 — approximately 8 months after the closed tender's May 2020 publication, which is well within the plausible award-notice window.",
+    "candidate_ids": [
+      "567897-2019",
+      "29224-2021",
+      "147849-2021"
+    ],
+    "applied": true,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 08:46:51"
+  },
+  "224545-2026": {
+    "match": null,
+    "confidence": 5,
+    "reasoning": "None of the candidates match the closed tender's subject matter (CBRN decontamination containers, CPVs 34221000/42924720/45112340/90722200); both candidates concern trailers/aircraft maintenance with entirely different CPV codes. Additionally, both candidates were published before the closed tender, making them implausible as award notices for it.",
+    "candidate_ids": [
+      "182178-2026",
+      "582377-2025"
+    ],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 08:46:55"
+  },
+  "444390-2018": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 08:46:55"
+  },
+  "287015-2018": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 08:46:55"
+  },
+  "66554-2018": {
+    "match": null,
+    "confidence": 20,
+    "reasoning": "Candidate 1 was published in December 2017, before the closed tender's February 2018 publication date, making it implausible as an award notice for that tender. Additionally, the subject matter (climate-controlled road trailers for pyrotechnic temperature conditioning) and CPV code (34220000) differ sufficiently from special-purpose mobile containers (CPV 34221000).",
+    "candidate_ids": [
+      "510836-2017"
+    ],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 08:46:58"
+  },
+  "129023-2016": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 08:46:58"
+  },
+  "550168-2018": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 08:46:58"
+  },
+  "442117-2023": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 08:46:58"
+  },
+  "335687-2017": {
+    "match": "287476-2018",
+    "confidence": 72,
+    "reasoning": "Same authority (12 Wojskowy Oddział Gospodarczy), same CPV (34223300), and the candidate covers medium load capacity trailers among its scope, published ~10 months after the closed tender which is within a plausible award window. However, the candidate title adds 'Small' capacity alongside 'Medium', raising slight uncertainty about whether it is the exact same procurement or a broader re-tender.",
+    "candidate_ids": [
+      "287476-2018",
+      "186475-2017"
+    ],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 08:47:02"
+  },
+  "453347-2020": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 08:47:02"
+  },
+  "49638-2019": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 08:47:02"
+  },
+  "204192-2016": {
+    "match": null,
+    "confidence": 10,
+    "reasoning": "The candidate is from a completely different authority (Wojskowy Ośrodek Farmacji i Techniki Medycznej – Celestynów vs. 12 Wojskowy Oddział Gospodarczy) and concerns dog transport trailers rather than military transport trailers of various load capacities. Despite the same CPV code and country, there is no credible link between these two procurements.",
+    "candidate_ids": [
+      "186475-2017"
+    ],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 08:47:04"
+  },
+  "517828-2017": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 08:47:04"
+  },
+  "504725-2018": {
+    "match": null,
+    "confidence": 15,
+    "reasoning": "Candidate 1 predates the closed tender (August vs November 2018), making it implausible as an award notice for that tender. Candidate 2 concerns refuelling trailers (CPV 34223360), a clearly different subject matter from special-purpose mobile containers (CPV 34221000). Neither candidate represents a plausible award outcome for the closed tender.",
+    "candidate_ids": [
+      "343264-2018",
+      "236275-2019"
+    ],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 08:47:07"
+  },
+  "462506-2021": {
+    "match": "CANDIDATE 1",
+    "confidence": 88,
+    "reasoning": "Candidate 1 shares the identical title, exact same authority (Puolustusvoimien logistiikkalaitos), and same CPV code as the closed tender, with a publication date ~11.5 months later — well within the typical award-notice window. Candidates 2 and 3 list a different authority name (Puolustusvoimat) making them less likely to be the direct award for this specific procurement.",
+    "candidate_ids": [
+      "472604-2022",
+      "72803-2022",
+      "665246-2021"
+    ],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 08:47:11"
+  },
+  "344292-2025": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 08:47:11"
+  },
+  "381122-2019": {
+    "match": "156274-2020",
+    "confidence": 92,
+    "reasoning": "Candidate 1 matches on all key dimensions: identical title, same contracting authority (Česká republika - Ministerstvo obrany), same CPV code (34221000), and publication date (2020-04-01) is approximately 8 months after the closed tender (2019-08-12), well within the plausible window. Candidate 2 has a different authority and predates the closed tender, making it implausible as its award notice.",
+    "candidate_ids": [
+      "156274-2020",
+      "202710-2019"
+    ],
+    "applied": true,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 08:47:14"
+  },
+  "437386-2019": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 08:47:14"
+  },
+  "602563-2023": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 08:47:14"
+  },
+  "538598-2019": {
+    "match": "272850-2020",
+    "confidence": 97,
+    "reasoning": "Identical title, CPV code, and contracting authority (MAEE — Direction de la Défense, Luxembourg), with the candidate published approximately 7 months after the closed tender — well within the expected award-notice window. The presence of a named winner (Schall GmbH & Co. KG) confirms this is the award notice.",
+    "candidate_ids": [
+      "272850-2020"
+    ],
+    "applied": true,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 08:47:18"
+  },
+  "502486-2022": {
+    "match": "377722-2023",
+    "confidence": 97,
+    "reasoning": "Identical title, identical CPV code, identical contracting authority, same country, and the award notice is published approximately 9 months after the closed tender — well within the plausible window. Winner data is present confirming it is an award notice.",
+    "candidate_ids": [
+      "377722-2023"
+    ],
+    "applied": true,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 08:47:21"
+  },
+  "473074-2022": {
+    "match": null,
+    "confidence": 15,
+    "reasoning": "None of the candidates share the CPV codes 34223300+44211400 combination for field kitchens; Candidate 1 shares CPV 34223300 but is for refrigerated trailers (a different subject matter), and Candidates 2 and 3 are for special-purpose mobile containers with a different CPV. No candidate represents an award for the same field kitchen procurement.",
+    "candidate_ids": [
+      "451829-2023",
+      "21951-2023",
+      "664066-2022"
+    ],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 08:47:24"
+  },
+  "192334-2020": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 08:47:24"
+  },
+  "433505-2022": {
+    "match": "377722-2023",
+    "confidence": 97,
+    "reasoning": "Identical title, identical CPV code, identical contracting authority, same country, and publication date is ~10.5 months after the closed tender — well within the plausible award window. All key procurement identifiers align.",
+    "candidate_ids": [
+      "377722-2023"
+    ],
+    "applied": true,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 08:47:27"
+  },
+  "290520-2018": {
+    "match": "44748-2019",
+    "confidence": 97,
+    "reasoning": "Identical title, identical CPV code, identical contracting authority, and publication date is approximately 7 months after the closed tender — well within the plausible 0–18 month window. Winner data (Variel, a.s.) confirms this is the award notice.",
+    "candidate_ids": [
+      "44748-2019"
+    ],
+    "applied": true,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 08:47:29"
+  },
+  "126999-2021": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 08:47:29"
+  },
+  "568054-2023": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 08:47:29"
+  },
+  "303464-2022": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 08:47:29"
+  },
+  "300549-2017": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 08:47:29"
+  },
+  "698416-2024": {
+    "match": null,
+    "confidence": 95,
+    "reasoning": "Candidate 1 concerns military tractors and semi-trailers (CPV 34223000/34130000), which is entirely different subject matter from field kitchens (CPV 44211400). No other candidates are provided that match the field kitchen procurement.",
+    "candidate_ids": [
+      "255376-2025"
+    ],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 08:47:32"
+  },
+  "285082-2017": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 08:47:32"
+  },
+  "93778-2018": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 08:47:32"
+  },
+  "207385-2026": {
+    "match": null,
+    "confidence": 10,
+    "reasoning": "The closed tender is for container mobiliser systems with hydraulic platforms (CPV 34952000/34950000), while the only candidate concerns military tractors and semi-trailers (CPV 34223000/34130000) awarded in April 2025 — different subject matter and the candidate predates the closed tender. No match is possible.",
+    "candidate_ids": [
+      "255376-2025"
+    ],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 08:47:35"
+  },
+  "431698-2023": {
+    "match": "62507-2024",
+    "confidence": 85,
+    "reasoning": "Candidate 1 shares identical title, authority, country, and CPV code (34221000) with the closed tender, and its publication date (2024-01-31) falls approximately 6.5 months after the tender (2023-07-17), which is a plausible award timeline. Candidate 2 also matches on title and authority but carries an additional CPV code (42912300) not present in the closed tender, suggesting a different or broader procurement scope, making Candidate 1 the stronger match.",
+    "candidate_ids": [
+      "62507-2024",
+      "53033-2024"
+    ],
+    "applied": true,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 08:47:38"
+  },
+  "265191-2018": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 08:47:38"
+  },
+  "312763-2020": {
+    "match": "4819-2021",
+    "confidence": 97,
+    "reasoning": "Identical title, same CPV code 34221000, same buying unit (Unitatea Militară 01836 under Ministerul Apărării Naționale), and publication date is approximately 6 months after the closed tender, well within the expected award notice window.",
+    "candidate_ids": [
+      "4819-2021"
+    ],
+    "applied": true,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 08:47:41"
+  },
+  "268303-2016": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 08:47:41"
+  },
+  "283527-2018": {
+    "match": "185625-2018",
+    "confidence": 72,
+    "reasoning": "Candidate 1 shares the identical title, buyer (DALO), country, and primary CPV code, and its publication date (2018-04-27) is only ~2 months before the closed tender (2018-06-30), which is plausible if the award notice was published slightly before the formal contract notice in TED. Candidate 2 is from 2017 and has a different CPV composition, making it a less likely match for this specific procurement cycle.",
+    "candidate_ids": [
+      "185625-2018",
+      "479229-2017"
+    ],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 08:47:45"
+  },
+  "176779-2019": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 08:47:45"
+  },
+  "551150-2024": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 08:47:45"
+  },
+  "623704-2021": {
+    "match": null,
+    "confidence": 30,
+    "reasoning": "Candidate 1 matches the title and CPV exactly but was published 10+ months BEFORE the closed tender (Jan 2021 vs Dec 2021), making it a prior procurement rather than an award notice for this tender. Candidate 4 has the same title and CPV and a plausible date (10 days after), but the authority is a different command (COMANDO FORZE OPERATIVE NORD), not the same buyer (SGD-DNA/DAT). No candidate is a confident match as the award notice for this specific tender.",
+    "candidate_ids": [
+      "29224-2021",
+      "147849-2021",
+      "607291-2021",
+      "648482-2021"
+    ],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 08:47:49"
+  },
+  "433838-2023": {
+    "match": "62507-2024",
+    "confidence": 72,
+    "reasoning": "Both notices share the same title, CPV 34221000, and country, with a plausible 6-month gap. Candidate 1 has only CPV 34221000 matching the closed tender exactly, while Candidate 2 adds a second CPV suggesting a different or broader scope. The issuing authority differs (Comando Logistico vs SGD-DNA/DAT), but both are subordinate organs of the Italian Ministry of Defence, making Candidate 1 the more likely award notice despite the authority discrepancy.",
+    "candidate_ids": [
+      "62507-2024",
+      "53033-2024"
+    ],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 08:47:53"
+  },
+  "384070-2017": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 08:47:53"
+  },
+  "790433-2023": {
+    "match": "53033-2024",
+    "confidence": 92,
+    "reasoning": "Candidate 1 shares identical title, exact same authority, same country, and matching CPV codes (34221000, 42912300) with the closed tender, published approximately one month later which is plausible for an award notice. Candidate 2 is missing CPV 42912300 and has a different winner, making it a less precise match.",
+    "candidate_ids": [
+      "53033-2024",
+      "62507-2024"
+    ],
+    "applied": true,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 08:47:57"
+  },
+  "108413-2022": {
+    "match": "648482-2021",
+    "confidence": 52,
+    "reasoning": "Candidate 3 shares the identical title ('Special-purpose mobile containers') and identical CPV code (34221000), and is from Italy, but its publication date (2021-12-17) precedes the closed tender (2022-03-01), making it more likely a prior related procurement rather than the award notice for this specific tender. No candidate published after 2022-03-01 is available, so this is a weak match at best.",
+    "candidate_ids": [
+      "147849-2021",
+      "607291-2021",
+      "648482-2021"
+    ],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 08:48:00"
+  },
+  "529820-2020": {
+    "match": "4819-2021",
+    "confidence": 97,
+    "reasoning": "Identical title, CPV code, and contracting authority (same military unit under Romanian MoD), with award notice published approximately 2 months after the closed tender — well within the expected timeframe. Winner (Aerostar) confirms this is the award result.",
+    "candidate_ids": [
+      "4819-2021"
+    ],
+    "applied": true,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 08:48:04"
+  },
+  "UK-tender_285861/998388": {
+    "match": null,
+    "confidence": 20,
+    "reasoning": "The closed tender is specifically about 'Heavy Technical Trailer Capability' while Candidate 1 covers 'Commando Raiding Craft Trailers' and Candidate 2 covers 'Box Trailers' — both are distinct trailer types that do not match the heavy technical trailer subject matter. Although CPV codes and buyer are identical, the subject matter diverges sufficiently to rule out a match, and the closed tender was an industry engagement (pre-market consultation), not a formal procurement that would necessarily produce a direct award notice among these candidates.",
+    "candidate_ids": [
+      "UK-tender_347489/1184039",
+      "UK-tender_340233/1221190"
+    ],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 08:48:12"
+  },
+  "UK-RQ0000031667": {
+    "match": null,
+    "confidence": 20,
+    "reasoning": "The closed tender covers agricultural/tractor CPV codes (16xxx series) for DSTL, while both candidates use transport/trailer CPV codes (34xxx series) under the broader MoD. Neither candidate matches the subject matter (agricultural tractors and trailers for a science lab) or the contracting authority closely enough to be considered the same procurement.",
+    "candidate_ids": [
+      "UK-tender_347489/1184039",
+      "UK-tender_340233/1221190"
+    ],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 08:48:15"
+  },
+  "UK-tender_340233/1200929": {
+    "match": "UK-tender_340233/1221190",
+    "confidence": 92,
+    "reasoning": "Candidate 1 shares the identical title 'Box Trailers', the same authority (Ministry of Defence), the same country, and an identical CPV code set as the closed tender, and carries a winner (THJ (Machinery) Ltd), making it the clear award notice. Candidate 2 refers to a different procurement (Commando Raiding Craft Trailers) and a different contract reference number.",
+    "candidate_ids": [
+      "UK-tender_340233/1221190",
+      "UK-tender_347489/1184039"
+    ],
+    "applied": true,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 08:48:20"
+  },
+  "UK-tender_336462/1140912": {
+    "match": null,
+    "confidence": 10,
+    "reasoning": "Neither candidate matches the closed tender's subject matter: the closed tender concerns a fuel delivery solution and AVGAS provision for University Air Squadron, while both candidates relate to trailers (Commando Raiding Craft Trailers and Box Trailers). Despite sharing the same authority (Ministry of Defence), the procurement subjects are entirely different.",
+    "candidate_ids": [
+      "UK-tender_347489/1184039",
+      "UK-tender_340233/1221190"
+    ],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 08:48:23"
+  },
+  "CZ-N006/26/V00010428": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 08:48:23"
+  },
+  "CZ-N006/26/V00008881": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 08:48:23"
+  },
+  "CZ-N006/26/V00005076": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 08:48:23"
+  },
+  "CZ-N006/26/V00000758": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 08:48:23"
+  },
+  "CZ-N006/24/V00015605": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 08:48:23"
+  },
+  "CZ-N006/25/V00014955": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 08:48:23"
+  },
+  "CZ-N006/25/V00006089": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 08:48:23"
+  },
+  "CZ-N006/23/V00001906": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 08:48:23"
+  },
+  "CZ-N006/25/V00015642": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 08:48:23"
+  },
+  "CZ-N006/23/V00000559": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 08:48:23"
+  },
+  "CZ-N006/24/V00016218": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 08:48:23"
+  },
+  "CZ-N006/23/V00017787": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 08:48:23"
+  },
+  "CZ-N006/22/V00016712": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 08:48:23"
+  },
+  "CZ-N006/22/V00027001": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 08:48:23"
+  },
+  "CZ-N006/22/V00026992": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 08:48:23"
+  },
+  "CZ-N006/22/V00026975": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 08:48:23"
+  },
+  "CZ-N006/25/V00002312": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 08:48:23"
+  },
+  "CZ-N006/25/V00002308": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 08:48:23"
+  },
+  "CZ-N006/24/V00040322": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 08:48:23"
+  },
+  "CZ-N006/24/V00040319": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 08:48:23"
+  },
+  "CZ-N006/24/V00040316": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 08:48:23"
+  },
+  "CZ-N006/19/V00008087": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 08:48:23"
+  },
+  "CZ-N006/24/V00039486": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 08:48:23"
+  },
+  "CZ-N006/24/V00038682": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 08:48:23"
+  },
+  "CZ-N006/24/V00038677": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 08:48:23"
+  },
+  "CZ-N006/24/V00032766": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 08:48:23"
+  },
+  "CZ-N006/24/V00032762": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 08:48:23"
+  },
+  "CZ-N006/24/V00032757": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 08:48:23"
+  },
+  "CZ-N006/18/V00011770": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 08:48:23"
+  },
+  "CZ-N006/20/P00000006": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 08:48:23"
+  },
+  "CZ-N006/25/V00005961": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 08:48:23"
+  },
+  "CZ-N006/24/V00016266": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 08:48:23"
+  },
+  "FR-21-163372": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 08:48:23"
+  },
+  "FR-21-76485": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 08:48:23"
+  },
+  "FR-21-38939": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 08:48:23"
+  },
+  "FR-19-90275": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 08:48:23"
+  },
+  "FR-17-20328": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 08:48:23"
+  },
+  "FR-17-11123": {
+    "match": null,
+    "confidence": 15,
+    "reasoning": "The candidate concerns climate-controlled trailers for pyrotechnic temperature conditioning, which is entirely different subject matter from a 2500kW resistive load bank on a road trailer. Despite both being French defence-related trailer procurements in 2017, the technical content and likely buyer do not align.",
+    "candidate_ids": [
+      "510836-2017"
+    ],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 08:48:26"
+  },
+  "FR-16-11519": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 08:48:26"
+  },
+  "FR-15-186837": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 08:48:26"
+  },
+  "FR-15-46366": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 08:48:26"
+  },
+  "FR-19-11984": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 08:48:26"
+  },
+  "FR-18-127112": {
+    "match": null,
+    "confidence": 5,
+    "reasoning": "The candidate concerns climate-controlled trailers for pyrotechnic specimen conditioning, which is entirely different subject matter from a hybrid solar generator on trailer for aerial support operations. No meaningful match exists.",
+    "candidate_ids": [
+      "510836-2017"
+    ],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 08:48:28"
+  },
+  "FR-17-95354": {
+    "match": null,
+    "confidence": 15,
+    "reasoning": "The candidate concerns climate-controlled trailers for pyrotechnic temperature conditioning, which is a fundamentally different subject matter from trailer-mounted lubrication stations and welding units. Despite both being French defence trailer procurements from 2017, the equipment type, function, and likely buyer unit do not match.",
+    "candidate_ids": [
+      "510836-2017"
+    ],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 08:48:32"
+  },
+  "FR-17-125671": {
+    "match": null,
+    "confidence": 95,
+    "reasoning": "Candidate 1 concerns climate-controlled trailers for pyrotechnic specimen temperature conditioning, which is entirely different subject matter from mobile aeronautical static converters (115/200V/400Hz 90kW and 28VDC). Despite both being DGA-related French defence procurements in a plausible timeframe, there is no match on subject matter or CPV scope.",
+    "candidate_ids": [
+      "510836-2017"
+    ],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 08:48:35"
+  },
+  "NO-2023-312913": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 08:48:35"
+  },
+  "NO-2021-338906": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 08:48:35"
+  },
+  "NO-2021-307144": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 08:48:35"
+  },
+  "NL-577684": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 08:48:35"
+  },
+  "UA-UA-2026-04-08-011067-a": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 08:48:35"
+  },
+  "EE-RP-e7bea398-bdab-48f6-aa92-7a15a091c98b": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 08:48:35"
+  },
+  "EE-RP-56bb148e-3a67-445c-9f37-efed40677d41": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 08:48:35"
+  },
+  "EE-RP-7825c9a9-5907-4b95-ac37-c178c560b1a9": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 08:48:35"
+  },
+  "290522-2018": {
+    "match": "44748-2019",
+    "confidence": 97,
+    "reasoning": "Identical title, CPV code, and contracting authority (Czech Ministry of Defence), with the award notice published approximately 7 months after the closed tender, well within the expected timeframe. Winner data (Variel, a.s.) confirms this is the award result for the same procurement.",
+    "candidate_ids": [
+      "44748-2019"
+    ],
+    "applied": true,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 08:48:37"
+  },
+  "477775-2024": {
+    "match": null,
+    "confidence": 15,
+    "reasoning": "No candidate matches: Candidate 1 predates the closed tender (May 2024 vs August 2024), has a different buyer (Aeronautica Militare, not Comando Logistico dell'Esercito), and concerns CIS/weapon-systems maintenance shelters rather than armory shelter containers. Candidate 2 has a different CPV, different buyer, and concerns engineering equipment and lighting towers, not armory containers.",
+    "candidate_ids": [
+      "288875-2024",
+      "254420-2025"
+    ],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 08:48:41"
+  },
+  "13179-2023": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 10:34:30"
+  },
+  "309470-2022": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 10:34:30"
+  },
+  "18389-2020": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 10:34:30"
+  },
+  "147849-2021": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 10:34:30"
+  },
+  "510836-2017": {
+    "match": null,
+    "confidence": 2,
+    "reasoning": "Neither candidate matches the closed tender: both describe a resistive load bank on a road trailer (electrical testing equipment) for Toulon, published before the closed tender, and have no buyer linkage to Minarm/DGA/DO/S2A. The subject matter (pyrotechnic specimen temperature conditioning trailers) is entirely different.",
+    "candidate_ids": [
+      "FR-17-11123",
+      "FR-17-11123"
+    ],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 10:34:33"
+  },
+  "607291-2021": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 10:34:33"
+  },
+  "485934-2022": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 10:34:33"
+  },
+  "208162-2019": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 10:34:33"
+  },
+  "343264-2018": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 10:34:33"
+  },
+  "567897-2019": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 10:34:33"
+  },
+  "467733-2020": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 10:34:33"
+  },
+  "98678-2017": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 10:34:33"
+  },
+  "114692-2020": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 10:34:33"
+  },
+  "586629-2020": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 10:34:33"
+  },
+  "533765-2019": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 10:34:33"
+  },
+  "476399-2023": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 10:34:33"
+  },
+  "433510-2022": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 10:34:33"
+  },
+  "236275-2019": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 10:34:33"
+  },
+  "236276-2019": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 10:34:33"
+  },
+  "29224-2021": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 10:34:33"
+  },
+  "222221-2019": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 10:34:33"
+  },
+  "158377-2020": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 10:34:33"
+  },
+  "40574-2017": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 10:34:33"
+  },
+  "72106-2017": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 10:34:33"
+  },
+  "185625-2018": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 10:34:33"
+  },
+  "287476-2018": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 10:34:33"
+  },
+  "186475-2017": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 10:34:33"
+  },
+  "278489-2016": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 10:34:33"
+  },
+  "451829-2023": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 10:34:33"
+  },
+  "147766-2020": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 10:34:33"
+  },
+  "156274-2020": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 10:34:33"
+  },
+  "377722-2023": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 10:34:33"
+  },
+  "648482-2021": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 10:34:33"
+  },
+  "619862-2019": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 10:34:33"
+  },
+  "580921-2021": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 10:34:33"
+  },
+  "44748-2019": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 10:34:33"
+  },
+  "272850-2020": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 10:34:33"
+  },
+  "282269-2023": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 10:34:33"
+  },
+  "72803-2022": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 10:34:33"
+  },
+  "61174-2019": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 10:34:33"
+  },
+  "665246-2021": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 10:34:33"
+  },
+  "245779-2019": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 10:34:33"
+  },
+  "202710-2019": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 10:34:33"
+  },
+  "140196-2020": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 10:34:33"
+  },
+  "472604-2022": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 10:34:33"
+  },
+  "62507-2024": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 10:34:33"
+  },
+  "479229-2017": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 10:34:33"
+  },
+  "21951-2023": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 10:34:33"
+  },
+  "4819-2021": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 10:34:33"
+  },
+  "664066-2022": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 10:34:33"
+  },
+  "53033-2024": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-08 10:34:33"
+  },
+  "93750-2018": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-10 16:23:02"
+  },
+  "UA-2026-05-09-000220-a": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-sonnet-4-6",
+    "ts": "2026-05-10 16:23:02"
+  },
+  "572650-2024:claude-haiku-4-5": {
+    "match": "326948-2025",
+    "confidence": 92,
+    "reasoning": "Identical winner (KITE), same buyer (Netherlands Ministry of Defence), matching subject matter (Military Medical Trailers), highly overlapping CPV codes, and publication date 8 months after closed tender is within plausible award notice timeframe.",
+    "candidate_ids": [
+      "326948-2025",
+      "673480-2024",
+      "345761-2025"
+    ],
+    "applied": true,
+    "model": "claude-haiku-4-5",
+    "ts": "2026-05-10 16:48:59"
+  },
+  "678662-2024:claude-haiku-4-5": {
+    "match": "30130-2025",
+    "confidence": 95,
+    "reasoning": "Identical subject matter (Helium Bottle Rack Structure for Trailer 16), same buyer (Bundesamt für Rüstung armasuisse), same winner (Calag Carrosserie Langenthal AG), same CPV codes, and publication date 70 days after tender closure is within plausible award notice timeline.",
+    "candidate_ids": [
+      "30130-2025"
+    ],
+    "applied": true,
+    "model": "claude-haiku-4-5",
+    "ts": "2026-05-10 16:49:01"
+  },
+  "493986-2024:claude-haiku-4-5": {
+    "match": "254420-2025",
+    "confidence": 95,
+    "reasoning": "Identical subject matter (multifunctional engineer equipment and field lighting towers on trailers), same buyer (Direzione Armamenti Terrestri), same winner (GREEN POWER), matching CPV codes, and publication date (2025-04-17) is 8 months after tender closure (2024-08-16), well within the plausible 0-18 month window.",
+    "candidate_ids": [
+      "254420-2025"
+    ],
+    "applied": true,
+    "model": "claude-haiku-4-5",
+    "ts": "2026-05-10 16:49:02"
+  },
+  "385446-2024:claude-haiku-4-5": {
+    "match": "119311-2025",
+    "confidence": 95,
+    "reasoning": "Identical subject matter (Heavy Platform/Cargo Trailers O4-PN-V for T-815), same buyer (Ministerstvo obrany), same winner (PANAV, a.s.), matching CPV codes, and publication date 7.5 months after closed tender is within typical award notice timeframe.",
+    "candidate_ids": [
+      "119311-2025",
+      "775798-2024",
+      "3730-2025",
+      "751810-2024",
+      "129915-2025"
+    ],
+    "applied": true,
+    "model": "claude-haiku-4-5",
+    "ts": "2026-05-10 16:49:08"
+  },
+  "299270-2019:claude-haiku-4-5": {
+    "match": "18389-2020",
+    "confidence": 95,
+    "reasoning": "Identical subject matter (Bridge Transport Semi-trailers KB8), same buyer (Försvarets materielverk), same CPV code, same winner company, and publication date (2020-01-14) falls within plausible award notice timeframe (6.5 months after tender closure on 2019-06-27).",
+    "candidate_ids": [
+      "18389-2020"
+    ],
+    "applied": true,
+    "model": "claude-haiku-4-5",
+    "ts": "2026-05-10 16:49:10"
+  },
+  "245184-2024:claude-haiku-4-5": {
+    "match": null,
+    "confidence": 15,
+    "reasoning": "While both are Belgian Defence Ministry procurements with overlapping CPV codes, Candidate 1 describes tractors and semi-trailers (99+18 and 94+18 units) whereas the closed tender specifies 780 military trailers of 6 types. The subject matter, lot composition, and quantities are substantially different; Candidate 1 appears to be a separate, larger procurement.",
+    "candidate_ids": [
+      "255376-2025"
+    ],
+    "applied": false,
+    "model": "claude-haiku-4-5",
+    "ts": "2026-05-10 16:49:34"
+  },
+  "749251-2025:claude-haiku-4-5": {
+    "match": null,
+    "confidence": 15,
+    "reasoning": "Candidate 1 is for aircraft maintenance trailers (different subject matter). Candidate 2 predates the tender (published before it) and concerns handling vehicle transport, not boat transport trailers.",
+    "candidate_ids": [
+      "182178-2026",
+      "582377-2025"
+    ],
+    "applied": false,
+    "model": "claude-haiku-4-5",
+    "ts": "2026-05-10 16:49:35"
+  },
+  "488694-2022:claude-haiku-4-5": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-haiku-4-5",
+    "ts": "2026-05-10 16:49:35"
+  },
+  "95616-2026:claude-haiku-4-5": {
+    "match": null,
+    "confidence": 15,
+    "reasoning": "Different subject matter: candidate 1 concerns tractors and semi-trailers, while closed tender is for fuel tank and storage systems. Publication date is also before the closed tender (April 2025 vs February 2026), making temporal sequence implausible.",
+    "candidate_ids": [
+      "255376-2025"
+    ],
+    "applied": false,
+    "model": "claude-haiku-4-5",
+    "ts": "2026-05-10 16:49:37"
+  },
+  "83387-2024:claude-haiku-4-5": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-haiku-4-5",
+    "ts": "2026-05-10 16:49:37"
+  },
+  "283775-2022:claude-haiku-4-5": {
+    "match": null,
+    "confidence": 25,
+    "reasoning": "Different buyers (BwFuhrparkService GmbH vs BAAINBw) and different scope: candidate is semi-trailers only while closed tender covers car/van trailers, truck trailers, and forklift trailers across broader CPV codes.",
+    "candidate_ids": [
+      "309470-2022"
+    ],
+    "applied": false,
+    "model": "claude-haiku-4-5",
+    "ts": "2026-05-10 16:49:39"
+  },
+  "207812-2024:claude-haiku-4-5": {
+    "match": null,
+    "confidence": 15,
+    "reasoning": "Different subject matter: closed tender is for aircraft refuelling trailers (CPV 34223360), while candidate is for heavy haulage trucks and low-bed trailers (CPV 34140000, 34130000, 34220000). Same buyer and plausible timeline, but vehicle types are distinctly different.",
+    "candidate_ids": [
+      "152406-2025"
+    ],
+    "applied": false,
+    "model": "claude-haiku-4-5",
+    "ts": "2026-05-10 16:49:41"
+  },
+  "798124-2025:claude-haiku-4-5": {
+    "match": null,
+    "confidence": 5,
+    "reasoning": "No candidate matches the closed tender. The tender specifies 'low-bed trailer for heavy military equipment transport' from VOP CZ, but all candidates are from Ministerstvo obrany with different trailer types (cargo trailers, container trailers, field kitchen trailers, water tank trailers). Additionally, the closed tender is dated 2025-12-02, which is after all candidate publication dates, making chronological matching impossible.",
+    "candidate_ids": [
+      "119311-2025",
+      "467088-2025",
+      "775798-2024",
+      "3730-2025",
+      "751810-2024"
+    ],
+    "applied": false,
+    "model": "claude-haiku-4-5",
+    "ts": "2026-05-10 16:49:43"
+  },
+  "465260-2025:claude-haiku-4-5": {
+    "match": null,
+    "confidence": 15,
+    "reasoning": "No candidate matches the closed tender. The tender is by VOP CZ (military procurement office) for semi-trailers for heavy military equipment transport (CPV 34223100), but all candidates are from Ministerstvo obrany with different specific trailer types (cargo, container, kitchen, water) and CPV 34223300. The publication date (2025-07-16) is also problematic—no plausible award notice appears within the typical 0–18 month window after this recent date.",
+    "candidate_ids": [
+      "119311-2025",
+      "467088-2025",
+      "775798-2024",
+      "3730-2025",
+      "751810-2024"
+    ],
+    "applied": false,
+    "model": "claude-haiku-4-5",
+    "ts": "2026-05-10 16:49:45"
+  },
+  "711549-2022:claude-haiku-4-5": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-haiku-4-5",
+    "ts": "2026-05-10 16:49:45"
+  },
+  "553507-2023:claude-haiku-4-5": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-haiku-4-5",
+    "ts": "2026-05-10 16:49:45"
+  },
+  "212474-2026:claude-haiku-4-5": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-haiku-4-5",
+    "ts": "2026-05-10 16:49:45"
+  },
+  "231675-2021:claude-haiku-4-5": {
+    "match": null,
+    "confidence": 5,
+    "reasoning": "Candidate 1 concerns welding units for an air force engineering regiment, which is entirely different subject matter from baggage/pallet/air freight transport trailers. The buyers also appear distinct (no clear connection to Minarm/Dmaé stated).",
+    "candidate_ids": [
+      "FR-21-163372"
+    ],
+    "applied": false,
+    "model": "claude-haiku-4-5",
+    "ts": "2026-05-10 16:49:47"
+  },
+  "77247-2026:claude-haiku-4-5": {
+    "match": null,
+    "confidence": 5,
+    "reasoning": "Candidate 1 concerns POSEIDON shelter systems with different CPV codes (34220000) and a different buyer authority, completely unrelated to motorcycles and trailers procurement.",
+    "candidate_ids": [
+      "583390-2025"
+    ],
+    "applied": false,
+    "model": "claude-haiku-4-5",
+    "ts": "2026-05-10 16:49:48"
+  },
+  "719142-2025:claude-haiku-4-5": {
+    "match": null,
+    "confidence": 15,
+    "reasoning": "The closed tender specifies 'Two-Wheel 1t Trailers' while all candidates describe different trailer types (3.5t/12.5t cargo trailers or container trailers). Subject matter mismatch is definitive despite same buyer and plausible timeframe.",
+    "candidate_ids": [
+      "682847-2024",
+      "161258-2025",
+      "660912-2024"
+    ],
+    "applied": false,
+    "model": "claude-haiku-4-5",
+    "ts": "2026-05-10 16:49:49"
+  },
+  "813306-2025:claude-haiku-4-5": {
+    "match": null,
+    "confidence": 15,
+    "reasoning": "Candidate 1 publication date (2025-03-12) precedes the closed tender (2025-12-08), making it chronologically impossible for this to be an award notice for that tender. Additionally, the subject matter is narrower (container trailers only vs. hook-lift trucks, trailers, flatbeds and containers).",
+    "candidate_ids": [
+      "161258-2025"
+    ],
+    "applied": false,
+    "model": "claude-haiku-4-5",
+    "ts": "2026-05-10 16:49:51"
+  },
+  "386007-2024:claude-haiku-4-5": {
+    "match": null,
+    "confidence": 15,
+    "reasoning": "No candidate matches the closed tender's specific subject matter (Container Transport Trailers KTN ISO 1C). All candidates describe different trailer types (field kitchen, water tank, cooling/freezing, or heavy platform trailers), indicating distinct procurements despite same buyer, country, and CPV codes.",
+    "candidate_ids": [
+      "775798-2024",
+      "3730-2025",
+      "751810-2024",
+      "129915-2025",
+      "385446-2024"
+    ],
+    "applied": false,
+    "model": "claude-haiku-4-5",
+    "ts": "2026-05-10 16:49:53"
+  },
+  "466852-2018:claude-haiku-4-5": {
+    "match": "299270-2019",
+    "confidence": 92,
+    "reasoning": "Identical buyer (Försvarets Materielverk), same CPV code (34223000), matching subject matter (KB8 bridge transport trailers/semi-trailers), and publication date 8 months after tender closing is within normal award notice timeframe.",
+    "candidate_ids": [
+      "299270-2019"
+    ],
+    "applied": true,
+    "model": "claude-haiku-4-5",
+    "ts": "2026-05-10 16:49:55"
+  },
+  "158253-2020:claude-haiku-4-5": {
+    "match": "218375-2020",
+    "confidence": 72,
+    "reasoning": "Same buyer authority, same country, plausible publication timing (39 days after tender), and closely related subject matter (trailers/containers for emergency response). However, candidate title is narrower ('special-purpose mobile containers' vs. 'dual-role trailers and containers'), and CPV codes differ slightly (34221000 vs. 34220000), introducing moderate uncertainty.",
+    "candidate_ids": [
+      "218375-2020",
+      "567897-2019",
+      "29224-2021"
+    ],
+    "applied": false,
+    "model": "claude-haiku-4-5",
+    "ts": "2026-05-10 16:49:57"
+  },
+  "161385-2021:claude-haiku-4-5": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-haiku-4-5",
+    "ts": "2026-05-10 16:49:57"
+  },
+  "147850-2021:claude-haiku-4-5": {
+    "match": "607291-2021",
+    "confidence": 72,
+    "reasoning": "Same buyer authority (Ministero Difesa - SGD-DNA/Direzione Armamenti Terrestri), same CPV code (34220000), and publication date (2021-11-26) falls within plausible 0-18 month window after closed tender (2021-03-24). Title refers to containers which matches 'Trailers, semi-trailers and mobile containers' subject matter, though phrasing differs slightly.",
+    "candidate_ids": [
+      "218375-2020",
+      "607291-2021",
+      "29224-2021",
+      "648482-2021"
+    ],
+    "applied": false,
+    "model": "claude-haiku-4-5",
+    "ts": "2026-05-10 16:49:59"
+  },
+  "782671-2023:claude-haiku-4-5": {
+    "match": null,
+    "confidence": 15,
+    "reasoning": "Subject matter mismatch: closed tender is for trailers (CPV 34223300, 34224000), while candidate is for mobile fuel distribution/storage system (CPV 44611000, 31121100). Different authorities and procurement focus areas.",
+    "candidate_ids": [
+      "537199-2024"
+    ],
+    "applied": false,
+    "model": "claude-haiku-4-5",
+    "ts": "2026-05-10 16:50:00"
+  },
+  "280104-2023:claude-haiku-4-5": {
+    "match": null,
+    "confidence": 15,
+    "reasoning": "While Candidate 2 shares the same CPV code (34220000) and buyer ministry, its publication date (2023-01-09) predates the closed tender (2023-05-12), making it chronologically impossible for it to be an award notice. Candidate 1's subject matter (armament trailers) is too dissimilar to POSEIDON Mobile Shelter, and its date is also problematic (2022, over 9 months before). Neither candidate matches the required temporal sequence or subject matter alignment.",
+    "candidate_ids": [
+      "433510-2022",
+      "13179-2023"
+    ],
+    "applied": false,
+    "model": "claude-haiku-4-5",
+    "ts": "2026-05-10 16:50:03"
+  },
+  "449529-2018:claude-haiku-4-5": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-haiku-4-5",
+    "ts": "2026-05-10 16:50:03"
+  },
+  "425325-2019:claude-haiku-4-5": {
+    "match": "156274-2020",
+    "confidence": 72,
+    "reasoning": "Same buyer (Czech Ministry of Defence), closely related subject matter (special-purpose mobile containers vs. ballistic protection containers), and publication date falls within plausible 0-18 month window (April 2020 is 7 months after September 2019). However, title variation and slightly different CPV code (34221000 vs. 34220000) introduce moderate uncertainty.",
+    "candidate_ids": [
+      "381122-2019",
+      "156274-2020",
+      "202710-2019",
+      "208162-2019"
+    ],
+    "applied": false,
+    "model": "claude-haiku-4-5",
+    "ts": "2026-05-10 16:50:04"
+  },
+  "520851-2023:claude-haiku-4-5": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-haiku-4-5",
+    "ts": "2026-05-10 16:50:04"
+  },
+  "309374-2017:claude-haiku-4-5": {
+    "match": "510836-2017",
+    "confidence": 72,
+    "reasoning": "Same buyer (Mindef/DGA/DO/S2A, with minor notation variation), same subject matter (climate-controlled trailers for pyrotechnic purposes), and plausible timeline (published 4.5 months after tender closure). CPV code differs slightly (34220000 vs 34223330) but both relate to trailer supply.",
+    "candidate_ids": [
+      "129337-2017",
+      "510836-2017"
+    ],
+    "applied": false,
+    "model": "claude-haiku-4-5",
+    "ts": "2026-05-10 16:50:06"
+  },
+  "504718-2017:claude-haiku-4-5": {
+    "match": null,
+    "confidence": 15,
+    "reasoning": "Same buyer and CPV code, but subject matter is completely different (tank trailers vs. mobile communication shelters). These are distinct procurements despite shared administrative codes.",
+    "candidate_ids": [
+      "343264-2018"
+    ],
+    "applied": false,
+    "model": "claude-haiku-4-5",
+    "ts": "2026-05-10 16:50:07"
+  },
+  "168172-2018:claude-haiku-4-5": {
+    "match": null,
+    "confidence": 15,
+    "reasoning": "Different subject matter (climate-controlled pyrotechnic trailers vs. ADR hazmat trailers) and publication date precedes tender by 4 months, violating temporal plausibility (award should follow tender closure).",
+    "candidate_ids": [
+      "510836-2017"
+    ],
+    "applied": false,
+    "model": "claude-haiku-4-5",
+    "ts": "2026-05-10 16:50:09"
+  },
+  "25210-2020:claude-haiku-4-5": {
+    "match": null,
+    "confidence": 25,
+    "reasoning": "Candidate 1 concerns special-purpose mobile containers (CPV 34221000) with a narrow scope, while the closed tender covers vehicle bodies, trailers, and semi-trailers for military use with broader CPV codes. Subject matter differs significantly despite both being UK Ministry of Defence procurements in the same period.",
+    "candidate_ids": [
+      "158377-2020"
+    ],
+    "applied": false,
+    "model": "claude-haiku-4-5",
+    "ts": "2026-05-10 16:50:10"
+  },
+  "172885-2022:claude-haiku-4-5": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-haiku-4-5",
+    "ts": "2026-05-10 16:50:10"
+  },
+  "388865-2024:claude-haiku-4-5": {
+    "match": null,
+    "confidence": 5,
+    "reasoning": "Subject matter is completely different (snowmobile sleds vs. fuel-tanker trucks). Although both are FMV procurements in Sweden, the CPV codes and vehicle types do not align, and the candidate's publication date (2023-12-04) predates the closed tender (2024-07-01).",
+    "candidate_ids": [
+      "734326-2023"
+    ],
+    "applied": false,
+    "model": "claude-haiku-4-5",
+    "ts": "2026-05-10 16:50:12"
+  },
+  "437702-2018:claude-haiku-4-5": {
+    "match": null,
+    "confidence": 15,
+    "reasoning": "Candidate 2's publication date (2019-01-29) is plausible relative to the tender (2018-10-06), and the buyer is identical. However, the subject matter differs: the tender specifies 'Military ISO Container Transport Trailers' (CPV 34223300) while both candidates describe 'Special-purpose mobile containers' (CPV 34221000), suggesting different equipment categories rather than the same procurement.",
+    "candidate_ids": [
+      "290522-2018",
+      "44748-2019"
+    ],
+    "applied": false,
+    "model": "claude-haiku-4-5",
+    "ts": "2026-05-10 16:50:14"
+  },
+  "302549-2020:claude-haiku-4-5": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-haiku-4-5",
+    "ts": "2026-05-10 16:50:14"
+  },
+  "174181-2019:claude-haiku-4-5": {
+    "match": "208162-2019",
+    "confidence": 72,
+    "reasoning": "Same country and buyer ministry (Czech MoD), closely related subject matter (ISO containers), plausible publication timeline (21 days after tender), though different CPV codes and buyer is a subordinate technical institute rather than ministry directly.",
+    "candidate_ids": [
+      "381122-2019",
+      "156274-2020",
+      "208162-2019"
+    ],
+    "applied": false,
+    "model": "claude-haiku-4-5",
+    "ts": "2026-05-10 16:50:16"
+  },
+  "109414-2018:claude-haiku-4-5": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-haiku-4-5",
+    "ts": "2026-05-10 16:50:16"
+  },
+  "222647-2022:claude-haiku-4-5": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-haiku-4-5",
+    "ts": "2026-05-10 16:50:16"
+  },
+  "140710-2026:claude-haiku-4-5": {
+    "match": null,
+    "confidence": 5,
+    "reasoning": "Subject matter is completely different: CBRN laboratory container and tactical transport vehicle versus engineering equipment and lighting towers. CPV codes differ significantly. Publication date (April 2025) is before the closed tender (February 2026), making temporal sequence implausible.",
+    "candidate_ids": [
+      "254420-2025"
+    ],
+    "applied": false,
+    "model": "claude-haiku-4-5",
+    "ts": "2026-05-10 16:50:18"
+  },
+  "320781-2017:claude-haiku-4-5": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-haiku-4-5",
+    "ts": "2026-05-10 16:50:18"
+  },
+  "561333-2024:claude-haiku-4-5": {
+    "match": null,
+    "confidence": 15,
+    "reasoning": "Different subject matter (fuel distribution vs climate chambers); candidate published before tender; no matching lot composition despite shared CPV codes.",
+    "candidate_ids": [
+      "537199-2024"
+    ],
+    "applied": false,
+    "model": "claude-haiku-4-5",
+    "ts": "2026-05-10 16:50:19"
+  },
+  "143718-2018:claude-haiku-4-5": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-haiku-4-5",
+    "ts": "2026-05-10 16:50:19"
+  },
+  "224545-2026:claude-haiku-4-5": {
+    "match": null,
+    "confidence": 15,
+    "reasoning": "Closed tender is for CBRN Decontamination Containers (CPV 34221000 primary), while candidates cover Aircraft Maintenance Trailers and vehicle transport trailers. Subject matter is fundamentally different despite same buyer and country. No plausible match.",
+    "candidate_ids": [
+      "182178-2026",
+      "582377-2025"
+    ],
+    "applied": false,
+    "model": "claude-haiku-4-5",
+    "ts": "2026-05-10 16:50:21"
+  },
+  "66554-2018:claude-haiku-4-5": {
+    "match": null,
+    "confidence": 25,
+    "reasoning": "While candidates share the same buyer (DGA/DO/S2A) and similar timeframe, both candidates predate the closed tender (published 2017 vs 2018) and have different CPV codes (34220000 vs 34221000) with more specific subject matter (climate trailers for pyrotechnic specimens vs general special-purpose mobile containers).",
+    "candidate_ids": [
+      "129337-2017",
+      "510836-2017"
+    ],
+    "applied": false,
+    "model": "claude-haiku-4-5",
+    "ts": "2026-05-10 16:50:23"
+  },
+  "287015-2018:claude-haiku-4-5": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-haiku-4-5",
+    "ts": "2026-05-10 16:50:23"
+  },
+  "444390-2018:claude-haiku-4-5": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-haiku-4-5",
+    "ts": "2026-05-10 16:50:23"
+  },
+  "550168-2018:claude-haiku-4-5": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-haiku-4-5",
+    "ts": "2026-05-10 16:50:23"
+  },
+  "517828-2017:claude-haiku-4-5": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-haiku-4-5",
+    "ts": "2026-05-10 16:50:23"
+  },
+  "442117-2023:claude-haiku-4-5": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-haiku-4-5",
+    "ts": "2026-05-10 16:50:23"
+  },
+  "49638-2019:claude-haiku-4-5": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-haiku-4-5",
+    "ts": "2026-05-10 16:50:23"
+  },
+  "204192-2016:claude-haiku-4-5": {
+    "match": null,
+    "confidence": 15,
+    "reasoning": "Different subject matter (dog transport vs. military transport trailers) and different buyer authority (Wojskowy Ośrodek Farmacji vs. 12 Wojskowy Oddział Gospodarczy). While CPV code matches and country/timeframe are plausible, the procurement subjects are fundamentally different.",
+    "candidate_ids": [
+      "186475-2017"
+    ],
+    "applied": false,
+    "model": "claude-haiku-4-5",
+    "ts": "2026-05-10 16:50:24"
+  },
+  "129023-2016:claude-haiku-4-5": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-haiku-4-5",
+    "ts": "2026-05-10 16:50:24"
+  },
+  "335687-2017:claude-haiku-4-5": {
+    "match": "287476-2018",
+    "confidence": 72,
+    "reasoning": "Same buyer (12 Wojskowy Oddział Gospodarczy), identical CPV code, and similar subject matter (transport trailers with load capacity). Publication date of July 2018 is plausible (10.5 months after August 2017 tender), though the candidate's title includes 'small' capacity which slightly broadens the original scope.",
+    "candidate_ids": [
+      "287476-2018",
+      "186475-2017"
+    ],
+    "applied": false,
+    "model": "claude-haiku-4-5",
+    "ts": "2026-05-10 16:50:27"
+  },
+  "453347-2020:claude-haiku-4-5": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-haiku-4-5",
+    "ts": "2026-05-10 16:50:27"
+  },
+  "462506-2021:claude-haiku-4-5": {
+    "match": "472604-2022",
+    "confidence": 82,
+    "reasoning": "Identical title and CPV code, same buyer authority (Puolustusvoimien logistiikkalaitos), and publication date of 2022-08-30 is plausibly 11 months after the closed tender date of 2021-09-13, consistent with typical procurement timelines.",
+    "candidate_ids": [
+      "472604-2022",
+      "72803-2022",
+      "665246-2021"
+    ],
+    "applied": true,
+    "model": "claude-haiku-4-5",
+    "ts": "2026-05-10 16:50:29"
+  },
+  "504725-2018:claude-haiku-4-5": {
+    "match": null,
+    "confidence": 15,
+    "reasoning": "Neither candidate matches the closed tender. Candidate 1 predates the tender (Aug 2018 vs Nov 2018) and has different subject matter (communication shelters). Candidate 2 has different subject matter (refuelling trailers) and CPV code, despite appropriate timing.",
+    "candidate_ids": [
+      "343264-2018",
+      "236275-2019"
+    ],
+    "applied": false,
+    "model": "claude-haiku-4-5",
+    "ts": "2026-05-10 16:50:33"
+  },
+  "192334-2020:claude-haiku-4-5": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-haiku-4-5",
+    "ts": "2026-05-10 16:50:33"
+  },
+  "568054-2023:claude-haiku-4-5": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-haiku-4-5",
+    "ts": "2026-05-10 16:50:33"
+  },
+  "437386-2019:claude-haiku-4-5": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-haiku-4-5",
+    "ts": "2026-05-10 16:50:33"
+  },
+  "344292-2025:claude-haiku-4-5": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-haiku-4-5",
+    "ts": "2026-05-10 16:50:33"
+  },
+  "126999-2021:claude-haiku-4-5": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-haiku-4-5",
+    "ts": "2026-05-10 16:50:33"
+  },
+  "602563-2023:claude-haiku-4-5": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-haiku-4-5",
+    "ts": "2026-05-10 16:50:33"
+  },
+  "473074-2022:claude-haiku-4-5": {
+    "match": null,
+    "confidence": 35,
+    "reasoning": "While all candidates share the same buyer and relevant CPV codes, none precisely matches field kitchens. Candidate 1 (refrigerated trailers) and Candidates 2-3 (mobile containers) address different equipment categories, making subject matter alignment uncertain despite plausible publication timing.",
+    "candidate_ids": [
+      "451829-2023",
+      "21951-2023",
+      "664066-2022"
+    ],
+    "applied": false,
+    "model": "claude-haiku-4-5",
+    "ts": "2026-05-10 16:50:35"
+  },
+  "300549-2017:claude-haiku-4-5": {
+    "match": null,
+    "confidence": 15,
+    "reasoning": "Different buyers (Cescof vs DGA/DO/S2A), different subject matter (generic mobile containers vs specialized climate trailers), and publication date is BEFORE the closed tender, not after.",
+    "candidate_ids": [
+      "129337-2017"
+    ],
+    "applied": false,
+    "model": "claude-haiku-4-5",
+    "ts": "2026-05-10 16:50:37"
+  },
+  "303464-2022:claude-haiku-4-5": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-haiku-4-5",
+    "ts": "2026-05-10 16:50:37"
+  },
+  "698416-2024:claude-haiku-4-5": {
+    "match": null,
+    "confidence": 5,
+    "reasoning": "Subject matter is fundamentally different: candidate concerns military tractors and semi-trailers while closed tender concerns field kitchens. Although same buyer and country, the procurements are distinct items.",
+    "candidate_ids": [
+      "255376-2025"
+    ],
+    "applied": false,
+    "model": "claude-haiku-4-5",
+    "ts": "2026-05-10 16:50:38"
+  },
+  "93750-2018:claude-haiku-4-5": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-haiku-4-5",
+    "ts": "2026-05-10 16:50:38"
+  },
+  "285082-2017:claude-haiku-4-5": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-haiku-4-5",
+    "ts": "2026-05-10 16:50:38"
+  },
+  "477775-2024:claude-haiku-4-5": {
+    "match": null,
+    "confidence": 15,
+    "reasoning": "No candidate matches the closed tender's subject matter. Candidate 1 covers deployable shelterized assets for weapon maintenance (different purpose), while Candidates 2-3 concern engineering equipment and lighting towers (different equipment entirely). The closed tender specifically seeks armory shelter containers, which none of the candidates address.",
+    "candidate_ids": [
+      "288875-2024",
+      "254420-2025",
+      "493986-2024"
+    ],
+    "applied": false,
+    "model": "claude-haiku-4-5",
+    "ts": "2026-05-10 16:50:40"
+  },
+  "207385-2026:claude-haiku-4-5": {
+    "match": null,
+    "confidence": 15,
+    "reasoning": "Candidate 1 concerns military tractors and semi-trailers (CPV 34223000, 34130000), while the closed tender specifies container mobiliser systems with hydraulic platforms (CPV 34952000). Different equipment types, different CPV codes, and candidate publication predates tender by ~11 months (implausible direction).",
+    "candidate_ids": [
+      "255376-2025"
+    ],
+    "applied": false,
+    "model": "claude-haiku-4-5",
+    "ts": "2026-05-10 16:50:42"
+  },
+  "108413-2022:claude-haiku-4-5": {
+    "match": null,
+    "confidence": 15,
+    "reasoning": "Candidate 1 has wrong CPV (34220000 vs 34221000) and earlier publication date (2021-11-26, before tender). Candidate 2 matches CPV and title perfectly but buyer is different (COMANDO FORZE OPERATIVE NORD vs MINISTERO DELLA DIFESA - SGD-DNA) and published before the tender (2021-12-17 vs 2022-03-01), making it chronologically implausible as an award notice.",
+    "candidate_ids": [
+      "607291-2021",
+      "648482-2021"
+    ],
+    "applied": false,
+    "model": "claude-haiku-4-5",
+    "ts": "2026-05-10 16:50:43"
+  },
+  "283527-2018:claude-haiku-4-5": {
+    "match": null,
+    "confidence": 15,
+    "reasoning": "Both candidates predate the closed tender (pub_date 2018-06-30), violating the expected timeline where award notices follow tender closure. Candidate 1 is 2 months earlier and Candidate 2 is 7 months earlier, making neither plausible as award notices for this procurement.",
+    "candidate_ids": [
+      "185625-2018",
+      "479229-2017"
+    ],
+    "applied": false,
+    "model": "claude-haiku-4-5",
+    "ts": "2026-05-10 16:50:46"
+  },
+  "384070-2017:claude-haiku-4-5": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-haiku-4-5",
+    "ts": "2026-05-10 16:50:46"
+  },
+  "551150-2024:claude-haiku-4-5": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-haiku-4-5",
+    "ts": "2026-05-10 16:50:46"
+  },
+  "268303-2016:claude-haiku-4-5": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-haiku-4-5",
+    "ts": "2026-05-10 16:50:46"
+  },
+  "623704-2021:claude-haiku-4-5": {
+    "match": null,
+    "confidence": 25,
+    "reasoning": "Candidate 1 predates the closed tender (Jan 2021 vs Dec 2021), making it implausible as an award notice. Candidates 2 and 3 have different buyers/authorities and Candidate 3 published only 10 days after the tender with insufficient time for evaluation, while Candidate 2 has a different CPV code and subject matter (open-side containers vs special-purpose mobile containers).",
+    "candidate_ids": [
+      "29224-2021",
+      "607291-2021",
+      "648482-2021"
+    ],
+    "applied": false,
+    "model": "claude-haiku-4-5",
+    "ts": "2026-05-10 16:50:48"
+  },
+  "433838-2023:claude-haiku-4-5": {
+    "match": "62507-2024",
+    "confidence": 72,
+    "reasoning": "Same subject matter (special-purpose mobile containers, CPV 34221000), same country, and plausible timeline (6 months post-tender). However, the closed tender lists COMANDO LOGISTICO DELL'ESERCITO while candidates show MINISTERO DELLA DIFESA subordinate organs, suggesting organizational hierarchy rather than direct match, creating moderate uncertainty.",
+    "candidate_ids": [
+      "62507-2024",
+      "431698-2023",
+      "53033-2024",
+      "790433-2023",
+      "53287-2024"
+    ],
+    "applied": false,
+    "model": "claude-haiku-4-5",
+    "ts": "2026-05-10 16:50:50"
+  },
+  "176779-2019:claude-haiku-4-5": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-haiku-4-5",
+    "ts": "2026-05-10 16:50:50"
+  },
+  "265191-2018:claude-haiku-4-5": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-haiku-4-5",
+    "ts": "2026-05-10 16:50:50"
+  },
+  "UK-tender_285861/998388:claude-haiku-4-5": {
+    "match": null,
+    "confidence": 25,
+    "reasoning": "While all candidates share the same buyer (MoD), country, and CPV codes, none match the closed tender's specific subject matter. The closed tender concerns 'Heavy Technical Trailer Capability - Industry Engagement' (suggesting a consultation/engagement phase), whereas candidates describe specific trailer types (Commando Raiding Craft, Box Trailers) that represent different procurement outcomes. Without publication dates, plausibility cannot be verified.",
+    "candidate_ids": [
+      "UK-tender_347489/1184039",
+      "UK-tender_340233/1221190",
+      "UK-tender_340233/1200929"
+    ],
+    "applied": false,
+    "model": "claude-haiku-4-5",
+    "ts": "2026-05-10 16:50:52"
+  },
+  "UK-RQ0000031667:claude-haiku-4-5": {
+    "match": null,
+    "confidence": 15,
+    "reasoning": "The closed tender specifies tractors (CPV 16500000, 16700000, 16000000), but all candidates involve trailers only (CPV 34223300 series). Additionally, the closed tender is from Defence Science and Technology Laboratory, not Ministry of Defence, representing a different procurement authority.",
+    "candidate_ids": [
+      "UK-tender_347489/1184039",
+      "UK-tender_340233/1221190",
+      "UK-tender_340233/1200929"
+    ],
+    "applied": false,
+    "model": "claude-haiku-4-5",
+    "ts": "2026-05-10 16:50:53"
+  },
+  "UK-tender_336462/1140912:claude-haiku-4-5": {
+    "match": null,
+    "confidence": 5,
+    "reasoning": "The closed tender concerns fuel delivery solution and aviation fuel for University Air Squadron, while all candidates relate to trailers (commando raiding craft or box trailers). Subject matter is fundamentally different despite overlapping CPV codes and same buyer.",
+    "candidate_ids": [
+      "UK-tender_347489/1184039",
+      "UK-tender_340233/1221190",
+      "UK-tender_340233/1200929"
+    ],
+    "applied": false,
+    "model": "claude-haiku-4-5",
+    "ts": "2026-05-10 16:50:55"
+  },
+  "FR-21-76485:claude-haiku-4-5": {
+    "match": null,
+    "confidence": 5,
+    "reasoning": "Different subject matter: candidate is for welding units for Air Force, closed tender is for resistive load bank for Navy. Different military branches and equipment types make this a non-match.",
+    "candidate_ids": [
+      "FR-21-163372"
+    ],
+    "applied": false,
+    "model": "claude-haiku-4-5",
+    "ts": "2026-05-10 16:50:57"
+  },
+  "FR-21-38939:claude-haiku-4-5": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-haiku-4-5",
+    "ts": "2026-05-10 16:50:57"
+  },
+  "FR-19-90275:claude-haiku-4-5": {
+    "match": null,
+    "confidence": 5,
+    "reasoning": "Candidate 1 is for a hybrid solar generator (published before the closed tender) while the closed tender seeks trailer-mounted welding units. Different subject matter and implausible publication sequence (candidate predates tender by 5 months).",
+    "candidate_ids": [
+      "FR-19-11984"
+    ],
+    "applied": false,
+    "model": "claude-haiku-4-5",
+    "ts": "2026-05-10 16:50:58"
+  },
+  "FR-16-11519:claude-haiku-4-5": {
+    "match": "FR-17-11123",
+    "confidence": 85,
+    "reasoning": "Identical subject matter (2500kW Resistive Load Bank on Road Trailer), same country (France), and publication date of 2017-01-26 is plausible (12 months after closed tender of 2016-01-29). Winner data now present on the candidate notice.",
+    "candidate_ids": [
+      "FR-17-11123"
+    ],
+    "applied": true,
+    "model": "claude-haiku-4-5",
+    "ts": "2026-05-10 16:51:00"
+  },
+  "FR-15-46366:claude-haiku-4-5": {
+    "match": null,
+    "confidence": 5,
+    "reasoning": "Subject matter is fundamentally different: closed tender concerns deployable shelters (340m² minimum), while candidate concerns a mobile target system with 4x4 vehicle and trailer. These are distinct procurement objects despite both involving trailers.",
+    "candidate_ids": [
+      "FR-15-186837"
+    ],
+    "applied": false,
+    "model": "claude-haiku-4-5",
+    "ts": "2026-05-10 16:51:01"
+  },
+  "FR-18-127112:claude-haiku-4-5": {
+    "match": "FR-19-11984",
+    "confidence": 95,
+    "reasoning": "Identical subject matter (hybrid solar generator on trailer for aerial support operations group), same country, plausible publication timeline (4 months after closed tender), and includes award winner data.",
+    "candidate_ids": [
+      "FR-19-11984",
+      "510836-2017"
+    ],
+    "applied": true,
+    "model": "claude-haiku-4-5",
+    "ts": "2026-05-10 16:51:02"
+  },
+  "FR-17-95354:claude-haiku-4-5": {
+    "match": null,
+    "confidence": 5,
+    "reasoning": "None of the candidates match the closed tender's subject matter. The closed tender specifies lubrication stations and welding units for the 25th Engineer Regiment, while all candidates concern climate-controlled trailers or solar generators for different military purposes. Subject matter is fundamentally different.",
+    "candidate_ids": [
+      "129337-2017",
+      "510836-2017",
+      "FR-19-11984"
+    ],
+    "applied": false,
+    "model": "claude-haiku-4-5",
+    "ts": "2026-05-10 16:51:04"
+  },
+  "FR-17-125671:claude-haiku-4-5": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-haiku-4-5",
+    "ts": "2026-05-10 16:51:04"
+  },
+  "NO-2023-312913:claude-haiku-4-5": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-haiku-4-5",
+    "ts": "2026-05-10 16:51:04"
+  },
+  "NO-2021-307144:claude-haiku-4-5": {
+    "match": "NO-2021-338906",
+    "confidence": 82,
+    "reasoning": "Identical subject matter (Purchase and Maintenance of Trailers), same country (Norway), and publication date of 2021-06-08 is 2.5 months after the closed tender (2021-03-24), which falls within the plausible 0-18 month window for award notices. Same authority appears to be involved.",
+    "candidate_ids": [
+      "NO-2021-338906"
+    ],
+    "applied": true,
+    "model": "claude-haiku-4-5",
+    "ts": "2026-05-10 16:51:05"
+  },
+  "EE-RP-e7bea398-bdab-48f6-aa92-7a15a091c98b:claude-haiku-4-5": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-haiku-4-5",
+    "ts": "2026-05-10 16:51:05"
+  },
+  "EE-RP-56bb148e-3a67-445c-9f37-efed40677d41:claude-haiku-4-5": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-haiku-4-5",
+    "ts": "2026-05-10 16:51:05"
+  },
+  "EE-RP-7825c9a9-5907-4b95-ac37-c178c560b1a9:claude-haiku-4-5": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-haiku-4-5",
+    "ts": "2026-05-10 16:51:05"
+  },
+  "UA-2026-05-09-000220-a:claude-haiku-4-5": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-haiku-4-5",
+    "ts": "2026-05-10 16:51:05"
+  },
+  "CZ-N006/22/V00026975:claude-haiku-4-5": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-haiku-4-5",
+    "ts": "2026-05-10 16:51:05"
+  },
+  "CZ-N006/26/V00008881:claude-haiku-4-5": {
+    "match": null,
+    "confidence": 25,
+    "reasoning": "Publication date of candidate (2026-04-28) is only 15 days after tender closure (2026-04-13), which is unusually fast for a procurement award. Additionally, the candidate uses plural 'trailers' versus singular 'trailer' in the closed tender, suggesting potentially different lot compositions or quantities.",
+    "candidate_ids": [
+      "CZ-N006/26/V00010428"
+    ],
+    "applied": false,
+    "model": "claude-haiku-4-5",
+    "ts": "2026-05-10 16:51:07"
+  },
+  "CZ-N006/26/V00005076:claude-haiku-4-5": {
+    "match": null,
+    "confidence": 25,
+    "reasoning": "Candidate 1 is geographically and temporally plausible but 'trailers for Armed Forces' is too vague to confirm it matches 'lightweight trailers up to 750kg'. Candidate 2 is a specialized tank trailer system from an earlier time period (2025) and clearly different subject matter.",
+    "candidate_ids": [
+      "CZ-N006/26/V00010428",
+      "CZ-N006/25/V00006089"
+    ],
+    "applied": false,
+    "model": "claude-haiku-4-5",
+    "ts": "2026-05-10 16:51:09"
+  },
+  "CZ-N006/26/V00000758:claude-haiku-4-5": {
+    "match": null,
+    "confidence": 15,
+    "reasoning": "Closed tender published 2026-03-30 cannot match candidates from 2025 (reversed chronology). Award notices must post-date the tender; these precede it by months.",
+    "candidate_ids": [
+      "CZ-N006/25/V00014955",
+      "CZ-N006/25/V00006089"
+    ],
+    "applied": false,
+    "model": "claude-haiku-4-5",
+    "ts": "2026-05-10 16:51:11"
+  },
+  "CZ-N006/24/V00015605:claude-haiku-4-5": {
+    "match": "CZ-N006/25/V00014955",
+    "confidence": 72,
+    "reasoning": "Same buyer (Czech Republic), nearly identical subject matter (semi-trailer combinations 50+ ton capacity), and publication date is 4 months after closed tender (plausible timeline). However, closed tender specifies '2025' while candidate specifies '2026', creating minor uncertainty about whether these refer to the same procurement year or vehicle delivery cohort.",
+    "candidate_ids": [
+      "CZ-N006/25/V00014955",
+      "CZ-N006/25/V00015642"
+    ],
+    "applied": false,
+    "model": "claude-haiku-4-5",
+    "ts": "2026-05-10 16:51:13"
+  },
+  "CZ-N006/23/V00001906:claude-haiku-4-5": {
+    "match": null,
+    "confidence": 15,
+    "reasoning": "Candidate published 4 days BEFORE the closed tender (wrong direction), and describes generic heavy-duty trailers rather than the specific tractor with semi-trailer configuration of minimum 50-ton capacity. Different procurement scope and implausible timeline.",
+    "candidate_ids": [
+      "CZ-N006/23/V00000559"
+    ],
+    "applied": false,
+    "model": "claude-haiku-4-5",
+    "ts": "2026-05-10 16:51:15"
+  },
+  "CZ-N006/23/V00000559:claude-haiku-4-5": {
+    "match": null,
+    "confidence": 15,
+    "reasoning": "Both notices are from the same country and close in publication date, but differ significantly in subject matter: the closed tender specifies 'Heavy-duty Trailers 2024-2026' while the candidate specifies 'Tractor with Semi-trailer 2024-2027'. The candidate includes tractors (not mentioned in closed tender) and has different delivery years. The candidate also appears to be another tender publication rather than an award notice (no winner data).",
+    "candidate_ids": [
+      "CZ-N006/23/V00001906"
+    ],
+    "applied": false,
+    "model": "claude-haiku-4-5",
+    "ts": "2026-05-10 16:51:17"
+  },
+  "CZ-N006/24/V00016218:claude-haiku-4-5": {
+    "match": null,
+    "confidence": 15,
+    "reasoning": "Candidate differs in quantity (22 vs 17 units) and publication date is 9 months after closed tender, which is plausible, but the different lot composition suggests these are separate procurements rather than the same award notice.",
+    "candidate_ids": [
+      "CZ-N006/25/V00015642"
+    ],
+    "applied": false,
+    "model": "claude-haiku-4-5",
+    "ts": "2026-05-10 16:51:19"
+  },
+  "CZ-N006/23/V00017787:claude-haiku-4-5": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-haiku-4-5",
+    "ts": "2026-05-10 16:51:19"
+  },
+  "CZ-N006/22/V00016712:claude-haiku-4-5": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-haiku-4-5",
+    "ts": "2026-05-10 16:51:19"
+  },
+  "CZ-N006/22/V00026992:claude-haiku-4-5": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-haiku-4-5",
+    "ts": "2026-05-10 16:51:19"
+  },
+  "CZ-N006/22/V00027001:claude-haiku-4-5": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-haiku-4-5",
+    "ts": "2026-05-10 16:51:19"
+  },
+  "CZ-N006/25/V00002312:claude-haiku-4-5": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-haiku-4-5",
+    "ts": "2026-05-10 16:51:19"
+  },
+  "CZ-N006/25/V00002308:claude-haiku-4-5": {
+    "match": null,
+    "confidence": 5,
+    "reasoning": "Subject matter is completely different: closed tender concerns field kitchen refrigerated freezer trailers, while candidate concerns tank trailer system for fuel. No match despite same country and plausible timeframe.",
+    "candidate_ids": [
+      "CZ-N006/25/V00006089"
+    ],
+    "applied": false,
+    "model": "claude-haiku-4-5",
+    "ts": "2026-05-10 16:51:20"
+  },
+  "CZ-N006/24/V00040322:claude-haiku-4-5": {
+    "match": null,
+    "confidence": 5,
+    "reasoning": "Candidate describes a tank trailer system for fuel, while closed tender specifies field kitchen trailers. These are fundamentally different subject matters with no apparent overlap in procurement purpose or specifications.",
+    "candidate_ids": [
+      "CZ-N006/25/V00006089"
+    ],
+    "applied": false,
+    "model": "claude-haiku-4-5",
+    "ts": "2026-05-10 16:51:22"
+  },
+  "CZ-N006/24/V00040319:claude-haiku-4-5": {
+    "match": null,
+    "confidence": 5,
+    "reasoning": "Subject matter is fundamentally different: closed tender concerns field kitchen water storage trailers, while candidate concerns tank trailers for fuel. Despite same country and plausible timeframe, these are distinct procurement requirements with no identifiable overlap.",
+    "candidate_ids": [
+      "CZ-N006/25/V00006089"
+    ],
+    "applied": false,
+    "model": "claude-haiku-4-5",
+    "ts": "2026-05-10 16:51:23"
+  },
+  "CZ-N006/24/V00040316:claude-haiku-4-5": {
+    "match": null,
+    "confidence": 5,
+    "reasoning": "Subject matter is completely different (field kitchen cooling/freezing vs. tank trailer fuel system). No reasonable basis for matching despite same country and buyer.",
+    "candidate_ids": [
+      "CZ-N006/25/V00006089"
+    ],
+    "applied": false,
+    "model": "claude-haiku-4-5",
+    "ts": "2026-05-10 16:51:25"
+  },
+  "CZ-N006/19/V00008087:claude-haiku-4-5": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-haiku-4-5",
+    "ts": "2026-05-10 16:51:25"
+  },
+  "CZ-N006/24/V00039486:claude-haiku-4-5": {
+    "match": null,
+    "confidence": 5,
+    "reasoning": "Subject matter mismatch: closed tender is for field kitchen trailers, while candidate is for tank trailer systems for fuel. These are fundamentally different procurements despite both being trailer-related purchases.",
+    "candidate_ids": [
+      "CZ-N006/25/V00006089"
+    ],
+    "applied": false,
+    "model": "claude-haiku-4-5",
+    "ts": "2026-05-10 16:51:28"
+  },
+  "CZ-N006/24/V00038682:claude-haiku-4-5": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-haiku-4-5",
+    "ts": "2026-05-10 16:51:28"
+  },
+  "CZ-N006/24/V00038677:claude-haiku-4-5": {
+    "match": null,
+    "confidence": 5,
+    "reasoning": "Subject matter is completely different: closed tender is for field kitchen refrigerated freezer trailers, while candidate is for tank trailer system for fuel. These are distinctly different procurement items.",
+    "candidate_ids": [
+      "CZ-N006/25/V00006089"
+    ],
+    "applied": false,
+    "model": "claude-haiku-4-5",
+    "ts": "2026-05-10 16:51:30"
+  },
+  "CZ-N006/24/V00032766:claude-haiku-4-5": {
+    "match": null,
+    "confidence": 5,
+    "reasoning": "Different subject matter: closed tender is for field kitchen trailers while candidate is for tank trailer systems for fuel. No matching procurement identified despite same country and plausible timeframe.",
+    "candidate_ids": [
+      "CZ-N006/25/V00006089"
+    ],
+    "applied": false,
+    "model": "claude-haiku-4-5",
+    "ts": "2026-05-10 16:51:32"
+  },
+  "CZ-N006/24/V00032762:claude-haiku-4-5": {
+    "match": null,
+    "confidence": 5,
+    "reasoning": "Subject matter is completely different (field kitchen cooling/freezing vs. tank trailer fuel system). No plausible connection between the two procurements despite same country and buyer authority.",
+    "candidate_ids": [
+      "CZ-N006/25/V00006089"
+    ],
+    "applied": false,
+    "model": "claude-haiku-4-5",
+    "ts": "2026-05-10 16:51:33"
+  },
+  "CZ-N006/24/V00032757:claude-haiku-4-5": {
+    "match": null,
+    "confidence": 15,
+    "reasoning": "While both are Czech Republic tank trailer procurements with plausible timeline, the closed tender specifies 2000L water tanks for cross-country use, whereas the candidate is explicitly a fuel tank system. Subject matter differs fundamentally in both capacity specification and intended application.",
+    "candidate_ids": [
+      "CZ-N006/25/V00006089"
+    ],
+    "applied": false,
+    "model": "claude-haiku-4-5",
+    "ts": "2026-05-10 16:51:35"
+  },
+  "CZ-N006/18/V00011770:claude-haiku-4-5": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-haiku-4-5",
+    "ts": "2026-05-10 16:51:35"
+  },
+  "CZ-N006/20/P00000006:claude-haiku-4-5": {
+    "match": null,
+    "confidence": 15,
+    "reasoning": "The closed tender ID (CZ-N006/20/P00000006) indicates Czech origin, but no candidate shows Czech authority with matching subject matter and plausible dates. Candidate 2 is Czech but focuses on trailers for T-815 trucks (specific model), not a general cargo tractor and low-bed transporter set procurement. Candidate 4 is Czech but published in 2025 (too recent relative to unknown tender date) and lacks full details.",
+    "candidate_ids": [
+      "152406-2025",
+      "119311-2025",
+      "147766-2020",
+      "CZ-N006/25/V00015642",
+      "726774-2024"
+    ],
+    "applied": false,
+    "model": "claude-haiku-4-5",
+    "ts": "2026-05-10 16:51:38"
+  },
+  "CZ-N006/24/V00016266:claude-haiku-4-5": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "Closed tender references Czech procurement (CZ prefix) but no candidate is from Czech Republic or matches the specific subject matter of single-axle flatbed trailer with tarpaulin cover. All candidates are from other EU countries (Ireland, Germany, Sweden, Italy) with different vehicle types (mortar trailers, container trailers, fuel tankers, engineer equipment, aerial platforms).",
+    "candidate_ids": [
+      "278489-2016",
+      "161258-2025",
+      "734326-2023",
+      "493986-2024",
+      "655783-2024"
+    ],
+    "applied": false,
+    "model": "claude-haiku-4-5",
+    "ts": "2026-05-10 16:51:39"
+  },
+  "CZ-N006/25/V00005961:claude-haiku-4-5": {
+    "match": null,
+    "confidence": 15,
+    "reasoning": "The closed tender is Czech (CZ-N006/25/V00005961) but only Candidate 3 is from Czech Republic. However, Candidate 3 describes heavy platform trailers for T-815 vehicles, not utility trailers for UTV use, and its publication date (2024-06-28) predates the closed tender's unknown publication date, making the timeline implausible.",
+    "candidate_ids": [
+      "726774-2024",
+      "345761-2025",
+      "385446-2024",
+      "582377-2025",
+      "30130-2025"
+    ],
+    "applied": false,
+    "model": "claude-haiku-4-5",
+    "ts": "2026-05-10 16:51:41"
+  },
+  "NL-577684:claude-haiku-4-5": {
+    "match": null,
+    "confidence": 15,
+    "reasoning": "The closed tender is from the Dutch Ministry of Defence (NL-577684) but none of the candidates are from the Netherlands or reference Dutch procurement. All candidates are from France, Italy, Sweden, or Denmark, making them geographically mismatched.",
+    "candidate_ids": [
+      "129337-2017",
+      "288875-2024",
+      "FR-21-163372",
+      "182178-2026",
+      "726774-2024"
+    ],
+    "applied": false,
+    "model": "claude-haiku-4-5",
+    "ts": "2026-05-10 16:51:45"
+  },
+  "UA-UA-2026-04-08-011067-a:claude-haiku-4-5": {
+    "match": null,
+    "confidence": 15,
+    "reasoning": "The closed tender references Ukraine (UA-UA prefix) but no candidate is from Ukraine. All candidates are from Ireland, Poland, Germany, Czech Republic, or Netherlands. Without country confirmation for the closed tender or a matching Ukrainian authority, no reliable match can be established.",
+    "candidate_ids": [
+      "152406-2025",
+      "287476-2018",
+      "147766-2020",
+      "CZ-N006/25/V00015642",
+      "572650-2024"
+    ],
+    "applied": false,
+    "model": "claude-haiku-4-5",
+    "ts": "2026-05-10 16:51:46"
+  },
+  "129337-2017:claude-haiku-4-5": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "network: HTTPSConnectionPool(host='api.anthropic.com', port=443): Max retries exceeded with url: /v1/messages (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x16e9f47d0>: Failed to resolve 'api.anthropic.com' ([Errno 8] nodename nor servname provided, or not known)\"))",
+    "candidate_ids": [
+      "510836-2017",
+      "FR-17-11123"
+    ],
+    "applied": false,
+    "model": "claude-haiku-4-5",
+    "ts": "2026-05-11 08:44:42"
+  },
+  "416123-2016:claude-haiku-4-5": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "network: HTTPSConnectionPool(host='api.anthropic.com', port=443): Max retries exceeded with url: /v1/messages (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x16e9f5310>: Failed to resolve 'api.anthropic.com' ([Errno 8] nodename nor servname provided, or not known)\"))",
+    "candidate_ids": [
+      "98678-2017"
+    ],
+    "applied": false,
+    "model": "claude-haiku-4-5",
+    "ts": "2026-05-11 08:44:57"
+  },
+  "351531-2025:claude-haiku-4-5": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "network: HTTPSConnectionPool(host='api.anthropic.com', port=443): Max retries exceeded with url: /v1/messages (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x16e9f5e50>: Failed to resolve 'api.anthropic.com' ([Errno 8] nodename nor servname provided, or not known)\"))",
+    "candidate_ids": [
+      "796372-2025",
+      "620674-2024",
+      "590889-2025",
+      "790962-2024"
+    ],
+    "applied": false,
+    "model": "claude-haiku-4-5",
+    "ts": "2026-05-11 08:45:19"
+  },
+  "218375-2020:claude-haiku-4-5": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "network: HTTPSConnectionPool(host='api.anthropic.com', port=443): Max retries exceeded with url: /v1/messages (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x16e9f6990>: Failed to resolve 'api.anthropic.com' ([Errno 8] nodename nor servname provided, or not known)\"))",
+    "candidate_ids": [
+      "567897-2019",
+      "29224-2021",
+      "147849-2021"
+    ],
+    "applied": false,
+    "model": "claude-haiku-4-5",
+    "ts": "2026-05-11 08:45:34"
+  },
+  "502486-2022:claude-haiku-4-5": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "network: HTTPSConnectionPool(host='api.anthropic.com', port=443): Max retries exceeded with url: /v1/messages (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x16e9f74d0>: Failed to resolve 'api.anthropic.com' ([Errno 8] nodename nor servname provided, or not known)\"))",
+    "candidate_ids": [
+      "377722-2023",
+      "433505-2022"
+    ],
+    "applied": false,
+    "model": "claude-haiku-4-5",
+    "ts": "2026-05-11 08:45:49"
+  },
+  "381122-2019:claude-haiku-4-5": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "network: HTTPSConnectionPool(host='api.anthropic.com', port=443): Max retries exceeded with url: /v1/messages (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x10d638050>: Failed to resolve 'api.anthropic.com' ([Errno 8] nodename nor servname provided, or not known)\"))",
+    "candidate_ids": [
+      "156274-2020",
+      "202710-2019"
+    ],
+    "applied": false,
+    "model": "claude-haiku-4-5",
+    "ts": "2026-05-11 08:46:11"
+  },
+  "290522-2018:claude-haiku-4-5": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "network: HTTPSConnectionPool(host='api.anthropic.com', port=443): Max retries exceeded with url: /v1/messages (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x10d6387d0>: Failed to resolve 'api.anthropic.com' ([Errno 8] nodename nor servname provided, or not known)\"))",
+    "candidate_ids": [
+      "44748-2019"
+    ],
+    "applied": false,
+    "model": "claude-haiku-4-5",
+    "ts": "2026-05-11 08:46:26"
+  },
+  "433505-2022:claude-haiku-4-5": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "network: HTTPSConnectionPool(host='api.anthropic.com', port=443): Max retries exceeded with url: /v1/messages (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x10d639310>: Failed to resolve 'api.anthropic.com' ([Errno 8] nodename nor servname provided, or not known)\"))",
+    "candidate_ids": [
+      "502486-2022",
+      "377722-2023"
+    ],
+    "applied": false,
+    "model": "claude-haiku-4-5",
+    "ts": "2026-05-11 08:46:41"
+  },
+  "538598-2019:claude-haiku-4-5": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "network: HTTPSConnectionPool(host='api.anthropic.com', port=443): Max retries exceeded with url: /v1/messages (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x10d639e50>: Failed to resolve 'api.anthropic.com' ([Errno 8] nodename nor servname provided, or not known)\"))",
+    "candidate_ids": [
+      "272850-2020"
+    ],
+    "applied": false,
+    "model": "claude-haiku-4-5",
+    "ts": "2026-05-11 08:46:56"
+  },
+  "93778-2018:claude-haiku-4-5": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-haiku-4-5",
+    "ts": "2026-05-11 08:46:56"
+  },
+  "431698-2023:claude-haiku-4-5": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "network: HTTPSConnectionPool(host='api.anthropic.com', port=443): Max retries exceeded with url: /v1/messages (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x10d63a990>: Failed to resolve 'api.anthropic.com' ([Errno 8] nodename nor servname provided, or not known)\"))",
+    "candidate_ids": [
+      "62507-2024",
+      "790433-2023",
+      "53287-2024",
+      "53033-2024"
+    ],
+    "applied": false,
+    "model": "claude-haiku-4-5",
+    "ts": "2026-05-11 08:47:18"
+  },
+  "790433-2023:claude-haiku-4-5": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "network: HTTPSConnectionPool(host='api.anthropic.com', port=443): Max retries exceeded with url: /v1/messages (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x10d63b4d0>: Failed to resolve 'api.anthropic.com' ([Errno 8] nodename nor servname provided, or not known)\"))",
+    "candidate_ids": [
+      "53033-2024",
+      "431698-2023",
+      "62507-2024",
+      "53287-2024"
+    ],
+    "applied": false,
+    "model": "claude-haiku-4-5",
+    "ts": "2026-05-11 08:47:33"
+  },
+  "312763-2020:claude-haiku-4-5": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "network: HTTPSConnectionPool(host='api.anthropic.com', port=443): Max retries exceeded with url: /v1/messages (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x16e9f4050>: Failed to resolve 'api.anthropic.com' ([Errno 8] nodename nor servname provided, or not known)\"))",
+    "candidate_ids": [
+      "529820-2020",
+      "4819-2021"
+    ],
+    "applied": false,
+    "model": "claude-haiku-4-5",
+    "ts": "2026-05-11 08:47:49"
+  },
+  "529820-2020:claude-haiku-4-5": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "network: HTTPSConnectionPool(host='api.anthropic.com', port=443): Max retries exceeded with url: /v1/messages (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x16e9f4b90>: Failed to resolve 'api.anthropic.com' ([Errno 8] nodename nor servname provided, or not known)\"))",
+    "candidate_ids": [
+      "4819-2021",
+      "312763-2020"
+    ],
+    "applied": false,
+    "model": "claude-haiku-4-5",
+    "ts": "2026-05-11 08:48:11"
+  },
+  "UK-tender_340233/1200929:claude-haiku-4-5": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "network: HTTPSConnectionPool(host='api.anthropic.com', port=443): Max retries exceeded with url: /v1/messages (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x16e9f56d0>: Failed to resolve 'api.anthropic.com' ([Errno 8] nodename nor servname provided, or not known)\"))",
+    "candidate_ids": [
+      "UK-tender_340233/1221190",
+      "UK-tender_347489/1184039"
+    ],
+    "applied": false,
+    "model": "claude-haiku-4-5",
+    "ts": "2026-05-11 08:48:26"
+  },
+  "CZ-N006/26/V00010428:claude-haiku-4-5": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-haiku-4-5",
+    "ts": "2026-05-11 08:48:26"
+  },
+  "CZ-N006/25/V00014955:claude-haiku-4-5": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-haiku-4-5",
+    "ts": "2026-05-11 08:48:26"
+  },
+  "CZ-N006/25/V00006089:claude-haiku-4-5": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-haiku-4-5",
+    "ts": "2026-05-11 08:48:26"
+  },
+  "CZ-N006/25/V00015642:claude-haiku-4-5": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-haiku-4-5",
+    "ts": "2026-05-11 08:48:26"
+  },
+  "18174-2025:claude-haiku-4-5": {
+    "match": null,
+    "confidence": 15,
+    "reasoning": "Candidate 1 has identical title and buyer, but was published BEFORE the closed tender (2024-10-30 vs 2025-01-13), making it chronologically impossible to be the award notice. No other candidate matches the subject matter of container trailers with roll-off containers.",
+    "candidate_ids": [
+      "660912-2024",
+      "655783-2024",
+      "682847-2024",
+      "188150-2024",
+      "544760-2024"
+    ],
+    "applied": false,
+    "model": "claude-haiku-4-5",
+    "ts": "2026-05-17 23:10:24"
+  },
+  "150584-2017:claude-haiku-4-5": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-haiku-4-5",
+    "ts": "2026-05-17 23:10:24"
+  },
+  "CA-cb-858-22734399:claude-haiku-4-5": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-haiku-4-5",
+    "ts": "2026-05-17 23:10:24"
+  },
+  "CA-cb-638-26291550:claude-haiku-4-5": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-haiku-4-5",
+    "ts": "2026-05-17 23:10:24"
+  },
+  "CA-cb-354-91077006:claude-haiku-4-5": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-haiku-4-5",
+    "ts": "2026-05-17 23:10:24"
+  },
+  "CA-cb-525-19244036:claude-haiku-4-5": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-haiku-4-5",
+    "ts": "2026-05-17 23:10:24"
+  },
+  "CA-cb-429-10910023:claude-haiku-4-5": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-haiku-4-5",
+    "ts": "2026-05-17 23:10:24"
+  },
+  "CA-cb-486-33159154:claude-haiku-4-5": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-haiku-4-5",
+    "ts": "2026-05-17 23:10:24"
+  },
+  "CA-cb-508-3695938:claude-haiku-4-5": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-haiku-4-5",
+    "ts": "2026-05-17 23:10:24"
+  },
+  "CA-cb-689-60047399:claude-haiku-4-5": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-haiku-4-5",
+    "ts": "2026-05-17 23:10:24"
+  },
+  "CA-cb-674-28324096:claude-haiku-4-5": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-haiku-4-5",
+    "ts": "2026-05-17 23:10:24"
+  },
+  "CA-cb-242-54645889:claude-haiku-4-5": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-haiku-4-5",
+    "ts": "2026-05-17 23:10:24"
+  },
+  "CA-cb-794-19250079:claude-haiku-4-5": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-haiku-4-5",
+    "ts": "2026-05-17 23:10:24"
+  },
+  "CA-cb-654-97078081:claude-haiku-4-5": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-haiku-4-5",
+    "ts": "2026-05-17 23:10:24"
+  },
+  "CA-cb-352-52771736:claude-haiku-4-5": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-haiku-4-5",
+    "ts": "2026-05-17 23:10:24"
+  },
+  "CA-cb-519-94462202:claude-haiku-4-5": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-haiku-4-5",
+    "ts": "2026-05-17 23:10:24"
+  },
+  "CA-cb-860-22921243:claude-haiku-4-5": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-haiku-4-5",
+    "ts": "2026-05-17 23:10:24"
+  },
+  "CA-cb-259-10824239:claude-haiku-4-5": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-haiku-4-5",
+    "ts": "2026-05-17 23:10:24"
+  },
+  "CA-cb-706-10971174:claude-haiku-4-5": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-haiku-4-5",
+    "ts": "2026-05-17 23:10:24"
+  },
+  "CA-cb-649-74064644:claude-haiku-4-5": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-haiku-4-5",
+    "ts": "2026-05-17 23:10:24"
+  },
+  "CA-cb-270-61917746:claude-haiku-4-5": {
+    "match": null,
+    "confidence": 0,
+    "reasoning": "no candidates after filtering",
+    "candidate_ids": [],
+    "applied": false,
+    "model": "claude-haiku-4-5",
+    "ts": "2026-05-17 23:10:24"
+  }
+}

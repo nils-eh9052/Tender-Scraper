@@ -1,0 +1,110 @@
+{
+  "AU-S-EST10799": {
+    "_atm_ref": "",
+    "_atm_pub_date": "2026-04-15",
+    "_atm_close_date": "",
+    "_match_strategy": "strat2"
+  },
+  "AU-FIN-2025-26-00756": {
+    "_atm_ref": "",
+    "_atm_pub_date": "2026-04-23",
+    "_atm_close_date": "",
+    "_match_strategy": "strat2"
+  },
+  "AU-S-EST10516": {
+    "_atm_ref": "",
+    "_atm_pub_date": "2026-04-07",
+    "_atm_close_date": "",
+    "_match_strategy": "strat2"
+  },
+  "AU-IPINFRA-MS-2026-01": {
+    "_atm_ref": "",
+    "_atm_pub_date": "2026-04-15",
+    "_atm_close_date": "",
+    "_match_strategy": "strat2"
+  },
+  "AU-25AMSA151": {
+    "_atm_ref": "",
+    "_atm_pub_date": "2026-04-17",
+    "_atm_close_date": "",
+    "_match_strategy": "strat2"
+  },
+  "AU-DTA-ICT-86508": {
+    "_atm_ref": "",
+    "_atm_pub_date": "2026-05-01",
+    "_atm_close_date": "",
+    "_match_strategy": "strat2"
+  },
+  "AU-AZ6616": {
+    "_atm_ref": "",
+    "_atm_pub_date": "2026-04-28",
+    "_atm_close_date": "",
+    "_match_strategy": "strat2"
+  },
+  "AU-ASQA_2025-26_9273": {
+    "_atm_ref": "",
+    "_atm_pub_date": "2026-05-07",
+    "_atm_close_date": "",
+    "_match_strategy": "strat2"
+  },
+  "AU-S-EST11303": {
+    "_atm_ref": "",
+    "_atm_pub_date": "2026-05-07",
+    "_atm_close_date": "",
+    "_match_strategy": "strat2"
+  },
+  "AU-S-EST10707": {
+    "_atm_ref": "",
+    "_atm_pub_date": "2026-05-13",
+    "_atm_close_date": "",
+    "_match_strategy": "strat2"
+  },
+  "AU-NOTICE": {
+    "_atm_ref": "",
+    "_atm_pub_date": "2026-05-15",
+    "_atm_close_date": "",
+    "_match_strategy": "strat2"
+  },
+  "AU-MSCCS/RFT/77626/1": {
+    "_atm_ref": "",
+    "_atm_pub_date": "2026-04-23",
+    "_atm_close_date": "",
+    "_match_strategy": "strat2"
+  },
+  "AU-ADFFHP": {
+    "_atm_ref": "",
+    "_atm_pub_date": "2026-03-18",
+    "_atm_close_date": "",
+    "_match_strategy": "strat2"
+  },
+  "AU-MGF_17": {
+    "_atm_ref": "",
+    "_atm_pub_date": "2017-02-24",
+    "_atm_close_date": "",
+    "_match_strategy": "strat2"
+  },
+  "AU-CNS16": {
+    "_atm_ref": "",
+    "_atm_pub_date": "2016-03-16",
+    "_atm_close_date": "",
+    "_match_strategy": "strat2"
+  },
+  "AU-AZ6621": {
+    "_atm_ref": "",
+    "_atm_pub_date": "2026-05-11",
+    "_atm_close_date": "",
+    "_match_strategy": "strat2"
+  },
+  "AU-DPC-2017": {
+    "_atm_ref": "",
+    "_atm_pub_date": "2017-04-20",
+    "_atm_close_date": "",
+    "_match_strategy": "strat2"
+  },
+  "AU-PHS-16": {
+    "_atm_ref": "",
+    "_atm_pub_date": "2026-03-18",
+    "_atm_close_date": "",
+    "_match_strategy": "strat3"
+  }
+}

@@ -1,0 +1,2805 @@
+{
+  "182178-2026:ctype": {
+    "contract_type": "framework_agreement",
+    "duration_months": 36,
+    "extension_options": false,
+    "_source": "ted_framework_agreement_lot",
+    "at": "2026-05-17 13:57:37"
+  },
+  "572650-2024:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "326948-2025:ctype": {
+    "contract_type": "one_time",
+    "duration_months": 180,
+    "extension_options": false,
+    "_source": "regex",
+    "at": "2026-05-19 14:08:26"
+  },
+  "726774-2024:ctype": {
+    "contract_type": "framework_agreement",
+    "duration_months": 48,
+    "extension_options": false,
+    "_source": "ted_framework_agreement_lot",
+    "at": "2026-05-17 13:57:37"
+  },
+  "245184-2024:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "_source": "regex",
+    "at": "2026-05-19 14:08:26"
+  },
+  "530666-2024:ctype": {
+    "contract_type": "framework_agreement",
+    "duration_months": 48,
+    "extension_options": false,
+    "_source": "ted_framework_agreement_lot",
+    "at": "2026-05-17 13:57:37"
+  },
+  "537199-2024:ctype": {
+    "contract_type": "framework_agreement",
+    "duration_months": null,
+    "extension_options": false,
+    "_source": "ted_framework_agreement_lot",
+    "at": "2026-05-17 13:57:37"
+  },
+  "345761-2025:ctype": {
+    "contract_type": "one_time",
+    "duration_months": 48,
+    "extension_options": true,
+    "_source": "regex",
+    "at": "2026-05-19 14:08:26"
+  },
+  "749251-2025:ctype": {
+    "contract_type": "framework_agreement",
+    "duration_months": 84,
+    "extension_options": false,
+    "_source": "ted_framework_agreement_lot",
+    "at": "2026-05-17 13:57:37"
+  },
+  "432811-2024:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "_source": "regex",
+    "at": "2026-05-19 14:08:26"
+  },
+  "488694-2022:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "95616-2026:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "_source": "regex",
+    "at": "2026-05-19 14:08:26"
+  },
+  "255376-2025:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "_source": "regex",
+    "at": "2026-05-19 14:08:26"
+  },
+  "83387-2024:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "_source": "regex",
+    "at": "2026-05-19 14:08:26"
+  },
+  "283775-2022:ctype": {
+    "contract_type": "one_time",
+    "duration_months": 48,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "118630-2024:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "207812-2024:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "_source": "regex",
+    "at": "2026-05-19 14:08:26"
+  },
+  "798124-2025:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "_source": "regex",
+    "at": "2026-05-19 14:08:26"
+  },
+  "553507-2023:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "711549-2022:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "465260-2025:ctype": {
+    "contract_type": "one_time",
+    "duration_months": 15,
+    "extension_options": false,
+    "_source": "regex",
+    "at": "2026-05-19 14:08:26"
+  },
+  "682847-2024:ctype": {
+    "contract_type": "framework_agreement",
+    "duration_months": 84,
+    "extension_options": false,
+    "_source": "ted_framework_agreement_lot",
+    "at": "2026-05-17 13:57:37"
+  },
+  "212474-2026:ctype": {
+    "contract_type": "framework_agreement",
+    "duration_months": 84,
+    "extension_options": false,
+    "_source": "ted_framework_agreement_lot",
+    "at": "2026-05-17 13:57:37"
+  },
+  "3730-2025:ctype": {
+    "contract_type": "framework_agreement",
+    "duration_months": 29,
+    "extension_options": false,
+    "_source": "ted_framework_agreement_lot",
+    "at": "2026-05-17 13:57:37"
+  },
+  "77247-2026:ctype": {
+    "contract_type": "framework_agreement",
+    "duration_months": 60,
+    "extension_options": false,
+    "_source": "ted_framework_agreement_lot",
+    "at": "2026-05-17 13:57:37"
+  },
+  "734326-2023:ctype": {
+    "contract_type": "framework_agreement",
+    "duration_months": 78,
+    "extension_options": false,
+    "_source": "ted_framework_agreement_lot",
+    "at": "2026-05-17 13:57:37"
+  },
+  "231675-2021:ctype": {
+    "contract_type": "one_time",
+    "duration_months": 60,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "775798-2024:ctype": {
+    "contract_type": "framework_agreement",
+    "duration_months": 28,
+    "extension_options": false,
+    "_source": "ted_framework_agreement_lot",
+    "at": "2026-05-17 13:57:37"
+  },
+  "719142-2025:ctype": {
+    "contract_type": "framework_agreement",
+    "duration_months": 84,
+    "extension_options": false,
+    "_source": "ted_framework_agreement_lot",
+    "at": "2026-05-17 13:57:37"
+  },
+  "13179-2023:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "188150-2024:ctype": {
+    "contract_type": "one_time",
+    "duration_months": 8,
+    "extension_options": false,
+    "_source": "regex",
+    "at": "2026-05-19 14:08:26"
+  },
+  "813306-2025:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "_source": "regex",
+    "at": "2026-05-19 14:08:26"
+  },
+  "309470-2022:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "751810-2024:ctype": {
+    "contract_type": "framework_agreement",
+    "duration_months": 29,
+    "extension_options": false,
+    "_source": "ted_framework_agreement_lot",
+    "at": "2026-05-17 13:57:37"
+  },
+  "132540-2025:ctype": {
+    "contract_type": "framework_agreement",
+    "duration_months": 29,
+    "extension_options": false,
+    "_source": "ted_framework_agreement_lot",
+    "at": "2026-05-17 13:57:37"
+  },
+  "129915-2025:ctype": {
+    "contract_type": "framework_agreement",
+    "duration_months": 16,
+    "extension_options": false,
+    "_source": "ted_framework_agreement_lot",
+    "at": "2026-05-17 13:57:37"
+  },
+  "119311-2025:ctype": {
+    "contract_type": "one_time",
+    "duration_months": 20,
+    "extension_options": false,
+    "_source": "regex",
+    "at": "2026-05-19 14:08:26"
+  },
+  "493986-2024:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "_source": "regex",
+    "at": "2026-05-19 14:08:26"
+  },
+  "620674-2024:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "_source": "regex",
+    "at": "2026-05-19 14:08:26"
+  },
+  "385446-2024:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "_source": "regex",
+    "at": "2026-05-19 14:08:26"
+  },
+  "386007-2024:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "_source": "regex",
+    "at": "2026-05-19 14:08:26"
+  },
+  "590889-2025:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "_source": "regex",
+    "at": "2026-05-19 14:08:26"
+  },
+  "582377-2025:ctype": {
+    "contract_type": "one_time",
+    "duration_months": 36,
+    "extension_options": false,
+    "_source": "regex",
+    "at": "2026-05-19 14:08:26"
+  },
+  "678662-2024:ctype": {
+    "contract_type": "one_time",
+    "duration_months": 48,
+    "extension_options": false,
+    "_source": "regex",
+    "at": "2026-05-19 14:08:26"
+  },
+  "30130-2025:ctype": {
+    "contract_type": "one_time",
+    "duration_months": 48,
+    "extension_options": false,
+    "_source": "regex",
+    "at": "2026-05-19 14:08:26"
+  },
+  "467088-2025:ctype": {
+    "contract_type": "one_time",
+    "duration_months": 15,
+    "extension_options": false,
+    "_source": "regex",
+    "at": "2026-05-19 14:08:26"
+  },
+  "751287-2024:ctype": {
+    "contract_type": "framework_agreement",
+    "duration_months": 16,
+    "extension_options": false,
+    "_source": "ted_framework_agreement_lot",
+    "at": "2026-05-17 13:57:37"
+  },
+  "254420-2025:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "_source": "regex",
+    "at": "2026-05-19 14:08:26"
+  },
+  "655783-2024:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "_source": "regex",
+    "at": "2026-05-19 14:08:26"
+  },
+  "299270-2019:ctype": {
+    "contract_type": "one_time",
+    "duration_months": 96,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "18389-2020:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "152406-2025:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "_source": "regex",
+    "at": "2026-05-19 14:08:26"
+  },
+  "466852-2018:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "147849-2021:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "583390-2025:ctype": {
+    "contract_type": "one_time",
+    "duration_months": 54,
+    "extension_options": false,
+    "_source": "regex",
+    "at": "2026-05-19 14:08:26"
+  },
+  "158253-2020:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "129337-2017:ctype": {
+    "contract_type": "one_time",
+    "duration_months": 30,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "510836-2017:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "607291-2021:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "140259-2025:ctype": {
+    "contract_type": "framework_agreement",
+    "duration_months": null,
+    "extension_options": false,
+    "_source": "ted_framework_agreement_lot",
+    "at": "2026-05-17 13:57:37"
+  },
+  "782671-2023:ctype": {
+    "contract_type": "framework_agreement",
+    "duration_months": null,
+    "extension_options": false,
+    "_source": "ted_framework_agreement_lot",
+    "at": "2026-05-17 13:57:37"
+  },
+  "261427-2025:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": true,
+    "_source": "regex",
+    "at": "2026-05-19 14:08:26"
+  },
+  "660912-2024:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "_source": "regex",
+    "at": "2026-05-19 14:08:26"
+  },
+  "23089-2024:ctype": {
+    "contract_type": "framework_agreement",
+    "duration_months": 24,
+    "extension_options": false,
+    "_source": "ted_framework_agreement_lot",
+    "at": "2026-05-17 13:57:37"
+  },
+  "309374-2017:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "467733-2020:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "280104-2023:ctype": {
+    "contract_type": "one_time",
+    "duration_months": 36,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "172885-2022:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "98678-2017:ctype": {
+    "contract_type": "one_time",
+    "duration_months": 24,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "567897-2019:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "425325-2019:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "520851-2023:ctype": {
+    "contract_type": "one_time",
+    "duration_months": 9,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "504718-2017:ctype": {
+    "contract_type": "one_time",
+    "duration_months": 48,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "416123-2016:ctype": {
+    "contract_type": "one_time",
+    "duration_months": 24,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "168172-2018:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "485934-2022:ctype": {
+    "contract_type": "framework_agreement",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "25210-2020:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "343264-2018:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "673480-2024:ctype": {
+    "contract_type": "one_time",
+    "duration_months": 120,
+    "extension_options": false,
+    "_source": "regex",
+    "at": "2026-05-17 13:57:37"
+  },
+  "449529-2018:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "476399-2023:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "433510-2022:ctype": {
+    "contract_type": "one_time",
+    "duration_months": 60,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "437702-2018:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "236275-2019:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "586629-2020:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "302549-2020:ctype": {
+    "contract_type": "one_time",
+    "duration_months": 60,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "533765-2019:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "109414-2018:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "174181-2019:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "222647-2022:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "561333-2024:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "140710-2026:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "_source": "regex",
+    "at": "2026-05-19 14:08:26"
+  },
+  "796372-2025:ctype": {
+    "contract_type": "one_time",
+    "duration_months": 48,
+    "extension_options": false,
+    "_source": "regex",
+    "at": "2026-05-19 14:08:26"
+  },
+  "320781-2017:ctype": {
+    "contract_type": "one_time",
+    "duration_months": 48,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "351531-2025:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "143718-2018:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "236276-2019:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": true,
+    "at": "2026-05-17 10:36:43"
+  },
+  "287015-2018:ctype": {
+    "contract_type": "one_time",
+    "duration_months": 48,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "40574-2017:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "222221-2019:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "29224-2021:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "218375-2020:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "602000-2024:ctype": {
+    "contract_type": "framework_agreement",
+    "duration_months": 84,
+    "extension_options": false,
+    "_source": "ted_framework_agreement_lot",
+    "at": "2026-05-17 13:57:37"
+  },
+  "72106-2017:ctype": {
+    "contract_type": "one_time",
+    "duration_months": 12,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "224545-2026:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": true,
+    "_source": "regex",
+    "at": "2026-05-19 14:08:26"
+  },
+  "158377-2020:ctype": {
+    "contract_type": "one_time",
+    "duration_months": 60,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "66554-2018:ctype": {
+    "contract_type": "one_time",
+    "duration_months": 60,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "185625-2018:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "444390-2018:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "451829-2023:ctype": {
+    "contract_type": "framework_agreement",
+    "duration_months": 24,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "550168-2018:ctype": {
+    "contract_type": "framework_agreement",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "335687-2017:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "517828-2017:ctype": {
+    "contract_type": "framework_agreement",
+    "duration_months": 49,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "287476-2018:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "453347-2020:ctype": {
+    "contract_type": "one_time",
+    "duration_months": 19,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "442117-2023:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "204192-2016:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "49638-2019:ctype": {
+    "contract_type": "one_time",
+    "duration_months": 48,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "278489-2016:ctype": {
+    "contract_type": "one_time",
+    "duration_months": 18,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "129023-2016:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "544760-2024:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "_source": "regex",
+    "at": "2026-05-19 14:08:26"
+  },
+  "473074-2022:ctype": {
+    "contract_type": "one_time",
+    "duration_months": 24,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "245779-2019:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "462506-2021:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "619862-2019:ctype": {
+    "contract_type": "one_time",
+    "duration_months": 12,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "344292-2025:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "_source": "regex",
+    "at": "2026-05-19 14:08:26"
+  },
+  "252675-2024:ctype": {
+    "contract_type": "framework_agreement",
+    "duration_months": 24,
+    "extension_options": false,
+    "_source": "ted_framework_agreement_lot",
+    "at": "2026-05-17 13:57:37"
+  },
+  "502486-2022:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "153265-2024:ctype": {
+    "contract_type": "one_time",
+    "duration_months": 6,
+    "extension_options": false,
+    "_source": "regex",
+    "at": "2026-05-19 14:08:26"
+  },
+  "151800-2025:ctype": {
+    "contract_type": "framework_agreement",
+    "duration_months": 24,
+    "extension_options": false,
+    "_source": "ted_framework_agreement_lot",
+    "at": "2026-05-17 13:57:37"
+  },
+  "748301-2024:ctype": {
+    "contract_type": "framework_agreement",
+    "duration_months": 24,
+    "extension_options": false,
+    "_source": "ted_framework_agreement_lot",
+    "at": "2026-05-17 13:57:37"
+  },
+  "438372-2024:ctype": {
+    "contract_type": "one_time",
+    "duration_months": 48,
+    "extension_options": true,
+    "_source": "regex",
+    "at": "2026-05-19 14:08:26"
+  },
+  "602563-2023:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "192334-2020:ctype": {
+    "contract_type": "one_time",
+    "duration_months": 84,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "472604-2022:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "300549-2017:ctype": {
+    "contract_type": "one_time",
+    "duration_months": 84,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "140196-2020:ctype": {
+    "contract_type": "one_time",
+    "duration_months": 48,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "126999-2021:ctype": {
+    "contract_type": "one_time",
+    "duration_months": 24,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "377722-2023:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "381122-2019:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "437386-2019:ctype": {
+    "contract_type": "one_time",
+    "duration_months": 84,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "303464-2022:ctype": {
+    "contract_type": "one_time",
+    "duration_months": 24,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "726196-2024:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "_source": "regex",
+    "at": "2026-05-19 14:08:26"
+  },
+  "504725-2018:ctype": {
+    "contract_type": "one_time",
+    "duration_months": 12,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "103251-2026:ctype": {
+    "contract_type": "framework_agreement",
+    "duration_months": 24,
+    "extension_options": false,
+    "_source": "ted_framework_agreement_lot",
+    "at": "2026-05-17 13:57:37"
+  },
+  "61174-2019:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "290522-2018:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "72803-2022:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "433505-2022:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "272850-2020:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "156274-2020:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "44748-2019:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "580921-2021:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "648482-2021:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "538598-2019:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "568054-2023:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "_source": "regex",
+    "at": "2026-05-19 14:08:26"
+  },
+  "282269-2023:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "736943-2024:ctype": {
+    "contract_type": "one_time",
+    "duration_months": 24,
+    "extension_options": false,
+    "_source": "regex",
+    "at": "2026-05-19 14:08:26"
+  },
+  "285082-2017:ctype": {
+    "contract_type": "one_time",
+    "duration_months": 9,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "288875-2024:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "_source": "regex",
+    "at": "2026-05-19 14:08:26"
+  },
+  "698416-2024:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "_source": "regex",
+    "at": "2026-05-19 14:08:26"
+  },
+  "93778-2018:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "207385-2026:ctype": {
+    "contract_type": "recurring",
+    "duration_months": null,
+    "extension_options": false,
+    "_source": "regex",
+    "at": "2026-05-19 14:08:26"
+  },
+  "268303-2016:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "431698-2023:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "62507-2024:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "283527-2018:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "479229-2017:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "790433-2023:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "444456-2025:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "_source": "regex",
+    "at": "2026-05-19 14:08:26"
+  },
+  "53287-2024:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "664066-2022:ctype": {
+    "contract_type": "one_time",
+    "duration_months": 18,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "312763-2020:ctype": {
+    "contract_type": "one_time",
+    "duration_months": 12,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "433838-2023:ctype": {
+    "contract_type": "one_time",
+    "duration_months": 5,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "176779-2019:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "265191-2018:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "108413-2022:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "53033-2024:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "21951-2023:ctype": {
+    "contract_type": "one_time",
+    "duration_months": 18,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "529820-2020:ctype": {
+    "contract_type": "one_time",
+    "duration_months": 12,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "4819-2021:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "384070-2017:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "623704-2021:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "UK-tender_285861/998388:ctype": {
+    "contract_type": "one_time",
+    "duration_months": 240,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "UK-RQ0000031667:ctype": {
+    "contract_type": "one_time",
+    "duration_months": 120,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "UK-tender_347489/1184039:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "UK-tender_340233/1221190:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "UK-tender_340233/1200929:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "UK-tender_336462/1140912:ctype": {
+    "contract_type": "recurring",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "FR-21-163372:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "FR-21-76485:ctype": {
+    "contract_type": "recurring",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "FR-21-38939:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "FR-19-90275:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "FR-17-20328:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "FR-17-11123:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "FR-16-11519:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "FR-15-186837:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "FR-15-46366:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "FR-19-11984:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "FR-18-127112:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "FR-17-95354:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "FR-17-125671:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "NO-2023-312913:ctype": {
+    "contract_type": "framework_agreement",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "NO-2021-338906:ctype": {
+    "contract_type": "framework_agreement",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "NO-2021-307144:ctype": {
+    "contract_type": "framework_agreement",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "EE-RP-e7bea398-bdab-48f6-aa92-7a15a091c98b:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "EE-RP-56bb148e-3a67-445c-9f37-efed40677d41:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "EE-RP-7825c9a9-5907-4b95-ac37-c178c560b1a9:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "CZ-N006/22/V00026975:ctype": {
+    "contract_type": "framework_agreement",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "CZ-N006/26/V00005076:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "CZ-N006/26/V00000758:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "CZ-N006/24/V00015605:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "CZ-N006/25/V00014955:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "CZ-N006/25/V00006089:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "CZ-N006/23/V00001906:ctype": {
+    "contract_type": "one_time",
+    "duration_months": 48,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "CZ-N006/25/V00015642:ctype": {
+    "contract_type": "framework_agreement",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "CZ-N006/23/V00000559:ctype": {
+    "contract_type": "framework_agreement",
+    "duration_months": 24,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "CZ-N006/24/V00016218:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "CZ-N006/23/V00017787:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "CZ-N006/22/V00016712:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "CZ-N006/22/V00026992:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "CZ-N006/22/V00027001:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "CZ-N006/25/V00002312:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "CZ-N006/25/V00002308:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "CZ-N006/24/V00040322:ctype": {
+    "contract_type": "framework_agreement",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "CZ-N006/24/V00040319:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "CZ-N006/24/V00040316:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "CZ-N006/19/V00008087:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "CZ-N006/24/V00039486:ctype": {
+    "contract_type": "framework_agreement",
+    "duration_months": null,
+    "extension_options": true,
+    "at": "2026-05-17 10:36:43"
+  },
+  "CZ-N006/24/V00038682:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "CZ-N006/24/V00038677:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "CZ-N006/24/V00032766:ctype": {
+    "contract_type": "framework_agreement",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "CZ-N006/24/V00032762:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "CZ-N006/24/V00032757:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "CZ-N006/18/V00011770:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "CZ-N006/20/P00000006:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "CZ-N006/24/V00016266:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "CZ-N006/25/V00005961:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "NL-577684:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "UA-2026-05-09-000220-a:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "UA-UA-2026-04-08-011067-a:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "CA-cb-990-11745680:ctype": {
+    "contract_type": "recurring",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "CA-cb-709-75404492:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "CA-WS4863804357-Doc5106881775:ctype": {
+    "contract_type": "recurring",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "CA-cb-441-89367036:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "CA-cb-858-22734399:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "CA-cb-758-37458917:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "CA-cb-638-26291550:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "CA-cb-479-92541306:ctype": {
+    "contract_type": "one_time",
+    "duration_months": 360,
+    "extension_options": true,
+    "at": "2026-05-17 10:36:43"
+  },
+  "CA-cb-354-91077006:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "CA-cb-903-54122545:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "CA-cb-16-29327250:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "CA-cb-485-53016575:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "CA-cb-525-19244036:ctype": {
+    "contract_type": "recurring",
+    "duration_months": 12,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "CA-cb-554-73415459:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "CA-cb-359-74516142:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "CA-cb-564-33891857:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "CA-cb-644-62331342:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "CA-cb-429-10910023:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "CA-cb-486-33159154:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "CA-cb-22-54048373:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "CA-cb-508-3695938:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": true,
+    "at": "2026-05-17 10:36:43"
+  },
+  "CA-cb-950-968991:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "CA-cb-689-60047399:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": true,
+    "at": "2026-05-17 10:36:43"
+  },
+  "CA-cb-924-88126289:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "CA-cb-150-19578639:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "CA-cb-414-12155154:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "CA-cb-22-14513026:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "CA-cb-694-73485542:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "CA-cb-186-9989639:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "CA-cb-894-85214298:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "CA-cb-35-67096673:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "CA-cb-276-69995938:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "CA-cb-674-28324096:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "CA-cb-110-11816515:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "CA-cb-265-15004619:ctype": {
+    "contract_type": "one_time",
+    "duration_months": 252,
+    "extension_options": true,
+    "at": "2026-05-17 10:36:43"
+  },
+  "CA-cb-437-53987654:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "CA-cb-790-87389474:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "CA-cb-242-54645889:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "CA-cb-98-29464798:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "CA-cb-386-85195273:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "CA-cb-874-45569487:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": true,
+    "at": "2026-05-17 10:36:43"
+  },
+  "CA-cb-935-33419872:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "CA-cb-475-85848648:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "CA-cb-151-67840346:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "CA-cb-508-69094693:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "CA-cb-892-35967846:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "CA-WS5223105764-Doc5337569809:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "CA-cb-438-46458936:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "CA-cb-794-19250079:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "CA-cb-352-52771736:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "CA-cb-144-71605607:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "CA-cb-10-72341722:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": true,
+    "at": "2026-05-17 10:36:43"
+  },
+  "CA-cb-977-74656801:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "CA-cb-826-91517035:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "CA-cb-117-34510956:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "CA-cb-945-12394481:ctype": {
+    "contract_type": "one_time",
+    "duration_months": 12,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "CA-cb-142-8051499:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "CA-cb-20-53138868:ctype": {
+    "contract_type": "one_time",
+    "duration_months": 684,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "CA-cb-933-11906015:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "CA-cb-472-89265808:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "CA-cb-689-9450130:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "CA-cb-589-99037729:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "CA-cb-107-16909491:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "CA-cb-519-94462202:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": true,
+    "at": "2026-05-17 10:36:43"
+  },
+  "CA-cb-526-45803579:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "CA-cb-643-42105650:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "CA-cb-860-22921243:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "CA-cb-673-24565157:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": true,
+    "at": "2026-05-17 10:36:43"
+  },
+  "CA-cb-259-10824239:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "CA-cb-723-98620812:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "CA-cb-706-10971174:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "CA-cb-357-82819588:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "CA-cb-134-52798819:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "CA-cb-649-74064644:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": true,
+    "at": "2026-05-17 10:36:43"
+  },
+  "AU-CN4147670:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "AU-CN4114917:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "AU-CN4085915:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "AU-CN4048671:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "AU-CN4037407:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "AU-CN4219889:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "AU-CN4212841:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "AU-CN4194334:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "AU-CN4187816:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "AU-CN4109618:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "AU-CN4097231:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "AU-CN4041207:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "AU-CN4033343:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "AU-CN4042934:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "AU-CN4138641:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "AU-CN4237513:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "AU-CN4058691:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "AU-CN4033355:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "AU-CN4232906:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "AU-CN4194772:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "AU-CN4059474:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "AU-CN4052725:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "at": "2026-05-17 10:36:43"
+  },
+  "18174-2025:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "_source": "regex",
+    "at": "2026-05-17 23:01:22"
+  },
+  "161385-2021:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "_source": "regex",
+    "at": "2026-05-17 23:01:22"
+  },
+  "485935-2022:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "_source": "regex",
+    "at": "2026-05-17 23:01:22"
+  },
+  "150584-2017:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "_source": "regex",
+    "at": "2026-05-17 23:01:22"
+  },
+  "665246-2021:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "_source": "regex",
+    "at": "2026-05-17 23:01:22"
+  },
+  "619861-2019:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "_source": "regex",
+    "at": "2026-05-17 23:01:22"
+  },
+  "477775-2024:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "_source": "regex",
+    "at": "2026-05-17 23:01:22"
+  },
+  "CA-cb-654-97078081:ctype": {
+    "contract_type": "recurring",
+    "duration_months": 60,
+    "extension_options": false,
+    "_source": "regex",
+    "at": "2026-05-17 23:01:22"
+  },
+  "CA-cb-270-61917746:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "_source": "regex",
+    "at": "2026-05-17 23:01:22"
+  },
+  "CZ-N006/26/V00010428:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "_source": "regex",
+    "at": "2026-05-17 23:01:22"
+  },
+  "CZ-N006/26/V00008881:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "_source": "regex",
+    "at": "2026-05-17 23:01:22"
+  },
+  "AU-CN4231607:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "_source": "regex",
+    "at": "2026-05-17 23:01:22"
+  },
+  "AU-CN4229566:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "_source": "regex",
+    "at": "2026-05-17 23:01:22"
+  },
+  "AU-CN4226088:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "_source": "regex",
+    "at": "2026-05-17 23:01:22"
+  },
+  "AU-CN4212288:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "_source": "regex",
+    "at": "2026-05-17 23:01:22"
+  },
+  "AU-CN4212054:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "_source": "regex",
+    "at": "2026-05-17 23:01:22"
+  },
+  "AU-CN4191005:ctype": {
+    "contract_type": "one_time",
+    "duration_months": 2,
+    "extension_options": false,
+    "_source": "regex",
+    "at": "2026-05-17 23:01:22"
+  },
+  "AU-CN4191001:ctype": {
+    "contract_type": "one_time",
+    "duration_months": 2,
+    "extension_options": false,
+    "_source": "regex",
+    "at": "2026-05-17 23:01:22"
+  },
+  "AU-CN4181381:ctype": {
+    "contract_type": "one_time",
+    "duration_months": 4,
+    "extension_options": false,
+    "_source": "regex",
+    "at": "2026-05-17 23:01:22"
+  },
+  "AU-CN4151342:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "_source": "regex",
+    "at": "2026-05-17 23:01:22"
+  },
+  "AU-CN4134564:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "_source": "regex",
+    "at": "2026-05-17 23:01:22"
+  },
+  "AU-CN4124177:ctype": {
+    "contract_type": "one_time",
+    "duration_months": 6,
+    "extension_options": false,
+    "_source": "regex",
+    "at": "2026-05-17 23:01:22"
+  },
+  "AU-CN4121372:ctype": {
+    "contract_type": "one_time",
+    "duration_months": 1,
+    "extension_options": false,
+    "_source": "regex",
+    "at": "2026-05-17 23:01:22"
+  },
+  "AU-CN4111301:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "_source": "regex",
+    "at": "2026-05-17 23:01:22"
+  },
+  "AU-CN4107517:ctype": {
+    "contract_type": "one_time",
+    "duration_months": 20,
+    "extension_options": false,
+    "_source": "regex",
+    "at": "2026-05-17 23:01:22"
+  },
+  "AU-CN4096858:ctype": {
+    "contract_type": "one_time",
+    "duration_months": 4,
+    "extension_options": false,
+    "_source": "regex",
+    "at": "2026-05-17 23:01:22"
+  },
+  "AU-CN4075812:ctype": {
+    "contract_type": "one_time",
+    "duration_months": 11,
+    "extension_options": false,
+    "_source": "regex",
+    "at": "2026-05-17 23:01:22"
+  },
+  "AU-CN4067630:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "_source": "regex",
+    "at": "2026-05-17 23:01:22"
+  },
+  "AU-CN4065679:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "_source": "regex",
+    "at": "2026-05-17 23:01:22"
+  },
+  "AU-CN4065676:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "_source": "regex",
+    "at": "2026-05-17 23:01:22"
+  },
+  "AU-CN4054379:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "_source": "regex",
+    "at": "2026-05-17 23:01:22"
+  },
+  "AU-CN4053775:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "_source": "regex",
+    "at": "2026-05-17 23:01:22"
+  },
+  "AU-CN4053139:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "_source": "regex",
+    "at": "2026-05-17 23:01:22"
+  },
+  "AU-CN4050938:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "_source": "regex",
+    "at": "2026-05-17 23:01:22"
+  },
+  "AU-CN4044940:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "_source": "regex",
+    "at": "2026-05-17 23:01:22"
+  },
+  "AU-CN4044916:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "_source": "regex",
+    "at": "2026-05-17 23:01:22"
+  },
+  "AU-CN4235234:ctype": {
+    "contract_type": "one_time",
+    "duration_months": 3,
+    "extension_options": false,
+    "_source": "regex",
+    "at": "2026-05-17 23:01:22"
+  },
+  "AU-CN4151972:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "_source": "regex",
+    "at": "2026-05-17 23:01:22"
+  },
+  "AU-CN4151969:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "_source": "regex",
+    "at": "2026-05-17 23:01:22"
+  },
+  "AU-CN4151956:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "_source": "regex",
+    "at": "2026-05-17 23:01:22"
+  },
+  "AU-CN4151955:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "_source": "regex",
+    "at": "2026-05-17 23:01:22"
+  },
+  "AU-CN4075656:ctype": {
+    "contract_type": "one_time",
+    "duration_months": 7,
+    "extension_options": false,
+    "_source": "regex",
+    "at": "2026-05-17 23:01:22"
+  },
+  "AU-CN4208760:ctype": {
+    "contract_type": "one_time",
+    "duration_months": 3,
+    "extension_options": false,
+    "_source": "regex",
+    "at": "2026-05-17 23:01:22"
+  },
+  "AU-CN4235227:ctype": {
+    "contract_type": "one_time",
+    "duration_months": 2,
+    "extension_options": false,
+    "_source": "regex",
+    "at": "2026-05-17 23:01:22"
+  },
+  "AU-CN4226103:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "_source": "regex",
+    "at": "2026-05-17 23:01:22"
+  },
+  "AU-CN4223014:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "_source": "regex",
+    "at": "2026-05-17 23:01:22"
+  },
+  "AU-CN4223015:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "_source": "regex",
+    "at": "2026-05-17 23:01:22"
+  },
+  "AU-CN4222399:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "_source": "regex",
+    "at": "2026-05-17 23:01:22"
+  },
+  "AU-CN4220407:ctype": {
+    "contract_type": "one_time",
+    "duration_months": 6,
+    "extension_options": false,
+    "_source": "regex",
+    "at": "2026-05-17 23:01:22"
+  },
+  "AU-CN4176159:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "_source": "regex",
+    "at": "2026-05-17 23:01:22"
+  },
+  "AU-CN4155073:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "_source": "regex",
+    "at": "2026-05-17 23:01:22"
+  },
+  "AU-CN4140069:ctype": {
+    "contract_type": "one_time",
+    "duration_months": 3,
+    "extension_options": false,
+    "_source": "regex",
+    "at": "2026-05-17 23:01:22"
+  },
+  "AU-CN4132068:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "_source": "regex",
+    "at": "2026-05-17 23:01:22"
+  },
+  "AU-CN4124867:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "_source": "regex",
+    "at": "2026-05-17 23:01:22"
+  },
+  "AU-CN4101820:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "_source": "regex",
+    "at": "2026-05-17 23:01:22"
+  },
+  "AU-CN4040506:ctype": {
+    "contract_type": "one_time",
+    "duration_months": 4,
+    "extension_options": false,
+    "_source": "regex",
+    "at": "2026-05-17 23:01:22"
+  },
+  "NATO-26LMS042:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "_source": "regex",
+    "at": "2026-05-18 10:34:25"
+  },
+  "AU-S-EST10799:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "_source": "regex",
+    "at": "2026-05-18 13:38:34"
+  },
+  "AU-FIN-2025-26-00756:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "_source": "regex",
+    "at": "2026-05-18 13:38:34"
+  },
+  "AU-S-EST10516:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "_source": "regex",
+    "at": "2026-05-18 13:38:34"
+  },
+  "AU-IPINFRA-MS-2026-01:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "_source": "regex",
+    "at": "2026-05-18 13:38:34"
+  },
+  "AU-25AMSA151:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "_source": "regex",
+    "at": "2026-05-18 13:38:34"
+  },
+  "AU-DTA-ICT-86508:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "_source": "regex",
+    "at": "2026-05-18 13:38:34"
+  },
+  "AU-AZ6616:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "_source": "regex",
+    "at": "2026-05-18 13:38:34"
+  },
+  "AU-ASQA_2025-26_9273:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "_source": "regex",
+    "at": "2026-05-18 13:38:34"
+  },
+  "AU-S-EST11303:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "_source": "regex",
+    "at": "2026-05-18 13:38:34"
+  },
+  "AU-S-EST10707:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "_source": "regex",
+    "at": "2026-05-18 13:38:34"
+  },
+  "AU-NOTICE:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "_source": "regex",
+    "at": "2026-05-18 13:38:34"
+  },
+  "AU-MSCCS/RFT/77626/1:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "_source": "regex",
+    "at": "2026-05-18 13:38:34"
+  },
+  "AU-ADFFHP:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "_source": "regex",
+    "at": "2026-05-18 13:38:34"
+  },
+  "AU-MGF_17:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "_source": "regex",
+    "at": "2026-05-18 13:38:34"
+  },
+  "AU-CNS16:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "_source": "regex",
+    "at": "2026-05-18 13:38:34"
+  },
+  "AU-AZ6621:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "_source": "regex",
+    "at": "2026-05-18 13:38:34"
+  },
+  "AU-DPC-2017:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "_source": "regex",
+    "at": "2026-05-18 13:38:34"
+  },
+  "AU-PHS-16:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "_source": "regex",
+    "at": "2026-05-18 13:38:34"
+  },
+  "FR-22-16243:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "_source": "regex",
+    "at": "2026-05-19 14:08:26"
+  },
+  "FR-21-78349:ctype": {
+    "contract_type": "recurring",
+    "duration_months": null,
+    "extension_options": false,
+    "_source": "regex",
+    "at": "2026-05-19 14:08:26"
+  },
+  "FR-21-47488:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "_source": "regex",
+    "at": "2026-05-19 14:08:26"
+  },
+  "FR-21-25839:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "_source": "regex",
+    "at": "2026-05-19 14:08:26"
+  },
+  "FR-20-108769:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "_source": "regex",
+    "at": "2026-05-19 14:08:26"
+  },
+  "FR-20-37927:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "_source": "regex",
+    "at": "2026-05-19 14:08:26"
+  },
+  "FR-19-165530:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "_source": "regex",
+    "at": "2026-05-19 14:08:26"
+  },
+  "FR-17-167413:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "_source": "regex",
+    "at": "2026-05-19 14:08:26"
+  },
+  "FR-16-172496:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "_source": "regex",
+    "at": "2026-05-19 14:08:26"
+  },
+  "FR-16-20992:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "_source": "regex",
+    "at": "2026-05-19 14:08:26"
+  },
+  "FR-15-80729:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "_source": "regex",
+    "at": "2026-05-19 14:08:26"
+  },
+  "FR-15-80739:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "_source": "regex",
+    "at": "2026-05-19 14:08:26"
+  },
+  "FR-15-42786:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "_source": "regex",
+    "at": "2026-05-19 14:08:26"
+  },
+  "FR-26-38159:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "_source": "regex",
+    "at": "2026-05-19 14:08:26"
+  },
+  "FR-25-55786:ctype": {
+    "contract_type": "framework_agreement",
+    "duration_months": null,
+    "extension_options": false,
+    "_source": "regex",
+    "at": "2026-05-19 14:08:26"
+  },
+  "FR-20-129849:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "_source": "regex",
+    "at": "2026-05-19 14:08:26"
+  },
+  "FR-19-106842:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "_source": "regex",
+    "at": "2026-05-19 14:08:26"
+  },
+  "FR-18-140754:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "_source": "regex",
+    "at": "2026-05-19 14:08:26"
+  },
+  "FR-18-126437:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "_source": "regex",
+    "at": "2026-05-19 14:08:26"
+  },
+  "FR-18-67890:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "_source": "regex",
+    "at": "2026-05-19 14:08:26"
+  },
+  "FR-18-58183:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "_source": "regex",
+    "at": "2026-05-19 14:08:26"
+  },
+  "FR-18-14007:ctype": {
+    "contract_type": "recurring",
+    "duration_months": null,
+    "extension_options": false,
+    "_source": "regex",
+    "at": "2026-05-19 14:08:26"
+  },
+  "FR-17-160147:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "_source": "regex",
+    "at": "2026-05-19 14:08:26"
+  },
+  "FR-17-54256:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "_source": "regex",
+    "at": "2026-05-19 14:08:26"
+  },
+  "FR-16-539:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "_source": "regex",
+    "at": "2026-05-19 14:08:26"
+  },
+  "FR-15-156375:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "_source": "regex",
+    "at": "2026-05-19 14:08:26"
+  },
+  "FR-15-44518:ctype": {
+    "contract_type": "one_time",
+    "duration_months": null,
+    "extension_options": false,
+    "_source": "regex",
+    "at": "2026-05-19 14:08:26"
+  }
+}

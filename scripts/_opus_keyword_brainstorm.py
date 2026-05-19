@@ -14,7 +14,7 @@ Usage:
     python3 scripts/_opus_keyword_brainstorm.py [--dry-run]
 
 Env:
-    ANTHROPIC_API_KEY or LLM_ANTHROPIC_API_KEY required.
+    LLM_OPENROUTER_API_KEY required (calls go via src/llm_router.py).
 """
 from __future__ import annotations
 
@@ -26,18 +26,12 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(ROOT))
 
-# Load .env (mirrors main.py's inline loader)
-_env_path = ROOT / ".env"
-if _env_path.exists():
-    for _line in _env_path.read_text(encoding="utf-8").splitlines():
-        _line = _line.strip()
-        if not _line or _line.startswith("#") or "=" not in _line:
-            continue
-        _key, _, _val = _line.partition("=")
-        _key, _val = _key.strip(), _val.strip()
-        if _val and not os.environ.get(_key):
-            os.environ[_key] = _val
+# Workspace-aware .env loading (workspace-root .env.local + repo-local .env).
+from src.env_loader import load_env_chain  # noqa: E402
+load_env_chain(repo_root=ROOT)
+
 CORPUS_PATH = ROOT / "docs" / "AWARDED_CORPUS.json"
 OUT_PATH = ROOT / "docs" / "OPUS_KEYWORD_BRAINSTORM.json"
 

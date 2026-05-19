@@ -33,21 +33,26 @@ logger = logging.getLogger(__name__)
 
 
 class QualityReviewer:
-    """Post-run quality reviewer backed by Claude Opus."""
+    """Post-run quality reviewer backed by Claude Opus via OpenRouter."""
 
-    API_URL = "https://api.anthropic.com/v1/messages"
-    MODEL = "claude-opus-4-20250514"
+    API_URL = "https://openrouter.ai/api/v1/chat/completions"
+    MODEL = "anthropic/claude-opus-4.6"
 
     def __init__(self):
-        self.api_key = os.environ.get("ANTHROPIC_API_KEY")
+        self.api_key = (
+            os.environ.get("LLM_OPENROUTER_API_KEY")
+            or os.environ.get("OPENROUTER_API_KEY")
+            or None
+        )
         if not self.api_key:
-            logger.warning("ANTHROPIC_API_KEY not set -- quality review disabled.")
+            logger.warning("LLM_OPENROUTER_API_KEY not set -- quality review disabled.")
         self.session = requests.Session()
         self.session.verify = _SSL_VERIFY
         self.session.headers.update({
             "Content-Type": "application/json",
-            "x-api-key": self.api_key or "",
-            "anthropic-version": "2023-06-01",
+            "Authorization": f"Bearer {self.api_key or ''}",
+            "HTTP-Referer": "https://bpw-tender-radar.internal",
+            "X-Title": "BPW Defence Tender Radar",
         })
 
     @property
@@ -171,7 +176,7 @@ ROWS:
                 logger.error(f"Opus review HTTP {resp.status_code}: {resp.text[:300]}")
                 return None
             data = resp.json()
-            text = data.get("content", [{}])[0].get("text", "")
+            text = (data.get("choices") or [{}])[0].get("message", {}).get("content", "")
             text = text.strip()
             if text.startswith("```"):
                 # Strip code fences
@@ -194,7 +199,7 @@ ROWS:
             logger.error(f"Excel not found: {excel_path}")
             return None
         if not self.is_available:
-            logger.warning("Quality review skipped: no ANTHROPIC_API_KEY.")
+            logger.warning("Quality review skipped: no LLM_OPENROUTER_API_KEY.")
             return None
 
         rows = self._load_rows(excel_path)

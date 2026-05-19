@@ -6,7 +6,7 @@ Step 2: Precise classification (type, category, quantity, duration, etc.)
 
 Principle: Quality over quantity. Better 76 clean results than 200 dirty ones.
 
-To enable: export ANTHROPIC_API_KEY=sk-ant-...
+To enable: set LLM_OPENROUTER_API_KEY=sk-or-v1-... in .env
 """
 
 import os
@@ -104,23 +104,28 @@ class ClassifierStats:
 class AiClassifier:
     """Two-step AI classifier: strict filter + precise classification."""
 
-    API_URL = "https://api.anthropic.com/v1/messages"
-    MODEL = "claude-sonnet-4-20250514"
+    API_URL = "https://openrouter.ai/api/v1/chat/completions"
+    MODEL = "anthropic/claude-sonnet-4.6"
     MAX_AI_CALLS_TEST = 10
 
     def __init__(self):
-        self.api_key = os.environ.get("ANTHROPIC_API_KEY")
+        self.api_key = (
+            os.environ.get("LLM_OPENROUTER_API_KEY")
+            or os.environ.get("OPENROUTER_API_KEY")
+            or None
+        )
         if not self.api_key:
             logger.warning(
-                "ANTHROPIC_API_KEY not set. AI classification disabled. "
+                "LLM_OPENROUTER_API_KEY not set. AI classification disabled. "
                 "Set the env var to enable AI-powered enrichment."
             )
         self.session = requests.Session()
         self.session.verify = _SSL_VERIFY
         self.session.headers.update({
             "Content-Type": "application/json",
-            "x-api-key": self.api_key or "",
-            "anthropic-version": "2023-06-01"
+            "Authorization": f"Bearer {self.api_key or ''}",
+            "HTTP-Referer": "https://bpw-tender-radar.internal",
+            "X-Title": "BPW Defence Tender Radar",
         })
 
     @property
@@ -171,7 +176,14 @@ class AiClassifier:
         if not title:
             title = str(notice.get("_title_final", "") or "")
 
-        description = notice.get("description", "")
+        # Prefer Window-A's `description_en` (Sonnet-translated, summarised
+        # English narrative) — much easier for the classifier to parse than
+        # raw multilingual blobs. Fall through to the original chain if not set.
+        description = (
+            notice.get("description_en")
+            or notice.get("_description_english")
+            or notice.get("description", "")
+        )
         if isinstance(description, dict):
             description = description.get("eng") or description.get("deu") or next(iter(description.values()), "")
         description = str(description or "")[:4000]
@@ -212,6 +224,11 @@ A) Is a trailer/semi-trailer/trailer-based system the PRIMARY procurement subjec
 YES: cargo trailers, semitrailers, low-bed transporters, tank/fuel trailers, ammo trailers, field kitchen trailers, container/shelter on trailer chassis, hook-lift/loading systems, water treatment/field hospital/container system/shelter MOUNTED ON semi-trailer chassis (trailer is primary platform), Drivmedelstransportekipage (Swedish fuel transport combo), Transportekipage
 NO: trucks without trailers, spare parts only, maintenance without new trailers, tanks/APCs/trucks/cars, software, ammunition itself, general logistics services
 
+C) Sprint 14j safety-net: is this a PURE repair / maintenance / service contract for EXISTING trailers (no new equipment)?
+   YES: "Trailer Repair Services" / "Wartungsvertrag Sattelauflieger" / "Maintenance of trailer fleet" — service-only, no purchase
+   NO:  Mixed contracts ("supply and maintain"), framework agreements that include new units, lot bundles with both
+   If YES → mark relevant: false with reason "repair-only contract".
+
 B) Is the procuring authority defence/military?
 YES: Ministry of Defence, Armed Forces, BAAINBw, FMV, DGA, NATO agencies, military logistics commands, HIL GmbH, VOP CZ (Czech state defence enterprise)
 NO: fire brigades, police, municipalities, energy companies, road authorities, interior ministries, water utilities
@@ -229,6 +246,15 @@ RULES:
 - If no description: use title + CPV alone. CPV 34223000/34223100/34223200 from a defence authority = relevant even without description
 - 0.01 EUR or 1 EUR = valid German/EU framework agreement placeholder — do NOT reject due to low value
 - trailer_quantity_1/2: trailers only. additional_qty: non-trailer items only
+- QUANTITY EXTRACTION HINTS — search the description for any of these patterns and pull the integer:
+    "qty: 16" / "quantity: 16" / "quantity 16" → trailer_quantity_1 = 16
+    "16 units" / "16 trailers" / "16 pcs" / "16 ks" / "16 stk" → 16
+    "X x trailer" / "X × trailer" / "X-fach" → X
+  If multiple distinct quantities exist for the same trailer type, pick the LARGER (total order, not sub-lot).
+- DURATION EXTRACTION HINTS — search for these patterns and emit `contract_duration` as a string with unit:
+    "48 months" / "for 4 years" / "duration: 36 months" / "framework agreement of 60 months"
+    "trvání 48 měsíců" (CZ) / "duración 60 meses" (ES) / "varighed 48 måneder" (DK)
+  Keep the number + unit in English (e.g. "48 months").
 - ALL output in English
 - MULTI-LOT RULE: If the procurement contains MULTIPLE DISTINCT trailer types (different weight classes, different purposes, different lot numbers), place them in slots 1 and 2.
   CRITICAL: A second trailer type goes in trailer_type_2/trailer_category_2/trailer_quantity_2, NOT in additional_equipment.
@@ -255,7 +281,7 @@ RULES:
 
                 if resp.status_code == 200:
                     data = resp.json()
-                    text = data["content"][0]["text"].strip()
+                    text = data["choices"][0]["message"]["content"].strip()
                     if not text:
                         # Empty response — treat like overload, retry
                         logger.warning(f"Empty response (200), retrying... (attempt {attempt+1})")
@@ -528,19 +554,24 @@ Answer ONLY "YES" or "NO"."""
 class TwoStageClassifier:
     """Haiku pre-filter + Sonnet full classification for cost savings."""
 
-    HAIKU_MODEL = "claude-haiku-4-5-20251001"
-    SONNET_MODEL = "claude-sonnet-4-20250514"
-    API_URL = "https://api.anthropic.com/v1/messages"
+    HAIKU_MODEL = "anthropic/claude-haiku-4.5"
+    SONNET_MODEL = "anthropic/claude-sonnet-4.6"
+    API_URL = "https://openrouter.ai/api/v1/chat/completions"
 
     def __init__(self):
-        self.api_key = os.environ.get("ANTHROPIC_API_KEY")
+        self.api_key = (
+            os.environ.get("LLM_OPENROUTER_API_KEY")
+            or os.environ.get("OPENROUTER_API_KEY")
+            or None
+        )
         self._base = AiClassifier()
         self.session = requests.Session()
         self.session.verify = _SSL_VERIFY
         self.session.headers.update({
             "Content-Type": "application/json",
-            "x-api-key": self.api_key or "",
-            "anthropic-version": "2023-06-01"
+            "Authorization": f"Bearer {self.api_key or ''}",
+            "HTTP-Referer": "https://bpw-tender-radar.internal",
+            "X-Title": "BPW Defence Tender Radar",
         })
 
     @property
@@ -581,7 +612,7 @@ class TwoStageClassifier:
                 "messages": [{"role": "user", "content": prompt}]
             }, timeout=20)
             if resp.status_code == 200:
-                text = resp.json()["content"][0]["text"].strip().upper()
+                text = resp.json()["choices"][0]["message"]["content"].strip().upper()
                 return text.startswith("YES")
         except Exception as e:
             logger.warning(f"Haiku pre-filter error: {e}")
@@ -662,149 +693,26 @@ class ParallelClassifier:
         return {"relevant": False, "reason": "Max retries exhausted"}
 
 
-# ── Batch Classifier (Anthropic Message Batches API, 50% discount) ──
+# ── Batch Classifier — DISABLED (Anthropic Batch API not available on OpenRouter) ──
 
 class BatchClassifier:
-    """Uses Anthropic Message Batches API for 50% cost reduction."""
+    """Placeholder — Anthropic Message Batches API is not available on OpenRouter.
 
-    BATCH_URL = "https://api.anthropic.com/v1/messages/batches"
+    Use TwoStageClassifier instead (nearly the same cost savings via Haiku pre-filter).
+    """
 
-    def __init__(self, api_key=None, model="claude-sonnet-4-20250514"):
-        self.api_key = api_key or os.environ.get("ANTHROPIC_API_KEY", "")
-        self.model = model
-        self.headers = {
-            "x-api-key": self.api_key,
-            "anthropic-version": "2023-06-01",
-            "content-type": "application/json",
-            "anthropic-beta": "message-batches-2024-09-24",
-        }
+    def __init__(self, api_key=None, model="anthropic/claude-sonnet-4.6"):
         self._base = AiClassifier()
 
     @property
     def is_available(self) -> bool:
-        return bool(self.api_key)
-
-    def run_batch(self, notices, build_prompt_fn=None) -> dict:
-        """Submit all notices as a batch, poll until done, return results."""
-        if build_prompt_fn is None:
-            build_prompt_fn = self._base._build_prompt
-        batch_id = self._create_batch(notices, build_prompt_fn)
-        print(f"Batch submitted: {batch_id} ({len(notices)} notices)")
-        print("Polling every 30s... (this takes ~1h for large batches)")
-        return self._poll_and_fetch(batch_id)
+        return self._base.is_available
 
     def classify_batch(self, notices: list, test_mode: bool = False) -> list:
-        """High-level: submit batch, wait, parse, return relevant notices."""
-        if not self.is_available:
-            logger.warning("BatchClassifier: no API key")
-            return notices
-
-        log = AiClassifier._load_log()
-
-        # Separate cached vs. need-AI
-        need_ai = []
-        relevant = []
-        for notice in notices:
-            tid = notice.get("tender_id", "")
-            auth_name = (notice.get("contracting_authority") or {}).get("name_short") or \
-                        (notice.get("contracting_authority") or {}).get("name", "")
-            if AiClassifier.is_blacklisted_authority(auth_name):
-                continue
-            if tid in log:
-                cached = log[tid].get("result")
-                if cached is not None:
-                    entries = cached if isinstance(cached, list) else [cached]
-                    for entry in entries:
-                        if entry.get("relevant"):
-                            lot = dict(notice)
-                            AiClassifier._apply_ai_result(lot, entry)
-                            relevant.append(lot)
-                    continue
-            need_ai.append(notice)
-
-        if test_mode:
-            need_ai = need_ai[:10]
-
-        if need_ai:
-            batch_results = self.run_batch(need_ai)
-            for notice in need_ai:
-                tid = notice.get("tender_id", "")
-                result = batch_results.get(tid)
-                if result is None:
-                    continue
-                log[tid] = {
-                    "result": result,
-                    "timestamp": time.strftime("%Y-%m-%d %H:%M:%S"),
-                    "title": str(notice.get("title", ""))[:100],
-                }
-                entries = result if isinstance(result, list) else [result]
-                for entry in entries:
-                    if entry.get("relevant"):
-                        lot = dict(notice)
-                        AiClassifier._apply_ai_result(lot, entry)
-                        relevant.append(lot)
-            AiClassifier._save_log(log)
-
-        return relevant
-
-    def _create_batch(self, notices, build_prompt_fn) -> str:
-        requests_list = []
-        for notice in notices:
-            prompt = build_prompt_fn(notice)
-            requests_list.append({
-                "custom_id": notice.get("tender_id", ""),
-                "params": {
-                    "model": self.model,
-                    "max_tokens": 1000,
-                    "messages": [{"role": "user", "content": prompt}]
-                }
-            })
-
-        resp = requests.post(self.BATCH_URL, headers=self.headers,
-                             json={"requests": requests_list}, timeout=60,
-                             verify=_SSL_VERIFY)
-        resp.raise_for_status()
-        return resp.json()["id"]
-
-    def _poll_and_fetch(self, batch_id) -> dict:
-        while True:
-            resp = requests.get(f"{self.BATCH_URL}/{batch_id}",
-                                headers=self.headers, timeout=30,
-                                verify=_SSL_VERIFY)
-            resp.raise_for_status()
-            status = resp.json()
-            state = status.get("processing_status", "")
-            counts = status.get("request_counts", {})
-            print(f"  Batch {batch_id}: {state} — "
-                  f"{counts.get('succeeded', 0)} done, "
-                  f"{counts.get('processing', 0)} processing")
-            if state == "ended":
-                return self._fetch_results(batch_id)
-            time.sleep(30)
-
-    def _fetch_results(self, batch_id) -> dict:
-        resp = requests.get(f"{self.BATCH_URL}/{batch_id}/results",
-                            headers=self.headers, timeout=60,
-                            verify=_SSL_VERIFY)
-        resp.raise_for_status()
-        results = {}
-        for line in resp.text.strip().split("\n"):
-            if not line.strip():
-                continue
-            item = json.loads(line)
-            cid = item["custom_id"]
-            if item["result"]["type"] == "succeeded":
-                text = item["result"]["message"]["content"][0]["text"]
-                try:
-                    clean = text.replace("```json", "").replace("```", "").strip()
-                    clean = re.sub(r',\s*}', '}', clean)
-                    clean = re.sub(r',\s*]', ']', clean)
-                    results[cid] = json.loads(clean)
-                except json.JSONDecodeError:
-                    results[cid] = {"relevant": False, "reason": "JSON parse error"}
-            else:
-                results[cid] = {"relevant": False, "reason": f"Batch error: {item['result']['type']}"}
-        return results
+        raise RuntimeError(
+            "--batch is not supported on OpenRouter (Anthropic Batch API is Anthropic-direct only). "
+            "Use --two-stage instead for equivalent cost savings."
+        )
 
 
 # ── OpenRouter Classifier (INACTIVE — add --llm openrouter to activate) ──────

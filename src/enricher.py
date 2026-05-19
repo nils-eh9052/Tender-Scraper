@@ -56,22 +56,27 @@ RULES:
 
 
 class FulltextEnricher:
-    """Enriches notices with fulltext-extracted data using Claude Sonnet."""
+    """Enriches notices with fulltext-extracted data using Claude Sonnet via OpenRouter."""
 
-    API_URL = "https://api.anthropic.com/v1/messages"
-    MODEL = "claude-sonnet-4-20250514"
+    API_URL = "https://openrouter.ai/api/v1/chat/completions"
+    MODEL = "anthropic/claude-sonnet-4.6"
     MAX_TOKENS = 500
 
     def __init__(self, config: dict):
         self.config = config
-        self.api_key = os.environ.get("ANTHROPIC_API_KEY")
+        self.api_key = (
+            os.environ.get("LLM_OPENROUTER_API_KEY")
+            or os.environ.get("OPENROUTER_API_KEY")
+            or None
+        )
         self.fetcher = FulltextFetcher(config)
         self.session = requests.Session()
         if self.api_key:
             self.session.headers.update({
                 "Content-Type": "application/json",
-                "x-api-key": self.api_key,
-                "anthropic-version": "2023-06-01"
+                "Authorization": f"Bearer {self.api_key}",
+                "HTTP-Referer": "https://bpw-tender-radar.internal",
+                "X-Title": "BPW Defence Tender Radar",
             })
 
     @property
@@ -133,7 +138,7 @@ class FulltextEnricher:
                 }, timeout=30)
 
                 if resp.status_code == 200:
-                    text = resp.json()["content"][0]["text"].strip()
+                    text = resp.json()["choices"][0]["message"]["content"].strip()
                     text = text.replace("```json", "").replace("```", "").strip()
                     text = re.sub(r',\s*}', '}', text)
                     text = re.sub(r',\s*]', ']', text)
@@ -259,7 +264,7 @@ class FulltextEnricher:
         Returns: updated list of all notices
         """
         if not self.is_available:
-            logger.warning("FulltextEnricher: ANTHROPIC_API_KEY not set")
+            logger.warning("FulltextEnricher: LLM_OPENROUTER_API_KEY not set")
             return notices
 
         candidates = [n for n in notices if self.fetcher.needs_enrichment(n)]

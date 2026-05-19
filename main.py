@@ -24,6 +24,7 @@ import argparse
 import json
 import logging
 import os
+import shutil
 import sys
 import time
 import yaml
@@ -31,6 +32,7 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 from datetime import datetime, date
 from threading import Lock
+from typing import Optional
 
 # Load .env file (API keys etc.)
 _env_path = Path(__file__).parent / ".env"
@@ -43,10 +45,6 @@ if _env_path.exists():
                 _key, _val = _key.strip(), _val.strip()
                 if _val and not os.environ.get(_key):  # Set if missing or empty
                     os.environ[_key] = _val
-
-# Alias: LLM_ANTHROPIC_API_KEY → ANTHROPIC_API_KEY (used by classifier, enricher, quality_review)
-if not os.environ.get("ANTHROPIC_API_KEY") and os.environ.get("LLM_ANTHROPIC_API_KEY"):
-    os.environ["ANTHROPIC_API_KEY"] = os.environ["LLM_ANTHROPIC_API_KEY"]
 
 # Fix Windows terminal encoding so print() works with all characters
 if sys.platform == "win32":
@@ -63,8 +61,9 @@ from src.index_builder import IndexBuilder
 from src.detail_fetcher import DetailFetcher
 from src.filter_engine import FilterEngine
 from src.exporter import ExcelExporter
-from src.classifier import AiClassifier, TwoStageClassifier, ParallelClassifier, BatchClassifier, OpenRouterClassifier
+from src.classifier import AiClassifier, TwoStageClassifier, ParallelClassifier, BatchClassifier
 from src.uk_scraper import UKContractsFinderScraper
+from src.exporter_frontend import export_tenders_for_frontend
 
 LAST_RUN_PATH = PROJECT_ROOT / "data" / ".last_run.json"
 
@@ -131,6 +130,17 @@ def get_adapter_registry() -> dict:
         ("src.national_scraper.adapters.ee_adapter", "EEAdapter", "create_ee_config", "ee"),
         ("src.national_scraper.adapters.lv_adapter", "LVAdapter", "create_lv_config", "lv"),
         ("src.national_scraper.adapters.lt_adapter", "LTAdapter", "create_lt_config", "lt"),
+        ("src.national_scraper.adapters.au_ocds_adapter", "AuOcdsAdapter", "create_au_ocds_config", "au"),
+        ("src.national_scraper.adapters.au_atm_adapter", "AuAtmAdapter", "create_au_atm_config", "au-atm"),
+        ("src.national_scraper.adapters.canada_loader", "CanadaBuysAdapter", "create_canada_config", "ca"),
+        # NSPA (NATO Support and Procurement Agency) — Sprint 14k, 2026-05-14.
+        # Special: not a country adapter — keyed as "nspa". Public portal,
+        # no login. Current trailer-yield ~0 (mostly munitions spare parts),
+        # but kept as infrastructure for occasional Boxer/trailer fielding.
+        ("src.national_scraper.adapters.nspa_adapter", "NSPAAdapter", "create_nspa_config", "nspa"),
+        # TR adapter parked (Sprint 14d) — defence procurement
+        #  not portal-accessible. Re-enable explicitly via --national tr.
+        # ("src.national_scraper.adapters.tr_adapter", "TrAdapter", "create_tr_config", "tr"),
     ]:
         try:
             m = importlib.import_module(mod)
@@ -223,11 +233,124 @@ def run_phase_details(config: dict, test_mode: bool = False):
     return count
 
 
+class _Tee:
+    """Write to multiple streams simultaneously (real stdout/stderr + log file).
+
+    Used by ``_setup_run_log()`` so every ``print()`` and exception traceback
+    lands both on the terminal and in ``data/.run_log/<stamp>.log``.
+    """
+
+    def __init__(self, *streams):
+        self._streams = streams
+
+    def write(self, data):
+        for s in self._streams:
+            try:
+                s.write(data)
+            except Exception:
+                pass
+
+    def flush(self):
+        for s in self._streams:
+            try:
+                s.flush()
+            except Exception:
+                pass
+
+    def isatty(self) -> bool:
+        return False
+
+
+def _setup_run_log(log_dir: Path, max_logs: int = 30) -> Optional[Path]:
+    """Mirror stdout/stderr into ``data/.run_log/YYYYMMDD_HHMMSS.log``.
+
+    Foundation for the Self-Healing Health-Monitor (M1) and Diagnose-Engine
+    (M2): every pipeline run leaves a persistent trace on disk. The most
+    recent run is also accessible via the ``latest.log`` symlink.
+
+    Keeps the most recent ``max_logs`` timestamped files; older rotates out.
+    Returns the log path, or ``None`` if the log file couldn't be created
+    (in which case the pipeline continues with normal stdout only).
+    """
+    try:
+        log_dir.mkdir(parents=True, exist_ok=True)
+        stamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+        log_path = log_dir / f"{stamp}.log"
+        # Line-buffered: every print() flushes immediately — important for
+        # diagnosing crashes where the very last line tells you where it died.
+        fh = open(log_path, "a", encoding="utf-8", buffering=1)
+        fh.write(f"# Run started {datetime.now().isoformat(timespec='seconds')}\n")
+        fh.write(f"# argv: {' '.join(sys.argv)}\n")
+        fh.flush()
+        sys.stdout = _Tee(sys.__stdout__, fh)
+        sys.stderr = _Tee(sys.__stderr__, fh)
+        # Rotate: only touch timestamped files (skip latest.log symlink, etc.)
+        logs = sorted(log_dir.glob("2*.log"))
+        for old in logs[:-max_logs]:
+            try:
+                old.unlink()
+            except OSError:
+                pass
+        # ``latest.log`` convenience pointer (symlink; fallback to copy on
+        # filesystems that don't support symlinks, e.g. Windows w/o admin).
+        latest = log_dir / "latest.log"
+        try:
+            if latest.is_symlink() or latest.exists():
+                latest.unlink()
+            latest.symlink_to(log_path.name)
+        except (OSError, NotImplementedError):
+            try:
+                shutil.copy2(log_path, latest)
+            except OSError:
+                pass
+        return log_path
+    except OSError:
+        return None
+
+
+def _snapshot_pre_filter(filtered_dir: Path, max_snapshots: int = 10) -> Optional[Path]:
+    """Snapshot relevant.json BEFORE Phase 3 overwrites it.
+
+    Writes to ``data/filtered/.snapshots/YYYYMMDD_HHMMSS.json`` and rotates
+    the directory so only the most recent ``max_snapshots`` files are kept.
+
+    Returns the snapshot path, or ``None`` if relevant.json doesn't exist yet
+    (first run of the project — nothing to back up).
+    """
+    src = filtered_dir / "relevant.json"
+    if not src.exists():
+        return None
+    snap_dir = filtered_dir / ".snapshots"
+    snap_dir.mkdir(parents=True, exist_ok=True)
+    stamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    dst = snap_dir / f"{stamp}.json"
+    shutil.copy2(src, dst)
+    # Rotate: keep only the newest max_snapshots files
+    snaps = sorted(snap_dir.glob("*.json"))
+    for old in snaps[:-max_snapshots]:
+        try:
+            old.unlink()
+        except OSError:
+            pass
+    return dst
+
+
 def run_phase_filter(config: dict):
     """Phase 3: Filter and score notices."""
     print("\n" + "="*60)
     print("  PHASE 3: Filtering & Scoring")
     print("="*60)
+
+    # PreCon: snapshot existing relevant.json before Phase 3 overwrites it.
+    # Recovery: cp data/filtered/.snapshots/<stamp>.json data/filtered/relevant.json
+    filtered_dir = PROJECT_ROOT / "data" / "filtered"
+    snap = _snapshot_pre_filter(filtered_dir)
+    if snap:
+        try:
+            rel = snap.relative_to(PROJECT_ROOT)
+        except ValueError:
+            rel = snap
+        print(f"  [snapshot] {rel} (rotating, keep last 10)")
 
     engine = FilterEngine(config)
     stats = engine.filter_and_score_all(
@@ -256,10 +379,6 @@ def _build_classifier(args):
     Parallel execution is ON by default (--sequential to disable).
     """
     sequential = getattr(args, "sequential", False)
-
-    if getattr(args, "llm", "anthropic") == "openrouter":
-        print("  Using OpenRouterClassifier (LLM_MODEL_NAME from .env — EXPERIMENTAL)")
-        return OpenRouterClassifier()
 
     if args.batch:
         print("  Using BatchClassifier (50% discount via Batches API)")
@@ -293,8 +412,8 @@ def run_phase_classify(config: dict, test_mode: bool = False, args=None):
         classifier = AiClassifier()
 
     if not classifier.is_available:
-        print("  [!] Skipped: ANTHROPIC_API_KEY not set")
-        print("  Set: $env:ANTHROPIC_API_KEY = \"sk-ant-...\"")
+        print("  [!] Skipped: LLM_OPENROUTER_API_KEY not set")
+        print("  Set: $env:LLM_OPENROUTER_API_KEY = \"sk-or-v1-...\"")
         return
 
     filtered_path = PROJECT_ROOT / "data" / "filtered" / "relevant.json"
@@ -336,7 +455,7 @@ def run_phase_enrich(config: dict, test_mode: bool = False):
 
     enricher = FulltextEnricher(config)
     if not enricher.is_available:
-        print("  [!] Skipped: ANTHROPIC_API_KEY not set")
+        print("  [!] Skipped: LLM_OPENROUTER_API_KEY not set")
         return
 
     limit = 5 if test_mode else None
@@ -380,6 +499,575 @@ def run_phase_award_match(config: dict, test_mode: bool = False):
     return updated_notices
 
 
+def run_phase_award_match_llm(
+    sample: Optional[list[str]] = None,
+    dry_run: bool = False,
+    confidence_min: int = 75,
+):
+    """Phase 3d-LLM: Reasoning-based award matching for unmatched tenders.
+
+    Reads ``data/filtered/relevant.json``, runs the LLM matcher against
+    the candidates already in the file, writes the file back when matches
+    were applied. Cache lives at ``data/.award_match_llm_log.json``.
+    """
+    try:
+        from src.award_matcher_llm import LLMAwardMatcher, DEFAULT_MODEL
+    except ImportError as e:
+        print("\n" + "=" * 60)
+        print("  PHASE 3d-LLM: LLM Award Notice Matching")
+        print("=" * 60)
+        print(f"  [!] award_matcher_llm module not available: {e}")
+        return None
+
+    print("\n" + "=" * 60)
+    print(f"  PHASE 3d-LLM: LLM Award Notice Matching ({DEFAULT_MODEL})")
+    print("=" * 60)
+
+    filtered_path = PROJECT_ROOT / "data" / "filtered" / "relevant.json"
+    if not filtered_path.exists():
+        print("  [!] No relevant.json found. Run filter phase first.")
+        return None
+
+    with open(filtered_path, "r", encoding="utf-8") as f:
+        notices = json.load(f)
+
+    matcher = LLMAwardMatcher(confidence_min=confidence_min)
+    if not dry_run and not matcher.is_available:
+        print("  [!] LLM_OPENROUTER_API_KEY not set — aborting LLM match.")
+        print("      Set LLM_OPENROUTER_API_KEY in .env.")
+        return None
+
+    target_ids = sample if sample else None
+    updated_notices, summary = matcher.match_batch(
+        notices, target_ids=target_ids, dry_run=dry_run,
+    )
+
+    # Always write back: even cache-only re-runs may have applied additional
+    # award blocks if relevant.json changed since the last run.
+    with open(filtered_path, "w", encoding="utf-8") as f:
+        json.dump(updated_notices, f, ensure_ascii=False, indent=2)
+
+    # ── Summary output ───────────────────────────────────────────────
+    print(
+        f"\n  [LLM-match summary]"
+        f"\n    targets evaluated:        {summary['total_targets']}"
+        f"\n    cache hits:               {summary['cache_hits']}"
+        f"\n    API calls:                {summary['api_calls']}"
+        f"\n    matched & applied:        {summary['matched']}"
+        f"\n    rejected (low confidence):{summary['rejected_low_confidence']}"
+        f"\n    no usable candidates:     {summary['no_candidates']}"
+        f"\n    no match found:           {summary['no_match']}"
+        f"\n    input tokens:             {summary.get('input_tokens', 0)}"
+        f"\n    output tokens:            {summary.get('output_tokens', 0)}"
+        f"\n    estimated cost (USD):     {summary['cost_usd']}"
+    )
+
+    if summary["applied"]:
+        print("\n  [Applied matches]")
+        for m in summary["applied"][:10]:
+            tag = " (cache)" if m.get("from_cache") else ""
+            reason = (m.get("reasoning") or "").replace("\n", " ")[:80]
+            print(
+                f"    {m['target']} → {m['match']}  "
+                f"[conf={m['confidence']}]{tag}  {reason}"
+            )
+        if len(summary["applied"]) > 10:
+            print(f"    ... and {len(summary['applied']) - 10} more")
+
+    return summary
+
+
+def run_phase_translate_titles(
+    sample: Optional[list[str]] = None,
+    dry_run: bool = False,
+):
+    """Translate non-English titles in ``relevant.json`` via Claude Haiku.
+
+    Cache at ``data/.translation_cache.json``; re-runs hit the cache for
+    every entry unless ``--force-refresh`` (not implemented as CLI flag —
+    delete the cache file by hand if a re-translate is needed).
+    """
+    print("\n" + "=" * 60)
+    print("  PHASE 3e: Title Translation (Haiku 4.5)")
+    print("=" * 60)
+
+    try:
+        from src.translator import translate_titles
+    except ImportError as e:
+        print(f"  [!] translator module not available: {e}")
+        return None
+
+    relevant_path = PROJECT_ROOT / "data" / "filtered" / "relevant.json"
+    if not relevant_path.exists():
+        print("  [!] No relevant.json found. Run filter phase first.")
+        return None
+
+    summary = translate_titles(
+        relevant_path,
+        target_ids=sample,
+        dry_run=dry_run,
+    )
+
+    print(
+        f"\n  [translate-titles summary]"
+        f"\n    total notices:            {summary['total']}"
+        f"\n    evaluated:                {summary['evaluated']}"
+        f"\n    skipped (no title):       {summary['skipped_no_title']}"
+        f"\n    already English (heur.):  {summary['already_english']}"
+        f"\n    translated now (API):     {summary['translated_now']}"
+        f"\n    from cache:               {summary['from_cache']}"
+        f"\n    errors:                   {summary['errors']}"
+        f"\n    input tokens:             {summary.get('input_tokens', 0)}"
+        f"\n    output tokens:            {summary.get('output_tokens', 0)}"
+        f"\n    estimated cost (USD):     {summary['cost_usd']}"
+        f"\n    model:                    {summary.get('model')}"
+    )
+
+    if summary.get("samples"):
+        print("\n  [Sample translations]")
+        for s in summary["samples"]:
+            print(
+                f"    {s['id']}  ({s['country']})\n"
+                f"      {s['original'][:100]!r}\n"
+                f"      → {s['title_en'][:100]!r}"
+            )
+
+    return summary
+
+
+def run_phase_translate_descriptions(
+    sample: Optional[list[str]] = None,
+    dry_run: bool = False,
+    force_clean: bool = False,
+):
+    """Phase 3e-2: Translate non-English descriptions (Sonnet) then clean RAW_ENGLISH (Haiku)."""
+    print("\n" + "=" * 60)
+    print("  PHASE 3e-2: Description Translation (Sonnet 4.6)")
+    print("=" * 60)
+
+    try:
+        from src.translator import translate_descriptions, process_descriptions
+    except ImportError as e:
+        print(f"  [!] translator module not available: {e}")
+        return None
+
+    relevant_path = PROJECT_ROOT / "data" / "filtered" / "relevant.json"
+    if not relevant_path.exists():
+        print("  [!] No relevant.json found. Run filter phase first.")
+        return None
+
+    summary = translate_descriptions(
+        relevant_path,
+        target_ids=sample,
+        dry_run=dry_run,
+    )
+
+    print(
+        f"\n  [translate-descriptions summary]"
+        f"\n    total notices:            {summary['total']}"
+        f"\n    evaluated:                {summary['evaluated']}"
+        f"\n    skipped (no source):      {summary['skipped_no_source']}"
+        f"\n    already English (heur.):  {summary['already_english']}"
+        f"\n    translated now (API):     {summary['translated_now']}"
+        f"\n    from cache:               {summary['from_cache']}"
+        f"\n    errors:                   {summary['errors']}"
+        f"\n    input tokens:             {summary.get('input_tokens', 0)}"
+        f"\n    output tokens:            {summary.get('output_tokens', 0)}"
+        f"\n    estimated cost (USD):     {summary['cost_usd']}"
+        f"\n    model:                    {summary.get('model')}"
+    )
+
+    if summary.get("samples"):
+        print("\n  [Sample translations]")
+        for s in summary["samples"]:
+            print(
+                f"    {s['id']}  ({s['country']})\n"
+                f"      src:  {s['original'][:100]!r}\n"
+                f"      → en: {s['desc_en'][:100]!r}"
+            )
+
+    # ── Haiku cleaning pass — always runs to catch newly added RAW_ENGLISH entries
+    print("\n" + "=" * 60)
+    print("  PHASE 3e-3: Description Cleaning (Haiku 4.5)")
+    if force_clean:
+        print("  [force-clean: bypassing clean-cache for all RAW_ENGLISH notices]")
+    print("=" * 60)
+
+    clean_summary = process_descriptions(
+        relevant_path,
+        target_ids=sample,
+        force_clean=force_clean,
+        dry_run=dry_run,
+    )
+
+    print(
+        f"\n  [clean-descriptions summary]"
+        f"\n    total notices:            {clean_summary['total']}"
+        f"\n    already clean:            {clean_summary['already_clean']}"
+        f"\n    evaluated (needs clean):  {clean_summary['evaluated']}"
+        f"\n    skipped (no source):      {clean_summary['skipped_no_source']}"
+        f"\n    cleaned now (API):        {clean_summary['cleaned_now']}"
+        f"\n    from cache:               {clean_summary['from_cache']}"
+        f"\n    errors:                   {clean_summary['errors']}"
+        f"\n    input tokens:             {clean_summary.get('input_tokens', 0)}"
+        f"\n    output tokens:            {clean_summary.get('output_tokens', 0)}"
+        f"\n    estimated cost (USD):     {clean_summary['cost_usd']}"
+        f"\n    model:                    {clean_summary.get('model')}"
+    )
+
+    if clean_summary.get("samples"):
+        print("\n  [Cleaning samples]")
+        for s in clean_summary["samples"]:
+            print(
+                f"    {s['id']}  ({s['country']})\n"
+                f"      before: {s['before'][:100]!r}\n"
+                f"      after:  {s['after'][:100]!r}"
+            )
+
+    return summary
+
+
+def run_phase_extract_documents(
+    sample: Optional[list[str]] = None,
+    dry_run: bool = False,
+    force: bool = False,
+    test_mode: bool = False,
+    no_fallback_cache: bool = False,
+):
+    """Phase 3g — download, extract, and AI-structure tender documents.
+
+    Discovers PDFs/docx linked from each notice, extracts text, and uses
+    Sonnet 4.6 to parse structured specs (_extracted_specs). Results are
+    cached in data/.document_extraction_cache.json.
+    """
+    print("\n" + "=" * 60)
+    print("  PHASE 3g: Document Extraction")
+    print("=" * 60)
+
+    try:
+        from src.document_pipeline.orchestrator import run_extraction
+    except ImportError as e:
+        print(f"  [!] document_pipeline module not available: {e}")
+        return
+
+    relevant_path = PROJECT_ROOT / "data" / "filtered" / "relevant.json"
+    if not relevant_path.exists():
+        print("  [!] No relevant.json found. Run filter phase first.")
+        return
+
+    with open(relevant_path, encoding="utf-8") as f:
+        notices = json.load(f)
+
+    updated = run_extraction(
+        notices,
+        force=force,
+        test_mode=test_mode,
+        sample_ids=sample,
+        dry_run=dry_run,
+        no_fallback_cache=no_fallback_cache,
+    )
+
+    if not dry_run:
+        with open(relevant_path, "w", encoding="utf-8") as f:
+            json.dump(updated, f, ensure_ascii=False, indent=2)
+        print(f"  [OK] relevant.json updated with _extracted_specs")
+
+
+def run_phase_strategy_a(
+    sample: Optional[list[str]] = None,
+    dry_run: bool = False,
+    force: bool = False,
+    test_mode: bool = False,
+):
+    """Strategy A — proactive Vergabeunterlagen scraping for DE/PL/CZ tenders.
+
+    Reads buyer_profile_url + tender_documents_access from _xml or the local
+    TED XML cache, hits the buyer's national portal, downloads attached
+    SWZ/LV/Vergabeunterlagen PDFs, and (unless dry_run) AI-structures them
+    into _strategy_a_specs. Separate cache: data/.strategy_a_cache.json.
+
+    Opt-in only via --strategy-a; not active in --all because the live portal
+    scrapes are slower and more fragile than the standard 3g extraction.
+    """
+    print("\n" + "=" * 60)
+    print("  STRATEGY A: Vergabeunterlagen Scraping (DE/PL/CZ)")
+    print("=" * 60)
+
+    try:
+        from src.document_pipeline.strategy_a import run_strategy_a
+    except ImportError as exc:
+        print(f"  [!] strategy_a module unavailable: {exc}")
+        return None
+
+    relevant_path = PROJECT_ROOT / "data" / "filtered" / "relevant.json"
+    if not relevant_path.exists():
+        print("  [!] No relevant.json found.")
+        return None
+
+    with open(relevant_path, encoding="utf-8") as f:
+        notices = json.load(f)
+
+    stats = run_strategy_a(
+        notices,
+        sample_ids=sample,
+        test_mode=test_mode,
+        dry_run=dry_run,
+        force=force,
+    )
+
+    if not dry_run:
+        with open(relevant_path, "w", encoding="utf-8") as f:
+            json.dump(notices, f, ensure_ascii=False, indent=2)
+
+    print(
+        f"\n  Strategy-A summary:"
+        f"\n    candidates:           {stats['candidates']}"
+        f"\n    triggered (DE/PL/CZ): {stats['triggered']}"
+        f"\n    no inputs (skipped):  {stats['no_inputs']}"
+        f"\n    docs discovered:      {stats['docs_discovered']}"
+        f"\n    docs alive (HEAD ok): {stats['docs_alive']}"
+        f"\n    docs downloaded:      {stats['docs_downloaded']}"
+        f"\n    text extracted:       {stats['docs_text_extracted']}"
+        f"\n    auth_blocked (eIDAS): {stats['auth_blocked']}"
+        f"\n    AI calls:             {stats['ai_calls']}"
+        f"\n    cache hits:           {stats['cache_hits']}"
+        f"\n    by country (trigger): DE={stats['by_country'].get('DE',0)} "
+        f"PL={stats['by_country'].get('PL',0)} CZ={stats['by_country'].get('CZ',0)}"
+        f"\n    yield (≥200 chars):   DE={stats['yield_by_country'].get('DE',0)} "
+        f"PL={stats['yield_by_country'].get('PL',0)} CZ={stats['yield_by_country'].get('CZ',0)}"
+    )
+    if stats["extracted_tenders"]:
+        print(f"    extracted tenders:    {', '.join(stats['extracted_tenders'][:10])}")
+    return stats
+
+
+def run_phase_enrich_descriptions(
+    sample: Optional[list[str]] = None,
+    dry_run: bool = False,
+):
+    """Phase 3f — annotate description fields with EUR equivalents.
+
+    Pure regex + FX-dictionary lookup, zero API cost. Idempotent via
+    a sha1 cache keyed on the raw description.
+    """
+    print("\n" + "=" * 60)
+    print("  PHASE 3f: Description Currency Enrichment (regex + FX)")
+    print("=" * 60)
+
+    try:
+        from src.currency_enricher import enrich_all
+    except ImportError as e:
+        print(f"  [!] currency_enricher module not available: {e}")
+        return None
+
+    relevant_path = PROJECT_ROOT / "data" / "filtered" / "relevant.json"
+    if not relevant_path.exists():
+        print("  [!] No relevant.json found. Run filter phase first.")
+        return None
+
+    summary = enrich_all(
+        relevant_path,
+        target_ids=sample,
+        dry_run=dry_run,
+    )
+
+    print(
+        f"\n  [enrich-descriptions summary]"
+        f"\n    total notices:                {summary['total']}"
+        f"\n    evaluated:                    {summary['evaluated']}"
+        f"\n    skipped (no description):     {summary['skipped_no_desc']}"
+        f"\n    skipped (no currency match):  {summary['skipped_no_currency']}"
+        f"\n    enriched now:                 {summary['enriched_now']}"
+        f"\n    from cache:                   {summary['from_cache']}"
+        f"\n    total currency matches:       {summary['match_count_total']}"
+    )
+
+    if summary.get("samples"):
+        print("\n  [Sample enrichments]")
+        for s in summary["samples"]:
+            print(
+                f"    {s['id']}  ({s['matches']} match{'es' if s['matches'] != 1 else ''})\n"
+                f"      before: {s['before'][:140]!r}\n"
+                f"      after:  {s['after'][:160]!r}"
+            )
+
+    return summary
+
+
+def run_phase_contract_type(
+    force: bool = False,
+    dry_run: bool = False,
+) -> Optional[dict]:
+    """Phase 3j — classify contract type (framework / one_time / recurring)."""
+    print("\n" + "=" * 60)
+    print("  PHASE 3j: Contract Type Classification (regex)")
+    print("=" * 60)
+    try:
+        from src.contract_type import run_contract_type_pass
+    except ImportError as e:
+        print(f"  [!] contract_type module not available: {e}")
+        return None
+
+    relevant_path = PROJECT_ROOT / "data" / "filtered" / "relevant.json"
+    if not relevant_path.exists():
+        print("  [!] No relevant.json found.")
+        return None
+
+    summary = run_contract_type_pass(
+        relevant_path,
+        force=force,
+        dry_run=dry_run,
+    )
+    print(
+        f"\n  framework_agreement: {summary.get('framework_agreement', 0)}"
+        f"\n  recurring:           {summary.get('recurring', 0)}"
+        f"\n  one_time:            {summary.get('one_time', 0)}"
+        f"\n  classified_now:      {summary['classified_now']}"
+        f"\n  from cache:          {summary['from_cache']}"
+    )
+    return summary
+
+
+def run_phase_text_mining(
+    sample: Optional[list[str]] = None,
+    dry_run: bool = False,
+    force: bool = False,
+) -> Optional[dict]:
+    """Phase 3k — regex-based text mining for quantity / deadline / duration.
+
+    Sits between description-translate (3e-2) and document-extract (3g) so the
+    mined values are already attached to each notice by the time the document
+    pipeline runs. Free, deterministic, idempotent via sha1 cache.
+
+    Args:
+        sample:    Limit to these tender_ids (else: every notice).
+        dry_run:   Compute but do not persist relevant.json.
+        force:     Bypass cache (re-mine all selected notices).
+    """
+    print("\n" + "=" * 60)
+    print("  PHASE 3k: Text Mining (regex on description text)")
+    print("=" * 60)
+
+    try:
+        from src.text_miner import _save_cache, run_text_mining
+    except ImportError as e:
+        print(f"  [!] text_miner module not available: {e}")
+        return None
+
+    relevant_path = PROJECT_ROOT / "data" / "filtered" / "relevant.json"
+    if not relevant_path.exists():
+        print("  [!] No relevant.json found.")
+        return None
+
+    with open(relevant_path, encoding="utf-8") as f:
+        notices = json.load(f)
+
+    if sample:
+        sample_set = set(sample)
+        targets = [n for n in notices if n.get("tender_id") in sample_set]
+    else:
+        targets = notices
+
+    if force:
+        # Invalidate cache entries for the targeted IDs only.
+        from src.text_miner import _cache_key, _candidate_text, _load_cache
+        cache = _load_cache()
+        for n in targets:
+            tid = (n.get("tender_id") or "").strip()
+            text = _candidate_text(n)
+            if not text:
+                continue
+            cache.pop(_cache_key(tid, text), None)
+        _save_cache(cache)
+
+    stats = run_text_mining(targets)
+
+    print(
+        f"\n  total notices:           {stats['total']}"
+        f"\n  qty found:               {stats['qty_found']}"
+        f"\n  qty found (text-only):   {stats['qty_from_text_only']}"
+        f"\n  deadline found:          {stats['deadline_found']}"
+        f"\n  duration found:          {stats['duration_found']}"
+    )
+
+    if not dry_run:
+        # Stable in-place save (preserve key order).
+        with open(relevant_path, "w", encoding="utf-8") as f:
+            json.dump(notices, f, ensure_ascii=False, indent=2)
+        print(f"  [OK] relevant.json updated with _qty_mined / _deadline_mined")
+
+    return stats
+
+
+def run_phase_url_validation(
+    *, force: bool = False, only_sources: Optional[list[str]] = None,
+    dry_run: bool = False,
+) -> Optional[dict]:
+    """Phase 3l — HEAD/ranged-GET probe of every notice's source URL.
+
+    Attaches ``_url_status`` (alive | dead | auth_walled | timeout | unknown |
+    no_url) so the exporter / frontend can hide or warn about broken links.
+
+    Sits after data-prep phases (3k/3f/3j) and BEFORE Phase 4 export so the
+    field is included in the exported tenders.json. Cache TTL 30 days — full
+    re-probe of ~340 notices runs in <3 min, cache-hit run is instant.
+    """
+    print("\n" + "=" * 60)
+    print("  PHASE 3l: URL Health Check")
+    print("=" * 60)
+
+    try:
+        from src.url_validator import run_url_validation
+    except ImportError as e:
+        print(f"  [!] url_validator module not available: {e}")
+        return None
+
+    relevant_path = PROJECT_ROOT / "data" / "filtered" / "relevant.json"
+    if not relevant_path.exists():
+        print("  [!] No relevant.json found.")
+        return None
+
+    with open(relevant_path, encoding="utf-8") as f:
+        notices = json.load(f)
+
+    stats = run_url_validation(notices, force=force, only_sources=only_sources)
+    print(
+        f"\n  total:        {stats['total']}"
+        f"\n  cache hits:   {stats['cache_hits']}"
+        f"\n  checked:      {stats['checked']}"
+        f"\n  alive:        {stats.get('alive', 0)}"
+        f"\n  dead:         {stats.get('dead', 0)}"
+        f"\n  auth_walled:  {stats.get('auth_walled', 0)}"
+        f"\n  timeout:      {stats.get('timeout', 0)}"
+        f"\n  no_url:       {stats['no_url']}"
+    )
+
+    if not dry_run:
+        with open(relevant_path, "w", encoding="utf-8") as f:
+            json.dump(notices, f, ensure_ascii=False, indent=2)
+        print(f"  [OK] relevant.json updated with _url_status")
+
+    return stats
+
+
+def _run_merge_cached_awards(confidence_min: int = 65) -> None:
+    """Re-apply LLM award cache to relevant.json after a filter rebuild.
+
+    No API calls — reads only the local cache log.
+    """
+    try:
+        from src.award_matcher_llm import merge_cached_awards
+    except ImportError as e:
+        print(f"  [award-cache] Module not available: {e}")
+        return
+    filtered_path = PROJECT_ROOT / "data" / "filtered" / "relevant.json"
+    merged = merge_cached_awards(str(filtered_path), confidence_min=confidence_min)
+    if merged:
+        print(f"  [award-cache] Restored {merged} LLM awards from cache (conf>={confidence_min})")
+    else:
+        print(f"  [award-cache] No new LLM awards to restore from cache")
+
+
 def _dedup_key(notice: dict) -> str:
     """Stable-ish cross-source dedup key: authority(25) | title(35) | year."""
     auth = (notice.get("contracting_authority") or {}).get("name", "")
@@ -420,19 +1108,30 @@ def merge_national_with_ted(ted_notices: list, national_notices: list) -> list:
     """Merge national portal notices into the TED dataset."""
     merged = list(ted_notices)
     ted_index = {_dedup_key(n): n for n in merged}
+    existing_ids = {n.get("tender_id") for n in merged if n.get("tender_id")}
 
     added = 0
     enriched = 0
+    skipped_dup = 0
     for nat in national_notices:
+        tid = nat.get("tender_id")
+        if tid and tid in existing_ids:
+            skipped_dup += 1
+            continue
         key = _dedup_key(nat)
         if key in ted_index and key.strip("|").strip():
             _enrich_from_national(ted_index[key], nat)
             enriched += 1
         else:
             merged.append(nat)
+            if tid:
+                existing_ids.add(tid)
             added += 1
 
-    print(f"  Merge: {added} added, {enriched} enriched, {len(merged)} total")
+    if skipped_dup:
+        print(f"  Merge: {added} added, {enriched} enriched, {skipped_dup} id-dupes skipped, {len(merged)} total")
+    else:
+        print(f"  Merge: {added} added, {enriched} enriched, {len(merged)} total")
     return merged
 
 
@@ -461,6 +1160,10 @@ def update_national_force_include(notices: list):
     Save relevant national notice IDs to national_force_include.json so they
     survive future full runs regardless of NEN/portal pagination.
 
+    Only persists notices that have ``_trailer_type_1_ai`` set — i.e. notices
+    that passed AI classification.  Lists are sorted alphabetically before
+    writing so diffs stay clean.
+
     Called after classify so only AI-confirmed relevant notices are persisted.
     """
     try:
@@ -474,6 +1177,9 @@ def update_national_force_include(notices: list):
 
     added = 0
     for notice in notices:
+        # Only persist AI-classified nationals (trailer_type must be resolved)
+        if not notice.get("_trailer_type_1_ai"):
+            continue
         src = (notice.get("source") or "").replace("TED+", "").split("+")[0]
         tid = notice.get("tender_id", "")
         if not tid or not src or src == "TED":
@@ -484,11 +1190,16 @@ def update_national_force_include(notices: list):
             force[src].append(tid)
             added += 1
 
+    # Sort each list alphabetically for stable diffs
+    for src_key in force:
+        if isinstance(force[src_key], list):
+            force[src_key] = sorted(force[src_key])
+
     _NATIONAL_FORCE_INCLUDE_PATH.parent.mkdir(parents=True, exist_ok=True)
     with open(_NATIONAL_FORCE_INCLUDE_PATH, "w", encoding="utf-8") as f:
         json.dump(force, f, ensure_ascii=False, indent=2)
     if added:
-        print(f"  [force-include] +{added} new national IDs saved")
+        print(f"  [force-include] +{added} new national IDs saved (AI-confirmed only)")
 
 
 def ensure_force_includes(notices: list) -> list:
@@ -824,7 +1535,7 @@ def run_review(config: dict):
 
     reviewer = QualityReviewer()
     if not reviewer.is_available:
-        print("  [!] ANTHROPIC_API_KEY not set; skipping review.")
+        print("  [!] LLM_OPENROUTER_API_KEY not set; skipping review.")
         return None
 
     print(f"  Reviewing: {latest.name}")
@@ -842,6 +1553,22 @@ def run_review(config: dict):
     auto_apply_opus_findings(result)
 
     return result
+
+
+def run_frontend_export() -> int:
+    """Write shared/tenders.json for the defence-intel-web frontend."""
+    relevant_path = PROJECT_ROOT / "data" / "filtered" / "relevant.json"
+    shared_dir = PROJECT_ROOT.parent.parent / "shared"
+    output_path = shared_dir / "tenders.json"
+    shared_dir.mkdir(parents=True, exist_ok=True)
+
+    print("\n" + "=" * 60)
+    print("  FRONTEND EXPORT: shared/tenders.json")
+    print("=" * 60)
+
+    count = export_tenders_for_frontend(relevant_path, output_path)
+    print(f"\n  [OK] Frontend export: {count} tenders → {output_path}")
+    return count
 
 
 def run_phase_export(config: dict, test_mode: bool = False,
@@ -1062,6 +1789,11 @@ def run_national_scraping(countries: list, config: dict,
     except ImportError:
         pass
     try:
+        from src.national_scraper.adapters.ua_adapter import UAAdapter, create_ua_config
+        adapter_registry["ua"] = (UAAdapter, create_ua_config)
+    except ImportError:
+        pass
+    try:
         from src.national_scraper.adapters.ch_adapter import CHAdapter, create_ch_config
         adapter_registry["ch"] = (CHAdapter, create_ch_config)
     except ImportError:
@@ -1096,6 +1828,33 @@ def run_national_scraping(countries: list, config: dict,
         adapter_registry["lt"] = (LTAdapter, create_lt_config)
     except ImportError:
         pass
+    try:
+        from src.national_scraper.adapters.au_ocds_adapter import AuOcdsAdapter, create_au_ocds_config
+        adapter_registry["au"] = (AuOcdsAdapter, create_au_ocds_config)
+    except ImportError:
+        pass
+    try:
+        from src.national_scraper.adapters.au_atm_adapter import AuAtmAdapter, create_au_atm_config
+        adapter_registry["au-atm"] = (AuAtmAdapter, create_au_atm_config)
+    except ImportError:
+        pass
+    try:
+        from src.national_scraper.adapters.canada_loader import CanadaBuysAdapter, create_canada_config
+        adapter_registry["ca"] = (CanadaBuysAdapter, create_canada_config)
+    except ImportError:
+        pass
+    try:
+        from src.national_scraper.adapters.nspa_adapter import NSPAAdapter, create_nspa_config
+        adapter_registry["nspa"] = (NSPAAdapter, create_nspa_config)
+    except ImportError:
+        pass
+    # TR adapter parked (Sprint 14d) — defence procurement
+    #  not portal-accessible. Re-enable explicitly via --national tr.
+    # try:
+    #     from src.national_scraper.adapters.tr_adapter import TrAdapter, create_tr_config
+    #     adapter_registry["tr"] = (TrAdapter, create_tr_config)
+    # except ImportError:
+    #     pass
 
     all_notices = []
     screenshot_dir = str(PROJECT_ROOT / "data" / "raw" / "screenshots")
@@ -1134,12 +1893,16 @@ def run_national_scraping(countries: list, config: dict,
                 print(f"  [!] 0 defence results — check data/raw/screenshots/ for page dumps")
                 continue
 
-            # Fetch details — cap CZ at 50 (browser-based, ~6s each)
+            # Fetch details — cap slow/large adapters
             notices = []
             if test_mode:
                 detail_limit = 3
             elif country == "cz":
                 detail_limit = min(len(defence), 150)
+            elif country == "au":
+                # AU-OCDS returns thousands of defence notices; results are
+                # pre-sorted by relevance score so the cap keeps the best ones.
+                detail_limit = min(len(defence), 500)
             else:
                 detail_limit = len(defence)
             for i, result in enumerate(defence[:detail_limit]):
@@ -1356,7 +2119,7 @@ def _run_ted_bulk_full(config: dict, test_mode: bool = False):
     from src.classifier import TwoStageClassifier
     classifier = TwoStageClassifier()
     if not classifier.is_available:
-        print("  [!] ANTHROPIC_API_KEY not set — skipping classification")
+        print("  [!] LLM_OPENROUTER_API_KEY not set — skipping classification")
         return
 
     relevant_new = classifier.classify_batch(detail_notices, test_mode=test_mode)
@@ -1430,6 +2193,17 @@ def _reclassify_other():
 
 
 def main():
+    # PreCon: persistent run log — every print() and traceback ends up in
+    # ``data/.run_log/<stamp>.log`` and is reachable via the ``latest.log``
+    # symlink. Foundation for Health-Monitor (M1) + Diagnose-Engine (M2).
+    _log_path = _setup_run_log(PROJECT_ROOT / "data" / ".run_log")
+    if _log_path:
+        try:
+            _log_rel = _log_path.relative_to(PROJECT_ROOT)
+        except ValueError:
+            _log_rel = _log_path
+        print(f"[run-log] {_log_rel}")
+
     parser = argparse.ArgumentParser(
         description="TED Defence Trailer Scraper Pipeline"
     )
@@ -1498,8 +2272,172 @@ def main():
         help="Run award notice matching step (Phase 3d) — runs by default with enrichment"
     )
     parser.add_argument(
+        "--award-match-llm", action="store_true",
+        help="Run LLM-based award matcher (Sonnet 4.6) on notices that the heuristic matcher could not match. Default off, manual trigger because of $-Kosten. ~USD 1-5 for ~150 candidates."
+    )
+    parser.add_argument(
+        "--award-match-llm-sample",
+        type=str,
+        default=None,
+        help="Comma-separated tender-IDs to limit the LLM matcher to. Useful for smoke tests, e.g. --award-match-llm-sample 572650-2024,...",
+    )
+    parser.add_argument(
+        "--award-match-llm-dry-run", action="store_true",
+        help="Run LLM matcher in dry-run mode (no API calls, just candidate selection + cost preview)",
+    )
+    parser.add_argument(
+        "--award-match-llm-confidence", type=int, default=75,
+        help="Minimum confidence (0-100) the LLM must report for a match to be applied. Default 75."
+    )
+    parser.add_argument(
+        "--translate-titles", action="store_true",
+        help="Translate every non-English _title_final to English via Claude "
+             "Haiku 4.5. Writes title_en into relevant.json. Cache at "
+             "data/.translation_cache.json. Cheap (~$0.10-0.30 for 300 tenders; "
+             "often less because English titles pass through without API call)."
+    )
+    parser.add_argument(
+        "--translate-titles-sample", type=str, default=None,
+        help="Comma-separated tender-IDs to limit the title translator to "
+             "(smoke test mode)."
+    )
+    parser.add_argument(
+        "--translate-titles-dry-run", action="store_true",
+        help="Decide which titles need translation but make NO API calls."
+    )
+    parser.add_argument(
+        "--translate-descriptions", action="store_true",
+        help="Phase 3e-2: Translate non-English description fields to English "
+             "via Claude Sonnet 4.6. Writes description_en into relevant.json. "
+             "Cache: data/.description_translation_cache.json. ~$0.50-1.50 for "
+             "256 tenders (most hit cache on re-runs)."
+    )
+    parser.add_argument(
+        "--translate-descriptions-sample", type=str, default=None,
+        help="Comma-separated tender-IDs to limit the description translator "
+             "(smoke test mode)."
+    )
+    parser.add_argument(
+        "--translate-descriptions-dry-run", action="store_true",
+        help="Decide which descriptions need translation but make NO API calls."
+    )
+    parser.add_argument(
+        "--force-clean", action="store_true",
+        help="Re-run Haiku cleaning for all RAW_ENGLISH descriptions, bypassing the "
+             "clean-cache. Use after a full translate-descriptions run to re-clean "
+             "notices whose description_en is boilerplate/verbose. "
+             "~$0.10-0.30 for ~74 notices (Haiku 4.5)."
+    )
+    parser.add_argument(
+        "--enrich-descriptions", action="store_true",
+        help="Phase 3f: regex-based EUR-equivalent enrichment in description "
+             "text (e.g. '123,293.66 CZK' → '123,293.66 CZK (~€4.9K)'). "
+             "Pure regex + FX lookup — 0 USD, no LLM calls. Cache: "
+             "data/.description_enrich_cache.json."
+    )
+    parser.add_argument(
+        "--enrich-descriptions-sample", type=str, default=None,
+        help="Comma-separated tender-IDs to limit the description enricher "
+             "to (smoke test mode)."
+    )
+    parser.add_argument(
+        "--enrich-descriptions-dry-run", action="store_true",
+        help="Compute enrichment matches but do NOT write back to relevant.json."
+    )
+    parser.add_argument(
         "--reclassify-other", action="store_true",
         help="Remove 'Other' category notices from enrichment cache and re-classify them"
+    )
+    parser.add_argument(
+        "--contract-type", action="store_true",
+        help="Phase 3j: Classify contract type (framework_agreement / one_time / recurring) "
+             "using multilingual regex. Writes _contract_type into relevant.json. Free/instant."
+    )
+    parser.add_argument(
+        "--text-mine", action="store_true",
+        help="Phase 3k: Multilingual regex text mining for quantity, delivery "
+             "deadline, and contract duration from _description_final / "
+             "_national_raw_text. Writes _qty_mined / _deadline_mined / "
+             "_duration_months_mined into relevant.json. Free/instant. "
+             "Cache: data/.text_mining_cache.json."
+    )
+    parser.add_argument(
+        "--text-mine-sample", type=str, default=None,
+        help="Comma-separated tender-IDs to limit text mining to (smoke test)."
+    )
+    parser.add_argument(
+        "--text-mine-dry-run", action="store_true",
+        help="Compute mining results but do NOT write back to relevant.json."
+    )
+    parser.add_argument(
+        "--text-mine-force", action="store_true",
+        help="Bypass the text-mining cache and re-mine the targeted notices."
+    )
+    parser.add_argument(
+        "--url-check", action="store_true",
+        help="Phase 3l: Probe every notice's source_url_national and attach "
+             "_url_status (alive / dead / auth_walled / timeout). Cache 30-day TTL "
+             "in data/.url_health_cache.json. Runs late in --all (after data prep, "
+             "before Phase 4 export). Free/no LLM."
+    )
+    parser.add_argument(
+        "--url-check-force", action="store_true",
+        help="Bypass the 30-day URL health cache and re-probe every URL."
+    )
+    parser.add_argument(
+        "--url-check-source", action="append", default=None,
+        help="Limit URL check to a specific _source code (repeatable; "
+             "e.g. --url-check-source AU-TEN --url-check-source EE-RP)."
+    )
+    parser.add_argument(
+        "--extract-documents", action="store_true",
+        help=(
+            "Phase 3g: Download, extract, and AI-structure procurement documents. "
+            "For TED notices: downloads the English PDF via links.pdf.ENG. "
+            "For UA/Prozorro: re-fetches fresh time-signed document URLs. "
+            "Extracts text (PDF/docx) and uses Sonnet 4.6 to parse trailer specs "
+            "into _extracted_specs. Cache: data/.document_extraction_cache.json. "
+            "Cost: ~$0.01 per notice processed."
+        )
+    )
+    parser.add_argument(
+        "--extract-documents-sample", type=str, default=None,
+        help="Comma-separated tender-IDs to limit document extraction to (smoke test)."
+    )
+    parser.add_argument(
+        "--extract-documents-dry-run", action="store_true",
+        help="Discover + download documents but skip AI structuring (0 API cost)."
+    )
+    parser.add_argument(
+        "--extract-documents-force", action="store_true",
+        help="Re-process all notices even if cache hit."
+    )
+    parser.add_argument(
+        "--strategy-a", action="store_true", dest="strategy_a",
+        help="Strategy A: proactively scrape Vergabeunterlagen / SWZ / "
+             "Zadávací dokumentace PDFs from DE/PL/CZ buyer portals. "
+             "Reads buyer_profile_url from _xml or data/ted_xml_cache, "
+             "downloads attached docs, AI-structures specs. Cache: "
+             "data/.strategy_a_cache.json. NOT active in --all."
+    )
+    parser.add_argument(
+        "--strategy-a-sample", type=str, default=None, dest="strategy_a_sample",
+        help="Comma-separated tender-IDs to limit Strategy A to (smoke test)."
+    )
+    parser.add_argument(
+        "--strategy-a-dry-run", action="store_true", dest="strategy_a_dry_run",
+        help="Strategy A: discover + download + extract text, skip AI structuring."
+    )
+    parser.add_argument(
+        "--strategy-a-force", action="store_true", dest="strategy_a_force",
+        help="Strategy A: bypass cache and re-run every candidate."
+    )
+    parser.add_argument(
+        "--no-fallback-cache", action="store_true",
+        help=(
+            "Bypass the national fallback cache (data/.national_fallback_cache.json). "
+            "Forces fresh portal searches for DE/PL/CZ tenders with dead/missing URLs."
+        )
     )
     # Additional sources
     parser.add_argument(
@@ -1532,10 +2470,8 @@ def main():
         help="Show browser window when using --national (default: headless)"
     )
     parser.add_argument(
-        "--llm", choices=["anthropic", "openrouter"], default="anthropic",
-        help="LLM backend for classification: 'anthropic' (default, Claude) or "
-             "'openrouter' (uses LLM_OPENROUTER_API_KEY + LLM_MODEL_NAME from .env). "
-             "NOT ACTIVE yet — validate quality before switching."
+        "--llm", choices=["openrouter"], default="openrouter",
+        help="LLM backend (always openrouter — kept for script compatibility)."
     )
     parser.add_argument(
         "--validate-portals", nargs="*", metavar="COUNTRY",
@@ -1555,6 +2491,10 @@ def main():
     parser.add_argument(
         "--canada", action="store_true",
         help="Load Canadian DND procurement data from open.canada.ca Open Data"
+    )
+    parser.add_argument(
+        "--export-frontend", action="store_true", dest="export_frontend",
+        help="After Excel export, write shared/tenders.json for the defence-intel-web frontend"
     )
 
     args = parser.parse_args()
@@ -1654,6 +2594,134 @@ def main():
         run_phase_export(config, test_mode=args.test)
         return
 
+    # ── award-match-llm standalone mode (Sprint Top-1 LLM upgrade) ──
+    if args.award_match_llm and not args.all and not args.phase:
+        sample_ids = None
+        if args.award_match_llm_sample:
+            sample_ids = [
+                s.strip() for s in args.award_match_llm_sample.split(",") if s.strip()
+            ]
+        print("\n  Mode: AWARD-MATCH-LLM (Sonnet 4.6, on existing filtered data)")
+        run_phase_award_match_llm(
+            sample=sample_ids,
+            dry_run=args.award_match_llm_dry_run,
+            confidence_min=args.award_match_llm_confidence,
+        )
+        run_phase_export(config, test_mode=args.test)
+        return
+
+    # ── translate-titles standalone mode (Title-Translation Pass) ──
+    if args.translate_titles and not args.all and not args.phase:
+        sample_ids = None
+        if args.translate_titles_sample:
+            sample_ids = [
+                s.strip() for s in args.translate_titles_sample.split(",") if s.strip()
+            ]
+        print("\n  Mode: TRANSLATE-TITLES (Haiku 4.5, on existing filtered data)")
+        run_phase_translate_titles(
+            sample=sample_ids,
+            dry_run=args.translate_titles_dry_run,
+        )
+        run_phase_export(config, test_mode=args.test)
+        return
+
+    # ── translate-descriptions standalone mode (Sonnet description translation) ──
+    if args.translate_descriptions and not args.all and not args.phase:
+        sample_ids = None
+        if args.translate_descriptions_sample:
+            sample_ids = [
+                s.strip() for s in args.translate_descriptions_sample.split(",") if s.strip()
+            ]
+        print("\n  Mode: TRANSLATE-DESCRIPTIONS (Sonnet 4.6 + Haiku 4.5 cleaning)")
+        run_phase_translate_descriptions(
+            sample=sample_ids,
+            dry_run=args.translate_descriptions_dry_run,
+            force_clean=args.force_clean,
+        )
+        run_phase_export(config, test_mode=args.test)
+        return
+
+    # ── enrich-descriptions standalone mode (regex + FX, no LLM) ──
+    if args.enrich_descriptions and not args.all and not args.phase:
+        sample_ids = None
+        if args.enrich_descriptions_sample:
+            sample_ids = [
+                s.strip() for s in args.enrich_descriptions_sample.split(",") if s.strip()
+            ]
+        print("\n  Mode: ENRICH-DESCRIPTIONS (regex + FX, on existing filtered data)")
+        run_phase_enrich_descriptions(
+            sample=sample_ids,
+            dry_run=args.enrich_descriptions_dry_run,
+        )
+        run_phase_export(config, test_mode=args.test)
+        return
+
+    # ── contract-type standalone mode ──
+    if getattr(args, "contract_type", False) and not args.all and not args.phase:
+        print("\n  Mode: CONTRACT-TYPE (regex classifier, on existing data)")
+        run_phase_contract_type()
+        run_phase_export(config, test_mode=args.test)
+        return
+
+    # ── text-mine standalone mode ──
+    if getattr(args, "text_mine", False) and not args.all and not args.phase:
+        sample_ids = None
+        if getattr(args, "text_mine_sample", None):
+            sample_ids = [
+                s.strip() for s in args.text_mine_sample.split(",") if s.strip()
+            ]
+        print("\n  Mode: TEXT-MINE (Phase 3k, regex on existing data)")
+        run_phase_text_mining(
+            sample=sample_ids,
+            dry_run=getattr(args, "text_mine_dry_run", False),
+            force=getattr(args, "text_mine_force", False),
+        )
+        run_phase_export(config, test_mode=args.test)
+        return
+
+    # ── url-check standalone mode (Phase 3l) ──
+    if getattr(args, "url_check", False) and not args.all and not args.phase:
+        print("\n  Mode: URL-CHECK (Phase 3l, HEAD-probe source_url_national)")
+        run_phase_url_validation(
+            force=getattr(args, "url_check_force", False),
+            only_sources=getattr(args, "url_check_source", None),
+        )
+        run_phase_export(config, test_mode=args.test)
+        return
+
+    # ── strategy-a standalone mode (DE/PL/CZ Vergabeunterlagen scraping) ──
+    if getattr(args, "strategy_a", False) and not args.all and not args.phase:
+        sample_ids = None
+        if getattr(args, "strategy_a_sample", None):
+            sample_ids = [
+                s.strip() for s in args.strategy_a_sample.split(",") if s.strip()
+            ]
+        print("\n  Mode: STRATEGY-A (national-portal Vergabeunterlagen scraping)")
+        run_phase_strategy_a(
+            sample=sample_ids,
+            dry_run=getattr(args, "strategy_a_dry_run", False),
+            force=getattr(args, "strategy_a_force", False),
+            test_mode=args.test,
+        )
+        return
+
+    # ── extract-documents standalone mode ──
+    if getattr(args, "extract_documents", False) and not args.all and not args.phase:
+        sample_ids = None
+        if getattr(args, "extract_documents_sample", None):
+            sample_ids = [
+                s.strip() for s in args.extract_documents_sample.split(",") if s.strip()
+            ]
+        print("\n  Mode: EXTRACT-DOCUMENTS (Phase 3g, on existing filtered data)")
+        run_phase_extract_documents(
+            sample=sample_ids,
+            dry_run=getattr(args, "extract_documents_dry_run", False),
+            force=getattr(args, "extract_documents_force", False),
+            test_mode=args.test,
+            no_fallback_cache=getattr(args, "no_fallback_cache", False),
+        )
+        return
+
     # ── --national standalone mode (Playwright-based) ──
     if args.national is not None and not args.all and not args.phase:
         countries = args.national if args.national else ["de", "pl"]  # default: all
@@ -1669,6 +2737,9 @@ def main():
         if nat_notices:
             total = _merge_national_into_relevant(nat_notices)
             print(f"  relevant.json after merge: {total} notices")
+            run_phase_translate_titles()
+            run_phase_translate_descriptions(force_clean=args.force_clean)
+            run_phase_contract_type()
             run_phase_export(config, test_mode=args.test)
         return
 
@@ -1721,6 +2792,8 @@ def main():
         run_phase_classify(config, test_mode=args.test, args=args)
     elif args.phase == "export":
         run_phase_export(config, test_mode=args.test)
+        if getattr(args, "export_frontend", False):
+            run_frontend_export()
 
     # ── Full pipeline ──
     elif args.all:
@@ -1734,6 +2807,8 @@ def main():
                 run_phase_details(config, test_mode=args.test)
             with Timer("Phase 3: Filter"):
                 run_phase_filter(config)
+            with Timer("Phase 3: Award Cache Restore"):
+                _run_merge_cached_awards()
             if args.uk:
                 with Timer("Source: UK Contracts Finder"):
                     uk_notices = run_phase_uk(config, test_mode=args.test, date_from=date_from)
@@ -1772,6 +2847,8 @@ def main():
 
             with Timer("Phase 3: Filter"):
                 run_phase_filter(config)
+            with Timer("Phase 3: Award Cache Restore"):
+                _run_merge_cached_awards()
 
             # Merge non-TED sources into relevant.json (sequential — one writer at a time)
             if uk_notices_parallel:
@@ -1797,14 +2874,71 @@ def main():
                 _classified = json.load(_f)
             update_national_force_include(_classified)
 
+        # Title translation pass — runs before Award-Match so the LLM
+        # matcher sees English titles for better cross-language matching.
+        with Timer("Phase 3e: Title Translation"):
+            run_phase_translate_titles()
+
+        # Description translation — Sonnet translates non-English descriptions
+        # into English prose. Must run BEFORE currency enrichment so the
+        # enricher annotates the English description_en, not the source language.
+        with Timer("Phase 3e-2: Description Translation + Cleaning"):
+            run_phase_translate_descriptions(force_clean=args.force_clean)
+
+        # Text mining — multilingual regex over description_en + raw text to
+        # extract qty / delivery-deadline / contract-duration. Runs AFTER
+        # translation (English description_en is the strongest mining target)
+        # and BEFORE document extraction so Phase 3g can audit whether the
+        # document-derived qty matches the mined qty.
+        with Timer("Phase 3k: Text Mining"):
+            run_phase_text_mining(force=getattr(args, "text_mine_force", False))
+
+        # Description currency enrichment — pure regex + FX lookup, free.
+        # Runs after Translate so non-English numeric formats (e.g. CZ
+        # ``"123,293.66 CZK"``) are surfaced in their already-translated
+        # English description text. Runs before Award-Match-LLM so the
+        # Sonnet reasoner sees EUR equivalents in the candidate context.
+        with Timer("Phase 3f: Description Currency Enrichment"):
+            run_phase_enrich_descriptions()
+
+        # Contract type classification — regex-based, free, instant
+        with Timer("Phase 3j: Contract Type"):
+            run_phase_contract_type(force=getattr(args, "force_clean", False))
+
+        # URL health check — HEAD-probe source_url_national, attach
+        # _url_status so the exporter / frontend can hide / warn on dead links.
+        # 30-day cache TTL means full-run cost is ~3 min once, then ~0 s.
+        # Placed here (after data prep, before Phase 4 export) so the field
+        # propagates into tenders.json on the same run.
+        with Timer("Phase 3l: URL Health Check"):
+            run_phase_url_validation(
+                force=getattr(args, "url_check_force", False),
+                only_sources=getattr(args, "url_check_source", None),
+            )
+
+        # Document extraction — only runs when --extract-documents is passed
+        # (opt-in: can add ~15 min and $0.05–0.50 depending on notice count).
+        if getattr(args, "extract_documents", False):
+            with Timer("Phase 3g: Document Extraction"):
+                run_phase_extract_documents(
+                    dry_run=getattr(args, "extract_documents_dry_run", False),
+                    force=getattr(args, "extract_documents_force", False),
+                    test_mode=args.test,
+                    no_fallback_cache=getattr(args, "no_fallback_cache", False),
+                )
+
         if not getattr(args, "no_enrich", False):
             with Timer("Phase 3c: Fulltext Enrich"):
                 run_phase_enrich(config, test_mode=args.test)
             with Timer("Phase 3d: Award Match"):
                 run_phase_award_match(config, test_mode=args.test)
+            with Timer("Phase 3d-LLM: Award Match (cache)"):
+                run_phase_award_match_llm(confidence_min=65)
         elif args.award_match:
             with Timer("Phase 3d: Award Match"):
                 run_phase_award_match(config, test_mode=args.test)
+            with Timer("Phase 3d-LLM: Award Match (cache)"):
+                run_phase_award_match_llm(confidence_min=65)
 
         # ── Restore force-included national notices missing this run ──
         if filtered_path.exists():
@@ -1827,6 +2961,9 @@ def main():
 
         with Timer("Phase 4: Export"):
             run_phase_export(config, test_mode=args.test, canada_notices=canada_notices)
+
+        if getattr(args, "export_frontend", False):
+            run_frontend_export()
 
         # Auto-run Opus review after --all (unless --no-review or test mode)
         run_opus = (

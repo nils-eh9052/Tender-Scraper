@@ -57,6 +57,8 @@ data/.backups/
 
 # Health monitor runtime data (metrics.jsonl, baselines.json, snapshots)
 data/.health/
+data/.health/diagnoses/
+data/.health/anomalies/
 data/root_cause_analysis.md
 data/sprint*_summary.md
 data/sprint*_run.log

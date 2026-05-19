@@ -52,6 +52,30 @@ def cmd_collect(run_id: Optional[str] = None) -> int:
         exc  = m.get("exception_count") or 0
         ok   = "OK" if m.get("success") else "FAIL"
         print(f"  {m['adapter']:<12} tender_count={tc}  exceptions={exc}  [{ok}]")
+
+    # --- Detect and persist anomalies to data/.health/anomalies/<date>.json ---
+    from src.health_monitor.metrics import latest_by_adapter, load_all_metrics
+    from src.health_monitor.baselines import load_baselines
+    from src.health_monitor.anomalies import check_all_latest, _load_thresholds
+    from datetime import date as _date
+
+    all_metrics = load_all_metrics()
+    latest = latest_by_adapter(all_metrics)
+    baselines = load_baselines()
+    thresholds = _load_thresholds()
+    anomalies_all = check_all_latest(latest, baselines, thresholds)
+
+    anomaly_dir = PROJECT_ROOT / "data" / ".health" / "anomalies"
+    anomaly_dir.mkdir(parents=True, exist_ok=True)
+    anomaly_file = anomaly_dir / f"{_date.today().isoformat()}.json"
+    with anomaly_file.open("w", encoding="utf-8") as f:
+        json.dump(anomalies_all, f, indent=2, ensure_ascii=False, default=str)
+
+    if anomalies_all:
+        print(f"[health-monitor] {len(anomalies_all)} anomaly(ies) written to {anomaly_file.name}")
+    else:
+        print("[health-monitor] No anomalies detected.")
+
     return 0
 
 

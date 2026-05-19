@@ -141,7 +141,7 @@ def rule_pub_date_stale_60d(
         pub_date = date.fromisoformat(newest)
     except ValueError:
         return None
-    cutoff = date.today() - __import__("datetime").timedelta(days=stale_days)
+    cutoff = date.today() - timedelta(days=stale_days)
     if pub_date < cutoff:
         return _make_anomaly(
             run_metric, "pub_date_stale_60d", "info",

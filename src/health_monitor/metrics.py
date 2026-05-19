@@ -11,7 +11,6 @@ Writes one JSONL line per run_id+adapter to data/.health/metrics.jsonl.
 from __future__ import annotations
 
 import json
-from datetime import datetime
 from pathlib import Path
 from typing import Optional
 
@@ -121,46 +120,78 @@ def collect(run_id: Optional[str] = None) -> list[dict]:
 
     # --- Snapshot diff ---
     # Save snapshot of current relevant.json (keyed by run_id)
-    new_snapshot_path: Optional[Path] = None
     if run_id and RELEVANT_JSON.exists():
         with RELEVANT_JSON.open(encoding="utf-8") as fh:
             current_data = json.load(fh)
         if isinstance(current_data, list):
-            from src.health_monitor.snapshot_diff import SNAPSHOTS_DIR
-            new_snapshot_path = save_snapshot(run_id, current_data)
+            save_snapshot(run_id, current_data)
 
     old_snap, new_snap = get_latest_two_snapshots()
 
-    # --- Enrich each parsed metric ---
+    # Build a lookup from log-parsed metrics (only adapters seen in this run's log)
+    log_by_adapter: dict[str, dict] = {m["adapter"]: m for m in parsed_metrics}
+
+    # Snapshot diff values (global, applied to all adapters)
+    snap_new: Optional[int] = None
+    snap_removed: Optional[int] = None
+    if old_snap and new_snap:
+        try:
+            diff = diff_snapshots(old_snap, new_snap)
+            snap_new = diff.new_count
+            snap_removed = diff.removed_count
+        except Exception:
+            pass
+
+    # Derive run metadata from log header (use first parsed metric if available)
+    run_started_at: Optional[str] = None
+    argv: Optional[list] = None
+    run_duration: Optional[float] = None
+    log_file_str = str(log_path)
+    if parsed_metrics:
+        first = parsed_metrics[0]
+        run_started_at = first.get("run_started_at")
+        argv = first.get("argv")
+        run_duration = first.get("run_duration_seconds")
+
+    # --- Build one metric entry per registered adapter (all 25) ---
+    # Adapters registered in the pipeline (everything except "tr" retired)
+    registered_adapters = [k for k in adapter_statuses if k not in ("tr", "_meta")]
+    if not registered_adapters:
+        # Fallback: use counts keys union log keys
+        registered_adapters = list(
+            set(counts_by_adapter.keys()) | set(log_by_adapter.keys())
+        )
+
     enriched: list[dict] = []
-    for m in parsed_metrics:
-        adapter = m["adapter"]
+    for adapter in registered_adapters:
+        log_m = log_by_adapter.get(adapter, {})
+        counts = counts_by_adapter.get(adapter, {})
 
-        # Adapter status from adapter_status.json
-        m["adapter_status"] = adapter_statuses.get(adapter)
+        # counts.py is authoritative for tender_count and dates
+        tender_count = counts.get("tender_count", log_m.get("tender_count"))
+        newest_pub = counts.get("newest_pub_date", log_m.get("newest_pub_date"))
+        oldest_pub = counts.get("oldest_pub_date", log_m.get("oldest_pub_date"))
 
-        # tender_count + date range from counts.py (overrides log-parsed counts
-        # if relevant.json data is available — more reliable)
-        if adapter in counts_by_adapter:
-            cnt = counts_by_adapter[adapter]
-            if m["tender_count"] is None:
-                m["tender_count"] = cnt["tender_count"]
-            if m["newest_pub_date"] is None:
-                m["newest_pub_date"] = cnt["newest_pub_date"]
-            if m["oldest_pub_date"] is None:
-                m["oldest_pub_date"] = cnt["oldest_pub_date"]
-
-        # Snapshot diff: new/removed tender counts
-        if old_snap and new_snap:
-            try:
-                diff = diff_snapshots(old_snap, new_snap)
-                if m["new_tender_count"] is None:
-                    m["new_tender_count"] = diff.new_count
-                if m["removed_tender_count"] is None:
-                    m["removed_tender_count"] = diff.removed_count
-            except Exception:
-                pass
-
+        m: dict = {
+            "run_id":               run_id,
+            "run_started_at":       run_started_at or log_m.get("run_started_at"),
+            "argv":                 argv or log_m.get("argv"),
+            "log_file":             log_file_str,
+            "adapter":              adapter,
+            "adapter_status":       adapter_statuses.get(adapter),
+            "tender_count":         tender_count,
+            "new_tender_count":     snap_new,
+            "removed_tender_count": snap_removed,
+            "newest_pub_date":      newest_pub,
+            "oldest_pub_date":      oldest_pub,
+            "run_duration_seconds": log_m.get("run_duration_seconds", run_duration),
+            "http_4xx_count":       log_m.get("http_4xx_count", 0),
+            "http_5xx_count":       log_m.get("http_5xx_count", 0),
+            "http_429_count":       log_m.get("http_429_count", 0),
+            "exception_count":      log_m.get("exception_count", 0),
+            "exception_summary":    log_m.get("exception_summary"),
+            "success":              log_m.get("success", True),
+        }
         enriched.append(m)
 
     # --- Write to JSONL ---

@@ -11,7 +11,6 @@ import argparse
 import json
 import sys
 from datetime import date
-from pathlib import Path
 from typing import Optional
 
 from src.health_monitor import PROJECT_ROOT
@@ -26,7 +25,6 @@ _RED    = "\033[31m"
 _YELLOW = "\033[33m"
 _CYAN   = "\033[36m"
 _BOLD   = "\033[1m"
-_GREEN  = "\033[32m"
 
 _SEVERITY_COLOUR = {
     "critical": _RED,
@@ -70,14 +68,31 @@ def cmd_baseline() -> int:
     return 0
 
 
+def _load_all_adapter_statuses() -> dict[str, str]:
+    """Load adapter_status.json → {adapter_key: status_string}, excluding retired."""
+    status_path = PROJECT_ROOT / "data" / "adapter_status.json"
+    if not status_path.exists():
+        return {}
+    with status_path.open(encoding="utf-8") as fh:
+        raw = json.load(fh)
+    return {
+        k: (v.get("status", "unknown") if isinstance(v, dict) else "unknown")
+        for k, v in raw.items()
+        if k not in ("tr", "_meta")  # exclude retired and metadata key
+    }
+
+
 def cmd_report(as_json: bool = False) -> int:
-    """--report: display adapter health table, optionally as JSON."""
+    """--report: display adapter health table for all 25 registered adapters."""
+    # All registered adapters (excluding retired "tr")
+    all_statuses = _load_all_adapter_statuses()
+    if not all_statuses:
+        print("[health-monitor] data/adapter_status.json not found.")
+        return 1
+
+    # Latest metric per adapter (may be empty for adapters never collected)
     all_metrics = load_all_metrics()
     latest = latest_by_adapter(all_metrics)
-
-    if not latest:
-        print("[health-monitor] No metric data found. Run --collect first.")
-        return 1
 
     baselines = load_baselines()
     thresholds = _load_thresholds()
@@ -86,8 +101,10 @@ def cmd_report(as_json: bool = False) -> int:
     # Group anomalies by adapter
     anomalies_by_adapter: dict[str, list[dict]] = {}
     for a in anomalies_all:
-        adapter = a.get("adapter", "")
-        anomalies_by_adapter.setdefault(adapter, []).append(a)
+        anomalies_by_adapter.setdefault(a.get("adapter", ""), []).append(a)
+
+    # Sorted adapter list — all registered (25), not just those with metrics
+    all_adapters = sorted(all_statuses.keys())
 
     if as_json:
         report = {
@@ -95,40 +112,46 @@ def cmd_report(as_json: bool = False) -> int:
             "adapters": [],
             "anomalies": anomalies_all,
         }
-        for adapter, m in sorted(latest.items()):
-            # Compute delta_7d
+        for adapter in all_adapters:
+            m = latest.get(adapter, {})
             b = baselines.get(adapter, {})
-            mean_7d = b.get("tender_count_7d_mean")
             tc = m.get("tender_count")
-            delta_7d = None
-            if tc is not None and mean_7d is not None:
-                delta_7d = round(tc - mean_7d, 1)
-
+            mean_7d = b.get("tender_count_7d_mean")
+            delta_7d = round(tc - mean_7d, 1) if tc is not None and mean_7d is not None else None
             report["adapters"].append({
-                "adapter":     adapter,
-                "status":      m.get("adapter_status"),
-                "last_run":    m.get("run_id"),
-                "tender_count":tc,
-                "delta_7d":    delta_7d,
-                "newest_pub":  m.get("newest_pub_date"),
+                "adapter":       adapter,
+                "status":        m.get("adapter_status") or all_statuses.get(adapter),
+                "last_run":      m.get("run_id"),
+                "tender_count":  tc,
+                "delta_7d":      delta_7d,
+                "newest_pub":    m.get("newest_pub_date"),
                 "anomaly_count": len(anomalies_by_adapter.get(adapter, [])),
             })
         print(json.dumps(report, indent=2, ensure_ascii=False, default=str))
         return 0
 
     # ---- Text report ----
-    header = f"{'adapter':<12} {'status':<18} {'last_run':<18} {'tenders':>8} {'delta_7d':>9} {'newest_pub':<12} {'anomalies'}"
+    header = (
+        f"{'adapter':<12} {'status':<18} {'last_run':<18} "
+        f"{'tenders':>8} {'delta_7d':>9} {'newest_pub':<12} {'anomalies'}"
+    )
     print(_colour(_BOLD + header, _BOLD))
     print("-" * len(header))
 
-    for adapter, m in sorted(latest.items()):
+    for adapter in all_adapters:
+        m = latest.get(adapter, {})
         b = baselines.get(adapter, {})
-        mean_7d = b.get("tender_count_7d_mean")
+
+        status = m.get("adapter_status") or all_statuses.get(adapter, "unknown")
+        last_run = m.get("run_id") or "—"
         tc = m.get("tender_count")
+        tc_str = str(tc) if tc is not None else "—"
+        mean_7d = b.get("tender_count_7d_mean")
         delta_7d_str = ""
         if tc is not None and mean_7d is not None:
-            delta = tc - mean_7d
-            delta_7d_str = f"{delta:+.0f}"
+            delta_7d_str = f"{tc - mean_7d:+.0f}"
+
+        newest_pub = m.get("newest_pub_date") or "—"
 
         adapter_anomalies = anomalies_by_adapter.get(adapter, [])
         anom_str = ""
@@ -140,11 +163,11 @@ def cmd_report(as_json: bool = False) -> int:
 
         row = (
             f"{adapter:<12} "
-            f"{(m.get('adapter_status') or 'unknown'):<18} "
-            f"{(m.get('run_id') or 'n/a'):<18} "
-            f"{str(tc) if tc is not None else 'n/a':>8} "
+            f"{status:<18} "
+            f"{last_run:<18} "
+            f"{tc_str:>8} "
             f"{delta_7d_str:>9} "
-            f"{(m.get('newest_pub_date') or 'n/a'):<12} "
+            f"{newest_pub:<12} "
             f"{anom_str}"
         )
         print(row)

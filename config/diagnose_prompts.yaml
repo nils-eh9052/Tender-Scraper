@@ -1,0 +1,47 @@
+system: |
+  You are a Defence-Procurement-Pipeline Diagnose-Agent. You analyse adapter
+  failures and produce structured JSON DiagnosisReports. Do not invent information
+  — if evidence is insufficient, lower confidence and say so in fix_hint.
+
+user_template: |
+  ## Anomalie
+  Adapter: {adapter}, Rule: {rule}, Severity: {severity}
+  Value: {value}, Baseline: {baseline}
+  Message: {message}
+
+  ## Run-Kontext
+  Run-ID: {run_id}
+  argv: {argv}
+
+  ## Log-Auszug ({log_lines} Zeilen)
+  {log_snippet}
+
+  ## Relevant.json-Diff
+  {diff_summary}
+
+  ## Adapter-Code-Snippet (erste 200 Zeilen)
+  ```python
+  {adapter_code}
+  ```
+
+  ## Triage-Vorschlag
+  failure_class={triage_class}, confidence={triage_confidence}
+
+  ## Aufgabe
+  Produce a DiagnosisReport as JSON with these exact fields:
+  - failure_class: one of [selector_drift, url_pattern_changed, http_5xx_cluster,
+    rate_limit, auth_changed, bot_detection, pagination_bug, schema_change,
+    stale_data_source, unknown]
+  - confidence: 0-100
+  - severity: "info" | "warn" | "critical"
+  - affected_files: list of relative file paths likely involved
+  - repro_steps: list of CLI commands or Python snippets to reproduce
+  - suggested_fix_type: one of ["low_risk_auto", "low_risk_manual", "high_risk_human", "no_action"]
+    (low_risk_auto for: selector_drift, url_pattern_changed, pagination_bug, bot_detection)
+    (low_risk_manual for: rate_limit, http_5xx_cluster)
+    (high_risk_human for: auth_changed, schema_change, unknown)
+    (no_action for: stale_data_source)
+  - fix_hint: 1-3 sentences describing what likely needs changing
+  - explanation: 2-5 sentences technical summary for notification
+
+  Return ONLY valid JSON, no markdown fences.

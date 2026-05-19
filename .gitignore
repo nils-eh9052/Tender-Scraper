@@ -15,6 +15,20 @@ data/raw/notice_index.json
 data/raw/api_sample.json
 data/raw/api_discovery_report.json
 data/raw/probe_*.json
+data/raw/cz/*.pdf
+
+# Large adapter output directories (rebuilt on each run)
+data/au_ocds_raw/
+data/canada/
+data/documents/
+data/ted_xml_cache/
+data/snapshots/
+
+# Backup files
+*.bak
+
+# Debug HTML and probe outputs
+data/*.html
 
 # Filtered data (rebuilt on each run)
 data/filtered/*
@@ -33,10 +47,13 @@ data/.enrichment_log_v1_backup.json
 data/.enrichment_fulltext_log.json
 data/.award_match_log.json
 data/.last_run.json
+data/.filter_cache.json
 
 # Logs and sprint artifacts
 data/pipeline_*.log
 data/*.log
+data/.run_log/
+data/.backups/
 data/root_cause_analysis.md
 data/sprint*_summary.md
 data/sprint*_run.log

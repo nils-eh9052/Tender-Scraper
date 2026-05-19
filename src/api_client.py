@@ -52,6 +52,34 @@ ALL_FIELDS = [
     "place-of-performance-post-code-part",
     "identifier-part",
     "announcement-title",
+    # Sprint 14b: notice lifecycle fields — enables Tier-1b status resolution
+    "notice-type",
+    "form-type",
+    "procedure-type",
+    # Sprint 2026-05-09 (TED-XML §B): cross-reference + lot breakdown.
+    # Discovered empirically via scripts/_probe_ted_fields_v2.py. See
+    # docs/TED_FIELDS_DISCOVERED.md.
+    "buyer-internet-address",            # Foreign-key to buyer's procurement portal
+    "estimated-value-lot",               # Per-lot value breakdown (closes total-value aggregation gap)
+    "quantity-lot",                      # Per-lot quantity — direct source for _trailer_quantity_*_ai
+    "procedure-features",                # Multilingual procedure description
+    "place-of-performance-city-part",
+    "place-of-performance-country-part",
+    "deadline-receipt-tender-time-lot",  # Time-component for deadline (pairs with date-lot)
+    "internal-identifier-part",          # Internal organisation reference
+    # Sprint 2026-05-18 (TED Quick-Wins): structured eForms fields validated by
+    # scripts/_probe_ted_fields_v3.py. See docs/TED_DEEP_RESEARCH_260517.md §2.2.
+    "framework-agreement-lot",           # eForms code: fa-wo-rc / fa-w-rc / fa-mix / none.
+                                         # Direct source for contract_type (100% coverage in eForms,
+                                         # replaces fragile regex on description text).
+    "contract-conclusion-date",          # Real award/signature date (≠ publication-date of the CAN).
+                                         # Populated on CAN-standard notices; ~17% coverage in probe,
+                                         # expected to grow as award-matching catches up.
+    "organisation-name-buyer",           # Multilingual dict of buyer names — richer than the legacy
+                                         # buyer-name field (which is a flat string).
+    "organisation-identifier-buyer",     # Buyer registration identifier (e.g. DE "991-19518-88").
+                                         # Stable foreign-key for buyer-profile aggregation across
+                                         # multiple notices from the same authority.
 ]
 
 # Backwards compatibility aliases

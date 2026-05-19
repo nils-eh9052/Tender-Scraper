@@ -13,12 +13,43 @@ detail fields. This is slower (one query per notice) but works without auth.
 
 import json
 import logging
+import re
 from pathlib import Path
-from typing import Optional
+from typing import Any, Optional
 
 from .api_client import TedApiClient
 
 logger = logging.getLogger(__name__)
+
+
+def _first_value(field: Any) -> Optional[str]:
+    """Return the first scalar value of a TED API field (list / str / None)."""
+    if field is None:
+        return None
+    if isinstance(field, list):
+        for item in field:
+            if item not in (None, ""):
+                return item if isinstance(item, str) else str(item)
+        return None
+    if isinstance(field, dict):
+        for v in field.values():
+            if isinstance(v, list) and v:
+                return v[0] if isinstance(v[0], str) else str(v[0])
+            if v not in (None, ""):
+                return v if isinstance(v, str) else str(v)
+        return None
+    return str(field)
+
+
+_ISO_DATE_RE = re.compile(r"^(\d{4}-\d{2}-\d{2})")
+
+
+def _clean_iso_date(value: Any) -> Optional[str]:
+    """Strip TED timezone-suffix (``2025-04-16+02:00`` → ``2025-04-16``)."""
+    if not value:
+        return None
+    m = _ISO_DATE_RE.match(str(value))
+    return m.group(1) if m else None
 
 
 class DetailFetcher:
@@ -155,6 +186,23 @@ class DetailFetcher:
                 "winner_country": get_text(raw.get("winner-country")),
                 "award_date": get_text(raw.get("winner-decision-date")),
             }
+
+        # Sprint 2026-05-18 — TED Quick-Wins: surface 4 eForms fields as
+        # top-level shortcuts so downstream phases (contract_type, exporter,
+        # award_matcher) don't need to dig through _raw. See
+        # docs/TED_DEEP_RESEARCH_260517.md §4.2 for code semantics.
+        ft = _first_value(raw.get("framework-agreement-lot"))
+        if ft:
+            normalized["_framework_type"] = ft  # "fa-wo-rc" | "fa-w-rc" | "fa-mix" | "none"
+        ccd = _first_value(raw.get("contract-conclusion-date"))
+        if ccd:
+            normalized["_contract_conclusion_date"] = _clean_iso_date(ccd)
+        auth_struct = get_text(raw.get("organisation-name-buyer"))
+        if auth_struct:
+            normalized["_authority_name_structured"] = auth_struct
+        auth_id = _first_value(raw.get("organisation-identifier-buyer"))
+        if auth_id:
+            normalized["_authority_id"] = str(auth_id)
 
         return normalized
 

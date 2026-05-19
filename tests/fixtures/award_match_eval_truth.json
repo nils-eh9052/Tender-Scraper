@@ -1,0 +1,267 @@
+{
+  "version": "1.0",
+  "description": "Award-Match LLM ground-truth — Sprint 2026-05-11. 10 cases: 5 known matches (existing high-confidence cache hits), 3 confounders (5 plausible candidates but no real match), 2 no-match cases (Open tender, no Award yet exists). The candidate-list per case is hand-curated to ensure semantic diversity. The model must answer with the correct candidate-id (or null) AND a confidence score; we score on match-id correctness AND confidence calibration.",
+  "fields_evaluated": ["match_id", "confidence_calibration"],
+  "samples": [
+    {
+      "id": "A1",
+      "label": "NL-MedicalTrailers-MATCH",
+      "category": "match",
+      "target": {
+        "tender_id": "572650-2024",
+        "title": "Netherlands - Military Medical Trailers",
+        "authority": "Ministry of Defence (NL)",
+        "country": "Netherlands",
+        "pub_date": "2024-09-24",
+        "cpv_codes": ["34220000", "34223000"],
+        "winner_name": null
+      },
+      "candidates": [
+        {"tender_id": "326948-2025", "title": "Military Medical Trailers Role 1 & 2", "authority": "Ministry of Defense (NL)", "country": "Netherlands", "pub_date": "2025-05-21", "cpv_codes": ["34220000"], "winner_name": "KITE Mezőgazdasági Szolgáltató és Kereskedelmi Zrt."},
+        {"tender_id": "345761-2025", "title": "Netherlands - Boat trailers for Royal Navy rubber boat transport", "authority": "Ministry of Defence", "country": "Netherlands", "pub_date": "2025-06-14", "cpv_codes": ["34220000"], "winner_name": "Vlemmix Aanhangwagens"},
+        {"tender_id": "453347-2020", "title": "Netherlands MOD - General-purpose trailers", "authority": "Ministry of Defence", "country": "Netherlands", "pub_date": "2020-10-14", "cpv_codes": ["34220000"], "winner_name": "FAYAT Bomag"},
+        {"tender_id": "711549-2022", "title": "Military Trailers and Semi-trailers for Heavy Equipment Transport", "authority": "Defensie Materieel Organisatie", "country": "Netherlands", "pub_date": "2022-12-12", "cpv_codes": ["34220000"], "winner_name": "Goldhofer AG"},
+        {"tender_id": "172885-2022", "title": "Market Consultation: PATRIOT Weapon System Logistics Trailers", "authority": "Ministry of Defence", "country": "Netherlands", "pub_date": "2022-04-08", "cpv_codes": ["34220000"], "winner_name": null}
+      ],
+      "ground_truth": {
+        "match_id": "326948-2025",
+        "expected_confidence_min": 80
+      },
+      "notes": "Subject identical (Military Medical Trailers Role 1 & 2). Award notice 8 months later. Same buyer."
+    },
+    {
+      "id": "A2",
+      "label": "CH-HeliumBottle-MATCH",
+      "category": "match",
+      "target": {
+        "tender_id": "678662-2024",
+        "title": "Switzerland - Helium Bottle Rack Structure for Trailer 16",
+        "authority": "Bundesamt für Rüstung armasuisse",
+        "country": "Switzerland",
+        "pub_date": "2024-11-07",
+        "cpv_codes": ["34223000"],
+        "winner_name": null
+      },
+      "candidates": [
+        {"tender_id": "30130-2025", "title": "Switzerland - Helium Bottle Rack Structure for Trailer 16", "authority": "Bundesamt für Rüstung armasuisse", "country": "Switzerland", "pub_date": "2025-01-16", "cpv_codes": ["34223000"], "winner_name": "DE_Calag Carrosserie Langenthal AG"},
+        {"tender_id": "603251-2024", "title": "Switzerland - Container truck Anhänger 2025-2027", "authority": "Bundesamt für Rüstung armasuisse", "country": "Switzerland", "pub_date": "2024-10-08", "cpv_codes": ["34223000"], "winner_name": "ZASLAW"},
+        {"tender_id": "121203-2025", "title": "armasuisse - Frame Agreement Truck-mounted Trailer Service", "authority": "armasuisse", "country": "Switzerland", "pub_date": "2025-02-22", "cpv_codes": ["34223300"], "winner_name": null},
+        {"tender_id": "456789-2024", "title": "armasuisse - Helmet Camera System for VBS personnel", "authority": "armasuisse", "country": "Switzerland", "pub_date": "2024-12-19", "cpv_codes": ["35730000"], "winner_name": "Sphere Optics"},
+        {"tender_id": "234567-2024", "title": "armasuisse - Generic radio set procurement", "authority": "armasuisse", "country": "Switzerland", "pub_date": "2024-09-30", "cpv_codes": ["32000000"], "winner_name": null}
+      ],
+      "ground_truth": {
+        "match_id": "30130-2025",
+        "expected_confidence_min": 90
+      },
+      "notes": "Identical title; same authority; CN→CAN within 10 weeks. Strong positive."
+    },
+    {
+      "id": "A3",
+      "label": "IT-MultifunctionalEng-MATCH",
+      "category": "match",
+      "target": {
+        "tender_id": "493986-2024",
+        "title": "Italy - Multifunctional engineer equipment and field lighting towers on two-axle trailers",
+        "authority": "Direzione Armamenti Terrestri",
+        "country": "Italy",
+        "pub_date": "2024-08-16",
+        "cpv_codes": ["34220000", "34223000"],
+        "winner_name": null
+      },
+      "candidates": [
+        {"tender_id": "254420-2025", "title": "Italy - Multifunctional engineering equipment and field lighting towers on trailers", "authority": "Direzione Armamenti Terrestri", "country": "Italy", "pub_date": "2025-04-17", "cpv_codes": ["34220000"], "winner_name": "GREEN POWER"},
+        {"tender_id": "147849-2021", "title": "Fuel Transport, Storage and Distribution Shelters", "authority": "Ministry of Defence", "country": "Italy", "pub_date": "2021-04-12", "cpv_codes": ["34223000"], "winner_name": "FB Design"},
+        {"tender_id": "140710-2026", "title": "Italy - Mobile CBRN Laboratory Container and Military Tactical Transport Vehicle", "authority": "Direzione Armamenti", "country": "Italy", "pub_date": "2026-01-09", "cpv_codes": ["34223000"], "winner_name": null},
+        {"tender_id": "607291-2021", "title": "Container Shelters Various Types - Open Side Containers", "authority": "Ministry of Defence", "country": "Italy", "pub_date": "2021-12-03", "cpv_codes": ["34223000"], "winner_name": null},
+        {"tender_id": "158253-2020", "title": "Dual-role trailers and containers for emergency disaster response", "authority": "Italian Civil Protection", "country": "Italy", "pub_date": "2020-04-22", "cpv_codes": ["34220000"], "winner_name": null}
+      ],
+      "ground_truth": {
+        "match_id": "254420-2025",
+        "expected_confidence_min": 85
+      },
+      "notes": "Same authority (DAT), same title (one calls it 'engineering' the other 'engineer'), 8 months later → CN+CAN of the same procurement."
+    },
+    {
+      "id": "A4",
+      "label": "CZ-HeavyPlatform-MATCH",
+      "category": "match",
+      "target": {
+        "tender_id": "385446-2024",
+        "title": "Heavy Platform Trailers O4-PN-V for T-815",
+        "authority": "Ministerstvo obrany (CZ MOD)",
+        "country": "Czech Republic",
+        "pub_date": "2024-06-28",
+        "cpv_codes": ["34223000"],
+        "winner_name": null
+      },
+      "candidates": [
+        {"tender_id": "119311-2025", "title": "Heavy Cargo Trailers O4-PN-V for T-815 Trucks - Purchase", "authority": "Ministerstvo obrany", "country": "Czech Republic", "pub_date": "2025-02-21", "cpv_codes": ["34223000"], "winner_name": "PANAV, a.s."},
+        {"tender_id": "775798-2024", "title": "Field Kitchen Trailers PK-4ARMY", "authority": "Ministerstvo obrany", "country": "Czech Republic", "pub_date": "2024-12-19", "cpv_codes": ["34223000"], "winner_name": null},
+        {"tender_id": "467088-2025", "title": "Container Transport Trailers KTN ISO 1C", "authority": "Ministerstvo obrany", "country": "Czech Republic", "pub_date": "2025-07-17", "cpv_codes": ["34223000"], "winner_name": null},
+        {"tender_id": "132540-2025", "title": "Water Tank Trailers - Field Kitchen Water Storage", "authority": "Ministerstvo obrany", "country": "Czech Republic", "pub_date": "2025-02-27", "cpv_codes": ["34223300"], "winner_name": null},
+        {"tender_id": "129915-2025", "title": "Field Kitchen - Cooling Freezing Trailers", "authority": "Ministerstvo obrany", "country": "Czech Republic", "pub_date": "2025-02-27", "cpv_codes": ["34223300"], "winner_name": null}
+      ],
+      "ground_truth": {
+        "match_id": "119311-2025",
+        "expected_confidence_min": 80
+      },
+      "notes": "'O4-PN-V for T-815' is the unique fingerprint shared between target + candidate 1. Other candidates are same-buyer-different-procurement distractors."
+    },
+    {
+      "id": "A5",
+      "label": "SE-BridgeKB8-MATCH",
+      "category": "match",
+      "target": {
+        "tender_id": "299270-2019",
+        "title": "Bridge Transport Semi-trailers KB8",
+        "authority": "Försvarets materielverk (FMV)",
+        "country": "Sweden",
+        "pub_date": "2019-06-27",
+        "cpv_codes": ["34223000"],
+        "winner_name": null
+      },
+      "candidates": [
+        {"tender_id": "18389-2020", "title": "Bridge Transport Semi-trailers KB8", "authority": "FÖRSVARETS MATERIELVERK", "country": "Sweden", "pub_date": "2020-01-14", "cpv_codes": ["34223000"], "winner_name": "Hallinden Trailer AB"},
+        {"tender_id": "466852-2018", "title": "Special Transport Trailers for KB8 Bridge System", "authority": "FMV", "country": "Sweden", "pub_date": "2018-10-22", "cpv_codes": ["34223000"], "winner_name": null},
+        {"tender_id": "182178-2026", "title": "Sweden - Aircraft Maintenance Trailers Framework Agreement", "authority": "FMV", "country": "Sweden", "pub_date": "2026-03-17", "cpv_codes": ["34223300"], "winner_name": "AUTOMECANICA MEDIAS"},
+        {"tender_id": "749251-2025", "title": "Sweden - Boat Transport Trailers Framework Agreement", "authority": "FMV", "country": "Sweden", "pub_date": "2025-12-08", "cpv_codes": ["34223000"], "winner_name": null},
+        {"tender_id": "734326-2023", "title": "Sweden - Procurement of Fuel Transport Equipment", "authority": "FMV", "country": "Sweden", "pub_date": "2023-12-19", "cpv_codes": ["34144710"], "winner_name": null}
+      ],
+      "ground_truth": {
+        "match_id": "18389-2020",
+        "expected_confidence_min": 85
+      },
+      "notes": "Identical title 'Bridge Transport Semi-trailers KB8'. Candidate 2 is a 2018 PRECURSOR (related but earlier — not the award notice for the target)."
+    },
+    {
+      "id": "A6",
+      "label": "DE-MOD-CONFOUNDER-NoMatch",
+      "category": "confounder",
+      "target": {
+        "tender_id": "212474-2026",
+        "title": "Germany - 2-wheel 1t military trailers framework agreement",
+        "authority": "BAAINBw",
+        "country": "Germany",
+        "pub_date": "2026-03-27",
+        "cpv_codes": ["34223300"],
+        "winner_name": null
+      },
+      "candidates": [
+        {"tender_id": "682847-2024", "title": "Germany - Military Cargo Trailers 3.5t and 12.5t", "authority": "BAAINBw", "country": "Germany", "pub_date": "2024-11-08", "cpv_codes": ["34223300"], "winner_name": "ZASLAW"},
+        {"tender_id": "719142-2025", "title": "Germany - Frame Agreement Manufacturing & Delivery (Trailers)", "authority": "BAAINBw", "country": "Germany", "pub_date": "2025-10-30", "cpv_codes": ["34223300"], "winner_name": null},
+        {"tender_id": "161258-2025", "title": "Container Trailer with Roll-off Containers", "authority": "BAIUDBw", "country": "Germany", "pub_date": "2025-03-12", "cpv_codes": ["34223300"], "winner_name": null},
+        {"tender_id": "813306-2025", "title": "Hook-lift trucks with crane, trailers, flatbeds and containers", "authority": "BAIUDBw", "country": "Germany", "pub_date": "2025-12-08", "cpv_codes": ["34223300"], "winner_name": null},
+        {"tender_id": "283775-2022", "title": "Military Trailers - Car/Van/Truck/Forklift Trailers", "authority": "Bundeswehr", "country": "Germany", "pub_date": "2022-04-24", "cpv_codes": ["34223300"], "winner_name": "HUMBAUR"}
+      ],
+      "ground_truth": {
+        "match_id": null,
+        "expected_confidence_max": 60
+      },
+      "notes": "Target is a 2026 CN. None of the BAAINBw candidates are the matching CAN — they are different procurements (different weights/types). The model must NOT pick candidate 2 (719142-2025) just because it's 'BAAINBw + frame agreement' — semantic content (2-wheel 1t vs trailers generic) differs."
+    },
+    {
+      "id": "A7",
+      "label": "PL-12WOG-CONFOUNDER",
+      "category": "confounder",
+      "target": {
+        "tender_id": "432811-2024",
+        "title": "Supply of High, Medium and Small Capacity Transport Trailers",
+        "authority": "12 WOJSKOWY ODDZIAŁ GOSPODARCZY",
+        "country": "Poland",
+        "pub_date": "2024-07-18",
+        "cpv_codes": ["34220000"],
+        "winner_name": null
+      },
+      "candidates": [
+        {"tender_id": "261427-2025", "title": "Poland - High-capacity transport trailers", "authority": "12 WOJSKOWY ODDZIAŁ GOSPODARCZY", "country": "Poland", "pub_date": "2025-04-23", "cpv_codes": ["34220000"], "winner_name": "Zasław Sp. z o.o."},
+        {"tender_id": "143718-2018", "title": "Universal Containerized Maintenance-Repair Workshops (UKWO-N) without base chassis", "authority": "Polish MOD", "country": "Poland", "pub_date": "2018-04-02", "cpv_codes": ["34220000"], "winner_name": null},
+        {"tender_id": "236276-2019", "title": "Universal Container Maintenance Workshops (UKWO-N) without base chassis", "authority": "Polish MOD", "country": "Poland", "pub_date": "2019-05-22", "cpv_codes": ["34220000"], "winner_name": null},
+        {"tender_id": "320781-2017", "title": "Vehicle bodies, trailers or semi-trailers", "authority": "Polish MOD", "country": "Poland", "pub_date": "2017-08-15", "cpv_codes": ["34220000"], "winner_name": null},
+        {"tender_id": "736943-2024", "title": "Mobile Doppler Radar Tracking System on Trailer", "authority": "Wojskowy Instytut Techniczny Uzbrojenia", "country": "Poland", "pub_date": "2024-12-03", "cpv_codes": ["38112100"], "winner_name": null}
+      ],
+      "ground_truth": {
+        "match_id": "261427-2025",
+        "expected_confidence_min": 60
+      },
+      "notes": "Confounder dressed as a match: 12-WOG → 12-WOG, similar title (High Capacity). 261427-2025 is a SUBSET (only the high-capacity variant of the original 3-class procurement). Acceptable as match (partial subset) with moderate confidence — should NOT be 95+."
+    },
+    {
+      "id": "A8",
+      "label": "FR-Motorcycles-CONFOUNDER",
+      "category": "confounder",
+      "target": {
+        "tender_id": "77247-2026",
+        "title": "France - Motorcycles and Trailers - Acquisition of militarised off-road motorcycles",
+        "authority": "MINARM/TERRE/SIMMT/DDC",
+        "country": "France",
+        "pub_date": "2026-02-03",
+        "cpv_codes": ["34410000", "34220000"],
+        "winner_name": null
+      },
+      "candidates": [
+        {"tender_id": "583390-2025", "title": "France - POSEIDON Shelter with associated services", "authority": "DGA / DOMN", "country": "France", "pub_date": "2025-09-08", "cpv_codes": ["34223000"], "winner_name": null},
+        {"tender_id": "FR-21-163372", "title": "Supply of welding units on trailers for the 25th Air Engineering Regiment", "authority": "Direction generale de l armement (DGA)", "country": "France", "pub_date": "2021-01-01", "cpv_codes": ["34223300"], "winner_name": null},
+        {"tender_id": "510836-2017", "title": "Climate-controlled road trailers for pyrotechnic specimens", "authority": "France-Bourges", "country": "France", "pub_date": "2017-12-23", "cpv_codes": ["34220000"], "winner_name": null},
+        {"tender_id": "231675-2021", "title": "Baggage, Pallet and Air Freight Transport Trailers", "authority": "France-Paris", "country": "France", "pub_date": "2021-05-08", "cpv_codes": ["34220000"], "winner_name": null},
+        {"tender_id": "13179-2023", "title": "Baggage, Pallet and Air Freight Transport Trailers", "authority": "France-Paris", "country": "France", "pub_date": "2023-01-09", "cpv_codes": ["34220000"], "winner_name": null}
+      ],
+      "ground_truth": {
+        "match_id": null,
+        "expected_confidence_max": 50
+      },
+      "notes": "No CAN exists for this target yet (it's a 2026 CN, only published 1 month before fixture date). All candidates are different procurements. Expect match=null."
+    },
+    {
+      "id": "A9",
+      "label": "BE-99Tractors-NOMATCH",
+      "category": "no_match",
+      "target": {
+        "tender_id": "83387-2024",
+        "title": "Belgium - Acquisition of 99 tractors and 94 territorial semitrailers",
+        "authority": "Ministerie van Landsverdediging",
+        "country": "Belgium",
+        "pub_date": "2024-02-16",
+        "cpv_codes": ["34220000", "16700000"],
+        "winner_name": null
+      },
+      "candidates": [
+        {"tender_id": "245184-2024", "title": "Belgium Defence - 780 Military Trailers (6 Types)", "authority": "Ministerie van Landsverdediging", "country": "Belgium", "pub_date": "2024-04-29", "cpv_codes": ["34220000"], "winner_name": null},
+        {"tender_id": "95616-2026", "title": "Mobile fuel tank and storage systems with multi-year support", "authority": "Min. of Defence", "country": "Belgium", "pub_date": "2026-02-19", "cpv_codes": ["34223200"], "winner_name": null},
+        {"tender_id": "485934-2022", "title": "Multi-annual framework contract for KÄRCHER FUTURETEC", "authority": "MoD Belgium", "country": "Belgium", "pub_date": "2022-09-08", "cpv_codes": ["34223000"], "winner_name": null},
+        {"tender_id": "488694-2022", "title": "Aircraft Fuel Tank Semi-trailers 29,000L", "authority": "Denmark MoD", "country": "Denmark", "pub_date": "2022-09-09", "cpv_codes": ["34144710"], "winner_name": null},
+        {"tender_id": "207812-2024", "title": "Ireland - Aircraft Refuelling Trailers", "authority": "Irish DoD", "country": "Ireland", "pub_date": "2024-04-09", "cpv_codes": ["34223000"], "winner_name": null}
+      ],
+      "ground_truth": {
+        "match_id": null,
+        "expected_confidence_max": 50
+      },
+      "notes": "Belgian tractor+semi-trailer 99-94 procurement. Candidates 1+2+3 are same-country distractors with different subjects. The two foreign candidates (DK, IE) are clearly wrong. Expect match=null."
+    },
+    {
+      "id": "A10",
+      "label": "UK-CommandoCraft-NOMATCH",
+      "category": "no_match",
+      "target": {
+        "tender_id": "UK-tender_347489/1184039",
+        "title": "Commando Raiding Craft Trailers",
+        "authority": "UK Ministry of Defence (Royal Marines)",
+        "country": "United Kingdom",
+        "pub_date": "2024-02-12",
+        "cpv_codes": ["34220000"],
+        "winner_name": null
+      },
+      "candidates": [
+        {"tender_id": "UK-tender_285861/998388", "title": "Heavy Technical Trailer Capability - Industry Engagement", "authority": "UK MoD", "country": "United Kingdom", "pub_date": "2023-05-09", "cpv_codes": ["34223300"], "winner_name": null},
+        {"tender_id": "UK-RQ0000031667", "title": "Tractor and Trailer procurement", "authority": "UK MoD - RTO Group", "country": "United Kingdom", "pub_date": "2024-08-13", "cpv_codes": ["34223300"], "winner_name": null},
+        {"tender_id": "UK-tender_340233/1221190", "title": "Box Trailers", "authority": "UK MoD", "country": "United Kingdom", "pub_date": "2024-09-15", "cpv_codes": ["34223300"], "winner_name": null},
+        {"tender_id": "UK-tender_340233/1200929", "title": "Military Box Trailers", "authority": "UK MoD", "country": "United Kingdom", "pub_date": "2024-08-12", "cpv_codes": ["34223300"], "winner_name": null},
+        {"tender_id": "UK-tender_336462/1140912", "title": "Fuel delivery solution and AVGAS provision for University Air Squadron", "authority": "UK MoD", "country": "United Kingdom", "pub_date": "2023-11-30", "cpv_codes": ["34144710"], "winner_name": null}
+      ],
+      "ground_truth": {
+        "match_id": null,
+        "expected_confidence_max": 50
+      },
+      "notes": "Commando Raiding Craft Trailers is a niche subject. None of the candidates is the award; they are unrelated UK MoD trailer procurements. Expect match=null."
+    }
+  ]
+}

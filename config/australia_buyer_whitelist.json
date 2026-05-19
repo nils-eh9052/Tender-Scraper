@@ -1,0 +1,28 @@
+{
+  "_comment": "Australian Defence buyer whitelist for AusTender OCDS adapter. Substring match (case-insensitive) on parties[role=procuringEntity].name",
+  "_note_ddg": "CASG + GWEO + NSSG merge into Defence Delivery Group (DDG) effective 2026-07-01",
+  "buyers": [
+    "Department of Defence",
+    "Defence",
+    "Capability Acquisition and Sustainment Group",
+    "CASG",
+    "Defence Materiel Organisation",
+    "DMO",
+    "Australian Signals Directorate",
+    "ASD",
+    "Australian Submarine Agency",
+    "ASA",
+    "Defence Science and Technology Group",
+    "DSTG",
+    "Guided Weapons and Explosive Ordnance Group",
+    "GWEO",
+    "Naval Shipbuilding and Sustainment Group",
+    "NSSG",
+    "Defence Delivery Group",
+    "DDG"
+  ],
+  "exclude_substrings": [
+    "Department of Veterans' Affairs",
+    "Veterans' Affairs"
+  ]
+}

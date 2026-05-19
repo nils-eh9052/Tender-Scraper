@@ -1,0 +1,66 @@
+{
+  "_comment": "Canadian defence buyer patterns for CanadaBuys tender filtering. EN+FR, case-insensitive substring match. Reviewed 2026-05-11.",
+  "_license": "Contains information licensed under the Open Government Licence – Canada",
+
+  "primary_buyers": {
+    "_doc": "Direct match → 'high confidence' tier when combined with trailer keyword",
+    "patterns": [
+      "department of national defence",
+      "national defence",
+      "défense nationale",
+      "ministère de la défense nationale",
+      "dnd-mdn",
+      "communications security establishment",
+      "centre de la sécurité des télécommunications",
+      "canadian armed forces",
+      "forces armées canadiennes",
+      "royal canadian navy",
+      "royal canadian air force",
+      "royal canadian army",
+      "marine royale canadienne",
+      "aviation royale canadienne",
+      "armée canadienne"
+    ]
+  },
+
+  "secondary_buyers": {
+    "_doc": "Match in contractingEntityName only + DND/CAF as endUserEntitiesName required → 'high' tier. Alone → 'review' tier.",
+    "patterns": [
+      "defence construction canada",
+      "construction de défense canada",
+      "dcc",
+      "cdc"
+    ]
+  },
+
+  "pspc_as_procuring_agent": {
+    "_doc": "PSPC buys on behalf of DND — require DND as endUserEntitiesName for 'high'. Alone → skip (too broad).",
+    "patterns": [
+      "public works and government services",
+      "travaux publics et services gouvernementaux",
+      "pspc",
+      "tpsgc",
+      "public services and procurement"
+    ]
+  },
+
+  "end_user_dnd_patterns": {
+    "_doc": "Patterns matched against endUserEntitiesName column to identify DND as end-user even when PSPC/DCC is the contracting entity.",
+    "patterns": [
+      "department of national defence",
+      "national defence",
+      "défense nationale",
+      "dnd",
+      "canadian armed forces",
+      "forces armées canadiennes"
+    ]
+  },
+
+  "_notes": [
+    "CSE/CST buys classified IT-security equipment — relevant as organisation, but BPW trailer content rare.",
+    "PSPC alone: 90+ departments buy through PSPC; only include when DND is explicit end-user.",
+    "DCC: Construction company — include only when GSIN vehicle code OR trailer keyword is present.",
+    "Department-name variability: 90+ spelling variants exist in CanadaBuys; ProcureData.ca normalises these commercially.",
+    "Update for DDG (Defence Delivery Group) merger effective 2026-07-01: add 'defence delivery group' and 'ddg' to primary_buyers at that date."
+  ]
+}

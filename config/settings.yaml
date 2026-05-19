@@ -8,13 +8,13 @@ api:
   # Alternative: Public search endpoint (no key required)
   search_url: "https://api.ted.europa.eu/v3/notices/search"
   detail_url: "https://api.ted.europa.eu/v3/notices"
-  
+
   # Rate limiting
   requests_per_second: 1  # conservative to avoid 429 rate limits
   max_retries: 3
   retry_backoff_factor: 2  # exponential: 2s, 4s, 8s
   timeout_seconds: 30
-  
+
   # Pagination
   page_size: 250  # API max is 250
   max_results_per_query: 15000  # API limit for PAGE_NUMBER mode
@@ -24,10 +24,10 @@ search:
   # Date range (ISO format)
   date_from: "2015-01-01"
   date_to: "2026-04-13"
-  
+
   # Search scope: ALL = alle Bekanntmachungen
   scope: "ALL"
-  
+
   # Only latest versions of each notice
   latest_only: true
 
@@ -42,14 +42,12 @@ cpv_codes:
     - "34223300"  # Anhänger
     - "34223310"  # Universalanhänger
     - "34223370"  # Kippanhänger
-  
   # Tier 2: Military vehicles & defence
   tier2_defence_vehicles:
     - "35600000"  # Militärfahrzeuge und zugehörige Teile
     - "35610000"  # Militärfahrzeuge
     # Note: 35612000 is not a valid CPV in TED API
     - "35000000"  # Sicherheits-/Verteidigungsausrüstung (breit)
-  
   # Tier 3: Transport & heavy vehicles (broad catch)
   tier3_transport_broad:
     - "34100000"  # Kraftfahrzeuge
@@ -62,7 +60,6 @@ cpv_codes:
 legal_basis:
   # Strong defence signal – prioritize these
   defence_directive: "32009L0081"  # Richtlinie 2009/81/EG (Verteidigung)
-  
   # Also include general procurement (trailers may be procured under this)
   general_directives:
     - "32014L0024"  # Richtlinie 2014/24/EU (Öffentliche Aufträge)
@@ -72,108 +69,848 @@ legal_basis:
 keywords:
   # Per trailer category – multilingual
   low_bed:
-    en: ["low-bed", "low bed", "low-loader", "lowboy", "heavy equipment trailer", "low bed trailer"]
-    de: ["tieflader", "tiefbett", "schwerlastanhänger", "tieflade"]
-    fr: ["surbaissé", "surbaissée", "porte-engins", "porte-char"]
-    it: ["ribassato", "carrellone"]
-    es: ["cama baja", "góndola"]
-    pl: ["niskopodwoziowa", "niskopodłogowa"]
-  
+    en:
+      - low-bed
+      - low bed
+      - low-loader
+      - lowboy
+      - heavy equipment trailer
+      - low bed trailer
+      - low loader
+    de:
+      - tieflader
+      - tiefbett
+      - schwerlastanhänger
+      - tieflade
+      - tiefbettanhänger
+    fr:
+      - surbaissé
+      - surbaissée
+      - porte-engins
+      - porte-char
+      - plateau surbaissé
+    it:
+      - ribassato
+      - carrellone
+      - semirimorchio ribassato
+    es:
+      - cama baja
+      - góndola
+      - plataforma rebajada
+    pl:
+      - niskopodwoziowa
+      - niskopodłogowa
+      - platforma niskopodwoziowa
+      - laweta
+    cs:
+      - nízkoložný
+      - podvalník
+      - nízkoložný přívěs
+    ro:
+      - platformă joasă
+      - trailer surbasat
+      - semiremorcă joasă
+    nl:
+      - dieplader
+      - diepbed
+      - laagbedoplegger
+    da:
+      - lavlad
+      - sænkevogn
+      - lavtbygget
+    sv:
+      - låglastare
+      - sänkvagn
+      - lågbyggd
+    "no":
+      - lavlaster
+      - senkevogn
+      - lavbygget
   semitrailer:
-    en: ["semi-trailer", "semitrailer", "semi trailer", "articulated trailer", "tractor trailer"]
-    de: ["sattelanhänger", "sattelauflieger", "auflieger"]
-    fr: ["semi-remorque"]
-    it: ["semirimorchio"]
-    es: ["semirremolque"]
-    pl: ["naczepa"]
-  
+    en:
+      - semi-trailer
+      - semitrailer
+      - semi trailer
+      - articulated trailer
+      - tractor trailer
+    de:
+      - sattelanhänger
+      - sattelauflieger
+      - auflieger
+    fr:
+      - semi-remorque
+      - remorque articulée
+      - attelage
+    it:
+      - semirimorchio
+      - rimorchio articolato
+      - bilico
+    es:
+      - semirremolque
+      - tráiler articulado
+      - plataforma
+    pl:
+      - naczepa
+      - przyczepa siodłowa
+      - półprzyczepa
+    cs:
+      - návěs
+      - přívěs návěsový
+      - tahačový přívěs
+    ro:
+      - semiremorcă
+      - remorcă articulată
+      - trailer articulat
+    nl:
+      - oplegger
+    da:
+      - sættevogn
+    sv:
+      - påhängsvagn
+    "no":
+      - påhengsvogn
   dolly:
-    en: ["dolly", "dolly trailer", "converter dolly", "dolly axle"]
-    de: ["dolly", "nachläufer", "dolly-achse"]
-    fr: ["dolly", "avant-train"]
-  
+    en:
+      - dolly
+      - dolly trailer
+      - converter dolly
+      - dolly axle
+    de:
+      - dolly
+      - nachläufer
+      - dolly-achse
+      - dollyachse
+    fr:
+      - dolly
+      - avant-train
+      - essieu dolly
+    pl:
+      - wózek dolly
+      - oś dolly
+    cs:
+      - přídavná náprava
+      - dolly podvozek
+    ro:
+      - axă dolly
+      - cărucior dolly
+    it:
+      - asse dolly
+      - carrello dolly
+    nl:
+      - dolly-as
+      - koppelwagen
+    da:
+      - dollyaksel
+      - koblingsled
+    sv:
+      - dollyaxel
+      - kopplingsled
+    "no":
+      - koblingsledd
+    es:
+      - eje dolly
+      - conversor dolly
   tank_trailer:
-    en: ["tank trailer", "tanker trailer", "fuel trailer", "bowser", "fuel bowser", "water bowser"]
-    de: ["tankanhänger", "tanksattelauflieger", "kraftstoffanhänger", "tankwagen"]
-    fr: ["citerne", "remorque-citerne"]
-    it: ["cisterna"]
-    es: ["cisterna"]
-    pl: ["cysterna"]
-  
+    en:
+      - tank trailer
+      - tanker trailer
+      - fuel trailer
+      - bowser
+      - fuel bowser
+      - water bowser
+    de:
+      - tankanhänger
+      - tanksattelauflieger
+      - kraftstoffanhänger
+      - tankwagen
+    fr:
+      - citerne
+      - remorque-citerne
+    it:
+      - cisterna
+    es:
+      - cisterna
+    pl:
+      - cysterna
   mission_module:
-    en: ["mission module", "containerized module", "shelter", "mobile command", "C2 shelter", "swap body", "ISO container", "tactical shelter"]
-    de: ["missionsmodul", "wechselaufbau", "shelter", "funktionscontainer", "abrollbehälter", "führungscontainer"]
-    fr: ["module de mission", "abri", "shelter", "conteneur"]
-    it: ["modulo missione", "shelter"]
-  
+    en:
+      - mission module
+      - containerized module
+      - shelter
+      - mobile command
+      - C2 shelter
+      - swap body
+      - ISO container
+      - tactical shelter
+      - mobile container
+    de:
+      - missionsmodul
+      - wechselaufbau
+      - shelter
+      - funktionscontainer
+      - abrollbehälter
+      - führungscontainer
+    fr:
+      - module de mission
+      - abri
+      - shelter
+      - conteneur
+      - module mission
+      - conteneur mobile
+    it:
+      - modulo missione
+      - shelter
+      - container mobile
+    pl:
+      - moduł misji
+      - kontener mobilny
+    cs:
+      - mísní modul
+      - mobilní kontejner
+    ro:
+      - modul misiune
+      - container mobil
+    nl:
+      - missiemodule
+      - mobiele container
+    da:
+      - mobil container
+    sv:
+      - uppdragsmodul
+    "no":
+      - oppdragsmodul
+    es:
+      - módulo misión
+      - contenedor móvil
+    fi:
+      - johtopaikkakontti
+      - levitettävä kontti
+      - komentopaikkakontti
   loading_system:
-    en: ["loading system", "load handling system", "hookloader", "hook-lift", "hook lift", "palletized load system", "PLS", "DROPS", "EPLS", "enhanced palletized load system", "demountable rack", "MULTILIFT", "HIAB", "swap body system", "interchangeable body"]
-    de: ["beladesystem", "wechsellader", "hakenladegerät", "abrollkipper", "ladekran", "wechselaufbau-system", "hakenlift", "wechselladersystem", "EPLS", "palettiertes ladesystem"]
-    fr: ["système de chargement", "bras de manutention", "ampliroll", "système de caisse mobile"]
-    it: ["sistema di carico"]
-    pl: ["system załadunku", "DROPS", "EPLS"]
-    sv: ["lastvexlare", "växelflak"]
-    no: ["lasteveksler", "vekselflak"]
-
+    en:
+      - loading system
+      - load handling system
+      - hookloader
+      - hook-lift
+      - hook lift
+      - palletized load system
+      - PLS
+      - DROPS
+      - EPLS
+      - enhanced palletized load system
+      - demountable rack
+      - MULTILIFT
+      - HIAB
+      - swap body system
+      - interchangeable body
+      - demountable system
+    de:
+      - beladesystem
+      - wechsellader
+      - hakenladegerät
+      - abrollkipper
+      - ladekran
+      - wechselaufbau-system
+      - hakenlift
+      - wechselladersystem
+      - EPLS
+      - palettiertes ladesystem
+      - absetzcontainer
+    fr:
+      - système de chargement
+      - bras de manutention
+      - ampliroll
+      - système de caisse mobile
+      - système ampliroll
+      - bras de levage
+      - système amovible
+    it:
+      - sistema di carico
+      - sistema scarrabile
+      - gancio carico
+      - sistema amovibile
+    pl:
+      - system załadunku
+      - DROPS
+      - EPLS
+      - system hakowy
+      - hakowiec
+    sv:
+      - lastvexlare
+      - växelflak
+      - kroklyftsystem
+      - lastningssystem
+    cs:
+      - hákový nosič
+      - kontejnerový nosič
+      - nakládací systém
+    ro:
+      - sistem cu cârlig
+      - sistem demontabil
+      - sistem încărcare
+    nl:
+      - haaksysteem
+      - containersysteem
+      - laadsysteem
+    da:
+      - krogløftsystem
+      - containersystem
+      - læssesystem
+    "no":
+      - krokløftsystem
+      - lastesystem
+      - lasteveksler
+      - vekselflak
+    es:
+      - sistema gancho
+      - portacontenedores
+      - sistema desmontable
   special_purpose:
-    en: ["special purpose trailer", "recovery trailer", "bridging trailer", "engineer trailer", "flatbed trailer", "platform trailer", "special trailer", "tank transport trailer", "armoured vehicle trailer", "APC trailer", "equipment trailer"]
-    de: ["spezialanhänger", "bergeanhänger", "brückenanhänger", "pionieranhänger", "plattformanhänger", "mehrzweckanhänger", "panzertransportanhänger", "kettenfahrzeug-anhänger", "geräteanhänger"]
-    fr: ["remorque spéciale", "remorque de dépannage", "remorque plateforme", "remorque blindée"]
-    pl: ["przyczepa specjalna", "przyczepa transportera"]
-
+    en:
+      - special purpose trailer
+      - recovery trailer
+      - bridging trailer
+      - engineer trailer
+      - flatbed trailer
+      - platform trailer
+      - special trailer
+      - tank transport trailer
+      - armoured vehicle trailer
+      - APC trailer
+      - equipment trailer
+      - tank transporter
+      - tank carrier
+      - armored vehicle transporter
+      - special purpose
+      - specialized trailer
+    de:
+      - spezialanhänger
+      - bergeanhänger
+      - brückenanhänger
+      - pionieranhänger
+      - plattformanhänger
+      - mehrzweckanhänger
+      - panzertransportanhänger
+      - kettenfahrzeug-anhänger
+      - geräteanhänger
+      - panzertransporter
+      - kampfpanzertransporter
+      - panzeranhänger
+      - sonderanhänger
+    fr:
+      - remorque spéciale
+      - remorque de dépannage
+      - remorque plateforme
+      - remorque blindée
+      - transport de char
+      - remorque porte-blindés
+      - remorque dépannage
+      - usage spécial
+    pl:
+      - przyczepa specjalna
+      - przyczepa transportera
+      - transporter czołgów
+      - laweta czołgowa
+      - przyczepa do transportu czołgów
+      - przyczepa ratownicza
+      - cel specjalny
+    cs:
+      - přepravník tanků
+      - tankový přívěs
+      - přívěs pro tanky
+      - speciální přívěs
+      - záchranný přívěs
+      - zvláštní účel
+    ro:
+      - transportor tanc
+      - remorcă pentru tancuri
+      - platformă blindate
+      - remorcă specială
+      - remorcă salvare
+      - scop special
+    it:
+      - trasporto carri
+      - rimorchio portacarri
+      - trasporto blindati
+      - rimorchio speciale
+      - rimorchio soccorso
+      - uso speciale
+    nl:
+      - tanktransporter
+      - pantservoertuig transporter
+      - tanktrailer
+      - speciale trailer
+      - bergingstrailer
+      - speciaal doel
+    da:
+      - kampvognstransporter
+      - panserkøretøjstransporter
+      - tanktransport
+      - specialvogn
+      - bjærgningsvogn
+      - særligt formål
+    sv:
+      - stridsvagnstransport
+      - pansarfordonssläp
+      - tanktransportör
+      - specialsläp
+      - bärgningssläp
+      - särskilt ändamål
+    "no":
+      - stridsvogntransport
+      - panserkjøretøytransport
+      - tanktransportør
+      - spesialhenger
+      - bergingshenger
+      - spesielt formål
+    es:
+      - portacarros
+      - transporte de blindados
+      - góndola militar
+      - remolque especial
+      - remolque recuperación
+      - propósito especial
   ammunition_trailer:
-    en: ["ammunition trailer", "ammo trailer", "munitions trailer", "ammunition transport", "shell trailer"]
-    de: ["munitionsanhänger", "munitionstransportanhänger", "patronenanhänger"]
-    fr: ["remorque munitions", "remorque à munitions"]
-    pl: ["przyczepa amunicyjna"]
-    sv: ["ammunitionssläpvagn", "ammunitionsvagn"]
-    no: ["ammunisjonshengervogn", "ammunisjonsvogn"]
-    uk: ["ammunition trailer", "ammo trailer"]
-
+    en:
+      - ammunition trailer
+      - ammo trailer
+      - munitions trailer
+      - ammunition transport
+      - shell trailer
+      - munitions carrier
+      - ordnance trailer
+    de:
+      - munitionsanhänger
+      - munitionstransportanhänger
+      - patronenanhänger
+      - munitionstransporter
+      - munitionsauflieger
+    fr:
+      - remorque munitions
+      - remorque à munitions
+      - transport munitions
+      - remorque armement
+    pl:
+      - przyczepa amunicyjna
+      - transport amunicji
+      - przyczepa uzbrojenia
+    sv:
+      - ammunitionssläpvagn
+      - ammunitionsvagn
+      - ammunitionssläp
+      - vapensläp
+    uk:
+      - ammunition trailer
+      - ammo trailer
+    cs:
+      - muniční přívěs
+      - přívěs na munici
+      - přeprava munice
+    ro:
+      - remorcă muniție
+      - transport muniție
+      - remorcă armament
+    it:
+      - rimorchio munizioni
+      - trasporto munizioni
+      - rimorchio armamento
+    nl:
+      - munitietrailer
+      - munitietransport
+      - wapentrailer
+    da:
+      - ammunitionsvogn
+      - ammunitionstransport
+      - våbenvogn
+    "no":
+      - ammunisjonshenger
+      - ammunisjonstransport
+      - våpenhenger
+      - ammunisjonshengervogn
+      - ammunisjonsvogn
+    es:
+      - remolque munición
+      - transporte munición
+      - plataforma armamento
   field_kitchen:
-    en: ["field kitchen", "field kitchen trailer", "mobile kitchen", "catering trailer", "kitchen trailer"]
-    de: ["feldküche", "feldküchenanhänger", "küchenanhänger", "gulaschkanone"]
-    fr: ["cuisine de campagne", "cuisine mobile", "remorque cuisine"]
-    pl: ["kuchnia polowa", "kuchnia polowa przyczepa"]
-    sv: ["fältkök", "fältköksvagn"]
-    no: ["feltkjøkken", "feltkjøkkenvogn"]
-    uk: ["польова кухня"]
-  
-  # Generic trailer terms (boost score if combined with defence context)
+    en:
+      - field kitchen
+      - field kitchen trailer
+      - mobile kitchen
+      - catering trailer
+      - kitchen trailer
+    de:
+      - feldküche
+      - feldküchenanhänger
+      - küchenanhänger
+      - gulaschkanone
+      - verpflegungsanhänger
+    fr:
+      - cuisine de campagne
+      - cuisine mobile
+      - remorque cuisine
+    pl:
+      - kuchnia polowa
+      - kuchnia polowa przyczepa
+      - przyczepa kuchenna
+      - kontener kuchenny
+    sv:
+      - fältkök
+      - fältköksvagn
+      - köksvagn
+      - mobilt kök
+    uk:
+      - польова кухня
+    cs:
+      - polní kuchyně
+      - kuchyňský přívěs
+      - mobilní kuchyně
+    ro:
+      - bucătărie de campanie
+      - bucătărie rulantă
+      - remorcă bucătărie
+    it:
+      - cucina campale
+      - rimorchio cucina
+      - cucina mobile
+    nl:
+      - veldkeuken
+      - keukentrailer
+      - mobiele keuken
+    da:
+      - feltkøkken
+      - køkkenvogn
+      - mobilt køkken
+    "no":
+      - kjøkkenhenger
+      - mobilt kjøkken
+      - feltkjøkken
+      - feltkjøkkenvogn
+    es:
+      - cocina de campaña
+      - remolque cocina
+      - cocina móvil
   generic_trailer:
-    en: ["trailer", "trailers", "towed vehicle", "towed equipment"]
-    de: ["anhänger", "nachläufer", "gezogenes fahrzeug"]
-    fr: ["remorque", "remorques", "véhicule tracté", "remorque logistique"]
-    it: ["rimorchio", "rimorchi", "rimorchio NBC"]
-    es: ["remolque", "remolques", "remolque lanzapuentes"]
-    pl: ["przyczepa", "przyczepy", "przyczepy warsztatowe"]
-    nl: ["aanhangwagen", "aanhangwagen munitie"]
-    cs: ["návěs pro PVO"]
-    sv: ["släpvagn för sjömålsrobot"]
-
-  # New Opus-suggested keywords (Sprint 6 quality review 2026-04-28)
+    en:
+      - trailer
+      - trailers
+      - towed vehicle
+      - towed equipment
+      - mobile containers
+    de:
+      - anhänger
+      - nachläufer
+      - gezogenes fahrzeug
+      - containeranhänger
+      - absetzcontaineranhänger
+    fr:
+      - remorque
+      - remorques
+      - véhicule tracté
+      - remorque logistique
+    it:
+      - rimorchio
+      - rimorchi
+      - rimorchio NBC
+      - carrello
+    es:
+      - remolque
+      - remolques
+      - remolque lanzapuentes
+      - tráiler
+    pl:
+      - przyczepa
+      - przyczepy
+      - przyczepy warsztatowe
+      - przyczepy transportowe
+    nl:
+      - aanhangwagen
+      - aanhangwagen munitie
+      - aanhanger
+    cs:
+      - návěs pro PVO
+      - přívěs
+      - přívěsy
+      - přívěsný vozík
+    sv:
+      - släpvagn för sjömålsrobot
+      - släpvagn
+      - släpkärra
+    ro:
+      - remorcă
+      - remorci
+      - remorca
+    da:
+      - påhængsvogn
+      - påhængsvogne
+      - anhænger
+    "no":
+      - henger
+      - vogn
   opus_sprint6_new:
-    de: ["Anhänger für Pioniergerät", "Kettenfahrzeug-Transporter"]
-    fr: ["remorque groupe électrogène", "remorque logistique"]
-    it: ["rimorchio NBC"]
-    es: ["remolque lanzapuentes"]
-    nl: ["aanhangwagen munitie"]
-    pl: ["przyczepy warsztatowe"]
-    cs: ["návěs pro PVO"]
-    sv: ["släpvagn för sjömålsrobot"]
-
-  # Defence context words (used for relevance scoring, not standalone filtering)
+    de:
+      - Anhänger für Pioniergerät
+      - Kettenfahrzeug-Transporter
+    fr:
+      - remorque groupe électrogène
+      - remorque logistique
+    it:
+      - rimorchio NBC
+    es:
+      - remolque lanzapuentes
+    nl:
+      - aanhangwagen munitie
+    pl:
+      - przyczepy warsztatowe
+    cs:
+      - návěs pro PVO
+    sv:
+      - släpvagn för sjömålsrobot
   defence_context:
-    en: ["military", "defence", "defense", "armed forces", "NATO", "army", "navy", "air force", "MoD", "ministry of defence", "DE&S", "defence equipment"]
-    de: ["militär", "verteidigung", "bundeswehr", "streitkräfte", "heer", "marine", "luftwaffe", "bwfuhrpark", "rüstung", "baainbw", "bwb"]
-    fr: ["militaire", "défense", "armée", "forces armées", "DGA", "SCORPION", "armement terrestre"]
-    it: ["militare", "difesa", "forze armate", "esercito"]
-    es: ["militar", "defensa", "fuerzas armadas", "ejército"]
-    pl: ["wojskowy", "obronny", "siły zbrojne", "wojsko polskie"]
-    sv: ["militär", "försvarsmakten", "militär logistik"]
-    no: ["militær", "forsvaret", "hæren", "sjøforsvaret", "luftforsvaret"]
-    uk: ["military", "MOD", "armed forces", "defence procurement"]
-    ua: ["збройні сили", "зсу", "міноборони", "військовий", "армія"]
+    en:
+      - military
+      - defence
+      - defense
+      - armed forces
+      - NATO
+      - army
+      - navy
+      - air force
+      - MoD
+      - ministry of defence
+      - DE&S
+      - defence equipment
+    de:
+      - militär
+      - verteidigung
+      - bundeswehr
+      - streitkräfte
+      - heer
+      - marine
+      - luftwaffe
+      - bwfuhrpark
+      - rüstung
+      - baainbw
+      - bwb
+      - baaainbw
+    fr:
+      - militaire
+      - défense
+      - armée
+      - forces armées
+      - DGA
+      - SCORPION
+      - armement terrestre
+    it:
+      - militare
+      - difesa
+      - forze armate
+      - esercito
+      - ministero difesa
+    es:
+      - militar
+      - defensa
+      - fuerzas armadas
+      - ejército
+      - minisdef
+    pl:
+      - wojskowy
+      - obronny
+      - siły zbrojne
+      - wojsko polskie
+      - wojsko
+    sv:
+      - militär
+      - försvarsmakten
+      - militär logistik
+      - försvar
+      - armé
+    uk:
+      - military
+      - MOD
+      - armed forces
+      - defence procurement
+    ua:
+      - збройні сили
+      - зсу
+      - міноборони
+      - військовий
+      - армія
+    cs:
+      - vojenský
+      - obranný
+      - armáda
+      - ozbrojené síly
+      - ministerstvo obrany
+    ro:
+      - apărare
+      - armată
+      - forțe armate
+      - mapn
+    nl:
+      - militair
+      - defensie
+      - krijgsmacht
+      - landmacht
+      - ministerie van defensie
+    da:
+      - forsvar
+      - værnepligt
+      - forsvarsministeriet
+    "no":
+      - ndma
+      - militær
+      - forsvaret
+      - hæren
+      - sjøforsvaret
+      - luftforsvaret
+    fi:
+      - puolustus
+      - sotilashanke
+      - puolustusvoimat
+      - maavoimat
+      - logistiikkalaitos
+  cargo_trailer:
+    de:
+      - lastenanhänger
+      - transportanhänger
+      - güteranhänger
+    en:
+      - cargo trailer
+      - freight trailer
+      - transport trailer
+    fr:
+      - remorque de fret
+      - remorque cargo
+      - remorque transport
+    pl:
+      - przyczepa transportowa
+      - przyczepa towarowa
+      - przyczepa ładunkowa
+    cs:
+      - nákladní přívěs
+      - transportní přívěs
+      - přepravní přívěs
+    ro:
+      - remorcă marfă
+      - remorcă transport
+      - remorcă cargo
+    it:
+      - rimorchio merci
+      - rimorchio cargo
+      - rimorchio trasporto
+    nl:
+      - vrachtaanhanger
+      - goederentrailer
+      - transportaanhanger
+    da:
+      - fragtvogn
+      - godsvogn
+      - transportvogn
+    sv:
+      - fraktsläp
+      - godssläp
+      - transportsläp
+    "no":
+      - frakthenger
+      - godshenger
+      - transporthenger
+    es:
+      - remolque de carga
+      - remolque transporte
+      - plataforma de carga
+  decontamination_cbrn:
+    de:
+      - dekontaminationsanhänger
+      - abc-dekontamination
+      - cbrn-anhänger
+    en:
+      - decontamination trailer
+      - cbrn trailer
+      - nbc decontamination
+    fr:
+      - remorque décontamination
+      - décontamination nrbc
+      - remorque nbc
+    pl:
+      - przyczepa dekontaminacyjna
+      - dekontaminacja cbrn
+      - przyczepa abc
+    cs:
+      - dekontaminační přívěs
+      - dekontaminace cbrn
+      - přívěs nbc
+    ro:
+      - remorcă decontaminare
+      - decontaminare cbrn
+      - remorcă nbc
+    it:
+      - rimorchio decontaminazione
+      - decontaminazione cbrn
+    nl:
+      - decontaminatietrailer
+      - cbrn-trailer
+      - nbc-decontaminatie
+    da:
+      - dekontamineringsvogn
+      - cbrn-vogn
+      - abc-rensning
+    sv:
+      - saneringsläp
+      - cbrn-släp
+      - abc-sanering
+    "no":
+      - dekontamineringshenger
+      - cbrn-henger
+      - abc-rensing
+    es:
+      - remolque descontaminación
+      - descontaminación nrbq
+      - remolque nbc
+  heavy_haul:
+    de:
+      - schwerlast
+      - schwertransport
+    en:
+      - heavy haul
+      - heavy haulage
+      - heavy equipment transport
+    fr:
+      - transport lourd
+      - convoi exceptionnel
+      - poids lourd
+    pl:
+      - transport ciężki
+      - naczepy ciężkie
+      - transport ponadgabarytowy
+    cs:
+      - těžký transport
+      - nadměrný náklad
+      - těžkotonážní
+    ro:
+      - transport greu
+      - transport agabaritic
+      - transport special
+    it:
+      - trasporto pesante
+      - trasporto eccezionale
+      - convoglio speciale
+    nl:
+      - zwaar transport
+      - exceptioneel transport
+      - zwaarlast
+    da:
+      - tungtransport
+      - specialtransport
+      - sværlast
+    sv:
+      - tung last
+    "no":
+      - spesialtransport
+    es:
+      - transporte pesado
+      - transporte especial
+      - carga pesada
 
 # --- False Positive Blacklist (Opus QA Sprint 6, 2026-04-28) ---
 # Notices matching these terms where trailers are only accessories will be filtered
@@ -204,7 +941,6 @@ scoring:
     keyword_generic_trailer: 5  # Generic "trailer" mention
     defence_context_word: 10   # Military/defence keyword
     title_match_bonus: 10     # Keyword found in title (not just description)
-  
   # Minimum score to be considered relevant
   threshold_relevant: 25
   threshold_high_confidence: 50
@@ -215,7 +951,7 @@ output:
   filtered_dir: "data/filtered"
   export_dir: "data/export"
   checkpoint_file: "data/.checkpoint.json"
-  
+
   # Excel export settings
   excel_filename: "ted_defence_trailers_{date}.xlsx"
   excel_sheets:

@@ -1,0 +1,127 @@
+{
+  "version": "1.0",
+  "description": "Classifier ground-truth — Sprint 2026-05-11. 10 samples covering DE/UK/PL/UA/CZ. Curated by inspecting source notices in relevant.json + cross-checking the existing AI labels (_trailer_type_1_ai, _trailer_quantity_1_ai). Negative case (UA dump truck) is the explicit anti-pattern: 'mounted on truck chassis' = NOT a trailer.",
+  "fields_evaluated": ["is_defence_relevant", "trailer_type", "trailer_quantity"],
+  "samples": [
+    {
+      "id": "C1",
+      "tender_id": "682847-2024",
+      "label": "DE-BAAINBw-CargoTrailers",
+      "country": "Germany",
+      "ground_truth": {
+        "is_defence_relevant": true,
+        "trailer_type": "Military cargo trailer (3.5t and 12.5t variants)",
+        "trailer_quantity": 4600
+      },
+      "notes": "Two-variant frame agreement: 4600 × 3.5t + 5100 × 12.5t. Quantity recorded as primary slot only (4600). Both variants are clearly military cargo trailers."
+    },
+    {
+      "id": "C2",
+      "tender_id": "212474-2026",
+      "label": "DE-BAAINBw-2WheelTrailers",
+      "country": "Germany",
+      "ground_truth": {
+        "is_defence_relevant": true,
+        "trailer_type": "2-wheel 1t military trailer",
+        "trailer_quantity": 480
+      },
+      "notes": "7-year frame agreement, up to 480 units, 2-wheeled / 1-ton / military. Cleanly identified as defence trailer in the title."
+    },
+    {
+      "id": "C3",
+      "tender_id": "UK-tender_347489/1184039",
+      "label": "UK-CommandoCraftTrailers",
+      "country": "United Kingdom",
+      "ground_truth": {
+        "is_defence_relevant": true,
+        "trailer_type": "Commando raiding craft transport trailer",
+        "trailer_quantity": null
+      },
+      "notes": "UK Defence award, no explicit unit count in source — quantity correctly null."
+    },
+    {
+      "id": "C4",
+      "tender_id": "UK-RQ0000031667",
+      "label": "UK-RTO-TractorTrailer",
+      "country": "United Kingdom",
+      "ground_truth": {
+        "is_defence_relevant": true,
+        "trailer_type": "Heavy-duty flat-bed trailer with ISO container twist-lock",
+        "trailer_quantity": 1
+      },
+      "notes": "1 trailer + 1 tractor for the RTO Group (Royal Tank-Operations). Quantity 1 explicit. Tractor is a non-trailer item — would normally land in additional_equipment."
+    },
+    {
+      "id": "C5",
+      "tender_id": "432811-2024",
+      "label": "PL-MOD-TransportTrailers",
+      "country": "Poland",
+      "ground_truth": {
+        "is_defence_relevant": true,
+        "trailer_type": "High-capacity military transport trailer",
+        "trailer_quantity": null
+      },
+      "notes": "PL MOD frame agreement, three capacity classes. No firm-quantity figure visible in the description."
+    },
+    {
+      "id": "C6",
+      "tender_id": "261427-2025",
+      "label": "PL-12WOG-HighCapTrailers",
+      "country": "Poland",
+      "ground_truth": {
+        "is_defence_relevant": true,
+        "trailer_type": "High-capacity transport trailer",
+        "trailer_quantity": 4
+      },
+      "notes": "Base quantity 4, option up to 8. Award notice — winner Zasław. Quantity 4 (firm) is the canonical value."
+    },
+    {
+      "id": "C7",
+      "tender_id": "UA-2026-05-05-004789-a",
+      "label": "UA-CarTrailers",
+      "country": "Ukraine",
+      "ground_truth": {
+        "is_defence_relevant": true,
+        "trailer_type": "Car trailer",
+        "trailer_quantity": 16
+      },
+      "notes": "Ukrainian Defence procurement of 16 car trailers. Quantity explicitly stated in description."
+    },
+    {
+      "id": "C8",
+      "tender_id": "UA-2026-04-28-014316-a",
+      "label": "UA-DumpTruck-NEGATIVE",
+      "country": "Ukraine",
+      "ground_truth": {
+        "is_defence_relevant": false,
+        "trailer_type": null,
+        "trailer_quantity": null
+      },
+      "notes": "Critical negative case: dump truck mounted on a 6×4 automobile chassis. Truck-with-bed, NOT a trailer. The classifier MUST reject this with relevant=false."
+    },
+    {
+      "id": "C9",
+      "tender_id": "CZ-N006/26/V00010428",
+      "label": "CZ-MOD-SmallScaleTrailers",
+      "country": "Czech Republic",
+      "ground_truth": {
+        "is_defence_relevant": true,
+        "trailer_type": "Military trailer",
+        "trailer_quantity": null
+      },
+      "notes": "Czech MOD small-scale procurement, type unspecified in the body text. Trailer-type generic fallback is acceptable; quantity correctly null."
+    },
+    {
+      "id": "C10",
+      "tender_id": "798124-2025",
+      "label": "CZ-VOPCZ-LowBedSemi",
+      "country": "Czech Republic",
+      "ground_truth": {
+        "is_defence_relevant": true,
+        "trailer_type": "Low-bed semi-trailer for heavy military equipment transport",
+        "trailer_quantity": null
+      },
+      "notes": "VOP CZ (Czech defence enterprise) acquisition of a podvalník. Strong defence + clear trailer subject. No firm unit count."
+    }
+  ]
+}

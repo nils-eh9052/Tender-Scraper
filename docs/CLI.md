@@ -45,8 +45,84 @@ options:
                         existing data + export
   --award-match         Run award notice matching step (Phase 3d) — runs by
                         default with enrichment
+  --award-match-llm     Phase 3d-LLM: Sonnet 4.6 reasoning-based award matcher
+                        for tenders the heuristic matcher could not match.
+                        OFF by default (manual trigger because of $-Kosten).
+                        Cost: ~USD 0.20 for ~150 unmatched candidates.
+                        Cache: data/.award_match_llm_log.json — re-runs are
+                        free.
+  --award-match-llm-sample <id1,id2,…>
+                        Restrict the LLM matcher to specific tender-IDs.
+                        Useful for smoke tests:
+                          --award-match-llm
+                          --award-match-llm-sample 572650-2024,...
+  --award-match-llm-dry-run
+                        Run the LLM matcher in dry-run mode: select
+                        candidates and print plan, but make NO API calls.
+  --award-match-llm-confidence <int>
+                        Minimum confidence (0–100) at which an LLM match is
+                        applied. Default 75.
+  --translate-titles    Phase 3e: Title-Translation Pass via Claude Haiku 4.5.
+                        For every notice in relevant.json without an English
+                        _title_final, write a concise English `title_en`.
+                        Heuristic skips already-English titles (no API call).
+                        Cache: data/.translation_cache.json — re-runs hit
+                        cache for every entry. Cost: ~$0.05 for 300 tenders.
+  --translate-titles-sample <id1,id2,…>
+                        Restrict the translator to specific tender-IDs (smoke).
+  --translate-titles-dry-run
+                        Plan candidate translations without making API calls.
+  --translate-descriptions
+                        Phase 3e-2: Description Translation via Claude Sonnet
+                        4.6. For each notice in relevant.json: picks the best
+                        source description (``_description_final → description
+                        → _raw.description``), checks if English, and if not
+                        sends it to Sonnet with an instruction to translate +
+                        summarise into max. 4 clear English sentences. Writes
+                        ``description_en`` into relevant.json.
+                        Cache: data/.description_translation_cache.json.
+                        Cache-key includes sha1(source) so invalidates on
+                        content change. Cost: ~$0.15 for 256 tenders on first
+                        run; subsequent runs hit cache (≈$0).
+  --translate-descriptions-sample <id1,id2,…>
+                        Restrict the description translator to specific IDs.
+  --translate-descriptions-dry-run
+                        Plan candidate translations without making API calls.
+  --enrich-descriptions Phase 3f: regex + FX-Lookup. Sucht im
+                        ``description``-Feld jeder Notice nach
+                        ``<amount> <currency>`` und hängt EUR-Equivalent in
+                        Klammern an, z.B.
+                        ``"123,293.66 CZK"`` → ``"123,293.66 CZK (~€4.9K)"``.
+                        Pure Regex, 0 USD, idempotent. Cache:
+                        data/.description_enrich_cache.json.
+  --enrich-descriptions-sample <id1,id2,…>
+                        Restrict enrichment to specific tender-IDs (smoke).
+  --enrich-descriptions-dry-run
+                        Compute matches but skip writing back to relevant.json.
   --reclassify-other    Remove 'Other' category notices from enrichment cache
                         and re-classify them
+  --extract-documents   Phase 3g: Download procurement documents (TED ENG PDF,
+                        UA Prozorro docx), extract text (pdfplumber/python-docx,
+                        Vision fallback for scans), AI-structure specs into
+                        _extracted_specs. Default model: gpt-4o via OpenRouter
+                        (F1=0.911). Override: EXTRACTION_MODEL env var.
+                        Opt-in: not part of --all unless flag is passed.
+                        Cache key: "{tender_id}:{model_slug}" — model change
+                        forces fresh calls automatically.
+                        Cache: data/.document_extraction_cache.json.
+                        Cost: ~$0.0065 per notice (gpt-4o); Vision: ~$0.005/page.
+                        Fallback: Sonnet 4.6 on OpenRouter error (auto).
+  EXTRACTION_MODEL      Env var: override the extraction model for --extract-documents.
+                        Examples:
+                          EXTRACTION_MODEL=openrouter/openai/gpt-4o       (default)
+                          EXTRACTION_MODEL=anthropic/claude-sonnet-4-6    (Sonnet)
+                          EXTRACTION_MODEL=openrouter/mistralai/mistral-large
+  --extract-documents-sample <id1,id2,…>
+                        Restrict document extraction to specific tender-IDs.
+  --extract-documents-dry-run
+                        Discover + download docs, but skip AI structuring (0 USD).
+  --extract-documents-force
+                        Re-process all notices even if cache hit.
   --uk                  Include UK Contracts Finder data (runs alongside TED
                         in --all, or UK-only when standalone)
   --de                  Include Germany service.bund.de data (RSS feed +
@@ -77,7 +153,31 @@ options:
                         and merge into dataset
   --canada              Load Canadian DND procurement data from open.canada.ca
                         Open Data
+  --export-frontend     After Excel export, write shared/tenders.json for the
+                        defence-intel-web frontend (../../shared/tenders.json
+                        relative to scraper root). Creates shared/ if absent.
 ```
+
+## Frontend Export
+
+Writes `../../shared/tenders.json` in the JSON schema expected by defence-intel-web.
+Can be run standalone or appended to any export phase:
+
+```bash
+# Re-export Excel + write frontend JSON in one step
+python main.py --phase export --export-frontend
+
+# Combined with a full pipeline run
+python main.py --all --two-stage --export-frontend
+
+# Standalone (no Excel, no API calls)
+python -m src.exporter_frontend
+```
+
+Field mapping highlights (see `shared/README.md` for full table):
+- `source`: defensive rule — TED-pattern ID (`\d+-\d{4}`) → `"TED"`, else `"National"`
+- `country` / `country_code`: resolved from `_country_normalized`, then `contracting_authority.country`, then `_raw.organisation-country-buyer`
+- `estimated_value_eur`: converted from `estimated_value.amount` using fixed FX rates when `_value_eur_num` is absent
 
 ## Common Workflows
 

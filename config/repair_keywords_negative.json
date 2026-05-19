@@ -1,0 +1,123 @@
+{
+  "_meta": {
+    "description": "Negative-Filter terms for the Repair/Maintenance heuristic in filter_engine.is_repair_only(). Tenders that contain ≥2 repair-keyword hits in title+description AND 0 procurement-keyword hits are dropped as out-of-scope service contracts. Mixed contracts (repair + procurement) are kept.",
+    "added": "2026-05-11",
+    "sprint": "14j"
+  },
+  "repair_keywords": {
+    "en": [
+      "repair", "repairs", "repaired", "repairing",
+      "maintenance", "servicing", "service contract", "service agreement",
+      "spare parts", "spare part", "spares",
+      "refurbishment", "refurbish", "refurbished",
+      "overhaul", "overhauled", "overhauling",
+      "rehabilitation", "reconditioning",
+      "after-sales service", "warranty service",
+      "preventive maintenance", "corrective maintenance"
+    ],
+    "de": [
+      "wartung", "wartungen", "wartungsvertrag", "wartungsleistung",
+      "reparatur", "reparaturen", "reparaturarbeiten", "reparaturleistung",
+      "instandsetzung", "instandhaltung", "instandhaltungsarbeiten",
+      "ersatzteile", "ersatzteil",
+      "service-vertrag", "servicevertrag", "dienstleistung",
+      "überholung", "überholungen", "generalüberholung",
+      "aufarbeitung"
+    ],
+    "fr": [
+      "réparation", "réparations", "réparer",
+      "entretien", "entretien préventif",
+      "maintenance", "maintenance préventive", "maintenance corrective",
+      "pièces détachées", "pièce détachée", "pièces de rechange",
+      "révision", "révisions",
+      "remise en état", "remise à neuf",
+      "service après-vente"
+    ],
+    "pl": [
+      "naprawa", "naprawy", "naprawiać",
+      "konserwacja", "konserwacje",
+      "serwis", "serwisowanie", "serwisowy",
+      "części zamienne", "część zamienna",
+      "remont", "remonty", "remontowy",
+      "przegląd", "przeglądy"
+    ],
+    "cs": [
+      "oprava", "opravy", "opravit", "opravovat",
+      "údržba", "údržbové",
+      "servis", "servisní",
+      "náhradní díly", "náhradní díl",
+      "renovace", "renovační",
+      "generální oprava"
+    ],
+    "uk": [
+      "ремонт", "ремонти", "ремонтні",
+      "обслуговування", "технічне обслуговування",
+      "сервіс", "сервісне",
+      "запасні частини", "запчастини",
+      "капітальний ремонт", "поточний ремонт"
+    ],
+    "ro": [
+      "reparație", "reparații", "reparare",
+      "întreținere", "întreținerea",
+      "mentenanță", "mentenanța",
+      "piese de schimb", "piesă de schimb",
+      "revizie", "revizii",
+      "service tehnic"
+    ],
+    "it": [
+      "riparazione", "riparazioni", "riparare",
+      "manutenzione", "manutenzioni", "manutentivo",
+      "assistenza", "assistenza tecnica",
+      "ricambi", "pezzi di ricambio",
+      "revisione", "revisioni",
+      "rimessa a nuovo"
+    ]
+  },
+  "procurement_keywords": {
+    "en": [
+      "procurement", "purchase", "purchases", "purchasing",
+      "acquisition", "acquire", "acquiring",
+      "supply", "supplies", "supplying", "delivery of",
+      "framework agreement for the supply",
+      "new trailers", "new vehicles", "new equipment"
+    ],
+    "de": [
+      "beschaffung", "beschaffungen",
+      "lieferung", "lieferungen", "liefern",
+      "kauf", "ankauf", "anschaffung", "neuanschaffung",
+      "neubeschaffung",
+      "neue anhänger", "neue fahrzeuge"
+    ],
+    "fr": [
+      "achat", "achats", "acquisition", "acquisitions",
+      "fourniture", "fournitures", "livraison",
+      "marché de fourniture",
+      "nouvelles remorques", "nouveaux véhicules"
+    ],
+    "pl": [
+      "zakup", "zakupy", "dostawa", "dostawy",
+      "nabycie", "nabywanie",
+      "nowe przyczepy", "nowe pojazdy"
+    ],
+    "cs": [
+      "nákup", "nákupy", "pořízení",
+      "dodávka", "dodávky", "dodání",
+      "nové přívěsy", "nová vozidla"
+    ],
+    "uk": [
+      "закупівля", "закупівлі", "придбання",
+      "постачання", "поставка",
+      "нові причепи"
+    ],
+    "ro": [
+      "achiziție", "achiziții", "achiziționare",
+      "furnizare", "furnizări", "livrare",
+      "remorci noi", "vehicule noi"
+    ],
+    "it": [
+      "acquisto", "acquisti", "acquisizione",
+      "fornitura", "forniture", "consegna",
+      "nuovi rimorchi", "nuovi veicoli"
+    ]
+  }
+}

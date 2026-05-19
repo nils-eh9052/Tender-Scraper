@@ -45,6 +45,73 @@ logger = logging.getLogger(__name__)
 PROZORRO_API = "https://public.api.openprocurement.org/api/2.5"
 PROZORRO_URL = "https://prozorro.gov.ua/tender/{tender_id}"
 
+
+def _map_prozorro_status(raw_status: str) -> str:
+    """Map Prozorro tender status strings to pipeline vocabulary.
+
+    Prozorro statuses seen in the wild:
+      active.tendering      — bidding period open
+      active.enquiries      — clarification period
+      active.qualification  — bids evaluated, award pending
+      active.awarded        — award decision made
+      complete              — contract signed and closed
+      cancelled             — tender withdrawn by authority
+      unsuccessful          — no valid bids received
+    """
+    s = (raw_status or "").lower().strip()
+    if s in ("active.tendering", "active.enquiries", "active.pre-qualification",
+             "active.stage2.pending", "active.stage2"):
+        return "Open"
+    if s in ("active.qualification", "active.qualification.stand-still",
+             "active.awarded"):
+        return "Awarded"
+    if s == "complete":
+        return "Closed"
+    if s in ("cancelled", "unsuccessful"):
+        return "Cancelled"
+    if s.startswith("active"):
+        return "Open"
+    return ""
+
+
+def _extract_ua_value(detail: dict) -> tuple[Optional[float], Optional[str]]:
+    """
+    Resolve a tender's monetary value with fallbacks for Prozorro quirks.
+
+    Order:
+      1. detail.value.amount      (top-level — present on most tenders)
+      2. lots[*].value.amount     (multi-lot tenders carry value per lot)
+      3. detail.minimalStep.amount (auction tenders without explicit value)
+
+    Returns (amount, currency). Both None when no positive amount is found.
+    """
+    def _amount(v: dict) -> Optional[float]:
+        if not isinstance(v, dict):
+            return None
+        try:
+            amt = float(v.get("amount") or 0)
+        except (TypeError, ValueError):
+            return None
+        return amt if amt > 0 else None
+
+    top = detail.get("value") or {}
+    amt = _amount(top)
+    if amt is not None:
+        return amt, top.get("currency")
+
+    for lot in (detail.get("lots") or []):
+        lv = lot.get("value") or {}
+        amt = _amount(lv)
+        if amt is not None:
+            return amt, lv.get("currency")
+
+    ms = detail.get("minimalStep") or {}
+    amt = _amount(ms)
+    if amt is not None:
+        return amt, ms.get("currency")
+
+    return None, None
+
 # CPV codes relevant to trailers (Ukrainian ДК021, same as EU CPV)
 TRAILER_CPV_PREFIXES = [
     "34223",  # Trailers and semi-trailers
@@ -244,14 +311,7 @@ class UAAdapter(BaseAdapter):
                 entity = detail.get("procuringEntity") or {}
                 authority = entity.get("name", cand.get("authority", ""))
                 tender_id = detail.get("tenderID") or cand.get("tenderID", "")
-                val_data = detail.get("value") or {}
-                value = None
-                try:
-                    v = val_data.get("amount")
-                    if v and float(v) > 0:
-                        value = float(v)
-                except (ValueError, TypeError):
-                    pass
+                value, currency = _extract_ua_value(detail)
 
                 meta = json.dumps({"id": internal_id, "status": detail.get("status","")}, ensure_ascii=False)
                 r = SearchResult(
@@ -261,7 +321,7 @@ class UAAdapter(BaseAdapter):
                     reference_id=tender_id,
                     date=(detail.get("datePublished") or cand.get("date",""))[:10],
                     value=value,
-                    currency=(val_data.get("currency") or "UAH"),
+                    currency=currency or "UAH",
                     snippet=meta[:400],
                 )
                 key = tender_id or internal_id
@@ -394,14 +454,7 @@ class UAAdapter(BaseAdapter):
             entity = data.get("procuringEntity", {}) or {}
             authority = entity.get("name", result.authority)
 
-            val_data = data.get("value") or {}
-            value = None
-            try:
-                v = val_data.get("amount")
-                if v and float(v) > 0:
-                    value = float(v)
-            except (ValueError, TypeError):
-                pass
+            value, currency = _extract_ua_value(data)
 
             # Build description from items
             items = data.get("items") or []
@@ -434,13 +487,14 @@ class UAAdapter(BaseAdapter):
                 authority=authority,
                 date=(data.get("datePublished") or result.date or "")[:10],
                 value=value,
-                currency=(val_data.get("currency") or "UAH"),
+                currency=currency or "UAH",
                 quantity=int(total_qty) if total_qty else None,
                 winner=winner[:120] if winner else "",
                 reference_id=result.reference_id,
                 url=result.url,
                 source_code="UA-PR",
                 raw_text=raw_text,
+                status=_map_prozorro_status(data.get("status", "")),
             )
 
         except Exception as e:

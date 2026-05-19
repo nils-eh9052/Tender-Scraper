@@ -17,6 +17,16 @@ DISCOVERY (Sprint 11):
     search for "haagis", copy the XHR request URL and body format.
     The portal is React-based — the API definitely exists, just needs rediscovery.
 
+URL HEALTH (Sprint 2026-05-20, docs/AU_URL_FORMAT_260520.md §EE):
+  Detail URLs use the SPA hash-route ``/rhr-web/#/procurement/{uuid}``.
+  The server always returns HTTP 200 + a 2.6 KB React shell regardless of
+  the UUID (the route is client-side). The actual data API at
+  ``/rhr/api/v1/public/notice/{uuid}`` returns HTTP 401 for anonymous
+  requests — eIDAS auth required. Phase 3l URL validator classifies
+  matching responses as ``auth_walled`` so the frontend can mark these as
+  "external login needed" rather than "broken". Eigenständige
+  Auth-Discovery → Window F (eIDAS-Tracks).
+
   No authentication required for public tenders.
   Technology: Spring Boot REST API + React frontend.
 

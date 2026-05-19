@@ -11,6 +11,7 @@ Pipeline:
 """
 
 import json
+import os
 import re
 import logging
 from concurrent.futures import ThreadPoolExecutor, as_completed
@@ -22,6 +23,159 @@ logger = logging.getLogger(__name__)
 # Filter result cache — avoids re-scoring files that haven't changed.
 # Maps tender_id (file stem) → {"is_defence": bool, "score": int}
 _FILTER_CACHE_FILE = Path(__file__).parent.parent / "data" / ".filter_cache.json"
+
+# ── Sprint 14j: Filter-Hardening ────────────────────────────────────────────
+# Minimum estimated tender value in EUR for relevance. Below this, BPW-Defence
+# doesn't engage. Overridable via env var BPW_MIN_VALUE_EUR.
+# Rule: value >= MIN_VALUE_EUR → keep; value == 0/None → keep (unknown); value
+#       < MIN_VALUE_EUR → drop.
+MIN_VALUE_EUR: float = float(os.environ.get("BPW_MIN_VALUE_EUR", "100000") or "100000")
+
+# Repair/Maintenance negative-filter keywords (8 languages). Loaded lazily on
+# first call to is_repair_only(). Tenders with ≥2 repair hits AND 0 procurement
+# hits in title+description are dropped; mixed contracts pass through.
+_REPAIR_KW_PATH = Path(__file__).parent.parent / "config" / "repair_keywords_negative.json"
+_REPAIR_KW_CACHE: Optional[dict] = None
+
+
+def _load_repair_keywords() -> dict:
+    """Lazy-load and cache config/repair_keywords_negative.json."""
+    global _REPAIR_KW_CACHE
+    if _REPAIR_KW_CACHE is not None:
+        return _REPAIR_KW_CACHE
+    if not _REPAIR_KW_PATH.exists():
+        logger.warning("repair_keywords_negative.json not found at %s — repair filter inactive", _REPAIR_KW_PATH)
+        _REPAIR_KW_CACHE = {"repair_keywords": {}, "procurement_keywords": {}}
+        return _REPAIR_KW_CACHE
+    try:
+        with open(_REPAIR_KW_PATH, encoding="utf-8") as f:
+            _REPAIR_KW_CACHE = json.load(f)
+    except Exception as exc:
+        logger.warning("Failed to load repair keywords (%s): %s", _REPAIR_KW_PATH, exc)
+        _REPAIR_KW_CACHE = {"repair_keywords": {}, "procurement_keywords": {}}
+    return _REPAIR_KW_CACHE
+
+
+def _flatten_kw_dict(by_lang: dict) -> list[str]:
+    """Concatenate per-language keyword lists into one flat lowercase list."""
+    out: list[str] = []
+    if not isinstance(by_lang, dict):
+        return out
+    for terms in by_lang.values():
+        if isinstance(terms, list):
+            out.extend(t.lower() for t in terms if isinstance(t, str) and t.strip())
+    return out
+
+
+# FX rates for native-currency → EUR (mirrors exporter_frontend._FX).
+# Used as fallback when only _value_amount + _value_currency are populated.
+_FX_TO_EUR: dict[str, float] = {
+    "EUR": 1.0,   "DKK": 0.134, "SEK": 0.087, "PLN": 0.233,
+    "CZK": 0.040, "RON": 0.201, "NOK": 0.085, "GBP": 1.17,
+    "CHF": 1.06,  "HRK": 0.133, "BGN": 0.511, "HUF": 0.0025,
+    "UAH": 0.023, "CAD": 0.68,  "AUD": 0.60,
+}
+
+
+def _resolve_value_eur(tender: dict) -> Optional[float]:
+    """Pull an EUR-denominated value from a tender / notice record.
+
+    Precedence:
+      1. tender["estimated_value_eur"]                       (frontend Tender shape)
+      2. tender["_value_eur_num"] / "_value_num"             (relevant.json shape)
+      3. tender["estimated_value"]["amount"] (+ currency)    (TED API shape; converts if currency set)
+      4. tender["_value_amount"] + ["_value_currency"]       (national adapters: AU AUD, CA CAD, …)
+    Returns None if no value can be resolved (and the value-filter should keep
+    the notice, since "unknown" must not be dropped).
+    """
+    def _to_eur(amount: float, currency: Optional[str]) -> float:
+        if not currency:
+            return float(amount)
+        rate = _FX_TO_EUR.get(currency.upper())
+        return float(amount) * rate if rate else float(amount)
+
+    v = tender.get("estimated_value_eur")
+    if isinstance(v, (int, float)) and v > 0:
+        return float(v)
+
+    v = tender.get("_value_eur_num")
+    if isinstance(v, (int, float)) and v > 0:
+        return float(v)
+
+    v = tender.get("_value_num")
+    if isinstance(v, (int, float)) and v > 0:
+        return float(v)
+
+    ev = tender.get("estimated_value")
+    if isinstance(ev, dict):
+        amt = ev.get("amount")
+        if isinstance(amt, (int, float)) and amt > 0:
+            return _to_eur(amt, ev.get("currency"))
+
+    amt = tender.get("_value_amount")
+    if isinstance(amt, (int, float)) and amt > 0:
+        return _to_eur(amt, tender.get("_value_currency"))
+
+    return None
+
+
+def is_above_value_threshold(tender: dict, min_eur: float = MIN_VALUE_EUR) -> bool:
+    """Return True when the tender's EUR value is unknown OR ≥ ``min_eur``.
+
+    Rule (per Sprint 14j spec):
+      - value >= min_eur     → True  (keep)
+      - value == 0 or None   → True  (unknown, keep)
+      - value < min_eur      → False (drop)
+    """
+    v = _resolve_value_eur(tender)
+    if v is None or v == 0:
+        return True
+    return v >= min_eur
+
+
+def _gather_searchable_text(tender: dict) -> str:
+    """Join title + description fields into one lowercase string for keyword search."""
+    parts: list[str] = []
+    for key in ("title_en", "_title_final", "title", "_title_english", "announcement_title", "contract_title"):
+        val = tender.get(key)
+        if isinstance(val, str) and val.strip():
+            parts.append(val)
+        elif isinstance(val, dict):
+            parts.extend(str(v) for v in val.values() if v)
+    for key in ("description_en", "_description_english", "description_enriched", "_description_final", "description"):
+        val = tender.get(key)
+        if isinstance(val, str) and val.strip():
+            parts.append(val)
+        elif isinstance(val, dict):
+            parts.extend(str(v) for v in val.values() if v)
+    return " ".join(parts).lower()
+
+
+def is_repair_only(tender: dict) -> bool:
+    """Return True iff the tender looks like a pure repair/maintenance contract.
+
+    Heuristic:
+      - Count repair-keyword matches in title+description (case-insensitive)
+      - Count procurement-keyword matches in same text
+      - DROP only when repair_hits >= 2 AND procurement_hits == 0
+      - Mixed contracts (≥1 repair AND ≥1 procurement) → KEEP
+      - No repair signal → KEEP
+    """
+    kw = _load_repair_keywords()
+    repair_terms = _flatten_kw_dict(kw.get("repair_keywords", {}))
+    procurement_terms = _flatten_kw_dict(kw.get("procurement_keywords", {}))
+    if not repair_terms:
+        return False  # config missing → never drop
+
+    text = _gather_searchable_text(tender)
+    if not text:
+        return False
+
+    repair_hits = sum(1 for t in repair_terms if t in text)
+    if repair_hits < 2:
+        return False
+    procurement_hits = sum(1 for t in procurement_terms if t in text)
+    return procurement_hits == 0
 
 
 class FilterEngine:
@@ -618,6 +772,35 @@ class FilterEngine:
             1 for stem in cached_stems
             if cache[stem]["is_defence"] and cache[stem]["score"] < threshold_relevant
         )
+
+        # ── Step 3b (Sprint 14j): apply hardening filters before dedup/save ──
+        # MIN_VALUE_EUR threshold + repair-only heuristic. Runs after scoring so
+        # the AI classifier in Phase 3b doesn't get charged for tenders we'll drop.
+        pre_hardening = len(relevant)
+        dropped_value_cnt = 0
+        dropped_repair_cnt = 0
+        kept_relevant: list[dict] = []
+        for n in relevant:
+            if not is_above_value_threshold(n):
+                dropped_value_cnt += 1
+                continue
+            if is_repair_only(n):
+                dropped_repair_cnt += 1
+                continue
+            kept_relevant.append(n)
+        relevant = kept_relevant
+        # Same hardening on the high-confidence list (subset of relevant — re-derive)
+        kept_ids = {n.get("tender_id") for n in relevant if n.get("tender_id")}
+        high_confidence = [n for n in high_confidence if n.get("tender_id") in kept_ids]
+        if dropped_value_cnt or dropped_repair_cnt:
+            logger.info(
+                "Filter-Hardening: pre=%d, dropped_value=%d (<€%d), dropped_repair=%d, post=%d",
+                pre_hardening, dropped_value_cnt, int(MIN_VALUE_EUR),
+                dropped_repair_cnt, len(relevant),
+            )
+        stats["dropped_value_lt_threshold"] = dropped_value_cnt
+        stats["dropped_repair_only"] = dropped_repair_cnt
+        stats["min_value_eur"] = int(MIN_VALUE_EUR)
 
         # ── Step 4: deduplicate, sort, save ──
         relevant = self._deduplicate(relevant)

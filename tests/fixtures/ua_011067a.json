@@ -1,0 +1,63 @@
+{
+  "data": {
+    "id": "f4a8c1e2b9d34a7f8c1e2b9d34a7f8c1",
+    "tenderID": "UA-2026-04-08-011067-a",
+    "title": "Закупівля транспортних причепів для перевезення вантажів",
+    "description": "Закупівля 8 одиниць транспортних причепів вантажопідйомністю 12 тонн для забезпечення логістики Збройних Сил України.",
+    "status": "active.tendering",
+    "datePublished": "2026-04-08T10:23:11+03:00",
+    "dateModified": "2026-04-09T14:01:00+03:00",
+    "value": {},
+    "minimalStep": {
+      "amount": 104000,
+      "currency": "UAH",
+      "valueAddedTaxIncluded": true
+    },
+    "procuringEntity": {
+      "name": "Державний оператор тилу",
+      "identifier": {
+        "scheme": "UA-EDR",
+        "id": "44476365",
+        "legalName": "ДП \"Державний оператор тилу\""
+      },
+      "contactPoint": {
+        "name": "Іван Петренко",
+        "telephone": "+380442345678"
+      }
+    },
+    "lots": [
+      {
+        "id": "lot-1",
+        "title": "Транспортні причепи 12т",
+        "value": {
+          "amount": 20800000,
+          "currency": "UAH",
+          "valueAddedTaxIncluded": true
+        },
+        "minimalStep": {
+          "amount": 104000,
+          "currency": "UAH"
+        },
+        "status": "active"
+      }
+    ],
+    "items": [
+      {
+        "id": "item-1",
+        "description": "Причіп транспортний 12т",
+        "quantity": 8,
+        "unit": {
+          "name": "штука",
+          "code": "H87"
+        },
+        "classification": {
+          "scheme": "ДК021",
+          "id": "34223300-9",
+          "description": "Причепи та напівпричепи"
+        },
+        "relatedLot": "lot-1"
+      }
+    ],
+    "awards": []
+  }
+}

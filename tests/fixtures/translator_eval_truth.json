@@ -1,0 +1,157 @@
+{
+  "version": "1.0",
+  "description": "Translator ground-truth — Sprint 2026-05-11. 10 non-English samples (2 PL, 2 CZ, 2 UA, 2 RO, 1 IT, 1 FR). GT is curator-validated English (the existing title_en was a Haiku starting point; the GT here is the version the curator considers correct). Scoring uses normalised token-overlap with semantic core terms — exact wording differences (e.g. 'cargo' vs 'transport') do not penalise as long as the procurement subject is preserved.",
+  "fields_evaluated": ["title_en"],
+  "samples": [
+    {
+      "id": "T1",
+      "tender_id": "432811-2024",
+      "label": "PL-MOD-TransportTrailers",
+      "country": "Poland",
+      "source_language": "pl",
+      "input": {
+        "country": "Poland",
+        "title": "Poland – Trailers and semi-trailers – DOSTAWA PRZYCZEP TRANSPORTOWYCH DUŻEJ, ŚREDNIEJ I MAŁEJ ŁADOWNOŚCI",
+        "description": "Supply of transport trailers across three capacity categories for the Polish armed forces. The procurement covers high-capacity, medium-capacity and small-capacity transport trailers, all under defence directive."
+      },
+      "ground_truth_title_en": "Supply of high, medium and small capacity transport trailers",
+      "must_contain": ["transport", "trailer", "capacit"],
+      "must_not_contain": ["dostawa", "przyczep"]
+    },
+    {
+      "id": "T2",
+      "tender_id": "261427-2025",
+      "label": "PL-12WOG-HighCapTrailers",
+      "country": "Poland",
+      "source_language": "pl",
+      "input": {
+        "country": "Poland",
+        "title": "Poland – General-purpose trailers – DOSTAWA PRZYCZEP TRANSPORTOWYCH DUŻEJ ŁADOWNOŚCI",
+        "description": "Supply of high-capacity transport trailers in a base quantity of 4 units, with an option to procure up to a maximum of 8 units. Buyer: 12 WOJSKOWY ODDZIAŁ GOSPODARCZY (Polish Armed Forces military procurement unit)."
+      },
+      "ground_truth_title_en": "Supply of high-capacity transport trailers",
+      "must_contain": ["high-capacity", "transport", "trailer"],
+      "must_not_contain": ["dostawa"]
+    },
+    {
+      "id": "T3",
+      "tender_id": "798124-2025",
+      "label": "CZ-VOPCZ-LowBedSemi",
+      "country": "Czech Republic",
+      "source_language": "cs",
+      "input": {
+        "country": "Czech Republic",
+        "title": "Czechia – Semi-trailers – Pořízení podvalníku pro přepravy těžké vojenské techniky",
+        "description": "Acquisition of a low-bed semi-trailer (podvalník) designed for the transport of heavy military equipment. Buyer: VOP CZ, s.p. (Czech state defence enterprise)."
+      },
+      "ground_truth_title_en": "Acquisition of low-bed semi-trailer for heavy military equipment transport",
+      "must_contain": ["low-bed", "semi-trailer", "military"],
+      "must_not_contain": ["pořízení", "podvalník", "vojenské"]
+    },
+    {
+      "id": "T4",
+      "tender_id": "775798-2024",
+      "label": "CZ-FieldKitchen",
+      "country": "Czech Republic",
+      "source_language": "cs",
+      "input": {
+        "country": "Czech Republic",
+        "title": "Czechia – Trailers – Polní kuchyně - přívěsný vozík - nákup",
+        "description": "Procurement of modular field kitchen trailers PK-4ARMY mounted on single-axle off-road chassis."
+      },
+      "ground_truth_title_en": "Field kitchen trailer - procurement",
+      "must_contain": ["field kitchen", "trailer"],
+      "must_not_contain": ["polní", "kuchyně", "nákup"]
+    },
+    {
+      "id": "T5",
+      "tender_id": "UA-2026-05-05-004789-a",
+      "label": "UA-CarTrailer",
+      "country": "Ukraine",
+      "source_language": "uk",
+      "input": {
+        "country": "Ukraine",
+        "title": "Причіп автомобільний",
+        "description": "Ukraine is seeking to procure 16 car trailers. The delivery period indicated in the tender is approximate, accounting for all procedural timelines."
+      },
+      "ground_truth_title_en": "Car trailer",
+      "must_contain": ["car", "trailer"],
+      "must_not_contain": ["причіп"]
+    },
+    {
+      "id": "T6",
+      "tender_id": "UA-2026-05-08-013050-a",
+      "label": "UA-VehiclePlatform",
+      "country": "Ukraine",
+      "source_language": "uk",
+      "input": {
+        "country": "Ukraine",
+        "title": "Причіп платформа для перевезення автомобілв",
+        "description": "Ukraine is procuring 4 trailer platforms designed for the transportation of automobiles. The trailers are intended to support vehicle logistics and transport operations."
+      },
+      "ground_truth_title_en": "Trailer platform for transporting automobiles",
+      "must_contain": ["trailer", "platform", "automobile"],
+      "must_not_contain": ["причіп", "перевезення"]
+    },
+    {
+      "id": "T7",
+      "tender_id": "23089-2024",
+      "label": "RO-RefrigeratedTrailers",
+      "country": "Romania",
+      "source_language": "ro",
+      "input": {
+        "country": "Romania",
+        "title": "Romania – Trailers – Acord cadru de furnizare \"Remorci frigorifice\"",
+        "description": "Framework agreement for the supply of refrigerated trailers (Remorci frigorifice) to the Romanian Armed Forces."
+      },
+      "ground_truth_title_en": "Framework agreement for refrigerated trailers",
+      "must_contain": ["framework", "refrigerated", "trailer"],
+      "must_not_contain": ["acord", "remorci", "frigorifice"]
+    },
+    {
+      "id": "T8",
+      "tender_id": "151800-2025",
+      "label": "RO-FieldKitchen",
+      "country": "Romania",
+      "source_language": "ro",
+      "input": {
+        "country": "Romania",
+        "title": "Romania – Field kitchens – Achizitia de ansamblu bucatarie(containere si cort)",
+        "description": "Procurement of complete kitchen assembly comprising containers and tent for Romanian Armed Forces."
+      },
+      "ground_truth_title_en": "Procurement of kitchen assembly (containers and tent)",
+      "must_contain": ["kitchen", "container", "tent"],
+      "must_not_contain": ["achizitia", "bucatarie"]
+    },
+    {
+      "id": "T9",
+      "tender_id": "493986-2024",
+      "label": "IT-MultifunctionalEquipment",
+      "country": "Italy",
+      "source_language": "it",
+      "input": {
+        "country": "Italy",
+        "title": "Italy – Mobile units on trailers – FORNITURA DI ATTREZZATURE MULTIFUNZIONALI DEL GENIO E TORRI FARO BIASSALI SU RIMORCHIO",
+        "description": "Supply of multifunctional engineer equipment and field lighting towers on two-axle trailers for the Italian Army."
+      },
+      "ground_truth_title_en": "Supply of multifunctional engineer equipment and field lighting towers on trailers",
+      "must_contain": ["multifunctional", "engineer", "lighting", "trailer"],
+      "must_not_contain": ["fornitura", "rimorchio", "torri faro"]
+    },
+    {
+      "id": "T10",
+      "tender_id": "77247-2026",
+      "label": "FR-MotorcyclesTrailers",
+      "country": "France",
+      "source_language": "fr",
+      "input": {
+        "country": "France",
+        "title": "France – Motorcycles – Acquisition de motos tout terrain militarisées et de remorques",
+        "description": "Acquisition of militarised off-road motorcycles and trailers in 4 lots for the French Army (MINARM/TERRE/SIMMT/DDC)."
+      },
+      "ground_truth_title_en": "Acquisition of militarised off-road motorcycles and trailers",
+      "must_contain": ["off-road", "motorcycle", "trailer"],
+      "must_not_contain": ["acquisition de motos", "remorques"]
+    }
+  ]
+}

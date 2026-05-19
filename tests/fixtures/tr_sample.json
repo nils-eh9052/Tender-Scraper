@@ -1,0 +1,35 @@
+{
+  "data": [
+    {
+      "ihaleKayitNo": "2026/456789",
+      "ihaleAdi": "Kara Kuvvetleri İçin Platform Römork Alımı",
+      "ihaleMakamAdi": "Kara Kuvvetleri Komutanlığı Lojistik Başkanlığı",
+      "ihaleBaslangicTarihi": "15.03.2026",
+      "tahminiMaliyet": "4500000",
+      "ihaleKonusu": "Askeri nakliye amacıyla kullanılmak üzere platform römork ve yarı römork alımı. 10 adet alçak yataklı platform römork.",
+      "durum": "Aktif",
+      "cpvKodu": "34223300"
+    },
+    {
+      "ihaleKayitNo": "2026/123456",
+      "ihaleAdi": "Yarı Römork Alımı",
+      "ihaleMakamAdi": "Milli Savunma Bakanlığı Tedarik Dairesi",
+      "ihaleBaslangicTarihi": "2026-04-10T00:00:00",
+      "tahminiMaliyet": "8200000.00",
+      "ihaleKonusu": "Tank taşıyıcı çekici araçlar için yarı römork alımı. 5 adet.",
+      "durum": "Sonuçlandı",
+      "cpvKodu": "34223100"
+    },
+    {
+      "ihaleKayitNo": "2026/999001",
+      "ihaleAdi": "Ofis Mobilyası Alımı",
+      "ihaleMakamAdi": "Ankara Büyükşehir Belediyesi",
+      "ihaleBaslangicTarihi": "10.04.2026",
+      "tahminiMaliyet": "150000",
+      "ihaleKonusu": "Büro mobilyası ve ekipman alımı.",
+      "durum": "Aktif",
+      "cpvKodu": "39130000"
+    }
+  ],
+  "toplam": 3
+}

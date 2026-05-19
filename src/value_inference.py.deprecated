@@ -1,0 +1,426 @@
+"""
+Contract value inference for notices with no estimated_value.
+
+Strategy (ordered by confidence):
+  1. measured       — value already set in the notice
+  2. inferred_high  — same authority AND same CPV-4 prefix in dataset,
+                      median of their known values
+  3. inferred_medium — authority only OR CPV-4 only match, median
+  4. inferred_low   — LLM (Haiku 4.5) estimates from description text
+  5. unknown        — no usable signal
+
+History DB: data/.value_history.json
+  { "auth:<norm_name>": [values_eur], "cpv:<4-digit-prefix>": [values_eur],
+    "auth+cpv:<norm_name>:<cpv4>": [values_eur] }
+
+Built once from relevant.json; append-only on incremental updates.
+
+Public API:
+    db = build_history_db(notices)
+    value, confidence = infer_value(notice, db)
+
+    run_inference_pass(relevant_path, *, cache_path, force, dry_run) -> summary
+"""
+from __future__ import annotations
+
+import hashlib
+import json
+import logging
+import os
+import re
+import statistics
+import time
+from pathlib import Path
+from typing import Any, Optional
+
+import requests
+import urllib3
+
+logger = logging.getLogger(__name__)
+
+_SSL_VERIFY = os.environ.get("SSL_VERIFY_DISABLE", "").strip().lower() not in ("1", "true", "yes")
+if not _SSL_VERIFY:
+    urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
+
+_ROOT = Path(__file__).parent.parent
+HISTORY_DB_PATH = _ROOT / "data" / ".value_history.json"
+INFER_CACHE_PATH = _ROOT / "data" / ".value_inference_cache.json"
+ANTHROPIC_API_URL = "https://api.anthropic.com/v1/messages"
+
+# Haiku 4.5 for LLM estimation — fast + cheap
+_LLM_MODEL = "claude-haiku-4-5-20251001"
+_LLM_PRICE_IN = 1.0   # USD per 1M input tokens
+_LLM_PRICE_OUT = 5.0  # USD per 1M output tokens
+
+# FX rates to EUR (same as exporter_frontend)
+_FX: dict[str, float] = {
+    "EUR": 1.0,   "DKK": 0.134, "SEK": 0.087, "PLN": 0.233,
+    "CZK": 0.040, "RON": 0.201, "NOK": 0.085, "GBP": 1.17,
+    "CHF": 1.06,  "HRK": 0.133, "BGN": 0.511, "HUF": 0.0025,
+    "UAH": 0.023, "CAD": 0.68,  "AUD": 0.60,
+}
+
+CONFIDENCE_LEVELS = ("measured", "inferred_high", "inferred_medium", "inferred_low", "unknown")
+
+
+# ── Value extraction helpers ─────────────────────────────────────────────────
+
+def _extract_value_eur(notice: dict) -> Optional[float]:
+    """Return the measured EUR value from a notice, or None."""
+    v = notice.get("_value_eur_num")
+    if v is not None:
+        try:
+            f = float(v)
+            if f > 0.01:
+                return f
+        except (ValueError, TypeError):
+            pass
+
+    ev = notice.get("estimated_value")
+    if isinstance(ev, dict):
+        try:
+            amount = float(ev.get("amount") or 0)
+            currency = str(ev.get("currency") or "").split("\n")[0].strip().upper()
+            if amount > 0.01:
+                rate = _FX.get(currency, 0.0)
+                if rate > 0:
+                    return round(amount * rate, 2)
+        except (ValueError, TypeError):
+            pass
+
+    raw_amt = notice.get("_value_amount")
+    raw_cur = str(notice.get("_value_currency") or "").split("\n")[0].strip().upper()
+    if raw_amt is not None:
+        try:
+            amount = float(raw_amt)
+            if amount > 0.01:
+                rate = _FX.get(raw_cur, 0.0)
+                if rate > 0:
+                    return round(amount * rate, 2)
+        except (ValueError, TypeError):
+            pass
+
+    return None
+
+
+def _norm_authority(notice: dict) -> str:
+    ca = notice.get("contracting_authority") or {}
+    name = ""
+    if isinstance(ca, dict):
+        name = ca.get("name") or ca.get("name_short") or ""
+    elif isinstance(ca, str):
+        name = ca
+    if not name:
+        name = notice.get("_authority_name") or ""
+    return re.sub(r"\s+", " ", name.strip().lower())[:60]
+
+
+def _cpv4_prefixes(notice: dict) -> list[str]:
+    cpvs = notice.get("cpv_codes") or []
+    seen: set[str] = set()
+    result: list[str] = []
+    for c in cpvs:
+        p = str(c)[:4]
+        if p and p not in seen:
+            seen.add(p)
+            result.append(p)
+    return result
+
+
+# ── History DB ───────────────────────────────────────────────────────────────
+
+def build_history_db(notices: list[dict]) -> dict[str, list[float]]:
+    """Build in-memory lookup table from the dataset."""
+    db: dict[str, list[float]] = {}
+
+    def _add(key: str, val: float) -> None:
+        if key not in db:
+            db[key] = []
+        db[key].append(val)
+
+    for n in notices:
+        val = _extract_value_eur(n)
+        if not val or val <= 0:
+            continue
+        auth = _norm_authority(n)
+        cpvs = _cpv4_prefixes(n)
+        if auth:
+            _add(f"auth:{auth}", val)
+        for cpv in cpvs:
+            _add(f"cpv:{cpv}", val)
+            if auth:
+                _add(f"auth+cpv:{auth}:{cpv}", val)
+
+    return db
+
+
+def save_history_db(db: dict, path: Path = HISTORY_DB_PATH) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with open(path, "w", encoding="utf-8") as f:
+        json.dump(db, f, ensure_ascii=False, indent=2)
+
+
+def load_history_db(path: Path = HISTORY_DB_PATH) -> dict[str, list[float]]:
+    if path.exists():
+        with open(path, encoding="utf-8") as f:
+            return json.load(f)
+    return {}
+
+
+# ── LLM estimation ───────────────────────────────────────────────────────────
+
+def _build_llm_prompt(notice: dict) -> str:
+    title = notice.get("title_en") or notice.get("_title_final") or ""
+    desc = (notice.get("description_en") or "")[:1200]
+    country = notice.get("_country_normalized") or ""
+    qty = notice.get("_trailer_quantity_1_ai")
+    t_type = notice.get("_trailer_type_1_ai") or ""
+
+    parts = []
+    if country:
+        parts.append(f"Country: {country}")
+    if title:
+        parts.append(f"Tender title: {title}")
+    if t_type:
+        parts.append(f"Trailer type: {t_type}")
+    if qty:
+        parts.append(f"Quantity: {qty}")
+    parts.append(f"Description:\n{desc}")
+    parts.append(
+        "Estimate the total contract value in EUR for this defence procurement tender. "
+        "Base your estimate on the quantity, unit type, and market prices for similar "
+        "military or government equipment. "
+        "Respond with ONLY a JSON object: {\"value_eur\": <number>, \"reasoning\": \"<1 sentence>\"}"
+    )
+    return "\n\n".join(parts)
+
+
+def _call_llm_estimate(
+    notice: dict,
+    session: requests.Session,
+    api_key: str,
+) -> Optional[tuple[float, str]]:
+    """Call Haiku to estimate contract value. Returns (value_eur, reasoning) or None."""
+    prompt = _build_llm_prompt(notice)
+    for attempt in range(3):
+        try:
+            resp = session.post(
+                ANTHROPIC_API_URL,
+                json={
+                    "model": _LLM_MODEL,
+                    "max_tokens": 200,
+                    "messages": [{"role": "user", "content": prompt}],
+                },
+                timeout=30,
+            )
+        except requests.RequestException as exc:
+            logger.warning("value_inference LLM attempt %d failed: %s", attempt + 1, exc)
+            if attempt < 2:
+                time.sleep(3 * (attempt + 1))
+                continue
+            return None
+
+        if resp.status_code == 200:
+            body = resp.json()
+            raw = body["content"][0]["text"].strip()
+            raw = re.sub(r"^```(?:json)?\s*", "", raw)
+            raw = re.sub(r"\s*```\s*$", "", raw)
+            try:
+                obj = json.loads(raw)
+                val = float(obj.get("value_eur") or 0)
+                if val > 0:
+                    return round(val, 2), str(obj.get("reasoning") or "")
+            except (json.JSONDecodeError, ValueError, TypeError):
+                logger.warning("value_inference: JSON parse failed: %s", raw[:100])
+            return None
+        elif resp.status_code in (429, 529):
+            wait = 5 * (attempt + 1)
+            logger.warning("Rate-limit %s — waiting %ds", resp.status_code, wait)
+            time.sleep(wait)
+        else:
+            logger.error("value_inference LLM error %s: %s", resp.status_code, resp.text[:200])
+            return None
+    return None
+
+
+# ── Main inference function ──────────────────────────────────────────────────
+
+def infer_value(
+    notice: dict,
+    history_db: dict,
+) -> tuple[Optional[float], str]:
+    """
+    Returns (inferred_value_eur | None, confidence_label).
+    confidence_label in: 'measured', 'inferred_high', 'inferred_medium',
+                          'inferred_low', 'unknown'
+    """
+    # 1. Already measured
+    val = _extract_value_eur(notice)
+    if val:
+        return val, "measured"
+
+    auth = _norm_authority(notice)
+    cpvs = _cpv4_prefixes(notice)
+
+    # 2. Same authority + same CPV → high confidence
+    for cpv in cpvs:
+        key = f"auth+cpv:{auth}:{cpv}"
+        values = history_db.get(key, [])
+        if len(values) >= 2:
+            return round(statistics.median(values), 2), "inferred_high"
+
+    # 3. Authority only (median across all their tenders)
+    auth_key = f"auth:{auth}"
+    auth_vals = history_db.get(auth_key, [])
+    if len(auth_vals) >= 2:
+        return round(statistics.median(auth_vals), 2), "inferred_medium"
+
+    # 4. CPV prefix only (any tender with same CPV class)
+    for cpv in cpvs:
+        cpv_vals = history_db.get(f"cpv:{cpv}", [])
+        if len(cpv_vals) >= 3:
+            return round(statistics.median(cpv_vals), 2), "inferred_medium"
+
+    return None, "unknown"
+
+
+# ── Batch inference pass ─────────────────────────────────────────────────────
+
+def run_inference_pass(
+    relevant_path: Path | str,
+    *,
+    cache_path: Path | str = INFER_CACHE_PATH,
+    force: bool = False,
+    dry_run: bool = False,
+    llm_fallback: bool = True,
+    max_llm_calls: int = 50,
+) -> dict[str, Any]:
+    """
+    Infer estimated values for all notices missing one.
+    Writes `_value_inferred` and `_value_confidence` into relevant.json.
+    These are internal fields — exporter_frontend maps them to
+    `estimated_value_eur_inferred` + `value_confidence`.
+
+    Returns summary dict.
+    """
+    relevant_path = Path(relevant_path)
+    cache_path = Path(cache_path)
+
+    with open(relevant_path, encoding="utf-8") as f:
+        notices: list[dict] = json.load(f)
+
+    # Load inference cache
+    cache: dict = {}
+    if cache_path.exists() and not force:
+        with open(cache_path, encoding="utf-8") as f:
+            cache = json.load(f)
+
+    # Build fresh history from this dataset
+    db = build_history_db(notices)
+    save_history_db(db)
+
+    # Set up LLM session
+    api_key = os.environ.get("ANTHROPIC_API_KEY") or os.environ.get("LLM_ANTHROPIC_API_KEY")
+    session = requests.Session()
+    session.verify = _SSL_VERIFY
+    session.headers.update({
+        "Content-Type": "application/json",
+        "x-api-key": api_key or "",
+        "anthropic-version": "2023-06-01",
+    })
+
+    summary: dict[str, Any] = {
+        "total": len(notices),
+        "already_measured": 0,
+        "inferred_high": 0,
+        "inferred_medium": 0,
+        "inferred_low": 0,
+        "unknown": 0,
+        "from_cache": 0,
+        "llm_calls": 0,
+        "llm_errors": 0,
+        "cost_usd": 0.0,
+        "input_tokens": 0,
+        "output_tokens": 0,
+    }
+
+    changed = 0
+    llm_calls = 0
+
+    for i, notice in enumerate(notices):
+        tid = notice.get("tender_id") or ""
+        if not tid:
+            continue
+
+        # Cache key based on tid
+        ck = f"{tid}:infer"
+
+        # Skip if already measured
+        if _extract_value_eur(notice):
+            notice["_value_confidence"] = "measured"
+            summary["already_measured"] += 1
+            continue
+
+        # Check inference cache — if cached as 'unknown' and LLM is available,
+        # fall through to the LLM step instead of using the stale cache entry
+        if not force and ck in cache:
+            entry = cache[ck]
+            cached_conf = entry.get("confidence", "unknown")
+            if cached_conf != "unknown" or not llm_fallback or not api_key:
+                notice["_value_inferred"] = entry.get("value")
+                notice["_value_confidence"] = cached_conf
+                notice["_value_inferred_reasoning"] = entry.get("reasoning", "")
+                summary["from_cache"] += 1
+                summary[cached_conf] = summary.get(cached_conf, 0) + 1
+                continue
+            # else: fall through to LLM attempt for 'unknown' cached entries
+
+        # Statistical inference
+        val, conf = infer_value(notice, db)
+
+        # LLM fallback for 'unknown' cases (when description is substantive)
+        if conf == "unknown" and llm_fallback and api_key and not dry_run:
+            desc_len = len(notice.get("description_en") or "")
+            if desc_len > 100 and llm_calls < max_llm_calls:
+                result = _call_llm_estimate(notice, session, api_key)
+                llm_calls += 1
+                if result:
+                    val, reasoning = result
+                    conf = "inferred_low"
+                    summary["llm_calls"] += 1
+                    notice["_value_inferred_reasoning"] = reasoning
+                else:
+                    summary["llm_errors"] += 1
+            # If no LLM or LLM failed, keep val=None, conf='unknown'
+
+        if val is not None:
+            notice["_value_inferred"] = val
+        notice["_value_confidence"] = conf
+        summary[conf] = summary.get(conf, 0) + 1
+        changed += 1
+
+        # Cache this inference
+        cache[ck] = {
+            "value": val,
+            "confidence": conf,
+            "reasoning": notice.get("_value_inferred_reasoning", ""),
+            "at": time.strftime("%Y-%m-%d %H:%M:%S"),
+        }
+
+        if (i + 1) % 50 == 0:
+            cache_path.parent.mkdir(parents=True, exist_ok=True)
+            with open(cache_path, "w", encoding="utf-8") as f:
+                json.dump(cache, f, ensure_ascii=False, indent=2)
+
+    # Final cache save
+    cache_path.parent.mkdir(parents=True, exist_ok=True)
+    with open(cache_path, "w", encoding="utf-8") as f:
+        json.dump(cache, f, ensure_ascii=False, indent=2)
+
+    # Write back relevant.json
+    if not dry_run:
+        with open(relevant_path, "w", encoding="utf-8") as f:
+            json.dump(notices, f, ensure_ascii=False, indent=2)
+
+    summary["changed"] = changed
+    return summary

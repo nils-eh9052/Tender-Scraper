@@ -50,6 +50,33 @@ _FACETS_EMPTY = {
 }
 
 
+def _map_doffin_status(snippet: str) -> str:
+    """Derive pipeline status from the metadata stored in a Doffin SearchResult snippet.
+
+    The snippet format written by _hit_to_result() is:
+      "type=<NOTICE_TYPE> status=<STATUS> auth=<AUTHORITY>\\n<desc>"
+
+    Doffin status values seen: ACTIVE, EXPIRED, AWARDED, CANCELLED.
+    Doffin type values: CONTRACT_NOTICE, AWARD_NOTICE, PRIOR_INFORMATION_NOTICE, etc.
+    """
+    s = snippet.lower()
+    # Explicit status field
+    m = re.search(r"status=(\S+)", s)
+    raw_status = m.group(1) if m else ""
+    m2 = re.search(r"type=(\S+)", s)
+    raw_type = m2.group(1) if m2 else ""
+
+    if "award" in raw_status or "award_notice" in raw_type:
+        return "Awarded"
+    if raw_status in ("expired", "closed", "complete"):
+        return "Closed"
+    if raw_status == "cancelled":
+        return "Cancelled"
+    if raw_status == "active" or "contract_notice" in raw_type:
+        return "Open"
+    return ""
+
+
 def create_no_config() -> AdapterConfig:
     return AdapterConfig(
         country_name="Norway",
@@ -237,6 +264,10 @@ class NOAdapter(BaseAdapter):
         self.browser._screenshot(f"no_detail_{safe_id}")
 
         raw_text = self.browser.get_page_text()
+
+        # Derive status from the API hit metadata stored in snippet
+        status = _map_doffin_status(result.snippet or "")
+
         detail = NoticeDetail(
             title=result.title or self._find_title(raw_text),
             url=notice_url,
@@ -245,6 +276,7 @@ class NOAdapter(BaseAdapter):
             source_code="NO-DF",
             raw_text=raw_text[:15000],
             currency="NOK",
+            status=status,
         )
         detail.reference_id = result.reference_id or self._find_ref_id(raw_text)
         detail.description  = self._find_description(raw_text)
@@ -447,8 +479,15 @@ class NOAdapter(BaseAdapter):
         return None
 
     def _find_winner(self, text: str) -> str:
+        # Doffin award-notice pages use several label variants:
+        #   "Tildelt" (awarded to), "Vinner" (winner), "Leverandør" / "Leverandørnavn"
+        #   "Kontraktsvinner", "Valgt leverandør" (selected supplier),
+        #   "Navn på leverandør" (supplier name)
         for pat in [
-            r"(?:Tildelt|Vinner|Leverandør|Winner|Award)[:\s]+([^\n]{5,120})",
+            r"(?:Kontraktsvinner|Valgt leverandør|Navn på leverandør)[:\s]+([^\n]{5,150})",
+            r"(?:Leverandørnavn|Leverandør)[:\s]+([^\n]{5,150})",
+            r"(?:Tildelt|Vinner)[:\s]+([^\n]{5,150})",
+            r"(?:Winner|Award(?:ed to)?)[:\s]+([^\n]{5,150})",
         ]:
             m = re.search(pat, text, re.IGNORECASE)
             if m:

@@ -1,0 +1,108 @@
+{
+  "total": 337,
+  "counts": {
+    "CLEAN": 82,
+    "RAW_ENGLISH": 255
+  },
+  "by_country": {
+    "Unknown": {
+      "CLEAN": 53,
+      "RAW_ENGLISH": 142
+    },
+    "France": {
+      "CLEAN": 13
+    },
+    "Norway": {
+      "RAW_ENGLISH": 3
+    },
+    "Estonia": {
+      "RAW_ENGLISH": 3
+    },
+    "Czech Republic": {
+      "RAW_ENGLISH": 27
+    },
+    "Canada": {
+      "RAW_ENGLISH": 74
+    },
+    "Australia": {
+      "CLEAN": 16,
+      "RAW_ENGLISH": 6
+    }
+  },
+  "samples": {
+    "CLEAN": [
+      {
+        "id": "182178-2026",
+        "country": "Unknown",
+        "reason": "3 sentence(s)",
+        "desc_en_head": "Sweden is seeking to establish a framework agreement for the procurement of aircraft maintenance trailers. The contract covers trailers designed to support aviation maintenance operations, likely incl",
+        "src_head": "Ramavtal Flygunderh\u00e5llssl\u00e4p."
+      },
+      {
+        "id": "726774-2024",
+        "country": "Unknown",
+        "reason": "4 sentence(s)",
+        "desc_en_head": "This Danish Defence tender is divided into two lots covering the supply, maintenance, and spare parts for various tractors, trailers, and ground maintenance machinery. **Lot 1** covers tractors of var",
+        "src_head": "Delaftale 1 vedr\u00f8rer levering og vedligeholdelse af traktorer og p\u00e5h\u00e6ngsvogne med tilbeh\u00f8r til Forsvaret. Derudover omfa"
+      },
+      {
+        "id": "245184-2024",
+        "country": "Unknown",
+        "reason": "2 sentence(s)",
+        "desc_en_head": "Belgium Defence seeks to procure 780 military trailers across six types: 54 lightweight Type 1 trailers (750 kg capacity), 366 Type 2 cargo trailers (5-tonne capacity), 8 Type 3 tipper trailers (5-ton",
+        "src_head": "achat de 54 remorques de type 1 : petites remorques avec une capacit\u00e9 limit\u00e9e de 750 kg + conclusion d\u2019un contrat ouvert"
+      },
+      {
+        "id": "530666-2024",
+        "country": "Unknown",
+        "reason": "4 sentence(s)",
+        "desc_en_head": "This tender covers two separate lots for trailers under 3,500 kg. Lot 1 involves the procurement of various variants of civilian trailers, including limited services for minor modifications and delive",
+        "src_head": "Delaftale 1 vedr\u00f8rer udbud af forskellige varianter af civile p\u00e5h\u00e6ngsvogne. Derudover omfatter delaftalen i et begr\u00e6nset"
+      },
+      {
+        "id": "749251-2025",
+        "country": "Unknown",
+        "reason": "3 sentence(s)",
+        "desc_en_head": "Sweden seeks to establish a 7-year framework agreement for boat transport trailers that also function as launching trailers. The trailers will be procured for use by both the Swedish Navy (Marinen) an",
+        "src_head": "Syftet med uppdraget \u00e4r att uppr\u00e4tta ett 7-\u00e5rigt ramavtal avseende b\u00e5ttransportsl\u00e4pvagnar som \u00e4ven ska fungera som sj\u00f6s\u00e4"
+      }
+    ],
+    "RAW_ENGLISH": [
+      {
+        "id": "572650-2024",
+        "country": "Unknown",
+        "reason": "identical to source (pass-through)",
+        "desc_en_head": "Procurement of 44 Militairy Medical Trailers",
+        "src_head": "Procurement of 44 Militairy Medical Trailers"
+      },
+      {
+        "id": "326948-2025",
+        "country": "Unknown",
+        "reason": "identical to source (pass-through)",
+        "desc_en_head": "The Contracting Authority hereby invites you to submit a Request for Participation in tendering procedure no. 22094003 for the design and delivery of 28 + 12 optional military trailers specifically fo",
+        "src_head": "The Contracting Authority hereby invites you to submit a Request for Participation in tendering procedure no. 22094003 f"
+      },
+      {
+        "id": "537199-2024",
+        "country": "Unknown",
+        "reason": "identical to source (pass-through)",
+        "desc_en_head": "Framework agreements for the procurement and maintenance of a mobile fuel distribution and storage system as further described in the invitation.-ESPD Rejection Reasons and ESPD qualification requirem",
+        "src_head": "Framework agreements for the procurement and maintenance of a mobile fuel distribution and storage system as further des"
+      },
+      {
+        "id": "345761-2025",
+        "country": "Unknown",
+        "reason": "too long (9 sentences)",
+        "desc_en_head": "Onderhavige aanbesteding betreft een behoefte vanuit de Koninklijke Marine (CZSK) voor de vervanging van 27 boottrailers en een uitbreiding van het aantal boottrailers met 12 stuks. 39 boottrailers in",
+        "src_head": "Onderhavige aanbesteding betreft een behoefte vanuit de Koninklijke Marine (CZSK) voor de vervanging van 27 boottrailers"
+      },
+      {
+        "id": "488694-2022",
+        "country": "Unknown",
+        "reason": "identical to source (pass-through)",
+        "desc_en_head": "Danish Ministry of Defence market survey for procurement of up to 22 aircraft fuel tank semi-trailers with minimum 29,000L capacity, including associated service and spare parts. This is preparation f",
+        "src_head": "Danish Ministry of Defence market survey for procurement of up to 22 aircraft fuel tank semi-trailers with minimum 29,00"
+      }
+    ]
+  }
+}

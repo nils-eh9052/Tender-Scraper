@@ -1,0 +1,1161 @@
+{
+  "languages": [
+    "de",
+    "en",
+    "fr",
+    "pl",
+    "cs",
+    "ro",
+    "it",
+    "nl",
+    "da",
+    "sv",
+    "no",
+    "es",
+    "uk",
+    "el",
+    "pt",
+    "tr",
+    "fi",
+    "et",
+    "lt",
+    "lv",
+    "hu",
+    "sl",
+    "hr"
+  ],
+  "keywords": {
+    "generic_trailer": {
+      "de": [
+        "anhänger",
+        "containeranhänger",
+        "absetzcontaineranhänger"
+      ],
+      "en": [
+        "trailer",
+        "trailers",
+        "mobile containers"
+      ],
+      "fr": [
+        "remorque",
+        "remorques",
+        "semi-remorque"
+      ],
+      "pl": [
+        "przyczepa",
+        "przyczepy",
+        "przyczepy transportowe"
+      ],
+      "cs": [
+        "přívěs",
+        "přívěsy",
+        "přívěsný vozík"
+      ],
+      "ro": [
+        "remorcă",
+        "remorci",
+        "remorca"
+      ],
+      "it": [
+        "rimorchio",
+        "rimorchi",
+        "carrello"
+      ],
+      "nl": [
+        "aanhanger",
+        "aanhangwagen",
+        "trailer"
+      ],
+      "da": [
+        "påhængsvogn",
+        "påhængsvogne",
+        "anhænger"
+      ],
+      "sv": [
+        "släp",
+        "släpvagn",
+        "släpkärra"
+      ],
+      "no": [
+        "henger",
+        "tilhenger",
+        "vogn"
+      ],
+      "es": [
+        "remolque",
+        "remolques",
+        "tráiler"
+      ]
+    },
+    "low_bed": {
+      "de": [
+        "tieflader",
+        "plattformanhänger",
+        "tiefbettanhänger"
+      ],
+      "en": [
+        "low bed",
+        "lowboy",
+        "low loader"
+      ],
+      "fr": [
+        "surbaissée",
+        "porte-engins",
+        "plateau surbaissé"
+      ],
+      "pl": [
+        "niskopodwoziowa",
+        "platforma niskopodwoziowa",
+        "laweta"
+      ],
+      "cs": [
+        "nízkoložný",
+        "podvalník",
+        "nízkoložný přívěs"
+      ],
+      "ro": [
+        "platformă joasă",
+        "trailer surbasat",
+        "semiremorcă joasă"
+      ],
+      "it": [
+        "ribassato",
+        "carrellone",
+        "semirimorchio ribassato"
+      ],
+      "nl": [
+        "dieplader",
+        "diepbed",
+        "laagbedoplegger"
+      ],
+      "da": [
+        "lavlad",
+        "sænkevogn",
+        "lavtbygget"
+      ],
+      "sv": [
+        "låglastare",
+        "sänkvagn",
+        "lågbyggd"
+      ],
+      "no": [
+        "lavlaster",
+        "senkevogn",
+        "lavbygget"
+      ],
+      "es": [
+        "góndola",
+        "cama baja",
+        "plataforma rebajada"
+      ]
+    },
+    "heavy_haul": {
+      "de": [
+        "schwerlast",
+        "schwertransport",
+        "schwerlastanhänger"
+      ],
+      "en": [
+        "heavy haul",
+        "heavy haulage",
+        "heavy equipment transport"
+      ],
+      "fr": [
+        "transport lourd",
+        "convoi exceptionnel",
+        "poids lourd"
+      ],
+      "pl": [
+        "transport ciężki",
+        "naczepy ciężkie",
+        "transport ponadgabarytowy"
+      ],
+      "cs": [
+        "těžký transport",
+        "nadměrný náklad",
+        "těžkotonážní"
+      ],
+      "ro": [
+        "transport greu",
+        "transport agabaritic",
+        "transport special"
+      ],
+      "it": [
+        "trasporto pesante",
+        "trasporto eccezionale",
+        "convoglio speciale"
+      ],
+      "nl": [
+        "zwaar transport",
+        "exceptioneel transport",
+        "zwaarlast"
+      ],
+      "da": [
+        "tungtransport",
+        "specialtransport",
+        "sværlast"
+      ],
+      "sv": [
+        "tungtransport",
+        "specialtransport",
+        "tung last"
+      ],
+      "no": [
+        "tungtransport",
+        "spesialtransport",
+        "tung last"
+      ],
+      "es": [
+        "transporte pesado",
+        "transporte especial",
+        "carga pesada"
+      ]
+    },
+    "semitrailer": {
+      "de": [
+        "sattelauflieger",
+        "sattelanhänger",
+        "auflieger"
+      ],
+      "en": [
+        "semi-trailer",
+        "semitrailer",
+        "articulated trailer"
+      ],
+      "fr": [
+        "semi-remorque",
+        "remorque articulée",
+        "attelage"
+      ],
+      "pl": [
+        "naczepa",
+        "przyczepa siodłowa",
+        "półprzyczepa"
+      ],
+      "cs": [
+        "návěs",
+        "přívěs návěsový",
+        "tahačový přívěs"
+      ],
+      "ro": [
+        "semiremorcă",
+        "remorcă articulată",
+        "trailer articulat"
+      ],
+      "it": [
+        "semirimorchio",
+        "rimorchio articolato",
+        "bilico"
+      ],
+      "nl": [
+        "oplegger",
+        "aanhangwagen",
+        "sattelanhänger"
+      ],
+      "da": [
+        "sættevogn",
+        "påhængsvogn",
+        "semitrailer"
+      ],
+      "sv": [
+        "påhängsvagn",
+        "semitrailer",
+        "släpvagn"
+      ],
+      "no": [
+        "semitrailer",
+        "påhengsvogn",
+        "henger"
+      ],
+      "es": [
+        "semirremolque",
+        "tráiler articulado",
+        "plataforma"
+      ]
+    },
+    "tank_transporter": {
+      "de": [
+        "panzertransporter",
+        "kampfpanzertransporter",
+        "panzeranhänger"
+      ],
+      "en": [
+        "tank transporter",
+        "tank carrier",
+        "armored vehicle transporter"
+      ],
+      "fr": [
+        "porte-char",
+        "transport de char",
+        "remorque porte-blindés"
+      ],
+      "pl": [
+        "transporter czołgów",
+        "laweta czołgowa",
+        "przyczepa do transportu czołgów"
+      ],
+      "cs": [
+        "přepravník tanků",
+        "tankový přívěs",
+        "přívěs pro tanky"
+      ],
+      "ro": [
+        "transportor tanc",
+        "remorcă pentru tancuri",
+        "platformă blindate"
+      ],
+      "it": [
+        "trasporto carri",
+        "rimorchio portacarri",
+        "trasporto blindati"
+      ],
+      "nl": [
+        "tanktransporter",
+        "pantservoertuig transporter",
+        "tanktrailer"
+      ],
+      "da": [
+        "kampvognstransporter",
+        "panserkøretøjstransporter",
+        "tanktransport"
+      ],
+      "sv": [
+        "stridsvagnstransport",
+        "pansarfordonssläp",
+        "tanktransportör"
+      ],
+      "no": [
+        "stridsvogntransport",
+        "panserkjøretøytransport",
+        "tanktransportør"
+      ],
+      "es": [
+        "portacarros",
+        "transporte de blindados",
+        "góndola militar"
+      ]
+    },
+    "cargo_trailer": {
+      "de": [
+        "lastenanhänger",
+        "transportanhänger",
+        "güteranhänger"
+      ],
+      "en": [
+        "cargo trailer",
+        "freight trailer",
+        "transport trailer"
+      ],
+      "fr": [
+        "remorque de fret",
+        "remorque cargo",
+        "remorque transport"
+      ],
+      "pl": [
+        "przyczepa transportowa",
+        "przyczepa towarowa",
+        "przyczepa ładunkowa"
+      ],
+      "cs": [
+        "nákladní přívěs",
+        "transportní přívěs",
+        "přepravní přívěs"
+      ],
+      "ro": [
+        "remorcă marfă",
+        "remorcă transport",
+        "remorcă cargo"
+      ],
+      "it": [
+        "rimorchio merci",
+        "rimorchio cargo",
+        "rimorchio trasporto"
+      ],
+      "nl": [
+        "vrachtaanhanger",
+        "goederentrailer",
+        "transportaanhanger"
+      ],
+      "da": [
+        "fragtvogn",
+        "godsvogn",
+        "transportvogn"
+      ],
+      "sv": [
+        "fraktsläp",
+        "godssläp",
+        "transportsläp"
+      ],
+      "no": [
+        "frakthenger",
+        "godshenger",
+        "transporthenger"
+      ],
+      "es": [
+        "remolque de carga",
+        "remolque transporte",
+        "plataforma de carga"
+      ]
+    },
+    "field_kitchen": {
+      "de": [
+        "feldküche",
+        "küchenanhänger",
+        "verpflegungsanhänger"
+      ],
+      "en": [
+        "field kitchen",
+        "mobile kitchen",
+        "kitchen trailer"
+      ],
+      "fr": [
+        "cuisine de campagne",
+        "cuisine mobile",
+        "remorque cuisine"
+      ],
+      "pl": [
+        "kuchnia polowa",
+        "przyczepa kuchenna",
+        "kontener kuchenny"
+      ],
+      "cs": [
+        "polní kuchyně",
+        "kuchyňský přívěs",
+        "mobilní kuchyně"
+      ],
+      "ro": [
+        "bucătărie de campanie",
+        "bucătărie rulantă",
+        "remorcă bucătărie"
+      ],
+      "it": [
+        "cucina campale",
+        "rimorchio cucina",
+        "cucina mobile"
+      ],
+      "nl": [
+        "veldkeuken",
+        "keukentrailer",
+        "mobiele keuken"
+      ],
+      "da": [
+        "feltkøkken",
+        "køkkenvogn",
+        "mobilt køkken"
+      ],
+      "sv": [
+        "fältkök",
+        "köksvagn",
+        "mobilt kök"
+      ],
+      "no": [
+        "feltkjøkken",
+        "kjøkkenhenger",
+        "mobilt kjøkken"
+      ],
+      "es": [
+        "cocina de campaña",
+        "remolque cocina",
+        "cocina móvil"
+      ]
+    },
+    "ammunition": {
+      "de": [
+        "munitionsanhänger",
+        "munitionstransporter",
+        "munitionsauflieger"
+      ],
+      "en": [
+        "ammunition trailer",
+        "munitions carrier",
+        "ordnance trailer"
+      ],
+      "fr": [
+        "remorque munitions",
+        "transport munitions",
+        "remorque armement"
+      ],
+      "pl": [
+        "przyczepa amunicyjna",
+        "transport amunicji",
+        "przyczepa uzbrojenia"
+      ],
+      "cs": [
+        "muniční přívěs",
+        "přívěs na munici",
+        "přeprava munice"
+      ],
+      "ro": [
+        "remorcă muniție",
+        "transport muniție",
+        "remorcă armament"
+      ],
+      "it": [
+        "rimorchio munizioni",
+        "trasporto munizioni",
+        "rimorchio armamento"
+      ],
+      "nl": [
+        "munitietrailer",
+        "munitietransport",
+        "wapentrailer"
+      ],
+      "da": [
+        "ammunitionsvogn",
+        "ammunitionstransport",
+        "våbenvogn"
+      ],
+      "sv": [
+        "ammunitionssläp",
+        "ammunitionstransport",
+        "vapensläp"
+      ],
+      "no": [
+        "ammunisjonshenger",
+        "ammunisjonstransport",
+        "våpenhenger"
+      ],
+      "es": [
+        "remolque munición",
+        "transporte munición",
+        "plataforma armamento"
+      ]
+    },
+    "decontamination_cbrn": {
+      "de": [
+        "dekontaminationsanhänger",
+        "abc-dekontamination",
+        "cbrn-anhänger"
+      ],
+      "en": [
+        "decontamination trailer",
+        "cbrn trailer",
+        "nbc decontamination"
+      ],
+      "fr": [
+        "remorque décontamination",
+        "décontamination nrbc",
+        "remorque nbc"
+      ],
+      "pl": [
+        "przyczepa dekontaminacyjna",
+        "dekontaminacja cbrn",
+        "przyczepa abc"
+      ],
+      "cs": [
+        "dekontaminační přívěs",
+        "dekontaminace cbrn",
+        "přívěs nbc"
+      ],
+      "ro": [
+        "remorcă decontaminare",
+        "decontaminare cbrn",
+        "remorcă nbc"
+      ],
+      "it": [
+        "rimorchio decontaminazione",
+        "decontaminazione cbrn",
+        "rimorchio nbc"
+      ],
+      "nl": [
+        "decontaminatietrailer",
+        "cbrn-trailer",
+        "nbc-decontaminatie"
+      ],
+      "da": [
+        "dekontamineringsvogn",
+        "cbrn-vogn",
+        "abc-rensning"
+      ],
+      "sv": [
+        "saneringsläp",
+        "cbrn-släp",
+        "abc-sanering"
+      ],
+      "no": [
+        "dekontamineringshenger",
+        "cbrn-henger",
+        "abc-rensing"
+      ],
+      "es": [
+        "remolque descontaminación",
+        "descontaminación nrbq",
+        "remolque nbc"
+      ]
+    },
+    "mission_module": {
+      "de": [
+        "wechselaufbau",
+        "shelter",
+        "abrollbehälter"
+      ],
+      "en": [
+        "mission module",
+        "shelter",
+        "mobile container"
+      ],
+      "fr": [
+        "module mission",
+        "shelter",
+        "conteneur mobile"
+      ],
+      "pl": [
+        "moduł misji",
+        "kontener mobilny",
+        "shelter"
+      ],
+      "cs": [
+        "mísní modul",
+        "mobilní kontejner",
+        "shelter"
+      ],
+      "ro": [
+        "modul misiune",
+        "container mobil",
+        "shelter"
+      ],
+      "it": [
+        "modulo missione",
+        "shelter",
+        "container mobile"
+      ],
+      "nl": [
+        "missiemodule",
+        "shelter",
+        "mobiele container"
+      ],
+      "da": [
+        "missionsmodul",
+        "shelter",
+        "mobil container"
+      ],
+      "sv": [
+        "uppdragsmodul",
+        "shelter",
+        "mobil container"
+      ],
+      "no": [
+        "oppdragsmodul",
+        "shelter",
+        "mobil container"
+      ],
+      "es": [
+        "módulo misión",
+        "shelter",
+        "contenedor móvil"
+      ],
+      "fi": [
+        "johtopaikkakontti",
+        "levitettävä kontti",
+        "komentopaikkakontti"
+      ]
+    },
+    "loading_system": {
+      "de": [
+        "hakenladegerät",
+        "abrollkipper",
+        "absetzcontainer"
+      ],
+      "en": [
+        "hookloader",
+        "hook lift",
+        "demountable system"
+      ],
+      "fr": [
+        "système ampliroll",
+        "bras de levage",
+        "système amovible"
+      ],
+      "pl": [
+        "system hakowy",
+        "hakowiec",
+        "system załadunku"
+      ],
+      "cs": [
+        "hákový nosič",
+        "kontejnerový nosič",
+        "nakládací systém"
+      ],
+      "ro": [
+        "sistem cu cârlig",
+        "sistem demontabil",
+        "sistem încărcare"
+      ],
+      "it": [
+        "sistema scarrabile",
+        "gancio carico",
+        "sistema amovibile"
+      ],
+      "nl": [
+        "haaksysteem",
+        "containersysteem",
+        "laadsysteem"
+      ],
+      "da": [
+        "krogløftsystem",
+        "containersystem",
+        "læssesystem"
+      ],
+      "sv": [
+        "kroklyftsystem",
+        "containersystem",
+        "lastningssystem"
+      ],
+      "no": [
+        "krokløftsystem",
+        "containersystem",
+        "lastesystem"
+      ],
+      "es": [
+        "sistema gancho",
+        "portacontenedores",
+        "sistema desmontable"
+      ]
+    },
+    "special_purpose": {
+      "de": [
+        "sonderanhänger",
+        "spezialanhänger",
+        "bergeanhänger"
+      ],
+      "en": [
+        "special purpose",
+        "recovery trailer",
+        "specialized trailer"
+      ],
+      "fr": [
+        "remorque spéciale",
+        "remorque dépannage",
+        "usage spécial"
+      ],
+      "pl": [
+        "przyczepa specjalna",
+        "przyczepa ratownicza",
+        "cel specjalny"
+      ],
+      "cs": [
+        "speciální přívěs",
+        "záchranný přívěs",
+        "zvláštní účel"
+      ],
+      "ro": [
+        "remorcă specială",
+        "remorcă salvare",
+        "scop special"
+      ],
+      "it": [
+        "rimorchio speciale",
+        "rimorchio soccorso",
+        "uso speciale"
+      ],
+      "nl": [
+        "speciale trailer",
+        "bergingstrailer",
+        "speciaal doel"
+      ],
+      "da": [
+        "specialvogn",
+        "bjærgningsvogn",
+        "særligt formål"
+      ],
+      "sv": [
+        "specialsläp",
+        "bärgningssläp",
+        "särskilt ändamål"
+      ],
+      "no": [
+        "spesialhenger",
+        "bergingshenger",
+        "spesielt formål"
+      ],
+      "es": [
+        "remolque especial",
+        "remolque recuperación",
+        "propósito especial"
+      ]
+    },
+    "dolly": {
+      "de": [
+        "dolly",
+        "nachläufer",
+        "dollyachse"
+      ],
+      "en": [
+        "dolly",
+        "dolly axle",
+        "converter dolly"
+      ],
+      "fr": [
+        "dolly",
+        "essieu dolly",
+        "avant-train"
+      ],
+      "pl": [
+        "dolly",
+        "wózek dolly",
+        "oś dolly"
+      ],
+      "cs": [
+        "dolly",
+        "přídavná náprava",
+        "dolly podvozek"
+      ],
+      "ro": [
+        "dolly",
+        "axă dolly",
+        "cărucior dolly"
+      ],
+      "it": [
+        "dolly",
+        "asse dolly",
+        "carrello dolly"
+      ],
+      "nl": [
+        "dolly",
+        "dolly-as",
+        "koppelwagen"
+      ],
+      "da": [
+        "dolly",
+        "dollyaksel",
+        "koblingsled"
+      ],
+      "sv": [
+        "dolly",
+        "dollyaxel",
+        "kopplingsled"
+      ],
+      "no": [
+        "dolly",
+        "dollyaksel",
+        "koblingsledd"
+      ],
+      "es": [
+        "dolly",
+        "eje dolly",
+        "conversor dolly"
+      ]
+    },
+    "defence_context": {
+      "de": [
+        "bundeswehr",
+        "militär",
+        "streitkräfte",
+        "verteidigung",
+        "baaainbw"
+      ],
+      "en": [
+        "military",
+        "defence",
+        "defense",
+        "army",
+        "armed forces"
+      ],
+      "fr": [
+        "militaire",
+        "défense",
+        "armée",
+        "forces armées",
+        "dga"
+      ],
+      "pl": [
+        "wojskowy",
+        "obronny",
+        "siły zbrojne",
+        "wojsko",
+        "mon"
+      ],
+      "cs": [
+        "vojenský",
+        "obranný",
+        "armáda",
+        "ozbrojené síly",
+        "ministerstvo obrany"
+      ],
+      "ro": [
+        "militar",
+        "apărare",
+        "armată",
+        "forțe armate",
+        "mapn"
+      ],
+      "it": [
+        "militare",
+        "difesa",
+        "esercito",
+        "forze armate",
+        "ministero difesa"
+      ],
+      "nl": [
+        "militair",
+        "defensie",
+        "krijgsmacht",
+        "landmacht",
+        "ministerie van defensie"
+      ],
+      "da": [
+        "militær",
+        "forsvar",
+        "hær",
+        "værnepligt",
+        "forsvarsministeriet"
+      ],
+      "sv": [
+        "militär",
+        "försvar",
+        "armé",
+        "försvarsmakten",
+        "fmv"
+      ],
+      "no": [
+        "militær",
+        "forsvar",
+        "hær",
+        "forsvaret",
+        "ndma"
+      ],
+      "es": [
+        "militar",
+        "defensa",
+        "ejército",
+        "fuerzas armadas",
+        "minisdef"
+      ],
+      "fi": [
+        "puolustus",
+        "sotilashanke",
+        "puolustusvoimat",
+        "maavoimat",
+        "logistiikkalaitos"
+      ]
+    }
+  },
+  "cpv_codes_observed": [
+    "34223300",
+    "34220000",
+    "34223000",
+    "34223100",
+    "34223310",
+    "34223330",
+    "34223370",
+    "34224000",
+    "34224100",
+    "16000000",
+    "16100000",
+    "16110000",
+    "16120000",
+    "16140000",
+    "16150000",
+    "34223320",
+    "44611000",
+    "31121100",
+    "34133110",
+    "34144730",
+    "34521000",
+    "34130000",
+    "34200000",
+    "34221000",
+    "44211400",
+    "31120000",
+    "42512000",
+    "45223100",
+    "34113200",
+    "35722000",
+    "35820000",
+    "44211100",
+    "42410000",
+    "34100000",
+    "34300000",
+    "34142000",
+    "34211300",
+    "50100000",
+    "50114000",
+    "34990000",
+    "42912300"
+  ],
+  "evidence_examples": [
+    {
+      "tender_id": "182178-2026",
+      "language": "sv",
+      "category": "generic_trailer",
+      "term": "flygunderhållssläp",
+      "snippet": "Ramavtal Flygunderhållssläp"
+    },
+    {
+      "tender_id": "432811-2024",
+      "language": "pl",
+      "category": "cargo_trailer",
+      "term": "przyczepy transportowe",
+      "snippet": "DOSTAWA PRZYCZEP TRANSPORTOWYCH DUŻEJ, ŚREDNIEJ I MAŁEJ ŁADOWNOŚCI"
+    },
+    {
+      "tender_id": "775798-2024",
+      "language": "cs",
+      "category": "field_kitchen",
+      "term": "polní kuchyně",
+      "snippet": "Polní kuchyně - přívěsný vozík - nákup"
+    },
+    {
+      "tender_id": "255376-2025",
+      "language": "fr",
+      "category": "semitrailer",
+      "term": "semi-remorques",
+      "snippet": "99 tracteurs (TRR) et 94 semi-remorques (STRL)"
+    },
+    {
+      "tender_id": "152406-2025",
+      "language": "en",
+      "category": "heavy_haul",
+      "term": "heavy haulage",
+      "snippet": "Heavy Haulage, Double-Drive 6x4 Articulated Truck Units and Two (2) X Heavy Haulage Trailers"
+    },
+    {
+      "tender_id": "152406-2025",
+      "language": "en",
+      "category": "low_bed",
+      "term": "low bed trailer",
+      "snippet": "One (1) 3 axle Low bed trailer with Payload : Greater than 46,000 Kgs"
+    },
+    {
+      "tender_id": "30130-2025",
+      "language": "de",
+      "category": "special_purpose",
+      "term": "heliumflaschengestell",
+      "snippet": "Heliumflaschengestell als Aufbau zum Anhänger 16"
+    },
+    {
+      "tender_id": "583390-2025",
+      "language": "fr",
+      "category": "mission_module",
+      "term": "shelter",
+      "snippet": "Acquisition d'un Shelter POSEIDON avec prestations associées"
+    },
+    {
+      "tender_id": "790962-2024",
+      "language": "es",
+      "category": "ammunition",
+      "term": "municionamiento",
+      "snippet": "plataformas y bateas de municionamiento"
+    },
+    {
+      "tender_id": "660912-2024",
+      "language": "de",
+      "category": "loading_system",
+      "term": "absetzcontaineranhänger",
+      "snippet": "Absetzcontaineranhänger mit Abrollcontainern"
+    },
+    {
+      "tender_id": "537199-2024",
+      "language": "no",
+      "category": "special_purpose",
+      "term": "fuel distribution",
+      "snippet": "Mobile fuel Distribution and Storage System"
+    },
+    {
+      "tender_id": "23089-2024",
+      "language": "ro",
+      "category": "special_purpose",
+      "term": "remorci frigorifice",
+      "snippet": "Acord cadru de furnizare 'Remorci frigorifice'"
+    },
+    {
+      "tender_id": "655783-2024",
+      "language": "de",
+      "category": "low_bed",
+      "term": "tieflader",
+      "snippet": "entsprechender Tieflader/Plattformanhänger für die Hebebühne"
+    },
+    {
+      "tender_id": "682847-2024",
+      "language": "de",
+      "category": "defence_context",
+      "term": "bundeswehr",
+      "snippet": "Bundesamt für Ausrüstung, Informationstechnik und Nutzung der Bundeswehr"
+    },
+    {
+      "tender_id": "434505-2024",
+      "language": "et",
+      "category": "mission_module",
+      "term": "soojakhaagiste",
+      "snippet": "Soojakhaagiste soetus Moldovale"
+    },
+    {
+      "tender_id": "438372-2024",
+      "language": "fi",
+      "category": "mission_module",
+      "term": "johtopaikkakonttien",
+      "snippet": "LEVITETTÄVIEN JOHTOPAIKKAKONTTIEN HANKINTA"
+    },
+    {
+      "tender_id": "345761-2025",
+      "language": "nl",
+      "category": "special_purpose",
+      "term": "boottrailers",
+      "snippet": "vervanging van 27 boottrailers"
+    },
+    {
+      "tender_id": "493986-2024",
+      "language": "it",
+      "category": "special_purpose",
+      "term": "rimorchio a biga",
+      "snippet": "attrezzature multifunzionali del genio su rimorchio a biga"
+    },
+    {
+      "tender_id": "736943-2024",
+      "language": "pl",
+      "category": "special_purpose",
+      "term": "radarowy system pomiarowy",
+      "snippet": "mobilnego śledzącego radarowego systemu pomiarowego... zintegrowane z przyczepą samochodową"
+    },
+    {
+      "tender_id": "444456-2025",
+      "language": "sl",
+      "category": "generic_trailer",
+      "term": "prikolice",
+      "snippet": "Toaletne in kuhinjske mobilne enote in prikolice"
+    },
+    {
+      "tender_id": "140259-2025",
+      "language": "no",
+      "category": "defence_context",
+      "term": "forsvaret",
+      "snippet": "Forsvaret v/Forsvarets logistikkorganisasjon"
+    },
+    {
+      "tender_id": "726774-2024",
+      "language": "da",
+      "category": "cargo_trailer",
+      "term": "påhængsvogne",
+      "snippet": "levering og vedligeholdelse af traktorer og påhængsvogne"
+    },
+    {
+      "tender_id": "530666-2024",
+      "language": "da",
+      "category": "special_purpose",
+      "term": "terrængående påhængsvogne",
+      "snippet": "militære, terrængående påhængsvogne"
+    },
+    {
+      "tender_id": "467088-2025",
+      "language": "cs",
+      "category": "loading_system",
+      "term": "nosičů ktn",
+      "snippet": "přívěsů – nosičů KTN na dvounápravovém nízkoložném rámovém podvozku"
+    },
+    {
+      "tender_id": "602000-2024",
+      "language": "en",
+      "category": "cargo_trailer",
+      "term": "cargo trailers",
+      "snippet": "All-Terrain Vehecles and Cargo Trailers"
+    }
+  ],
+  "notes": "Coverage strong for Germanic/Romance/Slavic languages; limited evidence for Baltic (lt/lv), Greek (el), Turkish (tr). Tank transporter category underrepresented—most tenders focus on general cargo/special purpose. CBRN/decontamination trailers absent from corpus. Mission module/shelter terminology well-documented in Nordic/Italian tenders.",
+  "_meta": {
+    "model": "openrouter/anthropic/claude-opus-4.1",
+    "input_tokens": 16666,
+    "output_tokens": 6720,
+    "cost_usd": 0.754,
+    "corpus_size": 86
+  }
+}

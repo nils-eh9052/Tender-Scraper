@@ -1,0 +1,175 @@
+{
+  "version": "1.0",
+  "description": "Ground truth for LLM document extraction eval — BPW Defence Tender Radar 2026-05-09",
+  "fields_evaluated": ["value_amount", "value_currency", "winner_name", "quantity", "contract_duration_months", "deadline", "procurement_category"],
+  "samples": [
+    {
+      "id": "S1",
+      "tender_id": "582377-2025",
+      "label": "TED-SE-Trailers",
+      "source_type": "ted_fulltext",
+      "country": "Sweden",
+      "language": "Swedish/English",
+      "buyer": "FMV (Swedish Defence Materiel Administration)",
+      "notice_type": "Award",
+      "text_file": "data/raw/fulltext/582377-2025.txt",
+      "ground_truth": {
+        "value_amount": 60000000,
+        "value_currency": "SEK",
+        "winner_name": "Nordic Cartrailer AB",
+        "quantity": null,
+        "contract_duration_months": 36,
+        "deadline": null,
+        "procurement_category": "Trailers"
+      },
+      "notes": "Award notice. 60M SEK actual awarded (106.6M SEK estimated). 3-year delivery contract + optional extensions. No explicit unit count. Duration from '3 år' in Swedish text."
+    },
+    {
+      "id": "S2",
+      "tender_id": "438372-2024",
+      "label": "TED-FI-MobileContainers",
+      "source_type": "ted_fulltext",
+      "country": "Finland",
+      "language": "Finnish/English",
+      "buyer": "Puolustusvoimien logistiikkalaitos (Finnish Defence Logistics Command)",
+      "notice_type": "Award",
+      "text_file": "data/raw/fulltext/438372-2024.txt",
+      "ground_truth": {
+        "value_amount": 3416796.0,
+        "value_currency": "EUR",
+        "winner_name": "MDSC Systems Oü",
+        "quantity": 4,
+        "contract_duration_months": 48,
+        "deadline": null,
+        "procurement_category": "Special-purpose mobile containers"
+      },
+      "notes": "Award notice. Value explicitly '3 416 796,00 EUR'. Quantity clearly '4 kappaletta' + option 12 (firm=4). Duration from '48 months' in classifier. Finnish-language description with English TED structure."
+    },
+    {
+      "id": "S3",
+      "tender_id": "255376-2025",
+      "label": "TED-BE-TractorTrailer",
+      "source_type": "ted_fulltext",
+      "country": "Belgium",
+      "language": "Dutch/French",
+      "buyer": "Ministerie van Defensie Belgium",
+      "notice_type": "Award",
+      "text_file": "data/raw/fulltext/255376-2025.txt",
+      "ground_truth": {
+        "value_amount": 82026013.27,
+        "value_currency": "EUR",
+        "winner_name": "IVECO DEFENCE VEHICLES",
+        "quantity": 193,
+        "contract_duration_months": 120,
+        "deadline": null,
+        "procurement_category": "Trailers and semi-trailers"
+      },
+      "notes": "Complex 2-lot award: 99 TRR + 94 STRL (Lot 1) + 18+18 (Lot 2). Lot 1 winners: IVECO + TATRA. Total value 82M EUR. Duration 10 years Lot 1. Quantity 193 = Lot 1 firm units (99+94). Models may return 229 (all lots) or 193."
+    },
+    {
+      "id": "S4",
+      "tender_id": "23089-2024",
+      "label": "TED-RO-RefrigeratedTrailers",
+      "source_type": "ted_fulltext",
+      "country": "Romania",
+      "language": "Romanian/English",
+      "buyer": "Ministerul Apararii Nationale — Unitatea Militara 01836",
+      "notice_type": "Award",
+      "text_file": "data/raw/fulltext/23089-2024.txt",
+      "ground_truth": {
+        "value_amount": 6271995.0,
+        "value_currency": "RON",
+        "winner_name": "POP INDUSTRY",
+        "quantity": null,
+        "contract_duration_months": 24,
+        "deadline": null,
+        "procurement_category": "Trailers"
+      },
+      "notes": "Framework agreement. Max value 6,271,995 RON. Min qty 8 / max qty 32 — ambiguous, so quantity=null. Duration 24 months. Winner 'POP INDUSTRY'. Romanian text with EU TED structure."
+    },
+    {
+      "id": "S5",
+      "tender_id": "CZ-N006/26/V00010428",
+      "label": "CZ-NEN-CarTrailers",
+      "source_type": "national_raw_text",
+      "country": "Czech Republic",
+      "language": "Czech/English-labels",
+      "buyer": "Ministerstvo obrany (Czech Ministry of Defence)",
+      "notice_type": "Award (small-scale)",
+      "text_source": "relevant_json_national_raw_text",
+      "ground_truth": {
+        "value_amount": 123293.66,
+        "value_currency": "CZK",
+        "winner_name": null,
+        "quantity": null,
+        "contract_duration_months": null,
+        "deadline": "2026-04-28",
+        "procurement_category": "Trailers"
+      },
+      "notes": "NEN portal scrape. Value clearly shown as '123,293.66' under 'ESTIMATED VALUE (EXCL. VAT)', currency 'koruna česká'. Status 'Awarded' but no winner in scraped tab. Deadline '28/04/2026, 08:00'. CPV 34223300-9 Přívěsy."
+    },
+    {
+      "id": "S6",
+      "tender_id": "CZ-N006/26/V00000758",
+      "label": "CZ-NEN-TankTransporter",
+      "source_type": "national_raw_text",
+      "country": "Czech Republic",
+      "language": "Czech/English-labels",
+      "buyer": "Ministerstvo obrany (Czech Ministry of Defence)",
+      "notice_type": "Open (above-threshold)",
+      "text_source": "relevant_json_national_raw_text",
+      "ground_truth": {
+        "value_amount": null,
+        "value_currency": null,
+        "winner_name": null,
+        "quantity": 6,
+        "contract_duration_months": null,
+        "deadline": "2026-03-30",
+        "procurement_category": "Semi-trailer tank transporter"
+      },
+      "notes": "NEN portal scrape. No value in text. Quantity '6 ks návěsových souprav (tj. 6x tahač+6x návěs) k přepravě tanků min 70 t'. Status 'Not terminated' (Open). Deadline '30/03/2026, 10:00'."
+    },
+    {
+      "id": "S7",
+      "tender_id": "434505-2024",
+      "label": "TED-EE-HeatingTrailers",
+      "source_type": "ted_fulltext",
+      "country": "Estonia",
+      "language": "Estonian/English",
+      "buyer": "Riigi Kaitseinvesteeringute Keskus (Estonian Centre for Defence Investment)",
+      "notice_type": "Award",
+      "text_file": "data/raw/fulltext/434505-2024.txt",
+      "ground_truth": {
+        "value_amount": 33700.0,
+        "value_currency": "EUR",
+        "winner_name": "aktsiaselts RESPO HAAGISED",
+        "quantity": 4,
+        "contract_duration_months": 3,
+        "deadline": null,
+        "procurement_category": "Modular and portable buildings"
+      },
+      "notes": "Award for heated trailers for Moldova Army. Value '33 700,00 EUR'. Winner 'aktsiaselts RESPO HAAGISED'. Quantity '4 (neli) soojakhaagist'. Duration 'kolm (3) kuud' (3 months). Estonian text with EU TED structure."
+    },
+    {
+      "id": "S8",
+      "tender_id": "326948-2025",
+      "label": "TED-NL-MedicalTrailers",
+      "source_type": "ted_fulltext",
+      "country": "Netherlands",
+      "language": "Dutch/English",
+      "buyer": "Ministry of Defense Netherlands",
+      "notice_type": "Competition (call for tenders)",
+      "text_file": "data/raw/fulltext/326948-2025.txt",
+      "ground_truth": {
+        "value_amount": 1400000.0,
+        "value_currency": "EUR",
+        "winner_name": null,
+        "quantity": 28,
+        "contract_duration_months": 180,
+        "deadline": "2025-06-20",
+        "procurement_category": "Military Medical Trailers"
+      },
+      "notes": "Competition notice (no award yet). Estimated value '1 400 000,00 EUR'. Firm qty 28 (+ 12 optional = 40 total). Duration 15 years maintenance = 180 months. Deadline for RfP '20/06/2025 10:00'. English text, no winner."
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "_comment": "UNSPSC code whitelist for AusTender OCDS adapter. Match on 4-digit prefix of contracts[].items[].classification.id (UNSPSC scheme). BPW-relevant: trailers, axles, military vehicles, logistics transport.",
+  "unspsc_prefixes_4digit": [
+    "2510",
+    "2518",
+    "2517",
+    "2516",
+    "2519",
+    "2520",
+    "2530",
+    "7810"
+  ],
+  "unspsc_exact_8digit": [
+    "25101500",
+    "25101600",
+    "25101700",
+    "25101900",
+    "25172500",
+    "25181500",
+    "25181600",
+    "25181700",
+    "25172900",
+    "25171900",
+    "25181713",
+    "78101800"
+  ],
+  "_segment_notes": {
+    "25": "Commercial and Military and Private Vehicles and their Accessories and Components",
+    "2510": "Motor Vehicles (incl. military)",
+    "2518": "Trailers (Cargo, Product/Material)",
+    "2517": "Vehicle Accessories (incl. suspension, axles)",
+    "2520": "Vehicular Power/Brake/Transmission",
+    "2530": "Brake/Steering/Axle/Wheel components",
+    "78": "Transportation and Storage Services",
+    "7810": "Road Cargo Transport"
+  }
+}

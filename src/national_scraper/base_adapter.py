@@ -45,6 +45,7 @@ class NoticeDetail:
     url: str = ""
     source_code: str = ""  # e.g. "DE-SB", "PL-EZ"
     raw_text: str = ""     # Full page text for AI processing
+    status: str = ""       # Pipeline status: Open/Closed/Awarded/Cancelled (adapter-set)
 
 
 @dataclass
@@ -147,11 +148,21 @@ class BaseAdapter(ABC):
 
     def to_standard_format(self, detail: NoticeDetail) -> dict:
         """Convert to the standard pipeline format (compatible with TED notices)."""
+        # ID prefix de-duplication: some adapters (e.g. UA-Prozorro, NL-TenderNed)
+        # already store the country code inside reference_id ("UA-2026-...", "NL-577684").
+        # Without this guard we'd produce "UA-UA-2026-..." / "NL-NL-577684".
+        cc_prefix = f"{self.config.country_code}-"
+        if detail.reference_id:
+            tender_id = (
+                detail.reference_id
+                if detail.reference_id.startswith(cc_prefix)
+                else f"{cc_prefix}{detail.reference_id}"
+            )
+        else:
+            tender_id = ""
+
         return {
-            "tender_id": (
-                f"{self.config.country_code}-{detail.reference_id}"
-                if detail.reference_id else ""
-            ),
+            "tender_id": tender_id,
             "source": self.config.source_code,
             "source_url_national": detail.url,
             "_title_final": detail.title,
@@ -164,6 +175,8 @@ class BaseAdapter(ABC):
             "ted_url": "",
             "_description_final": detail.description[:500] if detail.description else "",
             "_national_raw_text": detail.raw_text[:10000],
+
+            "_status": detail.status or "",
 
             # Trailer classification fields (to be filled by AI classifier)
             "_trailer_type_1": None,
@@ -182,5 +195,6 @@ class BaseAdapter(ABC):
         currencies = {
             "DE": "EUR", "PL": "PLN", "SE": "SEK", "NO": "NOK",
             "CZ": "CZK", "DK": "DKK", "GB": "GBP", "CH": "CHF",
+            "TR": "TRY",
         }
         return currencies.get(self.config.country_code, "EUR")

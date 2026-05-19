@@ -204,9 +204,16 @@ class FRAdapter(BaseAdapter):
                     all_results[key] = r
             logger.info(f"FR: Phase 2 -> {len(all_results)} total")
 
-            # Phase 3 (full MINARM sweep) removed in sprint6/performance:
-            # fetching 538 detail API calls to get only 13 relevant notices is wasteful.
-            # Phase 1+2 already covers all DIRECTIVE-81 trailer notices (high precision).
+            # Phase 3: DIRECTIVE-81 awarded notices (titulaire IS NOT null).
+            # Catches attribution notices that may not match trailer keywords
+            # in objet (e.g. "Marché subséquent n°X" titles without remorque).
+            award_where = f"perimetre='DIRECTIVE-81' and titulaire is not null and ({kw_clause})"
+            logger.info("FR: Phase 3 — awarded DIRECTIVE-81 notices with winner")
+            for r in self._api_search(award_where, 100):
+                key = r.reference_id or r.title[:50]
+                if key and key not in all_results:
+                    all_results[key] = r
+            logger.info(f"FR: Phase 3 -> {len(all_results)} total")
 
         logger.info(f"FR: search_all_keywords -> {len(all_results)} unique results")
         return list(all_results.values())

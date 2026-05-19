@@ -1,0 +1,219 @@
+"""
+Quality Enhancements — retroactive application to all 337 tenders.
+
+Steps:
+  1. Backup relevant.json + shared/tenders.json
+  2. Run value inference (Phase 3i) — src/value_inference.py
+  3. Run contract type classification (Phase 3j) — src/contract_type.py
+  4. Re-export frontend (exporter_frontend.py)
+  5. Validate shared/tenders.json
+  6. Print 6-point confirmation
+
+Usage:
+    python scripts/_apply_quality_enhancements.py
+    python scripts/_apply_quality_enhancements.py --dry-run
+    python scripts/_apply_quality_enhancements.py --force      # bypass caches
+    python scripts/_apply_quality_enhancements.py --no-llm     # skip LLM fallback
+"""
+from __future__ import annotations
+
+import argparse
+import json
+import os
+import shutil
+import sys
+from datetime import datetime
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT))
+
+RELEVANT_PATH = ROOT / "data" / "filtered" / "relevant.json"
+SHARED_DIR = ROOT.parent.parent / "shared"
+TENDERS_PATH = SHARED_DIR / "tenders.json"
+SCHEMA_PATH = SHARED_DIR / "schema" / "tender.schema.json"
+VALIDATE_SCRIPT = SHARED_DIR / "scripts" / "validate.py"
+
+
+def _backup(path: Path) -> Path:
+    ts = datetime.now().strftime("%y%m%d%H%M%S")
+    bak = path.with_suffix(f".{ts}.bak")
+    shutil.copy2(path, bak)
+    print(f"  [backup] {bak.name}")
+    return bak
+
+
+def _load_env() -> None:
+    env_file = ROOT / ".env"
+    if not env_file.exists():
+        return
+    for line in env_file.read_text().splitlines():
+        line = line.strip()
+        if line and not line.startswith("#") and "=" in line:
+            k, _, v = line.partition("=")
+            os.environ.setdefault(k.strip(), v.strip())
+    if not os.environ.get("ANTHROPIC_API_KEY") and os.environ.get("LLM_ANTHROPIC_API_KEY"):
+        os.environ["ANTHROPIC_API_KEY"] = os.environ["LLM_ANTHROPIC_API_KEY"]
+
+
+def main() -> None:
+    parser = argparse.ArgumentParser(description="Apply quality enhancements to all tenders")
+    parser.add_argument("--dry-run", action="store_true", help="No file writes")
+    parser.add_argument("--force", action="store_true", help="Bypass all caches")
+    parser.add_argument("--no-llm", action="store_true", help="Skip LLM value inference fallback")
+    parser.add_argument("--no-backup", action="store_true", help="Skip backups")
+    args = parser.parse_args()
+
+    _load_env()
+
+    if not RELEVANT_PATH.exists():
+        sys.exit(f"Not found: {RELEVANT_PATH}")
+
+    print("=" * 60)
+    print("  Quality Enhancements — retroactive apply")
+    print("=" * 60)
+
+    # ── Step 1: Backups ──────────────────────────────────────────
+    if not args.dry_run and not args.no_backup:
+        print("\n[1/5] Backups")
+        _backup(RELEVANT_PATH)
+        if TENDERS_PATH.exists():
+            _backup(TENDERS_PATH)
+    else:
+        print("\n[1/5] Backups — skipped (dry-run or --no-backup)")
+
+    # ── Step 2: Value inference ──────────────────────────────────
+    print("\n[2/5] Value inference (Phase 3i)")
+    from src.value_inference import run_inference_pass
+
+    vi_summary = run_inference_pass(
+        RELEVANT_PATH,
+        force=args.force,
+        dry_run=args.dry_run,
+        llm_fallback=not args.no_llm,
+        max_llm_calls=100,
+    )
+    print(f"  measured:         {vi_summary['already_measured']}")
+    print(f"  inferred_high:    {vi_summary.get('inferred_high', 0)}")
+    print(f"  inferred_medium:  {vi_summary.get('inferred_medium', 0)}")
+    print(f"  inferred_low:     {vi_summary.get('inferred_low', 0)}")
+    print(f"  unknown:          {vi_summary.get('unknown', 0)}")
+    print(f"  from cache:       {vi_summary['from_cache']}")
+    print(f"  LLM calls:        {vi_summary['llm_calls']}")
+    print(f"  LLM errors:       {vi_summary['llm_errors']}")
+
+    # ── Step 3: Contract type ────────────────────────────────────
+    print("\n[3/5] Contract type classification (Phase 3j)")
+    from src.contract_type import run_contract_type_pass
+
+    ct_summary = run_contract_type_pass(
+        RELEVANT_PATH,
+        force=args.force,
+        dry_run=args.dry_run,
+    )
+    print(f"  framework_agreement: {ct_summary.get('framework_agreement', 0)}")
+    print(f"  recurring:           {ct_summary.get('recurring', 0)}")
+    print(f"  one_time:            {ct_summary.get('one_time', 0)}")
+    print(f"  unknown:             {ct_summary.get('unknown', 0)}")
+    print(f"  from cache:          {ct_summary['from_cache']}")
+    print(f"  classified_now:      {ct_summary['classified_now']}")
+
+    # ── Step 4: Re-export frontend ───────────────────────────────
+    print("\n[4/5] Frontend export")
+    if not args.dry_run:
+        import logging
+        logging.basicConfig(level=logging.WARNING)
+        from src.exporter_frontend import export_tenders_for_frontend
+        n = export_tenders_for_frontend(RELEVANT_PATH, TENDERS_PATH)
+        print(f"  Exported: {n} tenders → {TENDERS_PATH}")
+    else:
+        print("  Skipped (dry-run)")
+
+    # ── Step 5: Validate ─────────────────────────────────────────
+    print("\n[5/5] Validate")
+    if not args.dry_run and VALIDATE_SCRIPT.exists():
+        import subprocess
+        result = subprocess.run(
+            [sys.executable, str(VALIDATE_SCRIPT), str(TENDERS_PATH)],
+            capture_output=True, text=True,
+        )
+        print(result.stdout.strip())
+        if result.returncode != 0:
+            print(result.stderr.strip())
+            print("\n[FAIL] validate.py returned non-zero exit code")
+            sys.exit(1)
+    elif not VALIDATE_SCRIPT.exists():
+        print("  validate.py not found — skip")
+    else:
+        print("  Skipped (dry-run)")
+
+    # ── 6-point confirmation ─────────────────────────────────────
+    print("\n" + "=" * 60)
+    print("  6-PUNKT BESTÄTIGUNG")
+    print("=" * 60)
+
+    with open(RELEVANT_PATH, encoding="utf-8") as f:
+        notices = json.load(f)
+
+    total = len(notices)
+    val_known = sum(1 for n in notices if (
+        n.get("_value_confidence") == "measured"
+    ))
+    val_inferred = sum(1 for n in notices if n.get("_value_inferred"))
+    val_inferred_high = sum(1 for n in notices if n.get("_value_confidence") == "inferred_high")
+    val_inferred_med = sum(1 for n in notices if n.get("_value_confidence") == "inferred_medium")
+    val_inferred_low = sum(1 for n in notices if n.get("_value_confidence") == "inferred_low")
+    val_unknown = sum(1 for n in notices if n.get("_value_confidence") == "unknown" or not n.get("_value_confidence"))
+
+    ct_counts: dict[str, int] = {}
+    for n in notices:
+        ct = n.get("_contract_type", "?")
+        ct_counts[ct] = ct_counts.get(ct, 0) + 1
+
+    # Specs coverage from specs fields
+    axle_count = sum(1 for n in notices if (n.get("_extracted_specs") or {}).get("trailer_types") and
+                     any(t.get("axle_load_t") or _AXLE_RE_check(t.get("type", ""))
+                         for t in (n.get("_extracted_specs") or {}).get("trailer_types", [])))
+    payload_count = sum(1 for n in notices if any(
+        t.get("payload_t") for t in ((n.get("_extracted_specs") or {}).get("trailer_types") or [])
+    ))
+
+    print(f"\n1. Field coverage (before → after)")
+    print(f"   estimated_value_eur:  {val_known}/{total} measured ({val_known/total*100:.0f}%)")
+    print(f"   inferred (high+med):  {val_inferred_high + val_inferred_med}/{total - val_known} no-val notices")
+    print(f"   inferred_low (LLM):   {val_inferred_low}")
+    print(f"   unknown:              {val_unknown}")
+    print(f"\n2. Tenders with inferred value: {val_inferred}")
+    print(f"\n3. Contract type distribution:")
+    for ct, cnt in sorted(ct_counts.items(), key=lambda x: -x[1]):
+        print(f"   {ct}: {cnt} ({cnt/total*100:.0f}%)")
+    print(f"\n4. Trailer specs coverage:")
+    print(f"   payload_t (from specs): {payload_count}/{total} ({payload_count/total*100:.0f}%)")
+
+    if not args.dry_run and TENDERS_PATH.exists():
+        with open(TENDERS_PATH, encoding="utf-8") as f:
+            tenders = json.load(f)
+        tc = len(tenders)
+        axle_f = sum(1 for t in tenders if t.get("axle_config"))
+        payload_f = sum(1 for t in tenders if t.get("payload_kg"))
+        ct_f = sum(1 for t in tenders if t.get("contract_type"))
+        inferred_f = sum(1 for t in tenders if t.get("estimated_value_eur_inferred"))
+        print(f"\n   In tenders.json ({tc} records):")
+        print(f"   axle_config:                {axle_f} ({axle_f/tc*100:.0f}%)")
+        print(f"   payload_kg:                 {payload_f} ({payload_f/tc*100:.0f}%)")
+        print(f"   contract_type:              {ct_f} ({ct_f/tc*100:.0f}%)")
+        print(f"   estimated_value_eur_inferred: {inferred_f} ({inferred_f/tc*100:.0f}%)")
+
+    print(f"\n5. LLM costs: Haiku calls = {vi_summary['llm_calls']}")
+
+    print(f"\n6. validate.py: see above")
+    print()
+
+
+def _AXLE_RE_check(text: str) -> bool:
+    import re
+    return bool(re.search(r"\d+[\s-]axle", str(text), re.IGNORECASE))
+
+
+if __name__ == "__main__":
+    main()

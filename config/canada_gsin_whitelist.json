@@ -1,0 +1,36 @@
+{
+  "_comment": "GSIN (Goods and Services Identification Number) codes relevant for BPW Defence — Trailers, Axles, Vehicle Components. Source: CanadaBuys GSIN codeset. Reviewed 2026-05-11.",
+  "_license": "Contains information licensed under the Open Government Licence – Canada",
+
+  "top_level": {
+    "23": "Ground Effect Vehicles, Motor Vehicles, Trailers and Cycles"
+  },
+
+  "motor_vehicles": {
+    "2310": "Passenger Motor Vehicles",
+    "2320": "Trucks and Truck Tractors, Wheeled",
+    "2330": "Trailers",
+    "2340": "Motorcycles, Motor Scooters and Bicycles",
+    "2350": "Combat, Assault and Tactical Vehicles, Tracked"
+  },
+
+  "vehicle_components": {
+    "2510": "Vehicular Cab, Body, and Frame Structural Components",
+    "2520": "Vehicular Power Transmission Components",
+    "2530": "Vehicular Brake, Steering, Axle, Wheel, and Track Components",
+    "2540": "Vehicular Furniture and Accessories",
+    "2590": "Miscellaneous Vehicular Components"
+  },
+
+  "tires": {
+    "2610": "Tires and Tubes"
+  },
+
+  "_notes": [
+    "GSIN code 2330 = Trailers (direct BPW relevance)",
+    "GSIN code 2530 = Axle, Wheel, and Track Components (BPW axle supply chain)",
+    "GSIN code 2350 = Tracked Vehicles — indirect relevance (LSVW, MSVS, HLVW programs often use trailer support)",
+    "Source: https://open.canada.ca/data/en/dataset/2ce347e5-02fd-4487-975d-67a435efdf9b",
+    "GSIN → UNSPSC mapping: https://open.canada.ca/data/en/dataset/588eab5b-7b16-4a26-b996-23b955965ffa"
+  ]
+}

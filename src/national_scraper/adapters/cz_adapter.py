@@ -44,6 +44,30 @@ SEARCH_BUTTON   = "HLEDAT"
 
 PDF_DIR = Path("data/raw/cz")
 
+# NEN status → pipeline vocabulary
+_CZ_STATUS_MAP: dict[str, str] = {
+    "probíhající":             "Open",
+    "vyhlášený":               "Open",
+    "neukončen":               "Open",    # "Not terminated" (search table label)
+    "not terminated":          "Open",
+    "ukončený":                "Closed",
+    "termination of performance": "Closed",
+    "zadán":                   "Awarded",
+    "awarded":                 "Awarded",
+    "zrušen":                  "Cancelled",
+    "cancelled":               "Cancelled",
+}
+
+
+def _map_cz_status(raw: str) -> str:
+    """Map a raw NEN status string to pipeline vocabulary."""
+    key = raw.strip().lower()
+    for pattern, mapped in _CZ_STATUS_MAP.items():
+        if pattern in key:
+            return mapped
+    return ""
+
+
 # Known defence-related Czech keywords in the combined text
 _DEFENCE_KW = (
     "obrany", "vojenský", "vojenská", "vojenské", "vojensk",
@@ -215,6 +239,18 @@ class CZAdapter(BaseAdapter):
         if pdf_text:
             raw_text = raw_text + "\n\n--- PDF CONTENT ---\n" + pdf_text
 
+        status = self._find_status(raw_text)
+        cpv    = self._find_cpv(raw_text)
+
+        # Prepend structured meta so AI classifier sees it even if truncated
+        meta_prefix = ""
+        if cpv:
+            meta_prefix += f"CPV: {cpv}\n"
+        if status:
+            meta_prefix += f"STATUS: {status}\n"
+        if meta_prefix:
+            raw_text = meta_prefix + raw_text
+
         detail = NoticeDetail(
             title=result.title or self._find_title(raw_text),
             url=result.url,
@@ -223,6 +259,7 @@ class CZAdapter(BaseAdapter):
             source_code="CZ-NEN",
             raw_text=raw_text[:15000],
             currency="CZK",
+            status=status,
         )
         detail.reference_id = result.reference_id or self._find_ref_id(raw_text)
         detail.description  = self._find_description(raw_text)
@@ -230,6 +267,14 @@ class CZAdapter(BaseAdapter):
         detail.value        = self._find_value(raw_text)
         detail.winner       = self._find_winner(raw_text)
         detail.duration     = self._find_duration(raw_text)
+
+        # If awarded, try fetching the result sub-page for winner name
+        if status == "Awarded" and not detail.winner:
+            winner_from_result = self._try_result_page(result)
+            if winner_from_result:
+                detail.winner = winner_from_result
+                logger.info(f"CZ: winner from result page: {winner_from_result[:60]}")
+
         return detail
 
     # ── Browser search ──
@@ -551,14 +596,134 @@ class CZAdapter(BaseAdapter):
         return None
 
     def _find_winner(self, text: str) -> str:
+        # Same-line patterns: "Label: Value"
         for pat in [
-            r"(?:Vítěz|Dodavatel|Vybraný dodavatel|Winner)[:\s]+([^\n]{5,120})",
+            r"(?:Vítěz|Dodavatel|Vybraný dodavatel|Winner|Jméno dodavatele)[:\s]+([^\n]{5,120})",
+            r"(?:Supplier|Selected supplier|Selected tenderer|Contractor)[:\s]+([^\n]{5,120})",
         ]:
             m = re.search(pat, text, re.IGNORECASE)
             if m:
                 name = m.group(1).strip()
                 if not re.match(r"^[\d\s,.]+$", name):
                     return name[:120]
+        # Next-line patterns: "LABEL\nValue" — NEN English/Czech result-tab format
+        for heading in (
+            "SUPPLIER", "SELECTED SUPPLIER", "SELECTED TENDERER",
+            "DODAVATEL", "VYBRANÝ DODAVATEL", "VÍTĚZ",
+            "NAME OF SUPPLIER", "JMÉNO DODAVATELE",
+        ):
+            m = re.search(
+                rf"{re.escape(heading)}\s*\n\s*([^\n]{{5,120}})",
+                text, re.IGNORECASE,
+            )
+            if m:
+                name = m.group(1).strip()
+                if not re.match(r"^[\d\s,.]+$", name):
+                    return name[:120]
+        return ""
+
+    def _find_status(self, text: str) -> str:
+        """Extract and map NEN procurement status to pipeline vocabulary.
+
+        NEN English UI shows: "CURRENT STATUS OF THE PROCUREMENT PROCEDURE"
+        Czech status values: Probíhající / Vyhlášený → Open
+                             Ukončený → Closed
+                             Zadán → Awarded
+                             Zrušen → Cancelled
+        """
+        # NEN English heading (all-caps label followed by newline + value)
+        m = re.search(
+            r"CURRENT STATUS OF THE PROCUREMENT PROCEDURE\s*\n\s*([^\n]+)",
+            text, re.IGNORECASE,
+        )
+        if not m:
+            # Czech fallback label
+            m = re.search(
+                r"STAV ZADÁVACÍHO ŘÍZENÍ\s*\n\s*([^\n]+)",
+                text, re.IGNORECASE,
+            )
+        if not m:
+            return ""
+        raw = m.group(1).strip()
+        return _map_cz_status(raw)
+
+    def _find_cpv(self, text: str) -> str:
+        """Extract CPV code from NEN detail page text.
+
+        NEN English UI shows: "CODE FROM THE CPV CODE LIST"
+        followed on the next line by the code (e.g. "34223300-9").
+        """
+        m = re.search(
+            r"CODE FROM THE CPV CODE LIST\s*\n\s*([\d]{8}-[\d])",
+            text, re.IGNORECASE,
+        )
+        if not m:
+            # Looser pattern: any 8-digit + check-digit code in that section
+            m = re.search(
+                r"CODE FROM THE CPV CODE LIST\s*\n\s*([\d\-]{9,12})",
+                text, re.IGNORECASE,
+            )
+        return m.group(1).strip() if m else ""
+
+    def _try_result_page(self, result: SearchResult) -> str:
+        """Navigate to the NEN result/vysledek sub-page and extract winner name.
+
+        NEN result tab URL patterns tried in order:
+          1. Replace detail-zakazky with vysledek-zakazky in the search-context URL
+          2. English clean URL: /en/verejne-zakazky/vysledek-zakazky/{dashed_id}
+          3. Czech clean URL:   /verejne-zakazky/vysledek-zakazky/{dashed_id}
+          4. Append /vysledek to current URL
+        Returns winner name or "" on any failure.
+        """
+        base_url = result.url or ""
+        if not base_url:
+            return ""
+
+        ref_id = result.reference_id or ""
+        dashed_id = ref_id.replace("/", "-")
+
+        candidates: list[str] = []
+
+        # Pattern 1: replace detail-zakazky with vysledek-zakazky (preserves lang+query)
+        if "detail-zakazky" in base_url:
+            candidates.append(base_url.replace("detail-zakazky", "vysledek-zakazky"))
+
+        if dashed_id:
+            # Pattern 2: English clean URL (most reliable — no search-context noise)
+            candidates.append(
+                f"{BASE_URL}/en/verejne-zakazky/vysledek-zakazky/{dashed_id}"
+            )
+            # Pattern 3: Czech clean URL (fallback — Dodavatel appears in Czech text)
+            candidates.append(
+                f"{BASE_URL}/verejne-zakazky/vysledek-zakazky/{dashed_id}"
+            )
+
+        # Pattern 4: append /vysledek sub-path to current URL
+        candidates.append(base_url.rstrip("/") + "/vysledek")
+
+        _RESULT_KW = (
+            "dodavatel", "vítěz", "winner", "vysledek", "výsledek",
+            "contractor", "supplier", "selected tenderer",
+        )
+
+        for url in candidates:
+            try:
+                logger.info(f"CZ: trying result page: {url[:80]}")
+                ok = self.browser.goto(url, wait_for="networkidle", timeout=15000)
+                if not ok:
+                    continue
+                self.browser.wait_seconds(3)
+                page_text = self.browser.get_page_text()
+                if not any(kw in page_text.lower() for kw in _RESULT_KW):
+                    logger.debug(f"CZ: result page has no winner keywords: {url[:60]}")
+                    continue
+                winner = self._find_winner(page_text)
+                if winner:
+                    return winner
+                logger.debug(f"CZ: result page keyword hit but no name extracted: {url[:60]}")
+            except Exception as exc:
+                logger.debug(f"CZ: result page error ({url[:60]}): {exc}")
+
         return ""
 
     def _find_duration(self, text: str) -> str:

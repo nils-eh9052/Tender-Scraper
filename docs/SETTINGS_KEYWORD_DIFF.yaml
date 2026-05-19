@@ -1,0 +1,1956 @@
+# SETTINGS_KEYWORD_DIFF.yaml — Sprint 14g
+# Auto-generated additive proposal from Opus brainstorm.
+# DO NOT auto-merge — review each term against false-positive risk
+# (especially for civilian-overlap terms like 'trailer', 'remorque').
+# Once accepted, manually merge accepted terms into config/settings.yaml.
+
+_meta:
+  generated_from: docs/OPUS_KEYWORD_BRAINSTORM.json
+  opus_model: openrouter/anthropic/claude-opus-4.1
+  opus_cost_usd: 0.754
+  corpus_size: 86
+  additive_only: true
+  instructions: Review this diff and selectively merge accepted terms into config/settings.yaml under the matching keyword
+    category. Each entry includes evidence (tender_id + snippet) where available.
+  stats:
+    new_terms_proposed: 432
+    skipped_already_in_settings: 104
+    new_categories_count: 3
+    categories_to_extend: 10
+additions_to_existing_categories:
+  ammunition_trailer:
+    de:
+    - term: munitionstransporter
+      opus_source_category: ammunition
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: munitionsauflieger
+      opus_source_category: ammunition
+      evidence_tender_id: null
+      evidence_snippet: null
+    en:
+    - term: munitions carrier
+      opus_source_category: ammunition
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: ordnance trailer
+      opus_source_category: ammunition
+      evidence_tender_id: null
+      evidence_snippet: null
+    fr:
+    - term: transport munitions
+      opus_source_category: ammunition
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: remorque armement
+      opus_source_category: ammunition
+      evidence_tender_id: null
+      evidence_snippet: null
+    pl:
+    - term: transport amunicji
+      opus_source_category: ammunition
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: przyczepa uzbrojenia
+      opus_source_category: ammunition
+      evidence_tender_id: null
+      evidence_snippet: null
+    cs:
+    - term: muniční přívěs
+      opus_source_category: ammunition
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: přívěs na munici
+      opus_source_category: ammunition
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: přeprava munice
+      opus_source_category: ammunition
+      evidence_tender_id: null
+      evidence_snippet: null
+    ro:
+    - term: remorcă muniție
+      opus_source_category: ammunition
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: transport muniție
+      opus_source_category: ammunition
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: remorcă armament
+      opus_source_category: ammunition
+      evidence_tender_id: null
+      evidence_snippet: null
+    it:
+    - term: rimorchio munizioni
+      opus_source_category: ammunition
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: trasporto munizioni
+      opus_source_category: ammunition
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: rimorchio armamento
+      opus_source_category: ammunition
+      evidence_tender_id: null
+      evidence_snippet: null
+    nl:
+    - term: munitietrailer
+      opus_source_category: ammunition
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: munitietransport
+      opus_source_category: ammunition
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: wapentrailer
+      opus_source_category: ammunition
+      evidence_tender_id: null
+      evidence_snippet: null
+    da:
+    - term: ammunitionsvogn
+      opus_source_category: ammunition
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: ammunitionstransport
+      opus_source_category: ammunition
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: våbenvogn
+      opus_source_category: ammunition
+      evidence_tender_id: null
+      evidence_snippet: null
+    sv:
+    - term: ammunitionssläp
+      opus_source_category: ammunition
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: ammunitionstransport
+      opus_source_category: ammunition
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: vapensläp
+      opus_source_category: ammunition
+      evidence_tender_id: null
+      evidence_snippet: null
+    'no':
+    - term: ammunisjonshenger
+      opus_source_category: ammunition
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: ammunisjonstransport
+      opus_source_category: ammunition
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: våpenhenger
+      opus_source_category: ammunition
+      evidence_tender_id: null
+      evidence_snippet: null
+    es:
+    - term: remolque munición
+      opus_source_category: ammunition
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: transporte munición
+      opus_source_category: ammunition
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: plataforma armamento
+      opus_source_category: ammunition
+      evidence_tender_id: null
+      evidence_snippet: null
+  defence_context:
+    de:
+    - term: baaainbw
+      opus_source_category: defence_context
+      evidence_tender_id: null
+      evidence_snippet: null
+    pl:
+    - term: wojsko
+      opus_source_category: defence_context
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: mon
+      opus_source_category: defence_context
+      evidence_tender_id: null
+      evidence_snippet: null
+    cs:
+    - term: vojenský
+      opus_source_category: defence_context
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: obranný
+      opus_source_category: defence_context
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: armáda
+      opus_source_category: defence_context
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: ozbrojené síly
+      opus_source_category: defence_context
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: ministerstvo obrany
+      opus_source_category: defence_context
+      evidence_tender_id: null
+      evidence_snippet: null
+    ro:
+    - term: militar
+      opus_source_category: defence_context
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: apărare
+      opus_source_category: defence_context
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: armată
+      opus_source_category: defence_context
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: forțe armate
+      opus_source_category: defence_context
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: mapn
+      opus_source_category: defence_context
+      evidence_tender_id: null
+      evidence_snippet: null
+    it:
+    - term: ministero difesa
+      opus_source_category: defence_context
+      evidence_tender_id: null
+      evidence_snippet: null
+    nl:
+    - term: militair
+      opus_source_category: defence_context
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: defensie
+      opus_source_category: defence_context
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: krijgsmacht
+      opus_source_category: defence_context
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: landmacht
+      opus_source_category: defence_context
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: ministerie van defensie
+      opus_source_category: defence_context
+      evidence_tender_id: null
+      evidence_snippet: null
+    da:
+    - term: militær
+      opus_source_category: defence_context
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: forsvar
+      opus_source_category: defence_context
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: hær
+      opus_source_category: defence_context
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: værnepligt
+      opus_source_category: defence_context
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: forsvarsministeriet
+      opus_source_category: defence_context
+      evidence_tender_id: null
+      evidence_snippet: null
+    sv:
+    - term: försvar
+      opus_source_category: defence_context
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: armé
+      opus_source_category: defence_context
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: fmv
+      opus_source_category: defence_context
+      evidence_tender_id: null
+      evidence_snippet: null
+    'no':
+    - term: militær
+      opus_source_category: defence_context
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: forsvar
+      opus_source_category: defence_context
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: hær
+      opus_source_category: defence_context
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: forsvaret
+      opus_source_category: defence_context
+      evidence_tender_id: 140259-2025
+      evidence_snippet: Forsvaret v/Forsvarets logistikkorganisasjon
+    - term: ndma
+      opus_source_category: defence_context
+      evidence_tender_id: null
+      evidence_snippet: null
+    es:
+    - term: minisdef
+      opus_source_category: defence_context
+      evidence_tender_id: null
+      evidence_snippet: null
+    fi:
+    - term: puolustus
+      opus_source_category: defence_context
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: sotilashanke
+      opus_source_category: defence_context
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: puolustusvoimat
+      opus_source_category: defence_context
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: maavoimat
+      opus_source_category: defence_context
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: logistiikkalaitos
+      opus_source_category: defence_context
+      evidence_tender_id: null
+      evidence_snippet: null
+  dolly:
+    de:
+    - term: dollyachse
+      opus_source_category: dolly
+      evidence_tender_id: null
+      evidence_snippet: null
+    fr:
+    - term: essieu dolly
+      opus_source_category: dolly
+      evidence_tender_id: null
+      evidence_snippet: null
+    pl:
+    - term: dolly
+      opus_source_category: dolly
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: wózek dolly
+      opus_source_category: dolly
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: oś dolly
+      opus_source_category: dolly
+      evidence_tender_id: null
+      evidence_snippet: null
+    cs:
+    - term: dolly
+      opus_source_category: dolly
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: přídavná náprava
+      opus_source_category: dolly
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: dolly podvozek
+      opus_source_category: dolly
+      evidence_tender_id: null
+      evidence_snippet: null
+    ro:
+    - term: dolly
+      opus_source_category: dolly
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: axă dolly
+      opus_source_category: dolly
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: cărucior dolly
+      opus_source_category: dolly
+      evidence_tender_id: null
+      evidence_snippet: null
+    it:
+    - term: dolly
+      opus_source_category: dolly
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: asse dolly
+      opus_source_category: dolly
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: carrello dolly
+      opus_source_category: dolly
+      evidence_tender_id: null
+      evidence_snippet: null
+    nl:
+    - term: dolly
+      opus_source_category: dolly
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: dolly-as
+      opus_source_category: dolly
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: koppelwagen
+      opus_source_category: dolly
+      evidence_tender_id: null
+      evidence_snippet: null
+    da:
+    - term: dolly
+      opus_source_category: dolly
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: dollyaksel
+      opus_source_category: dolly
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: koblingsled
+      opus_source_category: dolly
+      evidence_tender_id: null
+      evidence_snippet: null
+    sv:
+    - term: dolly
+      opus_source_category: dolly
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: dollyaxel
+      opus_source_category: dolly
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: kopplingsled
+      opus_source_category: dolly
+      evidence_tender_id: null
+      evidence_snippet: null
+    'no':
+    - term: dolly
+      opus_source_category: dolly
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: dollyaksel
+      opus_source_category: dolly
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: koblingsledd
+      opus_source_category: dolly
+      evidence_tender_id: null
+      evidence_snippet: null
+    es:
+    - term: dolly
+      opus_source_category: dolly
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: eje dolly
+      opus_source_category: dolly
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: conversor dolly
+      opus_source_category: dolly
+      evidence_tender_id: null
+      evidence_snippet: null
+  field_kitchen:
+    de:
+    - term: verpflegungsanhänger
+      opus_source_category: field_kitchen
+      evidence_tender_id: null
+      evidence_snippet: null
+    pl:
+    - term: przyczepa kuchenna
+      opus_source_category: field_kitchen
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: kontener kuchenny
+      opus_source_category: field_kitchen
+      evidence_tender_id: null
+      evidence_snippet: null
+    cs:
+    - term: polní kuchyně
+      opus_source_category: field_kitchen
+      evidence_tender_id: 775798-2024
+      evidence_snippet: Polní kuchyně - přívěsný vozík - nákup
+    - term: kuchyňský přívěs
+      opus_source_category: field_kitchen
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: mobilní kuchyně
+      opus_source_category: field_kitchen
+      evidence_tender_id: null
+      evidence_snippet: null
+    ro:
+    - term: bucătărie de campanie
+      opus_source_category: field_kitchen
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: bucătărie rulantă
+      opus_source_category: field_kitchen
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: remorcă bucătărie
+      opus_source_category: field_kitchen
+      evidence_tender_id: null
+      evidence_snippet: null
+    it:
+    - term: cucina campale
+      opus_source_category: field_kitchen
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: rimorchio cucina
+      opus_source_category: field_kitchen
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: cucina mobile
+      opus_source_category: field_kitchen
+      evidence_tender_id: null
+      evidence_snippet: null
+    nl:
+    - term: veldkeuken
+      opus_source_category: field_kitchen
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: keukentrailer
+      opus_source_category: field_kitchen
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: mobiele keuken
+      opus_source_category: field_kitchen
+      evidence_tender_id: null
+      evidence_snippet: null
+    da:
+    - term: feltkøkken
+      opus_source_category: field_kitchen
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: køkkenvogn
+      opus_source_category: field_kitchen
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: mobilt køkken
+      opus_source_category: field_kitchen
+      evidence_tender_id: null
+      evidence_snippet: null
+    sv:
+    - term: köksvagn
+      opus_source_category: field_kitchen
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: mobilt kök
+      opus_source_category: field_kitchen
+      evidence_tender_id: null
+      evidence_snippet: null
+    'no':
+    - term: feltkjøkken
+      opus_source_category: field_kitchen
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: kjøkkenhenger
+      opus_source_category: field_kitchen
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: mobilt kjøkken
+      opus_source_category: field_kitchen
+      evidence_tender_id: null
+      evidence_snippet: null
+    es:
+    - term: cocina de campaña
+      opus_source_category: field_kitchen
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: remolque cocina
+      opus_source_category: field_kitchen
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: cocina móvil
+      opus_source_category: field_kitchen
+      evidence_tender_id: null
+      evidence_snippet: null
+  generic_trailer:
+    de:
+    - term: containeranhänger
+      opus_source_category: generic_trailer
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: absetzcontaineranhänger
+      opus_source_category: generic_trailer
+      evidence_tender_id: null
+      evidence_snippet: null
+    en:
+    - term: mobile containers
+      opus_source_category: generic_trailer
+      evidence_tender_id: null
+      evidence_snippet: null
+    pl:
+    - term: przyczepy transportowe
+      opus_source_category: generic_trailer
+      evidence_tender_id: null
+      evidence_snippet: null
+    cs:
+    - term: přívěs
+      opus_source_category: generic_trailer
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: přívěsy
+      opus_source_category: generic_trailer
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: přívěsný vozík
+      opus_source_category: generic_trailer
+      evidence_tender_id: null
+      evidence_snippet: null
+    ro:
+    - term: remorcă
+      opus_source_category: generic_trailer
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: remorci
+      opus_source_category: generic_trailer
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: remorca
+      opus_source_category: generic_trailer
+      evidence_tender_id: null
+      evidence_snippet: null
+    it:
+    - term: carrello
+      opus_source_category: generic_trailer
+      evidence_tender_id: null
+      evidence_snippet: null
+    nl:
+    - term: aanhanger
+      opus_source_category: generic_trailer
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: trailer
+      opus_source_category: generic_trailer
+      evidence_tender_id: null
+      evidence_snippet: null
+    da:
+    - term: påhængsvogn
+      opus_source_category: generic_trailer
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: påhængsvogne
+      opus_source_category: generic_trailer
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: anhænger
+      opus_source_category: generic_trailer
+      evidence_tender_id: null
+      evidence_snippet: null
+    sv:
+    - term: släp
+      opus_source_category: generic_trailer
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: släpvagn
+      opus_source_category: generic_trailer
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: släpkärra
+      opus_source_category: generic_trailer
+      evidence_tender_id: null
+      evidence_snippet: null
+    'no':
+    - term: henger
+      opus_source_category: generic_trailer
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: tilhenger
+      opus_source_category: generic_trailer
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: vogn
+      opus_source_category: generic_trailer
+      evidence_tender_id: null
+      evidence_snippet: null
+    es:
+    - term: tráiler
+      opus_source_category: generic_trailer
+      evidence_tender_id: null
+      evidence_snippet: null
+  loading_system:
+    de:
+    - term: absetzcontainer
+      opus_source_category: loading_system
+      evidence_tender_id: null
+      evidence_snippet: null
+    en:
+    - term: demountable system
+      opus_source_category: loading_system
+      evidence_tender_id: null
+      evidence_snippet: null
+    fr:
+    - term: système ampliroll
+      opus_source_category: loading_system
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: bras de levage
+      opus_source_category: loading_system
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: système amovible
+      opus_source_category: loading_system
+      evidence_tender_id: null
+      evidence_snippet: null
+    pl:
+    - term: system hakowy
+      opus_source_category: loading_system
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: hakowiec
+      opus_source_category: loading_system
+      evidence_tender_id: null
+      evidence_snippet: null
+    cs:
+    - term: hákový nosič
+      opus_source_category: loading_system
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: kontejnerový nosič
+      opus_source_category: loading_system
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: nakládací systém
+      opus_source_category: loading_system
+      evidence_tender_id: null
+      evidence_snippet: null
+    ro:
+    - term: sistem cu cârlig
+      opus_source_category: loading_system
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: sistem demontabil
+      opus_source_category: loading_system
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: sistem încărcare
+      opus_source_category: loading_system
+      evidence_tender_id: null
+      evidence_snippet: null
+    it:
+    - term: sistema scarrabile
+      opus_source_category: loading_system
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: gancio carico
+      opus_source_category: loading_system
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: sistema amovibile
+      opus_source_category: loading_system
+      evidence_tender_id: null
+      evidence_snippet: null
+    nl:
+    - term: haaksysteem
+      opus_source_category: loading_system
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: containersysteem
+      opus_source_category: loading_system
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: laadsysteem
+      opus_source_category: loading_system
+      evidence_tender_id: null
+      evidence_snippet: null
+    da:
+    - term: krogløftsystem
+      opus_source_category: loading_system
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: containersystem
+      opus_source_category: loading_system
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: læssesystem
+      opus_source_category: loading_system
+      evidence_tender_id: null
+      evidence_snippet: null
+    sv:
+    - term: kroklyftsystem
+      opus_source_category: loading_system
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: containersystem
+      opus_source_category: loading_system
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: lastningssystem
+      opus_source_category: loading_system
+      evidence_tender_id: null
+      evidence_snippet: null
+    'no':
+    - term: krokløftsystem
+      opus_source_category: loading_system
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: containersystem
+      opus_source_category: loading_system
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: lastesystem
+      opus_source_category: loading_system
+      evidence_tender_id: null
+      evidence_snippet: null
+    es:
+    - term: sistema gancho
+      opus_source_category: loading_system
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: portacontenedores
+      opus_source_category: loading_system
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: sistema desmontable
+      opus_source_category: loading_system
+      evidence_tender_id: null
+      evidence_snippet: null
+  low_bed:
+    de:
+    - term: tiefbettanhänger
+      opus_source_category: low_bed
+      evidence_tender_id: null
+      evidence_snippet: null
+    en:
+    - term: low loader
+      opus_source_category: low_bed
+      evidence_tender_id: null
+      evidence_snippet: null
+    fr:
+    - term: plateau surbaissé
+      opus_source_category: low_bed
+      evidence_tender_id: null
+      evidence_snippet: null
+    pl:
+    - term: platforma niskopodwoziowa
+      opus_source_category: low_bed
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: laweta
+      opus_source_category: low_bed
+      evidence_tender_id: null
+      evidence_snippet: null
+    cs:
+    - term: nízkoložný
+      opus_source_category: low_bed
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: podvalník
+      opus_source_category: low_bed
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: nízkoložný přívěs
+      opus_source_category: low_bed
+      evidence_tender_id: null
+      evidence_snippet: null
+    ro:
+    - term: platformă joasă
+      opus_source_category: low_bed
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: trailer surbasat
+      opus_source_category: low_bed
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: semiremorcă joasă
+      opus_source_category: low_bed
+      evidence_tender_id: null
+      evidence_snippet: null
+    it:
+    - term: semirimorchio ribassato
+      opus_source_category: low_bed
+      evidence_tender_id: null
+      evidence_snippet: null
+    nl:
+    - term: dieplader
+      opus_source_category: low_bed
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: diepbed
+      opus_source_category: low_bed
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: laagbedoplegger
+      opus_source_category: low_bed
+      evidence_tender_id: null
+      evidence_snippet: null
+    da:
+    - term: lavlad
+      opus_source_category: low_bed
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: sænkevogn
+      opus_source_category: low_bed
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: lavtbygget
+      opus_source_category: low_bed
+      evidence_tender_id: null
+      evidence_snippet: null
+    sv:
+    - term: låglastare
+      opus_source_category: low_bed
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: sänkvagn
+      opus_source_category: low_bed
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: lågbyggd
+      opus_source_category: low_bed
+      evidence_tender_id: null
+      evidence_snippet: null
+    'no':
+    - term: lavlaster
+      opus_source_category: low_bed
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: senkevogn
+      opus_source_category: low_bed
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: lavbygget
+      opus_source_category: low_bed
+      evidence_tender_id: null
+      evidence_snippet: null
+    es:
+    - term: plataforma rebajada
+      opus_source_category: low_bed
+      evidence_tender_id: null
+      evidence_snippet: null
+  mission_module:
+    en:
+    - term: mobile container
+      opus_source_category: mission_module
+      evidence_tender_id: null
+      evidence_snippet: null
+    fr:
+    - term: module mission
+      opus_source_category: mission_module
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: conteneur mobile
+      opus_source_category: mission_module
+      evidence_tender_id: null
+      evidence_snippet: null
+    pl:
+    - term: moduł misji
+      opus_source_category: mission_module
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: kontener mobilny
+      opus_source_category: mission_module
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: shelter
+      opus_source_category: mission_module
+      evidence_tender_id: null
+      evidence_snippet: null
+    cs:
+    - term: mísní modul
+      opus_source_category: mission_module
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: mobilní kontejner
+      opus_source_category: mission_module
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: shelter
+      opus_source_category: mission_module
+      evidence_tender_id: null
+      evidence_snippet: null
+    ro:
+    - term: modul misiune
+      opus_source_category: mission_module
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: container mobil
+      opus_source_category: mission_module
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: shelter
+      opus_source_category: mission_module
+      evidence_tender_id: null
+      evidence_snippet: null
+    it:
+    - term: container mobile
+      opus_source_category: mission_module
+      evidence_tender_id: null
+      evidence_snippet: null
+    nl:
+    - term: missiemodule
+      opus_source_category: mission_module
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: shelter
+      opus_source_category: mission_module
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: mobiele container
+      opus_source_category: mission_module
+      evidence_tender_id: null
+      evidence_snippet: null
+    da:
+    - term: missionsmodul
+      opus_source_category: mission_module
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: shelter
+      opus_source_category: mission_module
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: mobil container
+      opus_source_category: mission_module
+      evidence_tender_id: null
+      evidence_snippet: null
+    sv:
+    - term: uppdragsmodul
+      opus_source_category: mission_module
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: shelter
+      opus_source_category: mission_module
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: mobil container
+      opus_source_category: mission_module
+      evidence_tender_id: null
+      evidence_snippet: null
+    'no':
+    - term: oppdragsmodul
+      opus_source_category: mission_module
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: shelter
+      opus_source_category: mission_module
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: mobil container
+      opus_source_category: mission_module
+      evidence_tender_id: null
+      evidence_snippet: null
+    es:
+    - term: módulo misión
+      opus_source_category: mission_module
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: shelter
+      opus_source_category: mission_module
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: contenedor móvil
+      opus_source_category: mission_module
+      evidence_tender_id: null
+      evidence_snippet: null
+    fi:
+    - term: johtopaikkakontti
+      opus_source_category: mission_module
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: levitettävä kontti
+      opus_source_category: mission_module
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: komentopaikkakontti
+      opus_source_category: mission_module
+      evidence_tender_id: null
+      evidence_snippet: null
+  semitrailer:
+    fr:
+    - term: remorque articulée
+      opus_source_category: semitrailer
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: attelage
+      opus_source_category: semitrailer
+      evidence_tender_id: null
+      evidence_snippet: null
+    pl:
+    - term: przyczepa siodłowa
+      opus_source_category: semitrailer
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: półprzyczepa
+      opus_source_category: semitrailer
+      evidence_tender_id: null
+      evidence_snippet: null
+    cs:
+    - term: návěs
+      opus_source_category: semitrailer
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: přívěs návěsový
+      opus_source_category: semitrailer
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: tahačový přívěs
+      opus_source_category: semitrailer
+      evidence_tender_id: null
+      evidence_snippet: null
+    ro:
+    - term: semiremorcă
+      opus_source_category: semitrailer
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: remorcă articulată
+      opus_source_category: semitrailer
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: trailer articulat
+      opus_source_category: semitrailer
+      evidence_tender_id: null
+      evidence_snippet: null
+    it:
+    - term: rimorchio articolato
+      opus_source_category: semitrailer
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: bilico
+      opus_source_category: semitrailer
+      evidence_tender_id: null
+      evidence_snippet: null
+    nl:
+    - term: oplegger
+      opus_source_category: semitrailer
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: sattelanhänger
+      opus_source_category: semitrailer
+      evidence_tender_id: null
+      evidence_snippet: null
+    da:
+    - term: sættevogn
+      opus_source_category: semitrailer
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: påhængsvogn
+      opus_source_category: semitrailer
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: semitrailer
+      opus_source_category: semitrailer
+      evidence_tender_id: null
+      evidence_snippet: null
+    sv:
+    - term: påhängsvagn
+      opus_source_category: semitrailer
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: semitrailer
+      opus_source_category: semitrailer
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: släpvagn
+      opus_source_category: semitrailer
+      evidence_tender_id: null
+      evidence_snippet: null
+    'no':
+    - term: semitrailer
+      opus_source_category: semitrailer
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: påhengsvogn
+      opus_source_category: semitrailer
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: henger
+      opus_source_category: semitrailer
+      evidence_tender_id: null
+      evidence_snippet: null
+    es:
+    - term: tráiler articulado
+      opus_source_category: semitrailer
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: plataforma
+      opus_source_category: semitrailer
+      evidence_tender_id: null
+      evidence_snippet: null
+  special_purpose:
+    de:
+    - term: panzertransporter
+      opus_source_category: tank_transporter
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: kampfpanzertransporter
+      opus_source_category: tank_transporter
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: panzeranhänger
+      opus_source_category: tank_transporter
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: sonderanhänger
+      opus_source_category: special_purpose
+      evidence_tender_id: null
+      evidence_snippet: null
+    en:
+    - term: tank transporter
+      opus_source_category: tank_transporter
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: tank carrier
+      opus_source_category: tank_transporter
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: armored vehicle transporter
+      opus_source_category: tank_transporter
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: special purpose
+      opus_source_category: special_purpose
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: specialized trailer
+      opus_source_category: special_purpose
+      evidence_tender_id: null
+      evidence_snippet: null
+    fr:
+    - term: transport de char
+      opus_source_category: tank_transporter
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: remorque porte-blindés
+      opus_source_category: tank_transporter
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: remorque dépannage
+      opus_source_category: special_purpose
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: usage spécial
+      opus_source_category: special_purpose
+      evidence_tender_id: null
+      evidence_snippet: null
+    pl:
+    - term: transporter czołgów
+      opus_source_category: tank_transporter
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: laweta czołgowa
+      opus_source_category: tank_transporter
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: przyczepa do transportu czołgów
+      opus_source_category: tank_transporter
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: przyczepa ratownicza
+      opus_source_category: special_purpose
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: cel specjalny
+      opus_source_category: special_purpose
+      evidence_tender_id: null
+      evidence_snippet: null
+    cs:
+    - term: přepravník tanků
+      opus_source_category: tank_transporter
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: tankový přívěs
+      opus_source_category: tank_transporter
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: přívěs pro tanky
+      opus_source_category: tank_transporter
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: speciální přívěs
+      opus_source_category: special_purpose
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: záchranný přívěs
+      opus_source_category: special_purpose
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: zvláštní účel
+      opus_source_category: special_purpose
+      evidence_tender_id: null
+      evidence_snippet: null
+    ro:
+    - term: transportor tanc
+      opus_source_category: tank_transporter
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: remorcă pentru tancuri
+      opus_source_category: tank_transporter
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: platformă blindate
+      opus_source_category: tank_transporter
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: remorcă specială
+      opus_source_category: special_purpose
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: remorcă salvare
+      opus_source_category: special_purpose
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: scop special
+      opus_source_category: special_purpose
+      evidence_tender_id: null
+      evidence_snippet: null
+    it:
+    - term: trasporto carri
+      opus_source_category: tank_transporter
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: rimorchio portacarri
+      opus_source_category: tank_transporter
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: trasporto blindati
+      opus_source_category: tank_transporter
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: rimorchio speciale
+      opus_source_category: special_purpose
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: rimorchio soccorso
+      opus_source_category: special_purpose
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: uso speciale
+      opus_source_category: special_purpose
+      evidence_tender_id: null
+      evidence_snippet: null
+    nl:
+    - term: tanktransporter
+      opus_source_category: tank_transporter
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: pantservoertuig transporter
+      opus_source_category: tank_transporter
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: tanktrailer
+      opus_source_category: tank_transporter
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: speciale trailer
+      opus_source_category: special_purpose
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: bergingstrailer
+      opus_source_category: special_purpose
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: speciaal doel
+      opus_source_category: special_purpose
+      evidence_tender_id: null
+      evidence_snippet: null
+    da:
+    - term: kampvognstransporter
+      opus_source_category: tank_transporter
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: panserkøretøjstransporter
+      opus_source_category: tank_transporter
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: tanktransport
+      opus_source_category: tank_transporter
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: specialvogn
+      opus_source_category: special_purpose
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: bjærgningsvogn
+      opus_source_category: special_purpose
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: særligt formål
+      opus_source_category: special_purpose
+      evidence_tender_id: null
+      evidence_snippet: null
+    sv:
+    - term: stridsvagnstransport
+      opus_source_category: tank_transporter
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: pansarfordonssläp
+      opus_source_category: tank_transporter
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: tanktransportör
+      opus_source_category: tank_transporter
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: specialsläp
+      opus_source_category: special_purpose
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: bärgningssläp
+      opus_source_category: special_purpose
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: särskilt ändamål
+      opus_source_category: special_purpose
+      evidence_tender_id: null
+      evidence_snippet: null
+    'no':
+    - term: stridsvogntransport
+      opus_source_category: tank_transporter
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: panserkjøretøytransport
+      opus_source_category: tank_transporter
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: tanktransportør
+      opus_source_category: tank_transporter
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: spesialhenger
+      opus_source_category: special_purpose
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: bergingshenger
+      opus_source_category: special_purpose
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: spesielt formål
+      opus_source_category: special_purpose
+      evidence_tender_id: null
+      evidence_snippet: null
+    es:
+    - term: portacarros
+      opus_source_category: tank_transporter
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: transporte de blindados
+      opus_source_category: tank_transporter
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: góndola militar
+      opus_source_category: tank_transporter
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: remolque especial
+      opus_source_category: special_purpose
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: remolque recuperación
+      opus_source_category: special_purpose
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: propósito especial
+      opus_source_category: special_purpose
+      evidence_tender_id: null
+      evidence_snippet: null
+proposed_new_categories:
+  cargo_trailer:
+    de:
+    - term: lastenanhänger
+      opus_source_category: cargo_trailer
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: transportanhänger
+      opus_source_category: cargo_trailer
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: güteranhänger
+      opus_source_category: cargo_trailer
+      evidence_tender_id: null
+      evidence_snippet: null
+    en:
+    - term: cargo trailer
+      opus_source_category: cargo_trailer
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: freight trailer
+      opus_source_category: cargo_trailer
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: transport trailer
+      opus_source_category: cargo_trailer
+      evidence_tender_id: null
+      evidence_snippet: null
+    fr:
+    - term: remorque de fret
+      opus_source_category: cargo_trailer
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: remorque cargo
+      opus_source_category: cargo_trailer
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: remorque transport
+      opus_source_category: cargo_trailer
+      evidence_tender_id: null
+      evidence_snippet: null
+    pl:
+    - term: przyczepa transportowa
+      opus_source_category: cargo_trailer
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: przyczepa towarowa
+      opus_source_category: cargo_trailer
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: przyczepa ładunkowa
+      opus_source_category: cargo_trailer
+      evidence_tender_id: null
+      evidence_snippet: null
+    cs:
+    - term: nákladní přívěs
+      opus_source_category: cargo_trailer
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: transportní přívěs
+      opus_source_category: cargo_trailer
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: přepravní přívěs
+      opus_source_category: cargo_trailer
+      evidence_tender_id: null
+      evidence_snippet: null
+    ro:
+    - term: remorcă marfă
+      opus_source_category: cargo_trailer
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: remorcă transport
+      opus_source_category: cargo_trailer
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: remorcă cargo
+      opus_source_category: cargo_trailer
+      evidence_tender_id: null
+      evidence_snippet: null
+    it:
+    - term: rimorchio merci
+      opus_source_category: cargo_trailer
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: rimorchio cargo
+      opus_source_category: cargo_trailer
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: rimorchio trasporto
+      opus_source_category: cargo_trailer
+      evidence_tender_id: null
+      evidence_snippet: null
+    nl:
+    - term: vrachtaanhanger
+      opus_source_category: cargo_trailer
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: goederentrailer
+      opus_source_category: cargo_trailer
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: transportaanhanger
+      opus_source_category: cargo_trailer
+      evidence_tender_id: null
+      evidence_snippet: null
+    da:
+    - term: fragtvogn
+      opus_source_category: cargo_trailer
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: godsvogn
+      opus_source_category: cargo_trailer
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: transportvogn
+      opus_source_category: cargo_trailer
+      evidence_tender_id: null
+      evidence_snippet: null
+    sv:
+    - term: fraktsläp
+      opus_source_category: cargo_trailer
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: godssläp
+      opus_source_category: cargo_trailer
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: transportsläp
+      opus_source_category: cargo_trailer
+      evidence_tender_id: null
+      evidence_snippet: null
+    'no':
+    - term: frakthenger
+      opus_source_category: cargo_trailer
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: godshenger
+      opus_source_category: cargo_trailer
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: transporthenger
+      opus_source_category: cargo_trailer
+      evidence_tender_id: null
+      evidence_snippet: null
+    es:
+    - term: remolque de carga
+      opus_source_category: cargo_trailer
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: remolque transporte
+      opus_source_category: cargo_trailer
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: plataforma de carga
+      opus_source_category: cargo_trailer
+      evidence_tender_id: null
+      evidence_snippet: null
+  decontamination_cbrn:
+    de:
+    - term: dekontaminationsanhänger
+      opus_source_category: decontamination_cbrn
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: abc-dekontamination
+      opus_source_category: decontamination_cbrn
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: cbrn-anhänger
+      opus_source_category: decontamination_cbrn
+      evidence_tender_id: null
+      evidence_snippet: null
+    en:
+    - term: decontamination trailer
+      opus_source_category: decontamination_cbrn
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: cbrn trailer
+      opus_source_category: decontamination_cbrn
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: nbc decontamination
+      opus_source_category: decontamination_cbrn
+      evidence_tender_id: null
+      evidence_snippet: null
+    fr:
+    - term: remorque décontamination
+      opus_source_category: decontamination_cbrn
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: décontamination nrbc
+      opus_source_category: decontamination_cbrn
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: remorque nbc
+      opus_source_category: decontamination_cbrn
+      evidence_tender_id: null
+      evidence_snippet: null
+    pl:
+    - term: przyczepa dekontaminacyjna
+      opus_source_category: decontamination_cbrn
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: dekontaminacja cbrn
+      opus_source_category: decontamination_cbrn
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: przyczepa abc
+      opus_source_category: decontamination_cbrn
+      evidence_tender_id: null
+      evidence_snippet: null
+    cs:
+    - term: dekontaminační přívěs
+      opus_source_category: decontamination_cbrn
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: dekontaminace cbrn
+      opus_source_category: decontamination_cbrn
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: přívěs nbc
+      opus_source_category: decontamination_cbrn
+      evidence_tender_id: null
+      evidence_snippet: null
+    ro:
+    - term: remorcă decontaminare
+      opus_source_category: decontamination_cbrn
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: decontaminare cbrn
+      opus_source_category: decontamination_cbrn
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: remorcă nbc
+      opus_source_category: decontamination_cbrn
+      evidence_tender_id: null
+      evidence_snippet: null
+    it:
+    - term: rimorchio decontaminazione
+      opus_source_category: decontamination_cbrn
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: decontaminazione cbrn
+      opus_source_category: decontamination_cbrn
+      evidence_tender_id: null
+      evidence_snippet: null
+    nl:
+    - term: decontaminatietrailer
+      opus_source_category: decontamination_cbrn
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: cbrn-trailer
+      opus_source_category: decontamination_cbrn
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: nbc-decontaminatie
+      opus_source_category: decontamination_cbrn
+      evidence_tender_id: null
+      evidence_snippet: null
+    da:
+    - term: dekontamineringsvogn
+      opus_source_category: decontamination_cbrn
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: cbrn-vogn
+      opus_source_category: decontamination_cbrn
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: abc-rensning
+      opus_source_category: decontamination_cbrn
+      evidence_tender_id: null
+      evidence_snippet: null
+    sv:
+    - term: saneringsläp
+      opus_source_category: decontamination_cbrn
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: cbrn-släp
+      opus_source_category: decontamination_cbrn
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: abc-sanering
+      opus_source_category: decontamination_cbrn
+      evidence_tender_id: null
+      evidence_snippet: null
+    'no':
+    - term: dekontamineringshenger
+      opus_source_category: decontamination_cbrn
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: cbrn-henger
+      opus_source_category: decontamination_cbrn
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: abc-rensing
+      opus_source_category: decontamination_cbrn
+      evidence_tender_id: null
+      evidence_snippet: null
+    es:
+    - term: remolque descontaminación
+      opus_source_category: decontamination_cbrn
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: descontaminación nrbq
+      opus_source_category: decontamination_cbrn
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: remolque nbc
+      opus_source_category: decontamination_cbrn
+      evidence_tender_id: null
+      evidence_snippet: null
+  heavy_haul:
+    de:
+    - term: schwerlast
+      opus_source_category: heavy_haul
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: schwertransport
+      opus_source_category: heavy_haul
+      evidence_tender_id: null
+      evidence_snippet: null
+    en:
+    - term: heavy haul
+      opus_source_category: heavy_haul
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: heavy haulage
+      opus_source_category: heavy_haul
+      evidence_tender_id: 152406-2025
+      evidence_snippet: Heavy Haulage, Double-Drive 6x4 Articulated Truck Units and Two (2) X Heavy Haulage Trailers
+    - term: heavy equipment transport
+      opus_source_category: heavy_haul
+      evidence_tender_id: null
+      evidence_snippet: null
+    fr:
+    - term: transport lourd
+      opus_source_category: heavy_haul
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: convoi exceptionnel
+      opus_source_category: heavy_haul
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: poids lourd
+      opus_source_category: heavy_haul
+      evidence_tender_id: null
+      evidence_snippet: null
+    pl:
+    - term: transport ciężki
+      opus_source_category: heavy_haul
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: naczepy ciężkie
+      opus_source_category: heavy_haul
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: transport ponadgabarytowy
+      opus_source_category: heavy_haul
+      evidence_tender_id: null
+      evidence_snippet: null
+    cs:
+    - term: těžký transport
+      opus_source_category: heavy_haul
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: nadměrný náklad
+      opus_source_category: heavy_haul
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: těžkotonážní
+      opus_source_category: heavy_haul
+      evidence_tender_id: null
+      evidence_snippet: null
+    ro:
+    - term: transport greu
+      opus_source_category: heavy_haul
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: transport agabaritic
+      opus_source_category: heavy_haul
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: transport special
+      opus_source_category: heavy_haul
+      evidence_tender_id: null
+      evidence_snippet: null
+    it:
+    - term: trasporto pesante
+      opus_source_category: heavy_haul
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: trasporto eccezionale
+      opus_source_category: heavy_haul
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: convoglio speciale
+      opus_source_category: heavy_haul
+      evidence_tender_id: null
+      evidence_snippet: null
+    nl:
+    - term: zwaar transport
+      opus_source_category: heavy_haul
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: exceptioneel transport
+      opus_source_category: heavy_haul
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: zwaarlast
+      opus_source_category: heavy_haul
+      evidence_tender_id: null
+      evidence_snippet: null
+    da:
+    - term: tungtransport
+      opus_source_category: heavy_haul
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: specialtransport
+      opus_source_category: heavy_haul
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: sværlast
+      opus_source_category: heavy_haul
+      evidence_tender_id: null
+      evidence_snippet: null
+    sv:
+    - term: tungtransport
+      opus_source_category: heavy_haul
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: specialtransport
+      opus_source_category: heavy_haul
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: tung last
+      opus_source_category: heavy_haul
+      evidence_tender_id: null
+      evidence_snippet: null
+    'no':
+    - term: tungtransport
+      opus_source_category: heavy_haul
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: spesialtransport
+      opus_source_category: heavy_haul
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: tung last
+      opus_source_category: heavy_haul
+      evidence_tender_id: null
+      evidence_snippet: null
+    es:
+    - term: transporte pesado
+      opus_source_category: heavy_haul
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: transporte especial
+      opus_source_category: heavy_haul
+      evidence_tender_id: null
+      evidence_snippet: null
+    - term: carga pesada
+      opus_source_category: heavy_haul
+      evidence_tender_id: null
+      evidence_snippet: null
+cpv_codes_observed:
+- '34223300'
+- '34220000'
+- '34223000'
+- '34223100'
+- '34223310'
+- '34223330'
+- '34223370'
+- '34224000'
+- '34224100'
+- '16000000'
+- '16100000'
+- '16110000'
+- '16120000'
+- '16140000'
+- '16150000'
+- '34223320'
+- '44611000'
+- '31121100'
+- '34133110'
+- '34144730'
+- '34521000'
+- '34130000'
+- '34200000'
+- '34221000'
+- '44211400'
+- '31120000'
+- '42512000'
+- '45223100'
+- '34113200'
+- '35722000'
+- '35820000'
+- '44211100'
+- '42410000'
+- '34100000'
+- '34300000'
+- '34142000'
+- '34211300'
+- '50100000'
+- '50114000'
+- '34990000'
+- '42912300'
+opus_notes: Coverage strong for Germanic/Romance/Slavic languages; limited evidence for Baltic (lt/lv), Greek (el), Turkish
+  (tr). Tank transporter category underrepresented—most tenders focus on general cargo/special purpose. CBRN/decontamination
+  trailers absent from corpus. Mission module/shelter terminology well-documented in Nordic/Italian tenders.

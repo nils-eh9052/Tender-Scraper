@@ -1,0 +1,51 @@
+# Run started 2026-05-19T12:00:00
+# argv: main.py --national cz --since 2024-01-01
+[run-log] data/.run_log/20260519_120000.log
+
++==========================================================+
+|  TED Defence Trailer Scraper                             |
+|  Hybrid API + Filtering Pipeline                         |
++==========================================================+
+  Mode: NATIONAL PORTAL (Playwright) — CZ
+
+============================================================
+  NATIONAL PORTAL RUNS
+============================================================
+
+  ── Czech Republic (CZ-NEN) ──
+2026-05-19 12:00:01 [INFO] src.national_scraper.adapters.cz_adapter: CZ: NEN/NIPEZ search started
+2026-05-19 12:00:02 [INFO] src.national_scraper.adapters.cz_adapter: CZ: loading search page
+2026-05-19 12:00:05 [INFO] src.national_scraper.adapters.cz_adapter: CZ: submitting CPV form
+2026-05-19 12:00:08 [ERROR] src.national_scraper.adapters.cz_adapter: CZ: unexpected response
+Traceback (most recent call last):
+  File "/app/src/national_scraper/adapters/cz_adapter.py", line 214, in fetch_detail
+    detail = await page.wait_for_selector(".notice-detail", timeout=30000)
+  File "/app/venv/lib/playwright/sync_api/_generated.py", line 8234, in wait_for_selector
+    return mapping.from_impl(
+playwright._impl._errors.TimeoutError: Timeout 30000ms exceeded.
+
+2026-05-19 12:00:40 [INFO] src.national_scraper.adapters.cz_adapter: CZ: retrying with longer timeout
+2026-05-19 12:01:05 [ERROR] src.national_scraper.adapters.cz_adapter: CZ: retry also failed
+Traceback (most recent call last):
+  File "/app/src/national_scraper/adapters/cz_adapter.py", line 256, in _retry_detail
+    return self._fetch_with_timeout(url, timeout=60000)
+  File "/app/src/national_scraper/adapters/cz_adapter.py", line 188, in _fetch_with_timeout
+    page.goto(url, wait_until="networkidle", timeout=timeout)
+  File "/app/venv/lib/playwright/sync_api/_generated.py", line 9112, in goto
+    return mapping.from_impl(self._impl_obj.goto(**locals()))
+playwright._impl._errors.TimeoutError: Timeout 60000ms exceeded while waiting for event "networkidle".
+
+2026-05-19 12:01:10 [WARNING] src.national_scraper.adapters.cz_adapter: CZ: falling back to cached data
+2026-05-19 12:01:15 [INFO] src.national_scraper.adapters.cz_adapter: CZ: 18 results from cache
+  National notices found: 18
+  Merge: 0 added, 18 id-dupes skipped, 163 total
+  run duration: 74.8s
+
+============================================================
+  PHASE 4: Excel Export
+============================================================
+2026-05-19 12:02:00 [INFO] src.exporter: Excel exported: data/export/260519_TED_Tender Data_00.04.xlsx
+2026-05-19 12:02:00 [INFO] src.exporter:   Scraper Data rows: 285
+
+  [OK] Excel exported: data/export/260519_TED_Tender Data_00.04.xlsx
+  Total run duration: 125.3s

@@ -1,0 +1,49 @@
+# Run started 2026-05-19T10:00:00
+# argv: main.py --all --since 2024-01-01
+[run-log] data/.run_log/20260519_100000.log
+
++==========================================================+
+|  TED Defence Trailer Scraper                             |
+|  Hybrid API + Filtering Pipeline                         |
++==========================================================+
+
+============================================================
+  PHASE 1+2: Index + Details (TED API v3)
+============================================================
+2026-05-19 10:00:01 [INFO] src.api_client: TED API v3 — requesting page 1 (page_size=250)
+2026-05-19 10:00:02 [WARNING] src.api_client: HTTP 429 — rate limit hit, waiting 60s
+2026-05-19 10:01:02 [INFO] src.api_client: TED API v3 — retrying page 1
+2026-05-19 10:01:03 [WARNING] src.api_client: HTTP 429 — rate limit hit again, waiting 120s
+2026-05-19 10:03:03 [INFO] src.api_client: TED API v3 — retrying page 1 (attempt 3)
+2026-05-19 10:03:04 [INFO] src.api_client: TED API v3 — 145 notices fetched (after rate-limit delays)
+
+  ── TED ──
+  Fetched TED notices: 145
+  run duration: 320.1s
+
+============================================================
+  NATIONAL PORTAL RUNS
+============================================================
+
+  ── France (FR-BP) ──
+2026-05-19 10:04:00 [INFO] src.national_scraper.adapters.fr_adapter: FR: Phase 1 -> 22 results
+2026-05-19 10:04:01 [INFO] src.national_scraper.adapters.fr_adapter: FR: search_all_keywords -> 13 results
+  National notices found: 13
+  Merge: 0 added, 13 id-dupes skipped, 145 total
+  run duration: 15.3s
+
+  ── Norway (NO-DF) ──
+2026-05-19 10:04:20 [INFO] src.national_scraper.adapters.no_adapter: NO: searching Doffin
+2026-05-19 10:04:21 [INFO] src.national_scraper.adapters.no_adapter: NO: 3 results
+  National notices found: 3
+  Merge: 0 added, 3 id-dupes skipped, 145 total
+  run duration: 7.2s
+
+============================================================
+  PHASE 4: Excel Export
+============================================================
+2026-05-19 10:10:00 [INFO] src.exporter: Excel exported: data/export/260519_TED_Tender Data_00.03.xlsx
+2026-05-19 10:10:00 [INFO] src.exporter:   Scraper Data rows: 280
+
+  [OK] Excel exported: data/export/260519_TED_Tender Data_00.03.xlsx
+  Total run duration: 628.5s

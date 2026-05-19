@@ -1,0 +1,35 @@
+# Health Monitor Thresholds
+# All values here override the defaults in anomalies.py.
+# Per-adapter overrides go under the "adapters:" key.
+#
+# Rule descriptions:
+#   tender_count_drop_50pct  — warn when tender_count < drop_pct * 7d_mean (and baseline >= min)
+#   zero_tender_streak_3     — warn on N consecutive zero-count runs for 'working' adapters
+#   pub_date_stale_60d       — info when newest_pub_date older than today-N days
+#   http_error_spike         — warn when (4xx+5xx) > max(min, factor * 7d_mean)
+#   rate_limit_cluster       — warn on any HTTP 429
+#   duration_spike           — info when run_duration > factor * 7d_mean
+#   unhandled_exception      — critical on success==False or exception_count > 0
+#   snapshot_drift           — warn when |new+removed| > pct * tender_count
+
+global:
+  tender_count_drop_pct: 0.50        # 50% drop triggers warn
+  tender_count_min_baseline: 5       # only fire if 7d_mean >= this value
+  zero_streak_threshold: 3           # consecutive zero-count runs to trigger warn
+  zero_streak_min_30d_mean: 5        # only fire if 30d_mean >= this value
+  pub_date_stale_days: 60            # days before "stale" info fires
+  http_error_spike_min: 3            # minimum absolute threshold for spike
+  http_error_spike_factor: 3.0       # multiplier against 7d error mean
+  duration_spike_factor: 3.0         # multiplier against 7d duration mean
+  snapshot_drift_pct: 0.50           # |new+removed| / tender_count threshold
+
+# Per-adapter overrides — uncomment and adjust as needed.
+# adapters:
+#   fr:
+#     pub_date_stale_days: 180       # FR BOAMP data is historically older
+#   ca:
+#     tender_count_min_baseline: 10  # CA has high yield; raise the bar
+#   au-atm:
+#     zero_streak_threshold: 5       # ATM is pre-award; longer gaps normal
+#   nspa:
+#     tender_count_min_baseline: 99  # NSPA yield near-zero; skip drop alerts

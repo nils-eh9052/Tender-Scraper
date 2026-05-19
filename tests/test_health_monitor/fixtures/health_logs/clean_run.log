@@ -1,0 +1,110 @@
+# Run started 2026-05-19T08:00:00
+# argv: main.py --all --since 2024-01-01 --two-stage
+[run-log] data/.run_log/20260519_080000.log
+
++==========================================================+
+|  TED Defence Trailer Scraper                             |
+|  Hybrid API + Filtering Pipeline                         |
++==========================================================+
+
+============================================================
+  PHASE 1+2: Index + Details (TED API v3)
+============================================================
+2026-05-19 08:00:01 [INFO] src.api_client: TED API v3 — requesting page 1 (page_size=250)
+2026-05-19 08:00:02 [INFO] src.api_client: TED API v3 — 187 notices fetched
+2026-05-19 08:00:02 [INFO] src.index_builder: Phase 1+2: 187 TED notices indexed
+
+============================================================
+  PHASE 3: Filter & Score
+============================================================
+2026-05-19 08:01:00 [INFO] src.filter_engine: Filter pass: 187 -> 145 (score >= 25)
+  relevant.json: 145 TED notices
+
+============================================================
+  NATIONAL PORTAL RUNS
+============================================================
+
+  ── France (FR-BP) ──
+2026-05-19 08:01:10 [INFO] src.national_scraper.adapters.fr_adapter: FR: Phase 1 -> 22 results
+2026-05-19 08:01:11 [INFO] src.national_scraper.adapters.fr_adapter: FR: search_all_keywords -> 40 unique results
+  Raw search results:  40
+  Defence-relevant:    40
+  Detailed notices:    40
+2026-05-19 08:01:12 [INFO] src.national_scraper.adapters.fr_adapter: FR: fetching detail for idweb=22-16243
+2026-05-19 08:01:13 [INFO] src.national_scraper.adapters.fr_adapter: FR: fetching detail for idweb=21-163372
+  National notices found: 13
+  Merge: 0 added, 13 id-dupes skipped, 145 total
+  run duration: 12.4s
+
+  ── Norway (NO-DF) ──
+2026-05-19 08:01:20 [INFO] src.national_scraper.adapters.no_adapter: NO: searching Doffin
+2026-05-19 08:01:21 [INFO] src.national_scraper.adapters.no_adapter: NO: 3 defence notices found
+  National notices found: 3
+  Merge: 2 added, 1 id-dupes skipped, 147 total
+  run duration: 8.2s
+
+  ── Czech Republic (CZ-NEN) ──
+2026-05-19 08:01:30 [INFO] src.national_scraper.adapters.cz_adapter: CZ: NEN/NIPEZ search started
+2026-05-19 08:01:31 [INFO] src.national_scraper.adapters.cz_adapter: CZ: 32 defence notices found
+  National notices found: 32
+  Merge: 5 added, 27 id-dupes skipped, 152 total
+  run duration: 48.3s
+
+  ── Australia (AU-TEN) ──
+2026-05-19 08:02:00 [INFO] src.national_scraper.adapters.au_ocds_adapter: AU: AusTender OCDS search
+2026-05-19 08:02:01 [INFO] src.national_scraper.adapters.au_ocds_adapter: AU: 56 contracts found
+  National notices found: 56
+  Merge: 10 added, 46 id-dupes skipped, 162 total
+  run duration: 22.1s
+
+  ── Canada (CA-CB) ──
+2026-05-19 08:02:10 [INFO] src.national_scraper.adapters.canada_loader: CA: CanadaBuys CSV download
+2026-05-19 08:02:11 [INFO] src.national_scraper.adapters.canada_loader: CA: 74 defence tenders found
+  National notices found: 74
+  Merge: 19 added, 55 id-dupes skipped, 181 total
+  run duration: 14.5s
+
+  ── United Kingdom (UK-CF) ──
+2026-05-19 08:02:20 [INFO] src.national_scraper.adapters.uk_fts_adapter: GB: FTS OCDS search
+2026-05-19 08:02:21 [INFO] src.national_scraper.adapters.uk_fts_adapter: GB: 6 FTS notices found
+  National notices found: 6
+  Merge: 1 added, 5 id-dupes skipped, 182 total
+  run duration: 10.8s
+
+  ── Ukraine (UA-PR) ──
+2026-05-19 08:02:30 [INFO] src.national_scraper.adapters.ua_adapter: UA: Prozorro search
+2026-05-19 08:02:31 [INFO] src.national_scraper.adapters.ua_adapter: UA: 2 defence notices found
+  National notices found: 2
+  Merge: 0 added, 2 id-dupes skipped, 182 total
+  run duration: 5.3s
+
+  ── Netherlands (NL-TN) ──
+2026-05-19 08:02:35 [INFO] src.national_scraper.adapters.nl_adapter: NL: TenderNed search
+2026-05-19 08:02:36 [INFO] src.national_scraper.adapters.nl_adapter: NL: 1 defence notice found
+  National notices found: 1
+  Merge: 0 added, 1 id-dupes skipped, 182 total
+  run duration: 6.7s
+
+  ── Estonia (EE-RP) ──
+2026-05-19 08:02:40 [INFO] src.national_scraper.adapters.ee_adapter: EE: Open Data XML import
+2026-05-19 08:02:41 [INFO] src.national_scraper.adapters.ee_adapter: EE: 3 defence notices found
+  National notices found: 3
+  Merge: 0 added, 3 id-dupes skipped, 182 total
+  run duration: 3.2s
+
+============================================================
+  PHASE 3b: AI Classification
+============================================================
+2026-05-19 08:03:00 [INFO] src.classifier: TwoStageClassifier: 182 notices
+2026-05-19 08:03:01 [INFO] src.classifier: Phase 1 (Haiku): 182 notices -> 45 YES candidates
+2026-05-19 08:03:02 [INFO] src.classifier: Phase 2 (Sonnet): 45 notices classified
+  Classified now: 45, from cache: 137, errors: 0
+
+============================================================
+  PHASE 4: Excel Export
+============================================================
+2026-05-19 08:05:00 [INFO] src.exporter: Excel exported: data/export/260519_TED_Tender Data_00.02.xlsx
+2026-05-19 08:05:00 [INFO] src.exporter:   Scraper Data rows: 290
+
+  [OK] Excel exported: data/export/260519_TED_Tender Data_00.02.xlsx
+  Total run duration: 310.4s
